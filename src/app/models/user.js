@@ -1,10 +1,8 @@
-const { mongo } = require("mongoose");
-
+const mongoose = require('../../database/index')
 const bcrypt = require('bcryptjs')
+const mongoosePaginate = require('mongoose-paginate')
 
-const mongoose = require(mongoose)
-
-const UserSchema = mongose.Schema({
+const UserSchema = mongoose.Schema({
     dateCreater: {
         type: Date,
         require: true,
@@ -25,11 +23,23 @@ const UserSchema = mongose.Schema({
         require: true,
         select: false
     },
+
+    passwordResetToken: {
+        type: String,
+        select: false
+    },
+
+    passwordResetTxpires: {
+        type: Date,
+        default: Date.now,
+    },
 })
 
 UserSchema.pre('save', async function(next){
     const hash = await bcrypt.hash(this.password, 10)
     this.password = hash
 })
+// Definido o pluglin para poder utilizar a função paginate
+UserSchema.plugin(mongoosePaginate)
 
-const User = mongoose.model('User', UserSchema)
+mongoose.model('User', UserSchema)
