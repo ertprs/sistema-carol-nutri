@@ -12,6 +12,44 @@ const UserSchema = mongoose.Schema({
         type: String,
         require: true
     },
+    PersonalInformation: {
+        dateBirth: {
+            type: String,
+            require: true
+        },
+        maritalStatus: {
+            type: String,
+            require: true
+        },
+        phone: {
+            type: String,
+            require: true
+        },
+        IntestinalTransit:{
+            type: String,
+            require: true
+        },
+        sleepQuality: {
+            type: String,
+            require: true,
+            select: false
+        },
+        Weight: {
+            type: String,
+            require: true,
+            select: false
+        },
+        height: {
+            type: String,
+            require: true,
+            select: false
+        },
+        UrinaryStaining:{
+            type: String,
+            require: true,
+            select: false
+        },
+    },
     email: {
         type: String,
         require: true,
@@ -23,7 +61,6 @@ const UserSchema = mongoose.Schema({
         require: true,
         select: false
     },
-
     passwordResetToken: {
         type: String,
         select: false
@@ -33,6 +70,12 @@ const UserSchema = mongoose.Schema({
         type: Date,
         default: Date.now,
     },
+    eAdmin: {
+        default: false,
+        type: Boolean,
+        require: true,
+        select: false
+    }
 })
 
 UserSchema.pre('save', async function(next){

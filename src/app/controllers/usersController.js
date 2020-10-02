@@ -14,7 +14,7 @@ module.exports = {
 
         } catch (error) {
 
-            return res.status(400).send({error: 'Erro ao listar usuários.' })
+            return res.status(400).send({error: 'Erro ao listar usuários.'})
 
         }
     },
