@@ -1,38 +1,62 @@
-const authMiddleware = require('express')
-const express = require('express')
-
 const mongoose = require('../../database')
 
 require('../models/user')
 const User = mongoose.model('User')
 
-const router = express.Router()
+module.exports = {
+    async index(req, res){
+        try {
 
-router.use(authMiddleware)
+            const { page = 1 } = req.query // Está sendo recebido da query, o parametro de pagina que o usuario está na url
+            // utilizando o mongoose-paginate para separa uma quantidade de 10 objetos por pagina. Primeiro parametro é p numero da pagina e o segundo é a quantdade de objetos
+            const user = await User.paginate({ }, { page: page, limit: 10}) // Caso exista 11 models, na pag 1 é exibido 10 e na 2 apenas 1
+            return res.json(user)
 
-    router.get('/users', async (req, res) => {
-        const { page = 1 } = req.query // Está sendo recebido da query, o parametro de pagina que o usuario está na url
-        // utilizando o mongoose-paginate para separa uma quantidade de 10 objetos por pagina. Primeiro parametro é p numero da pagina e o segundo é a quantdade de objetos
-        const users = await User.paginate({ page: page, limit: 10}) // Caso exista 11 models, na pag 1 é exibido 10 e na 2 apenas 1
-        return res.json(users)
-    }),
+        } catch (error) {
 
-    router.get('/user/:id', async (req, res) => {
-        const User = await User.findById()
+            return res.status(400).send({error: 'Erro ao listar usuários.' })
 
-        return res.json(User);
-    }),
+        }
+    },
 
-    router.put('/update-user/:id', async (req, res) =>{
-        const User = await User.findByIdAndUpdate(req.params.id, req.body, {new: true});
+    async show(req, res){
+        try {
 
-        return res.json(User);
-    }),
+            const user = await User.findById(req.params.id)
 
-    router.delete('/delete-user/:id', async (req, res) =>{
-        await User.findByIdAndRemove(req.params.id);
+            return res.json(user);
 
-        return res.send('User removido!');
-    })
+        } catch (error) {
 
-module.exports = app => app.use('/users', router)
+            return res.status(400).send({error: 'Erro ao listar usuário.' })
+
+        }
+
+    },
+
+    async update(req, res){
+        try {
+
+            const user = await User.findByIdAndUpdate(req.params.id, req.body, {new: true});
+
+            return res.json(user);
+
+        } catch (error) {
+            return res.status(400).send({error: 'Erro ao listar usuários.' })
+        }
+    },
+
+    async destroy(req, res){
+        try {
+            
+            await User.findByIdAndRemove(req.params.id);
+
+            return res.send('user removido!');
+
+        } catch (error) {
+            
+            return res.status(400).send({error: 'Erro ao listar usuários.' })
+
+        }
+    }
+}
