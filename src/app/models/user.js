@@ -71,8 +71,8 @@ const UserSchema = mongoose.Schema({
         default: Date.now,
     },
     eAdmin: {
-        default: false,
         type: Boolean,
+        default: false,
         require: true,
         select: false
     }

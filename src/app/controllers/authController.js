@@ -17,9 +17,14 @@ const User = mongoose.model('User')
 const router = express.Router()
 
 function genareteToken(params = {}){
-    return jwt.sign({params}, authconfig.secret, {
-        expiresIn: 86400
-    })
+    try {
+        return jwt.sign({params}, authconfig.secret, {
+            expiresIn: 86400
+        })
+    } catch (error) {
+        return res.status(400).send({error: 'Erro!.Tente novamente!'})
+    }
+
 }
 
 router.post('/register', async (req, res) => {
@@ -35,7 +40,7 @@ router.post('/register', async (req, res) => {
 
         return res.send({
             user,
-            token: genareteToken({id: user.id})
+            token: genareteToken({id: user._id})
         })
         
     }catch(err){
@@ -45,7 +50,7 @@ router.post('/register', async (req, res) => {
     }
 })
 
-router.post('authenticate', async (req, res) => {
+router.post('/authenticate', async (req, res) => {
     const { email, password} = req.body
 
     const user = await  User.findOne({email}).select('+password')
@@ -61,7 +66,7 @@ router.post('authenticate', async (req, res) => {
 
         return res.send({
             user,
-            token: genareteToken({id: user.id})
+            token: genareteToken({id: user._id})
         })
 })
 
@@ -78,7 +83,7 @@ router.post('/forgot_password', async (req, res) => {
         const now = new Date()
         now.setHours(now.getHours() + 1)
 
-        await User.findByIdAndUpdate(user.id, {
+        await User.findByIdAndUpdate(user._id, {
             '$set': {
                 passwordResetToken: token,
                 passwordResetTxpires: now
