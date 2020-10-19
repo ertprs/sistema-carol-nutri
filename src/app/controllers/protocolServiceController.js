@@ -4,11 +4,31 @@ const { update, destroy } = require('./usersController');
 require("../models/protocolService")
 const ProtocolService = mongoose.model("ProtocolService");
 
+
+// function HarrisBenedict(A, P, I, G) {
+//     var eg = 0;
+//     if(G == "Feminino") {
+//         eg = 655 + (9.6 * P) + (1.9 * A) - (4.7 * I);
+//     }
+//     else {
+//         eg = 66 + (13.8 * P) + (5.0 * A) - (6.8 * I);
+//     }
+//     return eg;
+// }
+
 module.exports = {
 
     async store(req, res) {
         try {
+            // const { anthropometricEvaluation: {height, currentWeight}} = req.body;
+            // const { personalData: { age, genre } } = req.body;
+            
+            // const ener = HarrisBenedict(height, currentWeight, age, genre);
+
+            // console.log(ener);
+
             const protocolService = await ProtocolService.create({... req.body, user:req.userId});
+
             return res.json(protocolService);
         }
         catch (error) {

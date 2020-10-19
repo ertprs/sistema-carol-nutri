@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const mongoosePaginate = require('mongoose-paginate');
+const functionEnergyExpend = require('../controllers/energyExpenditure');
 
 const ProtocolService = new mongoose.Schema({
     createdAt: {
@@ -23,6 +24,10 @@ const ProtocolService = new mongoose.Schema({
         },
         age: {
             type: Number,
+            required: true
+        },
+        genre: {
+            type: String,
             required: true
         },
         maritalStatus: {
@@ -234,65 +239,108 @@ const ProtocolService = new mongoose.Schema({
             required: true
         },
         currentWeight: {
-            type: String,
+            type: Number,
             required: true
         },
         height: {
-            type: String,
+            type: Number,
             required: true
         },
         imc: {
-            type: String,
+            type: Number,
             required: true
         },
         waist: {
-            type: String,
+            type: Number,
             required: true
         },
         arm: {
-            type: String,
+            type: Number,
             required: true
         },
         hip: {
-            type: String,
+            type: Number,
             required: true
         },
         bicepsSkinfold: {
-            type: String,
+            type: Number,
             required: true
         },
         tricepsSkinfold: {
-            type: String,
+            type: Number,
             required: true
         },
-        mediumAxillary : {
-            type: String,
+        mediumAxillarySkinfold : {
+            type: Number,
             required: true
         },
-        breastplate: {
-            type: String,
+        breastplateSkinfold: {
+            type: Number,
             required: true
         },
-        suprailiac: {
-            type: String,
+        suprailiacSkinfold: {
+            type: Number,
             required: true
         },
-        subscapular: {
-            type: String,
+        subscapularSkinfold: {
+            type: Number,
             required: true
         },
-        abdominal: {
-            type: String,
+        abdominalSkinfold: {
+            type: Number,
             required: true
         },
-        thigh: {
-            type: String,
+        thighSkinfold: {
+            type: Number,
             required: true
         },
-    },
+        calfSkinfold: {
+            type: Number,
+            required: true
+        },
+        ThoracicSkinfold: {
+            type: Number,
+            required: true
+        },
+        calf: {
+            type: Number,
+            required: true
+        },
+        NAF: {
+            type: Number,
+            required: true
+        },
+        energyExpenditure: {
+            HarrisBenedict: {
+                type: Number,
+            },
+            faoOms: {
+                type: Number,
+            },
+            iom: {
+                type: Number
+            }  
+        },
+        dailyHydraulicNeed: {
+            type: Number
+        }
+    }
+})
+
+ProtocolService.pre('save', async function(next){
+
+    const energyExpend = this.anthropometricEvaluation.energyExpenditure;
+    const { height, currentWeight, NAF } = this.anthropometricEvaluation;
+    const { age, genre } = this.personalData;
+
+    energyExpend.faoOms = functionEnergyExpend.faoOms(currentWeight, age, genre);
+    energyExpend.HarrisBenedict = functionEnergyExpend.harrisBenedict(height, currentWeight, age, genre);
+    energyExpend.iom = functionEnergyExpend.iom(height, currentWeight, age, genre, NAF);
+    this.anthropometricEvaluation.dailyHydraulicNeed = (0.035 * currentWeight).toFixed(2);
+    
 })
 
 // Definido o pluglin para poder utilizar a função paginate
-ProtocolService.plugin(mongoosePaginate)
+ProtocolService.plugin(mongoosePaginate);
 
 mongoose.model('ProtocolService', ProtocolService);
