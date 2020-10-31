@@ -1,13 +1,18 @@
-import Header from './components/header'
+import Routes from './routes'
+import history from './services/history'
+import { Router } from "react-router-dom";
 
-import "./styles.css"
+
+import GlobalStyle from './styles/global'
 
 function App() {
-  return (
-    <div className="App">
-      <Header />
-    </div>
-  );
+  return (  
+  <Router history={history}>
+    <Routes />
+    <GlobalStyle />
+  </Router> 
+  )
+
 }
 
 export default App;

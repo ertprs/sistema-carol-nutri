@@ -9,17 +9,17 @@ nav {
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
 }
 #nav-1 {
-  background:#C71585;
+  background:#831e62;
 }
 
 .link-1 {
   transition: 0.3s ease;
-  background:#C71585;
+  background: #831e62;
   color: #ffffff;
   font-size: 20px;
   text-decoration: none;
-  border-top: 4px solid#C71585;
-  border-bottom: 4px solid#C71585;
+  border-top: 4px solid#831e62;
+  border-bottom: 4px solid#831e62;
   padding: 20px 0;
   margin: 0 20px;
 }
