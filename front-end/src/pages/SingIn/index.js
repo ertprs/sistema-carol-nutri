@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {Link} from 'react-router-dom'
+import { Form, Input } from '@rocketseat/unform'
+import * as Yup from 'yup'
 
 import Header from "../../components/header"
 
 import logo from '../../assets/logo-branca.svg'
 import { Wrapper, Content } from './styles'
-import { Form, Input } from '@rocketseat/unform'
-import * as Yup from 'yup'
+
+import {AuthContext} from '../../context/AuthContext'
 
 const schema = Yup.object().shape({
     email: Yup.string()
@@ -17,13 +19,20 @@ const schema = Yup.object().shape({
         .required("A senha é obrigatória!"),
 })
 
-export default function SingIn(){
+
+export default function SignIn_(){
+
+    const { user, signIn } = useContext(AuthContext)
+
     function handlesubmit(data){
-        alert(data.email)
+        signIn({
+            email: data.email,
+            password: data.password
+        })
     }
 
     return (
-        <div>
+        <>
             <Header />
             <Wrapper>
                 <Content>
@@ -34,11 +43,11 @@ export default function SingIn(){
                         <Input name="password" type="password" placeholder="Sua senha" />
 
                         <button type="submit">Acessar</button>
-                        <Link to="/register">Criar conta gratuita</Link>
+                        <Link to="/signup">Criar conta gratuita</Link>
                     </Form>
                 </Content>
             </Wrapper>
-        </div>
+        </>
 
     )
 }
