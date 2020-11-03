@@ -1,5 +1,6 @@
 import React, { createContext, useCallback, useState } from "react"
 import api from '../services/api'
+import {toast} from 'react-toastify'
 
 export const AuthContext = createContext()
 
@@ -16,16 +17,26 @@ const [data, setData] = useState(() => {
 })
 
 const signIn = useCallback( async ({ email, password}) => {
-    const response = await api.post('auth/authenticate'  ,{
-        email,
-        password,
-    })
-    const { token, user } = response.data
+    try {
+        const response = await api.post('auth/authenticate'  ,{
+            email,
+            password,
+        })
+    
+        const { token, user } = response.data
+    
+        api.defaults.headers['authorization'] = `Bearer ${token}`
+    
+        toast.success('Login realizado!')
+    
+        localStorage.setItem('@CarolNutri:token', token)
+        localStorage.setItem('@CarolNutri:user', JSON.stringify(user))
+    
+        setData({ token, user})
+    } catch (error) {
+        toast.error('Credenciais inválidas!')
+    }
 
-    localStorage.setItem('@CarolNutri:token', token)
-    localStorage.setItem('@CarolNutri:user', JSON.stringify(user))
-
-    setData({ token, user})
 }, [])
 
 const singOut = useCallback(() => {

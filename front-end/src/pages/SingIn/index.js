@@ -3,12 +3,11 @@ import {Link} from 'react-router-dom'
 import { Form, Input } from '@rocketseat/unform'
 import * as Yup from 'yup'
 
-import Header from "../../components/header"
-
 import logo from '../../assets/logo-branca.svg'
 import { Wrapper, Content } from './styles'
 
 import {AuthContext} from '../../context/AuthContext'
+
 
 const schema = Yup.object().shape({
     email: Yup.string()
@@ -23,31 +22,35 @@ const schema = Yup.object().shape({
 export default function SignIn_(){
 
     const { user, signIn } = useContext(AuthContext)
-
-    function handlesubmit(data){
-        signIn({
-            email: data.email,
-            password: data.password
-        })
+    
+    try {
+        function handlesubmit(data){
+            signIn({
+                email: data.email,
+                password: data.password
+            })
+        }
+    
+        return (
+            <>
+                <Wrapper>
+                    <Content>
+                        <img src={logo} alt="Carol-nutricionista"/>
+    
+                        <Form schema={schema} onSubmit={handlesubmit}>
+                            <Input name="email" type="email" placeholder="Seu e-mail" />
+                            <Input name="password" type="password" placeholder="Sua senha" />
+    
+                            <button type="submit">Acessar</button>
+                            <Link to="/signup">Recuperar senha</Link>
+                        </Form>
+                    </Content>
+                </Wrapper>
+            </>
+    
+        )
+    } catch (error) {
+        console.log(error)
     }
 
-    return (
-        <>
-            <Header />
-            <Wrapper>
-                <Content>
-                    <img src={logo} alt="Carol-nutricionista"/>
-
-                    <Form schema={schema} onSubmit={handlesubmit}>
-                        <Input name="email" type="email" placeholder="Seu e-mail" />
-                        <Input name="password" type="password" placeholder="Sua senha" />
-
-                        <button type="submit">Acessar</button>
-                        <Link to="/signup">Criar conta gratuita</Link>
-                    </Form>
-                </Content>
-            </Wrapper>
-        </>
-
-    )
 }

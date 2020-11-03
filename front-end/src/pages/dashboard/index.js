@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
-import Header from "../../components/header"
+import {AuthContext} from '../../context/AuthContext'
 
 export default function LandingPage(){
+
+    const { user } = useContext(AuthContext)
+
     return (
         <div>
-            <Header />
-            <h1>Dashboard</h1>
+            <h1>{user.name}</h1>
         </div>
     )
 }

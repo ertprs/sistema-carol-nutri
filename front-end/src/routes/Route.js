@@ -14,6 +14,10 @@ export default function RouteWrapper({
         return <Redirect to="/signin" />
     }
 
+    if(user && !isPrivate){
+        return <Redirect to="/dashboard" />
+    }
+
 
 
     return (

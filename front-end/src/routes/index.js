@@ -1,5 +1,5 @@
 import React from 'react'
-import { Switch } from 'react-router-dom'
+import { Switch, BrowserRouter } from 'react-router-dom'
 import Route from './Route'
 
 import LandingPage from '../pages/LandingPage'
@@ -11,10 +11,12 @@ import Dashboard from '../pages/dashboard'
 export default function Routes(){
     return (
         <Switch>
-            <Route path="/" exact component={LandingPage} />
-            <Route path="/signin" component={SignIn_}  />
-            <Route path="/signup" component={SignUp} />
-            <Route path="/dashboard" isPrivate component={Dashboard} isPrivate />
+            <BrowserRouter>
+                <Route path="/" exact component={LandingPage} />
+                <Route path="/signin" component={SignIn_}  />
+                <Route path="/signup" component={SignUp} />
+                <Route path="/dashboard" isPrivate component={Dashboard} isPrivate />
+            </BrowserRouter>
         </Switch>
     )
 }
