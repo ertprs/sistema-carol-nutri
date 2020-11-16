@@ -7,16 +7,15 @@ import SignIn_ from '../pages/SingIn'
 import SignUp from '../pages/SingUp'
 import Dashboard from '../pages/dashboard'
 
-
 export default function Routes(){
     return (
-        <Switch>
-            <BrowserRouter>
+        <BrowserRouter>
+            <Switch>
                 <Route path="/" exact component={LandingPage} />
                 <Route path="/signin" component={SignIn_}  />
                 <Route path="/signup" component={SignUp} />
-                <Route path="/dashboard" isPrivate component={Dashboard} isPrivate />
-            </BrowserRouter>
-        </Switch>
+                <Route path="/dashboard" isPrivate component={Dashboard} />
+            </Switch>
+        </BrowserRouter>
     )
 }

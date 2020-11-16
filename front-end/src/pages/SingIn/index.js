@@ -21,7 +21,7 @@ const schema = Yup.object().shape({
 
 export default function SignIn_(){
 
-    const { user, signIn } = useContext(AuthContext)
+    const { signIn } = useContext(AuthContext)
     
     try {
         function handlesubmit(data){

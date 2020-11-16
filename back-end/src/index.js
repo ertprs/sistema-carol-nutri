@@ -17,5 +17,5 @@ app.use('/auth', require('./app/controllers/authController'))
 app.use('/form', require('./app/routers/nutritionistForm'))
 
 app.listen(PORT, () => {
-    console.log("servidor rodando...")
+    console.log("servidor rodando..." + PORT)
 })

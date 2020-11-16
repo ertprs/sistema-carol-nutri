@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
 
+import './styles.css'
+
 import {AuthContext} from '../../context/AuthContext'
 
 export default function LandingPage(){
@@ -8,7 +10,6 @@ export default function LandingPage(){
 
     return (
         <div>
-            <h1>{user.name}</h1>
         </div>
     )
 }

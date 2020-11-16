@@ -59,19 +59,6 @@ export const Content = styled.div`
         }
     }
 
-    a {
-        border: none;
-        color: #fff;
-        margin-top: 15px;
-        font-size: 16px;
-        opacity: 0.8;
-        
-
-        &: hover {
-            opacity: 1;
-        }
-    }
-
     img {
         margin-top: 75px;
         height: 120px;

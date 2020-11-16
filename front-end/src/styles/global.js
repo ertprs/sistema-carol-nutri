@@ -2,7 +2,7 @@ import {createGlobalStyle} from 'styled-components'
 import 'react-toastify/dist/ReactToastify.css'
 
 export default createGlobalStyle`
-    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Pacifico&display=swap');
 
     *{
         margin: 0;
@@ -24,7 +24,7 @@ export default createGlobalStyle`
     }
 
     body, input, button {
-        font: 14px 'roboto', sans-serif;
+        font: 14px 'Lobster', sans-serif;
     }
 
     a {

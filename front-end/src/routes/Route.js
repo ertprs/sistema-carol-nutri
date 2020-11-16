@@ -2,6 +2,9 @@ import React, { useContext } from 'react';
 import { Route, Redirect } from 'react-router-dom'
 import { AuthContext } from '../context/AuthContext'
 
+import AuthLayout from '../pages/_layouts/auth'
+import DefaltLayout from '../pages/_layouts/default'
+
 export default function RouteWrapper({
     component: Component, 
     isPrivate = false,
@@ -18,13 +21,14 @@ export default function RouteWrapper({
         return <Redirect to="/dashboard" />
     }
 
-
+    let Layout = user ? DefaltLayout : AuthLayout
 
     return (
         <Route { ... rest}
             render={props => (
-                <Component {... props} />
-                
+                <Layout>
+                    <Component {... props} />
+                </Layout>  
             )}
         />
     )
