@@ -39,11 +39,6 @@ export default function SideBar(){
                             </a>
                             
                         </li>
-                        <li class="has-subnav">
-                            <button onClick={handleClick}>  Sair
-                            </button>
-                            
-                        </li>
                     </ul>
                 </nav>
             </Content>

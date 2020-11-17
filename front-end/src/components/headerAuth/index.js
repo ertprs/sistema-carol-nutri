@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { Container, Content, Profile } from "./styles.js"
-import logo from '../../assets/logo-branca.svg'
+import logo from '../../assets/logo.svg'
 
 export default function HeaderAuth(){
     return (

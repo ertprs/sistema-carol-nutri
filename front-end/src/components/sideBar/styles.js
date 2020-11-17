@@ -25,7 +25,7 @@ export const Content = styled.div`
   }
 
   .main-menu {
-    background: rgba(190,49,127, 0.7);
+    background: rgba(59,59,59, 0.7);
     position:absolute;
     top:0px;
     bottom:0;

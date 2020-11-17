@@ -25,8 +25,8 @@ export const Content = styled.div`
             height: 64px;
             margin-right: 2px;
             padding-right: 2px;
-            margin-left: 25px;
-            padding-left: 25px;
+            margin-left: 15px;
+            padding-left: 15px;
         }
 
     }
