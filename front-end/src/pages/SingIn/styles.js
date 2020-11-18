@@ -1,16 +1,28 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 
 import { darken } from 'polished'
 
+const DeCimaParaBaixo = keyframes`
+    from{
+        opacity: 0;
+        transform: translateY(-70px)
+
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0)
+    }
+`
+
 
 export const Wrapper = styled.div`
-    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 `
 
 export const Content = styled.div`
+    animation: ${DeCimaParaBaixo} 1.7s;
     height: 100%;
     width: 100%;
     max-width: 315px;

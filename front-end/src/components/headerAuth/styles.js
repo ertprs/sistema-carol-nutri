@@ -4,6 +4,7 @@ export const Container = styled.div`
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
     padding: 10px 30px;
     background: #fff;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
 `
 
 export const Content = styled.div`

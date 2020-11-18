@@ -14,8 +14,8 @@ export default function HeaderAuth(){
                 <aside>
                     <Profile>
                         <div>
-                            <a class="link-1" title="Fazer login" href="/signin">Login</a>
-                            <a class="link-1" title="Fazer cadastro" href="/signup">Cadastro</a>
+                            <Link class="link-1" title="Fazer login" to="/signin">Login</Link>
+                            <Link class="link-1" title="Fazer cadastro" to="/signup">Cadastro</Link>
                         </div>
                     </Profile>
                 </aside>
