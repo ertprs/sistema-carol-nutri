@@ -26,7 +26,7 @@ const schema = Yup.object().shape({
 
 export default function SignUp(){
 
-        const history = useHistory()
+        var history = useHistory()
 
         async function handlesubmit(data){
             try {
@@ -35,14 +35,16 @@ export default function SignUp(){
                     email: data.email,
                     password: data.password
                 }).then((response) => {
+
                     toast.success('Cadastro realizado!')
                     history.push('/signin')
-                    console.log(response)
+
                 }).catch((err) => {
-                    toast.error(err.message)
+                    toast.error('Este email já existe!')
                 })
+
             } catch (error) {
-                toast.error(error)
+                toast.error(error.message)
             }
 
         }

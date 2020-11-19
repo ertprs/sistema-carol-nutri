@@ -16,6 +16,7 @@ const DeCimaParaBaixo = keyframes`
 
 
 export const Wrapper = styled.div`
+    height: 600px;
     display: flex;
     justify-content: center;
     align-items: center;

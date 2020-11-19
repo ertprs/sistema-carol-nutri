@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-import { Link } from 'react-router-dom'
 import { Container, Content, Profile } from "./styles.js"
 import logo from '../../assets/logo.svg'
 

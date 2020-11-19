@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 
 import { Content } from "./styles.js"
 import {AuthContext} from '../../context/AuthContext'
-
+import { AiOutlineMenu } from "react-icons/ai";
 
 export default function SideBar(){
 
@@ -14,6 +14,7 @@ export default function SideBar(){
     return (
             <Content>
                 <nav class="main-menu">
+                    <div class="container"><AiOutlineMenu size={22}/></div>
                     <ul>
                         <li>
                             <a href="http://justinfarrow.com">

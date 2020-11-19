@@ -5,6 +5,7 @@ export const Container = styled.div`
     padding: 10px 30px;
     background: #fff;
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    
 `
 
 export const Content = styled.div`
@@ -45,7 +46,7 @@ export const Content = styled.div`
     }
 `
 export const Profile = styled.div`
-background: #fff;
+    background: #fff;
     display: flex;
     margin-left: 20px;
     padding-left: 20px;

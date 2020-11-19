@@ -1,15 +1,28 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import { Form } from '@rocketseat/unform'
+import  history  from '../../services/history'
 
 import './styles.css'
 
-import {AuthContext} from '../../context/AuthContext'
+export default function Dashboard(){
 
-export default function LandingPage(){
 
-    const { user } = useContext(AuthContext)
+    async function handleClick(){
+
+        try {
+            localStorage.removeItem('@CarolNutri:token')
+            localStorage.removeItem('@CarolNutri:user')
+   
+            history.go('/signin')
+        } catch (error) {
+            console.log(error)
+        }
+
+    }
 
     return (
-        <div>
-        </div>
+        <Form onSubmit={handleClick}>
+            <button type="submit">logout</button>
+        </Form>
     )
 }

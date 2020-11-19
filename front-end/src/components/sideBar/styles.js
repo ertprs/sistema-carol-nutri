@@ -4,6 +4,13 @@ export const Content = styled.div`
   @import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
   }
   @import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
+
+  .container{
+    display: flex;
+    margin-left: 4px;
+    margin-top: 30px;
+    color: #fff
+  }
   
   .fa-2x {
     font-size: 2em;
@@ -33,8 +40,8 @@ export const Content = styled.div`
     left:0px;
     width:30px;
     overflow:hidden;
-    -webkit-transition:width .05s linear;
-    transition:width .05s linear;
+    -webkit-transition:width .5s linear;
+    transition:width .5s linear;
     -webkit-transform:translateZ(0) scale(1,1);
     z-index:1000;
   }
@@ -60,9 +67,9 @@ export const Content = styled.div`
   font-size: 14px;
   text-decoration:none;
   -webkit-transform:translateZ(0) scale(1,1);
-  -webkit-transition:all .1s linear;
-  transition:all .1s linear;
-    
+  -webkit-transition:all .3s linear;
+  transition:all .3s linear;
+  z-index:1000;
   }
 
   .main-menu .nav-icon {
