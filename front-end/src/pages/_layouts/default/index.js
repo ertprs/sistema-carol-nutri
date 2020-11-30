@@ -4,6 +4,8 @@ import { Wrapper } from './styles'
 
 import HeaderDefault from '../../../components/headerDefault'
 import SideBar from '../../../components/sideBar'
+import Footer from '../../../components/footer'
+
 
 export default function DefaultLayout({children}){
     return (
@@ -11,6 +13,7 @@ export default function DefaultLayout({children}){
             <HeaderDefault/>
             <SideBar/>
             {children}
+            <Footer/>
         </Wrapper>
     )
 }

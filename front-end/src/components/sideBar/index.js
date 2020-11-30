@@ -14,7 +14,7 @@ export default function SideBar(){
     return (
             <Content>
                 <nav class="main-menu">
-                    <div class="container"><AiOutlineMenu size={22}/></div>
+                    <div class="container"><AiOutlineMenu size={20}/></div>
                     <ul>
                         <li>
                             <a href="http://justinfarrow.com">

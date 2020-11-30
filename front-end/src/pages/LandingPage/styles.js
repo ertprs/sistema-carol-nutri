@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components'
+import styled from 'styled-components'
 
 export const Wrapper = styled.div`
     height: 600px;
@@ -20,12 +20,23 @@ export const Content = styled.div`
     align-items: center;
 
     .logo {
-        height: 300px;
+        left: 0;
+        height: 400px;
     }
 
     .conteudo {
         margin: 50px;
         max-width: 500px;
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,500&display=swap');
+        {
+            font-family: roboto;
+            font-size: 20px;
+            align: center;
+        }
+        h1 {
+            font-family: roboto;
+            font-weight: 900;
+        }
     }
 
     .foto {

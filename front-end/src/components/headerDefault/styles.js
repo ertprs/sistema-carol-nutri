@@ -43,22 +43,16 @@ background: #fff;
     margin-left: 20px;
     padding-left: 20px;
 
-    div {
-        background: #fff;
-        text-align: right;
-        margin-right: 10px;
 
-        p {
-            display: flex;
-            margin-top: 15px;
-            background: #fff;
-            color: #831e62;
-            font-size: 20px;
-        }
+
+    a {
+
+        border-bottom: none;
+        color: #831e62;
     }
 
     img {
-        height:60px;
+        height:40px;
         border-radius: 100%;
     }
 `

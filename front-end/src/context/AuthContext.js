@@ -10,7 +10,7 @@ const [data, setData] = useState(() => {
     const user = localStorage.getItem('@CarolNutri:user')
 
     if(token && user){
-        return { token, user: JSON.parse(user)}
+        return { token: token, user: JSON.parse(user)}
     }
 
     return {}
@@ -27,14 +27,23 @@ const signIn = useCallback( async ({ email, password}) => {
     
         api.defaults.headers['authorization'] = `Bearer ${token}`
     
-        toast.success('Login realizado!')
-    
         localStorage.setItem('@CarolNutri:token', token)
         localStorage.setItem('@CarolNutri:user', JSON.stringify(user))
     
         setData({ token, user})
     } catch (error) {
         toast.error('Credenciais inválidas!')
+    }
+
+}, [])
+
+const update = useCallback( async ({user}) => {
+    try {
+        localStorage.removeItem('@CarolNutri:user')
+        localStorage.setItem('@CarolNutri:user', JSON.stringify(user))
+        setData({ user: user })
+    } catch (error) {
+        toast.error('algo deu errado!')
     }
 
 }, [])
@@ -47,7 +56,7 @@ const singOut = useCallback(() => {
 }, [])
 
     return (
-        <AuthContext.Provider value={{ user: data.user ,  signIn }}>
+        <AuthContext.Provider value={{ user: data.user ,  signIn, update, singOut }}>
             {children}
         </AuthContext.Provider>
     )

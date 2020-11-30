@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import {Link} from 'react-router-dom'
 import { Form, Input } from '@rocketseat/unform'
 import * as Yup from 'yup'
+import {toast} from 'react-toastify'
 
 import logo from '../../assets/logo-branca.svg'
 import { Wrapper, Content } from './styles'
@@ -29,6 +30,7 @@ export default function SignIn_(){
                 email: data.email,
                 password: data.password
             })
+            toast.success('Login realizado!')
         }
     
         return (

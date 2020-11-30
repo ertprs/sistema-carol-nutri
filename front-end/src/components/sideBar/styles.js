@@ -7,7 +7,8 @@ export const Content = styled.div`
 
   .container{
     display: flex;
-    margin-left: 4px;
+    padding-left: 0px;
+    margin-left: 7px;
     margin-top: 30px;
     color: #fff
   }
