@@ -44,7 +44,7 @@ export default function SignIn_(){
                             <Input name="password" type="password" placeholder="Sua senha" />
     
                             <button type="submit">Acessar</button>
-                            <Link to="/signup">Recuperar senha</Link>
+                            <Link to="/recuperar-senha">Recuperar senha</Link>
                         </Form>
                     </Content>
                 </Wrapper>

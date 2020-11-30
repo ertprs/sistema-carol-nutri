@@ -7,6 +7,7 @@ import SignIn_ from '../pages/SingIn/index'
 import SignUp from '../pages/SingUp/index'
 import Dashboard from '../pages/dashboard/index'
 import Profile from '../pages/profile/index'
+import ForgotPassword from '../pages/forgot_password/index'
 
 export default function Routes(){
     return (
@@ -15,6 +16,7 @@ export default function Routes(){
                 <Route path="/" exact component={LandingPage} />
                 <Route path="/signin" component={SignIn_}  />
                 <Route path="/signup" component={SignUp} />
+                <Route path="/recuperar-senha" component={ForgotPassword} />
                 <Route path="/dashboard" isPrivate component={Dashboard} />
                 <Route path="/perfil" isPrivate component={Profile} />
             </Switch>
