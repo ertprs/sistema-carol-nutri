@@ -1,5 +1,4 @@
 import React, { useContext }  from 'react'
-import {Link} from 'react-router-dom'
 
 import { Content } from "./styles.js"
 import {AuthContext} from '../../context/AuthContext'
@@ -7,11 +6,46 @@ import { AiOutlineMenu } from "react-icons/ai";
 
 export default function SideBar(){
 
-    const { singOut } = useContext(AuthContext)
+    const { user } = useContext(AuthContext)
 
-    function handleClick(){ singOut()}
+    if(user.eAdmin == true){
+        return (
+            <Content>
+                <nav class="main-menu">
+                    <div class="container"><AiOutlineMenu size={20}/></div>
+                    <ul>
+                        <li>
+                            <a href="http://justinfarrow.com">
+                                <span class="nav-text">
+                                    Pagina Inicial
+                                </span>
+                            </a>
+                        
+                        </li>
+                        <li class="has-subnav">
+                            <a href="#">
+                                <span class="nav-text">
+                                    Pacientes
+                                </span>
+                            </a>
+                            
+                        </li>
+                        <li class="has-subnav">
+                            <a href="#">
+                                <span class="nav-text">
+                                    Sobre
+                                </span>
+                            </a>
+                            
+                        </li>
+                    </ul>
+                </nav>
+            </Content>
+        )
+    }
 
-    return (
+    if(user.eAdmin == false){
+        return (
             <Content>
                 <nav class="main-menu">
                     <div class="container"><AiOutlineMenu size={20}/></div>
@@ -43,5 +77,6 @@ export default function SideBar(){
                     </ul>
                 </nav>
             </Content>
-    )
+        )
+    }
 }
