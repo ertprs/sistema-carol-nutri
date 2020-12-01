@@ -36,6 +36,10 @@ export const Content = styled.div`
         h1 {
             font-family: roboto;
             font-weight: 900;
+            color: #831e62;
+        }
+        strong {
+            color: #831e62;
         }
     }
 

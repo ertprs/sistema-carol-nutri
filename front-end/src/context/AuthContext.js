@@ -18,32 +18,54 @@ const [data, setData] = useState(() => {
 
 const signIn = useCallback( async ({ email, password}) => {
     try {
-        const response = await api.post('auth/authenticate'  ,{
+        await api.post('auth/authenticate'  ,{
             email,
             password,
+        }).then((response) => {
+            const { token, user } = response.data
+    
+            api.defaults.headers['authorization'] = `Bearer ${token}`
+        
+            localStorage.setItem('@CarolNutri:token', token)
+            localStorage.setItem('@CarolNutri:user', JSON.stringify(user))
+        
+            setData({ token, user})
+
+            toast.success(`Bem vindo ${user.name}`)
+        }).catch((error) => {
+            let erro = JSON.parse(error.request.response)
+            toast.error(erro.error)
         })
     
-        const { token, user } = response.data
-    
-        api.defaults.headers['authorization'] = `Bearer ${token}`
-    
-        localStorage.setItem('@CarolNutri:token', token)
-        localStorage.setItem('@CarolNutri:user', JSON.stringify(user))
-    
-        setData({ token, user})
+
     } catch (error) {
-        toast.error('Credenciais inválidas!')
+        toast.error('Ocorreu um erro ao tentar fazer o login, tente novamente ou entre em contato.')
     }
 
 }, [])
 
-const update = useCallback( async ({user}) => {
+const update = useCallback( async ({email, password}) => {
     try {
-        localStorage.removeItem('@CarolNutri:user')
-        localStorage.setItem('@CarolNutri:user', JSON.stringify(user))
-        setData({ user: user })
+        await api.post('auth/authenticate'  ,{
+            email,
+            password,
+        }).then((response) => {
+            const { token, user } = response.data
+    
+            api.defaults.headers['authorization'] = `Bearer ${token}`
+        
+            localStorage.setItem('@CarolNutri:token', token)
+            localStorage.setItem('@CarolNutri:user', JSON.stringify(user))
+        
+            setData({ token, user})
+        }).catch((error) => {
+            let erro = JSON.parse(error.request.response)
+            toast.error(erro.error)
+        })
+    
+
     } catch (error) {
-        toast.error('algo deu errado!')
+        toast.error('Ocorreu um erro ao atualizar o perfil, tente novamente ou entre em contato.')
     }
 
 }, [])

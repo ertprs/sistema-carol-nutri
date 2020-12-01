@@ -30,29 +30,23 @@ const schema = Yup.object().shape({
 export default function Profile(){
 
     const { user } = useContext(AuthContext)
-    const { signIn } = useContext(AuthContext)
-    const { token } = useContext(AuthContext)
+    const { update } = useContext(AuthContext)
 
     async function handlSubmit(data) {
-        try {
-            await api.put(`user/userUp/${user._id}` ,{
-                name: data.name,
+        await api.put(`user/userUp/${user._id}` ,{
+            name: data.name,
+            email: data.email,
+        }).then(() => {
+            update({
                 email: data.email,
-            }).then(() => {
-                console.log(user)
-                signIn({
-                    email: data.email,
-                    password: data.password
-                })
-                toast.success('Cadastro Perfil atualizado!')
-
-            }).catch((err) => {
-                toast.error('Ocorreu um erro ao atualizar seu perfil!' + err)
+                password: data.password
             })
+            toast.success('Perfil atualizado.')
+        }).catch((error) => {
+            let erro = JSON.parse(error.request.response)
+            toast.error(erro.error)
+        })
 
-        } catch (error) {
-            toast.error(error.message)
-        }
     }
 
 

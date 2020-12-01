@@ -26,47 +26,42 @@ const schema = Yup.object().shape({
 
 export default function SignUp(){
 
-        var history = useHistory()
+    var history = useHistory()
 
-        async function handlesubmit(data){
-            try {
-                await api.post('auth/register'  ,{
-                    name: data.name,
-                    email: data.email,
-                    password: data.password
-                }).then((response) => {
+    async function handlesubmit(data){
+        await api.post('auth/register'  ,{
+            name: data.name,
+            email: data.email,
+            password: data.password
+        }).then((response) => {
 
-                    toast.success('Cadastro realizado!')
-                    history.push('/signin')
+            toast.success('Cadastro realizado!')
+            history.push('/signin')
 
-                }).catch((err) => {
-                    toast.error('Este email já existe!')
-                })
-
-            } catch (error) {
-                toast.error(error.message)
-            }
-
-        }
+        }).catch((error) => {
+            let erro = JSON.parse(error.request.response)
+            toast.error(erro.error)
+        })
+    }
     
-        return (
-            <>
-                <Wrapper>
-                    <Content>
-                        <img src={logo} alt="Carol-nutricionista"/>
-    
-                        <Form schema={schema} onSubmit={handlesubmit}>
-                            <Input name="name" type="text" placeholder="Seu nome completo" />
-                            <Input name="email" type="email" placeholder="Seu e-mail" />
-                            <Input name="password" type="password" placeholder="Sua senha" />
-    
-                            <button type="submit">Cadastrar</button>
-                        </Form>
-                    </Content>
-                </Wrapper>
-            </>
-    
-        )
+    return (
+        <>
+            <Wrapper>
+                <Content>
+                    <img src={logo} alt="Carol-nutricionista"/>
+
+                    <Form schema={schema} onSubmit={handlesubmit}>
+                        <Input name="name" type="text" placeholder="Seu nome completo" />
+                        <Input name="email" type="email" placeholder="Seu e-mail" />
+                        <Input name="password" type="password" placeholder="Sua senha" />
+
+                        <button type="submit">Cadastrar</button>
+                    </Form>
+                </Content>
+            </Wrapper>
+        </>
+
+    )
 
 
 }

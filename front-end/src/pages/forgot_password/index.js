@@ -19,47 +19,36 @@ const schema = Yup.object().shape({
 export default function ForgotPassword(){
 
     var history = useHistory()
-
     
-    try {
-        async function handlesubmit(data){
-            try {
-                await api.post('auth/forgot_password'  ,{
-                    email: data.email,
-                }).then((response) => {
+    async function handlesubmit(data){
+        await api.post('auth/forgot_password'  ,{
+            email: data.email,
+        }).then((response) => {
 
-                    toast.success('Token enviado. Verifique sua caixa de e-mail.')
-                    history.push('/signin')
+            toast.success('Token enviado. Verifique sua caixa de e-mail.')
+            history.push('/signin')
 
-                }).catch((err) => {
-                    toast.error('Este email já existe!')
-                })
-
-            } catch (error) {
-                toast.error(error.message)
-            }
-
-        }
-    
-        return (
-            <>
-                <Wrapper>
-                    <Content>
-                        <img src={logo} alt="Carol-nutricionista"/>
-    
-                        <Form schema={schema} onSubmit={handlesubmit}>
-                            <p>Informe seu e-mail para enviarmos um token para a recuperação da senha.</p>
-                            <Input name="email" type="email" placeholder="Seu e-mail" />
-    
-                            <button type="submit">Enviar</button>
-                        </Form>
-                    </Content>
-                </Wrapper>
-            </>
-    
-        )
-    } catch (error) {
-        console.log(error)
+        }).catch((error) => {
+            let erro = JSON.parse(error.request.response)
+            toast.error(erro.error)
+        })
     }
+    
+    return (
+        <>
+            <Wrapper>
+                <Content>
+                    <img src={logo} alt="Carol-nutricionista"/>
+
+                    <Form schema={schema} onSubmit={handlesubmit}>
+                        <p>Informe seu e-mail para enviarmos um token para a recuperação da senha.</p>
+                        <Input name="email" type="email" placeholder="Seu e-mail" />
+
+                        <button type="submit">Enviar</button>
+                    </Form>
+                </Content>
+            </Wrapper>
+        </>
+    )
 
 }
