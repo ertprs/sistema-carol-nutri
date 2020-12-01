@@ -55,7 +55,7 @@ export default function HeaderDefault(){
                                 </DropdownMenu>
                             </Dropdown>
                             </Nav>
-                            <img src="https://image.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg"></img>
+                            <img src="https://image.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg"/>
                     </Profile>
                 </aside>
             </Content>

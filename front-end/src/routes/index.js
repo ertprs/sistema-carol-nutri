@@ -8,6 +8,7 @@ import SignUp from '../pages/SingUp/index'
 import Dashboard from '../pages/dashboard/index'
 import Profile from '../pages/profile/index'
 import ForgotPassword from '../pages/forgot_password/index'
+import Pacientes from '../pages/pacientes/index'
 
 export default function Routes(){
     return (
@@ -19,6 +20,7 @@ export default function Routes(){
                 <Route path="/recuperar-senha" component={ForgotPassword} />
                 <Route path="/dashboard" isPrivate component={Dashboard} />
                 <Route path="/perfil" isPrivate component={Profile} />
+                <Route path="/pacientes" isPrivate component={Pacientes} />
             </Switch>
         </BrowserRouter>
     )

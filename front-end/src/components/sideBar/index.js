@@ -3,6 +3,7 @@ import React, { useContext }  from 'react'
 import { Content } from "./styles.js"
 import {AuthContext} from '../../context/AuthContext'
 import { AiOutlineMenu } from "react-icons/ai";
+import { Link } from 'react-router-dom';
 
 export default function SideBar(){
 
@@ -15,19 +16,19 @@ export default function SideBar(){
                     <div class="container"><AiOutlineMenu size={20}/></div>
                     <ul>
                         <li>
-                            <a href="http://justinfarrow.com">
+                            <Link to="/dashboard">
                                 <span class="nav-text">
                                     Pagina Inicial
                                 </span>
-                            </a>
+                            </Link>
                         
                         </li>
                         <li class="has-subnav">
-                            <a href="#">
+                            <Link to="/pacientes">
                                 <span class="nav-text">
                                     Pacientes
                                 </span>
-                            </a>
+                            </Link>
                             
                         </li>
                         <li class="has-subnav">
