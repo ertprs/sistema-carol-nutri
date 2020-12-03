@@ -24,11 +24,34 @@ module.exports = {
 
             const user = await User.findById(req.params.id)
 
+            if(!user){
+                return res.status(400).send({error: 'Usuário não encontrado.' })
+            }
+
             return res.json(user);
 
         } catch (error) {
 
             return res.status(400).send({error: 'Erro ao listar usuário.' })
+
+        }
+
+    },
+
+    async showName(req, res){
+        try {
+
+            const user = await User.find({email: req.params.id})
+
+            if(!user){
+                return res.status(400).send({error: 'Usuário não encontrado.' })
+            }
+
+            return res.json(user);
+
+        } catch (error) {
+
+            return res.status(400).send({error: 'Ocorreu um erro ao listar usuário.' })
 
         }
 

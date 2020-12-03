@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom'
 
-import {Container, Form, Paciente, Loading} from './styles'
+import {toast} from 'react-toastify'
+
+import {Container, Formulario, Paciente, Loading} from './styles'
 import Logo from '../../assets/logo-branca.svg'
 import api from "../../services/api"
 import {FiChevronRight} from 'react-icons/fi'
@@ -9,20 +11,44 @@ import {FiChevronRight} from 'react-icons/fi'
 import ReactLoading from 'react-loading'
 
 export default class Pacientes extends Component{
-    state = {
-        pacientes: [],
-        loading: true
+    constructor(){
+        super();
+        this.state = {
+            nomeBusca: '',
+            pacientes: [],
+            loading: true
+        }
+
+        this.onChange = (event) => {
+            this.setState({
+                nomeBusca: event.target.value,
+            })
+        }
+
+        this.search = async ()  => {
+            api.get(`user/userName/${this.state.nomeBusca}`).then((response) => {
+                this.setState({
+                    pacientes: [response.data],
+                    loading: false
+                })
+            }).catch((error) => {
+                let erro = JSON.parse(error.request.response)
+                toast.error(erro.error)
+            })
+
+        }
     }
 
     async componentDidMount(){
-        const response = await api.get('/user/users')
-
-        
-        this.setState({ 
-            pacientes: response.data.docs,
-            loading: false
-        })
-
+        api.get('/user/users').then((response) => {
+            this.setState({
+                pacientes: response.data.docs,
+                loading: false
+            })
+        }).catch((error) => {
+            let erro = JSON.parse(error.request.response)
+            toast.error(erro.error)
+        })         
     }
 
     render(){
@@ -40,10 +66,10 @@ export default class Pacientes extends Component{
                     <h1>Explore a lista dos pacientes.</h1>
                 </Container>
 
-                <Form>
-                    <input placeholder="Informe o nome do usuário"/>
-                    <button type="button">Pesquisar</button>
-                </Form>
+                <Formulario>
+                    <input value={this.state.nomeBusca} onChange={this.onChange} name="pesquisa" type="text" placeholder="Informe o nome do usuário"/>
+                    <button onClick={this.search} type="button">Pesquisar</button>
+                </Formulario>
 
 
                 {pacientes.map(paciente => (

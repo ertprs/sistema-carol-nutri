@@ -22,18 +22,28 @@ export default function SideBar(){
                             </Link>
                         </li>
                         <li>
+                            <Link to="/#">
+                                <span>Consultório</span>
+                            </Link>
+                        </li>
+                        <li>
                             <Link to="/pacientes">
                                 <span>Pacientes</span>
                             </Link>
                         </li>
                         <li>
-                            <Link to="/dashboard">
-                                <span>outro</span>
+                            <Link to="/#">
+                                <span>Agenda</span>
                             </Link>
                         </li>
                         <li>
-                            <Link to="/dashboard">
-                                <span>..</span>
+                            <Link to="/#">
+                                <span>Receitas</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/#">
+                                <span>Artigos</span>
                             </Link>
                         </li>
                     </ul>
@@ -61,12 +71,12 @@ export default function SideBar(){
                         </li>
                         <li>
                             <Link to="/dashboard">
-                                <span>outro</span>
+                                <span>Receitas</span>
                             </Link>
                         </li>
                         <li>
                             <Link to="/dashboard">
-                                <span>..</span>
+                                <span>Artigos</span>
                             </Link>
                         </li>
                     </ul>

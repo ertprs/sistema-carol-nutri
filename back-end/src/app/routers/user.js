@@ -10,6 +10,7 @@ const midwareAuthControl = require('../middlewares/auth')
 // -- Rotas do CRUD do usuário -- //
 router.get('/users', userController.index);
 router.get('/user/:id', userController.show);
+router.get('/userName/:id', userController.showName);
 router.put('/userUp/:id', userController.update);
 router.delete('/userDes/:id', userController.destroy);
 

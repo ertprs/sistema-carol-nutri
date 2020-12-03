@@ -30,7 +30,7 @@ export const Container = styled.div`
 
 `
 
-export const Form = styled.form`
+export const Formulario = styled.form`
     @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,500&display=swap');
 
     margin-left: 150px;
@@ -85,10 +85,10 @@ export const Paciente = styled.div`
 
         display: flex;
         align-items: center;
-        transition: transform 0.3s;
+        transition: transform 0.6s;
 
         &:hover{
-            transform: translateX(10px);
+            transform: translateX(50px);
         }
 
 
