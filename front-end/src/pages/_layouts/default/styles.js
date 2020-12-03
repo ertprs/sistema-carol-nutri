@@ -8,6 +8,5 @@ export const Wrapper = styled.div`
     font-family: 'Titillium Web', sans-serif;
 
     font: 14px 'Lobster', sans-serif;
-    height: 100%;
     background: linear-gradient(90deg, #be317f, #831e62); 
 `

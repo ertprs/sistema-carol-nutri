@@ -70,7 +70,7 @@ export const Form = styled.form`
 export const Paciente = styled.div`
     @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,500&display=swap');
 
-    margin-top: 80px;
+    margin-top: 30px;
     margin-left: 150px;
     max-width: 700px;
 
@@ -123,6 +123,25 @@ export const Paciente = styled.div`
             margin-left: auto;
             color: #831e62;
         }
+    }
+
+`
+
+export const Loading = styled.div`
+    height: 500px;
+
+    display: flex;
+    flex-direction column;
+    align-items: center;
+
+    h1 {
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,500&display=swap');
+
+        margin-top: 200px;
+        font-family: Roboto;
+        color: 3a3a3a;
+        max-width: 450px;
+        color: #fff;
     }
 
 `

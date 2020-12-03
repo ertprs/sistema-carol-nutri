@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 export const Content = styled.div`
+height: 100%;
   @import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
   }
   @import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
@@ -11,6 +12,7 @@ export const Content = styled.div`
     margin-left: 7px;
     margin-top: 30px;
     color: #fff
+    height: 100%;
   }
   
   .fa-2x {
@@ -112,6 +114,7 @@ export const Content = styled.div`
     -ms-user-select:none;
     -o-user-select:none;
     user-select:none;
+    height: 800px;
   }
 
   nav ul,nav li {
