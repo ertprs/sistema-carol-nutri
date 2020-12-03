@@ -19,7 +19,7 @@ export const Container = styled.div`
 
         h3 {
             @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,500&display=swap');
-            font-family: Roboto, sans-serif;
+            font-family: Roboto;
             margin: 15px;
             color: #831e62;
         }

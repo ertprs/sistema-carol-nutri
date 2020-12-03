@@ -12,32 +12,29 @@ export default function SideBar(){
     if(user.eAdmin == true){
         return (
             <Content>
-                <nav class="main-menu">
-                    <div class="container"><AiOutlineMenu size={20}/></div>
-                    <ul>
+                <input type="checkbox" id="chec" />
+                <label for="chec"><AiOutlineMenu size={28}/></label>
+                <nav>
+                     <ul>
                         <li>
                             <Link to="/dashboard">
-                                <span class="nav-text">
-                                    Pagina Inicial
-                                </span>
+                                <span>Pagina Inicial</span>
                             </Link>
-                        
                         </li>
-                        <li class="has-subnav">
+                        <li>
                             <Link to="/pacientes">
-                                <span class="nav-text">
-                                    Pacientes
-                                </span>
+                                <span>Pacientes</span>
                             </Link>
-                            
                         </li>
-                        <li class="has-subnav">
-                            <a href="#">
-                                <span class="nav-text">
-                                    Sobre
-                                </span>
-                            </a>
-                            
+                        <li>
+                            <Link to="/dashboard">
+                                <span>outro</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/dashboard">
+                                <span>..</span>
+                            </Link>
                         </li>
                     </ul>
                 </nav>
@@ -48,32 +45,29 @@ export default function SideBar(){
     if(user.eAdmin == false){
         return (
             <Content>
-                <nav class="main-menu">
-                    <div class="container"><AiOutlineMenu size={20}/></div>
+                <input type="checkbox" id="chec" />
+                <label for="chec"><AiOutlineMenu size={28}/></label>
+                <nav>
                     <ul>
                         <li>
-                            <a href="http://justinfarrow.com">
-                                <span class="nav-text">
-                                    Pagina Inicial
-                                </span>
-                            </a>
-                        
+                            <Link to="/dashboard">
+                                <span>Pagina Inicial</span>
+                            </Link>
                         </li>
-                        <li class="has-subnav">
-                            <a href="#">
-                                <span class="nav-text">
-                                    Consultório
-                                </span>
-                            </a>
-                            
+                        <li>
+                            <Link to="/pacientes">
+                                <span>Pacientes</span>
+                            </Link>
                         </li>
-                        <li class="has-subnav">
-                            <a href="#">
-                                <span class="nav-text">
-                                    Sobre
-                                </span>
-                            </a>
-                            
+                        <li>
+                            <Link to="/dashboard">
+                                <span>outro</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/dashboard">
+                                <span>..</span>
+                            </Link>
                         </li>
                     </ul>
                 </nav>
