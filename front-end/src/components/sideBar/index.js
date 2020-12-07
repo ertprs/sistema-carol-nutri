@@ -18,11 +18,6 @@ export default function SideBar(){
                      <ul>
                         <li>
                             <Link to="/dashboard">
-                                <span>Pagina Inicial</span>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/#">
                                 <span>Consultório</span>
                             </Link>
                         </li>

@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom'
 
 import {toast} from 'react-toastify'
+import {FiChevronRight} from 'react-icons/fi'
+import {AiFillPlusCircle} from 'react-icons/ai'
 
 import {Container, Formulario, Paciente, Loading} from './styles'
 import Logo from '../../assets/logo-branca.svg'
 import api from "../../services/api"
-import {FiChevronRight} from 'react-icons/fi'
+import Tooltip from '../../components/tooltip/index'
 
 import ReactLoading from 'react-loading'
 
@@ -69,8 +71,13 @@ export default class Pacientes extends Component{
                 <Formulario>
                     <input value={this.state.nomeBusca} onChange={this.onChange} name="pesquisa" type="text" placeholder="Informe o nome do usuário"/>
                     <button onClick={this.search} type="button">Pesquisar</button>
+                    <Link>
+                        <div>
+                            <AiFillPlusCircle size={60}/>
+                            <Tooltip texto="Cadastrar novo usuário."/>
+                        </div>
+                    </Link>
                 </Formulario>
-
 
                 {pacientes.map(paciente => (
                     <Paciente>

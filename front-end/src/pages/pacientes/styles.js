@@ -6,7 +6,7 @@ export const Container = styled.div`
     @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,500&display=swap');
 
     display: flex;
-    max-width: 700px;
+    max-width: 900px;
     align-items: center;
     margin: 50px 0 0  150px;
 
@@ -35,7 +35,7 @@ export const Formulario = styled.form`
 
     margin-left: 150px;
     margin-bottom: 50px;
-    max-width: 700px;
+    max-width: 790px;
 
     display: flex;
 
@@ -65,12 +65,35 @@ export const Formulario = styled.form`
             background: ${darken(0.05, '#0885ff')}
         }
     }
+
+    div{
+        display: flex;
+
+        &:hover{
+            div{
+                visibility: visible;
+            }
+        }
+       
+        svg{
+            margin-left: 30px;
+            color: #fff;
+            transition: .5s;
+            cursor:pointer;
+            &:hover {
+                transform: rotate(90deg);
+                div{
+                    visibility: visible;
+                }
+            }
+        }
+    }
 `
 
 export const Paciente = styled.div`
     @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,500&display=swap');
 
-    margin-top: 30px;
+    margin-top: 1px;
     margin-left: 150px;
     max-width: 700px;
 
