@@ -28,7 +28,7 @@ export default class Pacientes extends Component{
         this.search = async ()  => {
             api.get(`user/userName/${this.state.nomeBusca}`).then((response) => {
                 this.setState({
-                    pacientes: [response.data],
+                    pacientes: response.data,
                     loading: false
                 })
             }).catch((error) => {

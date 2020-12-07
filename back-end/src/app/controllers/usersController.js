@@ -40,8 +40,11 @@ module.exports = {
 
     async showName(req, res){
         try {
+            const user = await User.find({name: req.params.id})
 
-            const user = await User.find({email: req.params.id})
+            if(user.length == 0){
+                return res.status(400).send({error: 'Usuário não encontrado.' })
+            }
 
             if(!user){
                 return res.status(400).send({error: 'Usuário não encontrado.' })
