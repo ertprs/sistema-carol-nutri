@@ -31,6 +31,8 @@ router.post('/register', async (req, res) => {
     try{
         const {email} = req.body
 
+        console.log(req.body.PersonalInformation)
+
         if(await User.findOne({email}))
             return res.status(400).send({error: 'Este E-mail já existe.'})
 

@@ -1,5 +1,6 @@
 import React from 'react'
 import {  AiFillFacebook, AiFillInstagram,  AiOutlineWhatsApp, AiOutlineMail } from "react-icons/ai";
+
 import {Container} from './styles.js'
 
 export default function Footer(){

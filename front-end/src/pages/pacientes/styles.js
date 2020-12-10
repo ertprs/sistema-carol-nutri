@@ -1,8 +1,21 @@
-import styled from 'styled-components'
+import styled, {keyframes} from 'styled-components'
 
 import { darken } from 'polished'
 
+const DaDireitaParaEsquerda = keyframes`
+    from{
+        opacity: 0;
+        transform: translateX(40%)
+
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0)
+    }
+`
+
 export const Container = styled.div`
+    animation: ${DaDireitaParaEsquerda} 1s;
     @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,500&display=swap');
 
     display: flex;
@@ -31,11 +44,12 @@ export const Container = styled.div`
 `
 
 export const Formulario = styled.form`
+    animation: ${DaDireitaParaEsquerda} 1.5s;
     @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,500&display=swap');
 
     margin-left: 150px;
     margin-bottom: 50px;
-    max-width: 790px;
+    max-width: 880px;
 
     display: flex;
 
@@ -78,7 +92,7 @@ export const Formulario = styled.form`
         svg{
             margin-left: 30px;
             color: #fff;
-            transition: .5s;
+            transition: .6s;
             cursor:pointer;
             &:hover {
                 transform: rotate(90deg);
@@ -91,6 +105,7 @@ export const Formulario = styled.form`
 `
 
 export const Paciente = styled.div`
+    animation: ${DaDireitaParaEsquerda} 1.5s;
     @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,500&display=swap');
 
     margin-top: 1px;
@@ -151,6 +166,7 @@ export const Paciente = styled.div`
 `
 
 export const Loading = styled.div`
+    animation: ${DaDireitaParaEsquerda} 1.5s;
     height: 500px;
 
     display: flex;

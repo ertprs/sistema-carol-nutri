@@ -15,39 +15,28 @@ const UserSchema = mongoose.Schema({
     PersonalInformation: {
         dateBirth: {
             type: String,
-            require: true
         },
         maritalStatus: {
             type: String,
-            require: true
         },
         phone: {
             type: String,
-            require: true
         },
         IntestinalTransit:{
             type: String,
-            require: true
         },
         sleepQuality: {
             type: String,
-            require: true,
-            select: false
         },
         Weight: {
             type: String,
-            require: true,
-            select: false
+
         },
         height: {
             type: String,
-            require: true,
-            select: false
         },
         UrinaryStaining:{
             type: String,
-            require: true,
-            select: false
         },
     },
     email: {

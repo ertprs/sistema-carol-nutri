@@ -9,6 +9,7 @@ div {
     margin-left:10px;
     margin-top:3px;
 
+
     p{
         font-size: 13px;
         padding: 10px;
@@ -17,7 +18,7 @@ div {
         background: rgba(16,16,16,0.5);
         border-radius: 9px 9px 9px 9px;
 
-        :before{
+        /*:before{
             content: "";
             position: absolute;
             left: -6px;
@@ -28,7 +29,7 @@ div {
             border-width: 6px;  
             border-style: solid;
             border-color: transparent transparent rgba(16,16,16,0.5) rgba(16,16,16,0.5); 
-        }
+        }*/
 
     }
 }

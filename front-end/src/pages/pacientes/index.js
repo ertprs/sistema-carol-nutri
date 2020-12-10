@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 
 import {toast} from 'react-toastify'
 import {FiChevronRight} from 'react-icons/fi'
-import {AiFillPlusCircle} from 'react-icons/ai'
+import {AiFillPlusCircle, AiOutlineRedo} from 'react-icons/ai'
 
 import {Container, Formulario, Paciente, Loading} from './styles'
 import Logo from '../../assets/logo-branca.svg'
@@ -28,15 +28,19 @@ export default class Pacientes extends Component{
         }
 
         this.search = async ()  => {
-            api.get(`user/userName/${this.state.nomeBusca}`).then((response) => {
-                this.setState({
-                    pacientes: response.data,
-                    loading: false
+            if(this.state.nomeBusca != ''){
+                api.get(`user/userName/${this.state.nomeBusca}`).then((response) => {
+                    this.setState({
+                        pacientes: response.data,
+                        loading: false
+                    })
+                }).catch((error) => {
+                    let erro = JSON.parse(error.request.response)
+                    toast.error(erro.error)
                 })
-            }).catch((error) => {
-                let erro = JSON.parse(error.request.response)
-                toast.error(erro.error)
-            })
+            } else {
+                toast.error('Insira um paramentro para a busca.')
+            }
 
         }
     }
@@ -73,15 +77,21 @@ export default class Pacientes extends Component{
                     <button onClick={this.search} type="button">Pesquisar</button>
                     <Link>
                         <div>
-                            <AiFillPlusCircle size={60}/>
-                            <Tooltip texto="Cadastrar novo usuário."/>
+                            <Link to="/registrar-paciente">
+                                <AiFillPlusCircle size={60}/>
+                                <Tooltip texto="Cadastrar novo usuário."/>
+                            </Link>
                         </div>
                     </Link>
+                        <div>
+                            <AiOutlineRedo size={60} />
+                            <Tooltip texto="Atualizar lista de pacientes."/>
+                        </div>
                 </Formulario>
 
                 {pacientes.map(paciente => (
                     <Paciente>
-                        <Link key={String(paciente._id)}>
+                        <Link key={String(paciente._id)}  to={`/paciente/${paciente._id}`}>
                             <img src="https://image.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg"/>
                             <div>
                                 <div className="conteudo">

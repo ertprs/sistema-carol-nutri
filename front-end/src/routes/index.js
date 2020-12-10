@@ -9,6 +9,8 @@ import Dashboard from '../pages/dashboard/index'
 import Profile from '../pages/profile/index'
 import ForgotPassword from '../pages/forgot_password/index'
 import Pacientes from '../pages/pacientes/index'
+import Paciente from '../pages/paciente/index'
+import RegisterPaciente from '../pages/registroPaciente/index'
 
 export default function Routes(){
     return (
@@ -21,6 +23,8 @@ export default function Routes(){
                 <Route path="/dashboard" isPrivate component={Dashboard} />
                 <Route path="/perfil" isPrivate component={Profile} />
                 <Route path="/pacientes" isPrivate component={Pacientes} />
+                <Route path="/paciente/:paciente" isPrivate component={Paciente} />
+                <Route path="/registrar-paciente" isPrivate component={RegisterPaciente} />
             </Switch>
         </BrowserRouter>
     )
