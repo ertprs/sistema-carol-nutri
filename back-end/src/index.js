@@ -9,13 +9,14 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false}))
 app.use(cors())
 
-
 //--Rotas
 app.use('/user', require('./app/routers/user'))
 app.use('/consultas', require('./app/routers/consulta'))
 app.use('/auth', require('./app/controllers/authController'))
 app.use('/form', require('./app/routers/nutritionistForm'))
 app.use('/agendamento', require('./app/routers/scheduling'))
+app.use('/artigo', require('./app/routers//article'))
+app.use('/receitas', require('./app/routers//recordRecipes'))
 
 app.listen(PORT, () => {
     console.log("servidor rodando..." + PORT)

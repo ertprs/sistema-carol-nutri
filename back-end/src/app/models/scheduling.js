@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const mongoosePaginate = require('mongoose-paginate');
-const functionEnergyExpend = require('../controllers/energyExpenditure');
 
 const Scheduling = new mongoose.Schema({
     createdAt: {
