@@ -30,7 +30,6 @@ const UserSchema = mongoose.Schema({
         },
         Weight: {
             type: String,
-
         },
         height: {
             type: String,

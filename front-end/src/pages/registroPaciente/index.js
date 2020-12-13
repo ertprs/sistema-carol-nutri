@@ -20,27 +20,53 @@ const schema = Yup.object().shape({
     password: Yup.string()
         .required("A senha é obrigatória!"),
 
+    dateBirth: Yup.string()
+        .required("Data de nascimento é um campo obrigatório!"),
+
+    maritalStatus: Yup.string()
+        .required("Estado cívil é um campo obrigatório!"),
+
+    phone: Yup.string()
+        .required("Telefone é um campo obrigatorio!"),
+
+    IntestinalTransit: Yup.string()
+        .required("Transito intestinal é um campo obrigatório!"),
+
+    sleepQuality: Yup.string()
+        .required("Qualidade do sono é um campo obrigatório!"),
+
+    Weight: Yup.string()
+        .required("Peso é um campo obrigatório!"),
+
+    height: Yup.string()
+        .required("Altura é um campo obrigatorio!"),
+
+    UrinaryStaining: Yup.string()
+        .required("Tipo da urina é um campo obrigatorio!")
+
 })
 
 export default function RegisterPaciente(){
 
     async function handlSubmit(data) {
         console.log(data)
+        
         await api.post(`auth/register` ,{ 
             name: data.name,
             email: data.email,
             password: data.password,
 
-            'PersonalInformation.dateBirth': data.dateBirth,
-            'PersonalInformation.dateBirth': data.dateBirth,
-            'PersonalInformation.dateBirth': data.maritalStatus,
-            'PersonalInformation.dateBirth': data.phone,
-            'PersonalInformation.dateBirth': data.IntestinalTransit,
-            'PersonalInformation.dateBirth': data.sleepQuality,
-            'PersonalInformation.dateBirth': data.Weight,
-            'PersonalInformation.dateBirth': data.height,
-            'PersonalInformation.dateBirth': data.UrinaryStaining
-            
+            PersonalInformation: {
+                dateBirth: data.dateBirth,
+                maritalStatus: data.maritalStatus,
+                phone: data.phone,
+                IntestinalTransit: data.IntestinalTransit,
+                sleepQuality: data.sleepQuality,
+                Weight: data.Weight,
+                height: data.height,
+                UrinaryStaining: data.UrinaryStaining
+            },
+
          }).then(async () => {
             toast.success('Usuário cadastrado.')
         }).catch((error) => {
@@ -63,12 +89,12 @@ export default function RegisterPaciente(){
                     <h2>Iformações pessoais</h2>
                     <Input  type="date" name="dateBirth" placeholder="Data de nascimento"/>
                     <Input  name="maritalStatus" placeholder="status civil"/>
-                    <Input  type="number" name="phone" placeholder="Número de telefone"/>
-                    <Input  name="IntestinalTransit" placeholder="Transito intestinal"/>
-                    <Input  name="sleepQuality" placeholder="Qualidade do sono"/>
-                    <Input  type="number" step=".01" name="Weight" placeholder="Peso"/>
-                    <Input  type="number" step=".1" name="height" placeholder="Altura"/>
-                    <Input  name="UrinaryStaining" placeholder="Tipo da urina"/>
+                    <Input  type="text" name="phone" placeholder="Número de telefone"/>
+                    <Input  type="text" name="IntestinalTransit" placeholder="Transito intestinal"/>
+                    <Input  type="text" name="sleepQuality" placeholder="Qualidade do sono"/>
+                    <Input  type="text"  name="Weight" placeholder="Peso"/>
+                    <Input  type="text" step=".1" name="height" placeholder="Altura"/>
+                    <Input  type="text" name="UrinaryStaining" placeholder="Tipo da urina"/>
 
                     <button type="submit">Cadastrar</button>
                 </Form>

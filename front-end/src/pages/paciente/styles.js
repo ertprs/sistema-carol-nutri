@@ -1,5 +1,7 @@
 import styled, {keyframes} from 'styled-components'
 
+import { darken } from 'polished'
+
 const DaDireitaParaEsquerda = keyframes`
     from{
         opacity: 0;
@@ -113,9 +115,11 @@ export const UsuarioInfo = styled.section`
             
 
         }
+
         h2 {
             color: #fff;
         }
+
         ul {
             display: flex;
             flex-direction: column;
@@ -123,7 +127,19 @@ export const UsuarioInfo = styled.section`
             color: #fff;
 
             li{
+                display: flex;
                 color: #fff;
+                margin:0;
+                padding: 5px;
+
+                strong {
+                    margin:0;
+                }
+
+                p {
+                    margin:0;
+                    margin-left:10px;
+                }
 
             }
         }
@@ -141,6 +157,7 @@ export const Modal = styled.div`
     transition: opacity 500ms;
     visibility: hidden;
     opacity: 0;
+    height: 100%;
   
 
     &:target {
@@ -148,20 +165,82 @@ export const Modal = styled.div`
     opacity: 1;
     }
   
-  div {
-    margin: 70px auto;
-    padding: 20px;
-    background: #fff;
-    border-radius: 5px;
-    width: 70%;
-    position: relative;
-    transition: all 5s ease-in-out;
+    div {
+        margin: 30px auto;
+        padding: 20px;
+        background: #fff;
+        border-radius: 5px;
+        width: 70%;
+        position: relative;
+        transition: all 5s ease-in-out;
 
-    h2 {
-        margin-top: 0;
-        color: #333;
-        font-family: Tahoma, Arial, sans-serif;
+        h2 {
+            margin-top: 0;
+            color: #333;
+        }
+    
+        hr{
+            width: 100%;
+            background: black;
+        }
+
+        ul {
+            width: 100%;
+
+            li {
+                display: flex;
+                justify-content: center;
+                margin: 0px;
+                padding 0px;
+                input {
+                    width: 80%;
+                    background: rgba(0, 0, 0, 0.1);
+                    border: 0;
+                    border-radius: 4px;
+                    height: 44px;
+                    padding: 0 15px;
+                    color black;
+                    margin: 0 0 10px;
+            
+                    &::placeholder {
+                        color: rgba(255, 255, 255, 0.7);
+                    }
+            }
+        }
+    
+        span {
+            color: #fff;
+            align-self: self-start;
+            margin: 0 0 10px;
+            font-weight: bold;
+        }
+    
+        hr {
+            border: 0;
+            height: 1px;
+            background: #fff;
+            margin: 10px 0 20px;
+        }
+    
+        button {
+            margin: 5px 0 0;
+            height: 44px;
+            background: #3b9eff;
+            font-weight: bold;
+            color #fff;
+            border: 0;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: background 0.3s;
+    
+            &:hover {
+                background: ${darken(0.05, '#0885ff')}
+            }
+        }
     }
+
+
+
     a {
         background: transparent;
         position: absolute;
