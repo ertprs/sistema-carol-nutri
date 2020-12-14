@@ -11,6 +11,9 @@ import ForgotPassword from '../pages/forgot_password/index'
 import Pacientes from '../pages/pacientes/index'
 import Paciente from '../pages/paciente/index'
 import RegisterPaciente from '../pages/registroPaciente/index'
+import RegisterReceitas from '../pages/receitasRegister/index'
+import Receitas from '../pages/receitasListagem/index'
+import Receita from '../pages/receitasEdit/index'
 
 export default function Routes(){
     return (
@@ -25,6 +28,9 @@ export default function Routes(){
                 <Route path="/pacientes" isPrivate component={Pacientes} />
                 <Route path="/paciente/:paciente" isPrivate component={Paciente} />
                 <Route path="/registrar-paciente" isPrivate component={RegisterPaciente} />
+                <Route path="/registrar-receita" isPrivate component={RegisterReceitas} />
+                <Route path="/receitas" isPrivate component={Receitas} />
+                <Route path="/receita/:receita" isPrivate component={Receita} />
             </Switch>
         </BrowserRouter>
     )

@@ -3,9 +3,7 @@ const router = express.Router();
 
 const RecordRecipes = require('../controllers/recordRecipes')
 
-const midwareAuthEadminControl = require('../middlewares/eAdmin')
-
-router.use(midwareAuthEadminControl)
+const midwareAuthControl = require('../middlewares/auth')
 
 router.post('/register', RecordRecipes.store);
 router.get('/list', RecordRecipes.index);

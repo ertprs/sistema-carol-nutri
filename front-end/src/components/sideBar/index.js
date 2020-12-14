@@ -32,7 +32,7 @@ export default function SideBar(){
                             </Link>
                         </li>
                         <li>
-                            <Link to="/#">
+                            <Link to="/receitas">
                                 <span>Receitas</span>
                             </Link>
                         </li>
