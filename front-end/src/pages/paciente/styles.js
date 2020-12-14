@@ -125,6 +125,12 @@ export const UsuarioInfo = styled.section`
             flex-direction: column;
             width: 70%;
             color: #fff;
+            img {
+                padding:0px;
+                margin:0px;
+                width: 40%;
+                height: 40%;
+            }
 
             li{
                 display: flex;
@@ -192,6 +198,7 @@ export const Modal = styled.div`
                 justify-content: center;
                 margin: 0px;
                 padding 0px;
+
                 input {
                     width: 80%;
                     background: rgba(0, 0, 0, 0.1);
@@ -205,7 +212,11 @@ export const Modal = styled.div`
                     &::placeholder {
                         color: rgba(255, 255, 255, 0.7);
                     }
-            }
+                }
+
+                label{
+                    color: black;
+                }
         }
     
         span {

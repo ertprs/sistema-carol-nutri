@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Link, useRouteMatch } from 'react-router-dom'
 import {toast} from 'react-toastify'
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
-import { Form, Input} from '@rocketseat/unform'
+import { Form, Input, Check } from '@rocketseat/unform'
+import * as Yup from 'yup'
+import history from '../../services/history'
 
 import api from '../../services/api'
 
@@ -18,18 +20,93 @@ a confirmação da exclusão do usuário.
 
 export default function Paciente(){
 
+    const schema = Yup.object().shape({
+
+        name: Yup.string()
+            .required("O nome é obrigatório!"),
+    
+        email: Yup.string()
+            .email("Insira um e-mail válido!")
+            .required("O e-mail é obrigatório!"),
+    
+        password: Yup.string()
+            .required("A senha é obrigatória!"),
+    
+        dateBirth: Yup.string()
+            .required("Data de nascimento é um campo obrigatório!"),
+    
+        maritalStatus: Yup.string()
+            .required("Estado cívil é um campo obrigatório!"),
+    
+        phone: Yup.string()
+            .required("Telefone é um campo obrigatorio!"),
+    
+        IntestinalTransit: Yup.string()
+            .required("Transito intestinal é um campo obrigatório!"),
+    
+        sleepQuality: Yup.string()
+            .required("Qualidade do sono é um campo obrigatório!"),
+    
+        Weight: Yup.string()
+            .required("Peso é um campo obrigatório!"),
+    
+        height: Yup.string()
+            .required("Altura é um campo obrigatorio!"),
+    
+        UrinaryStaining: Yup.string()
+            .required("Tipo da urina é um campo obrigatorio!")
+    
+    })
+
     const { params } = useRouteMatch();
 
     const [paciente, setPaciente] = useState([]);
+    const [dataReal, setDataReal] = useState([]);
 
     useEffect(async () => {
         api.get(`user/user/${params.paciente}`).then((response) => {
             setPaciente(response.data)
+
+        
+            var ano  = response.data.PersonalInformation.dateBirth.split("-")[0];
+            var mes  = response.data.PersonalInformation.dateBirth.split("-")[1];
+            var dia  = response.data.PersonalInformation.dateBirth.split("-")[2];
+            setDataReal(dia + '/' + ("0"+mes).slice(-2) + '/' + (ano))
+            
         }).catch((error) => {
             let erro = JSON.parse(error.request.response)
             toast.error(erro.error)
         })
     },[params.paciente])
+
+
+    async function handlSubmit(data) {
+        await api.put(`user/userUp/${paciente._id}` ,{
+            PersonalInformation: {
+                dateBirth: data.dateBirth,
+                maritalStatus: data.maritalStatus,
+                phone: data.phone,
+                IntestinalTransit: data.IntestinalTransit,
+                sleepQuality: data.sleepQuality,
+                Weight: data.Weight,
+                height: data.height,
+                UrinaryStaining: data.UrinaryStaining
+            },            
+        }).then((response) => {
+            setPaciente(response.data)
+
+        
+            var ano  = response.data.PersonalInformation.dateBirth.split("-")[0];
+            var mes  = response.data.PersonalInformation.dateBirth.split("-")[1];
+            var dia  = response.data.PersonalInformation.dateBirth.split("-")[2];
+            setDataReal(dia + '/' + ("0"+mes).slice(-2) + '/' + (ano))
+            toast.success('Dados atualizados.')
+        }).catch((error) => {
+            let erro = JSON.parse(error.request.response)
+            toast.error(erro.error)
+        })
+
+    }
 
     return (
     <Container>
@@ -63,7 +140,7 @@ export default function Paciente(){
                 <ul >
                     <li>
                         <strong>Data de nascimento:</strong>
-                        <p name="dateBirth" placeholder="Data de nascimento" >{paciente.PersonalInformation?.dateBirth}</p>
+                        <p name="dateBirth" placeholder="Data de nascimento" >{dataReal}</p>
                     </li>
                     <li>
                         <strong>Estado civil:</strong>
@@ -77,13 +154,14 @@ export default function Paciente(){
                         <strong>Transito intestinal:</strong>
                         <p name="IntestinalTransit" placeholder="Data de nascimento" >{paciente.PersonalInformation?.IntestinalTransit}</p>
                     </li>
+                        <img src="https://lh3.googleusercontent.com/Pl2iFKHxnuFuHLa70ArMImaeugd2YYOpWM14bSOWsjxgnw_jNaNXJwPLLgWeQ4kME-sA5GTyBcaXvEYxnbllfeWsLLBAqDO3NXHffBxqTi5FlM80yztYOIJwdMfw=w740"/>
                     <li>
                         <strong>Qualidade do sono:</strong>
                         <p name="sleepQuality" placeholder="Data de nascimento" >{paciente.PersonalInformation?.sleepQuality}</p>
                     </li>
                     <li>
                         <strong>Peso:</strong>
-                        <p name="Weight" placeholder="Data de nascimento" >{paciente.PersonalInformation?.dateBirth}</p>
+                        <p name="Weight" placeholder="Data de nascimento" >{paciente.PersonalInformation?.Weight}</p>
                     </li>
                     <li>
                         <strong>Altura:</strong>
@@ -93,6 +171,7 @@ export default function Paciente(){
                         <strong>Urina:</strong>
                         <p name="UrinaryStaining" placeholder="Data de nascimento" >{paciente.PersonalInformation?.UrinaryStaining}</p>
                     </li>
+                    <img src="https://lh3.googleusercontent.com/2azCfzgRueAnncTRuIhJJKT0dGA5ismy3aGDqYT9fcVhPeRxgJ78mlEbKmaPVJJTjVHmTP80sWkq3lp9ac-oXY7CmRaDqOqKGw_R2x0okPw8_nJWjfsZqiNhqn4v=w318"/>
                 </ul>
                 <a type="button" href="#popup1">Editar <FiChevronRight/></a>
                     <Modal id="popup1">
@@ -100,7 +179,7 @@ export default function Paciente(){
                             <h2>Modal de Informação pessoal</h2>
                             <hr/>
                             <a href="#">&times;</a>
-                            <Form initialData={paciente.PersonalInformation}>
+                            <Form initialData={paciente.PersonalInformation} onSubmit={handlSubmit}>
                                 <ul >
                                     <li>
                                         <Input  type="date" name="dateBirth" placeholder="Data de nascimento"/>
@@ -124,10 +203,10 @@ export default function Paciente(){
                                         <Input  type="text" step=".1" name="height" placeholder="Altura"/>
                                     </li>
                                     <li>
-                                        <Input  type="text" name="UrinaryStaining" placeholder="Tipo da urina"/>
+     
                                     </li>
                                     <li>
-                                        <button>Salvar</button>
+                                        <button>Salvar alterações</button>
                                     </li>
                                 </ul>
                             </Form>

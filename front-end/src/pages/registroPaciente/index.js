@@ -1,6 +1,8 @@
 import React from 'react';
 
-import { Container } from './styles'
+import {Link} from 'react-router-dom'
+import { FiChevronLeft } from 'react-icons/fi'
+import { Container, Return } from './styles'
 import { Form, Input } from '@rocketseat/unform'
 import * as Yup from 'yup'
 import {toast} from 'react-toastify'
@@ -68,7 +70,7 @@ export default function RegisterPaciente(){
             },
 
          }).then(async () => {
-            toast.success('Usuário cadastrado.')
+            history.go('/pacientes')
         }).catch((error) => {
             let erro = JSON.parse(error.request.response)
             toast.error(erro.error)
@@ -79,6 +81,12 @@ export default function RegisterPaciente(){
 
     return (
         <>
+            <Return>
+                <Link to="/pacientes">
+                    <FiChevronLeft/>
+                    Voltar
+                </Link>
+            </Return>
             <Container>
                 <Form schema={schema} onSubmit={handlSubmit}>
                     <h2>Dados de acesso</h2>

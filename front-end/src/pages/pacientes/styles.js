@@ -19,9 +19,9 @@ export const Container = styled.div`
     @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,500&display=swap');
 
     display: flex;
-    max-width: 900px;
+    width: 60%;
     align-items: center;
-    margin: 50px 0 0  150px;
+    margin: 5% 0 0 15%;
 
     img {
         height: 75px;
@@ -47,9 +47,9 @@ export const Formulario = styled.form`
     animation: ${DaDireitaParaEsquerda} 1.5s;
     @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,500&display=swap');
 
-    margin-left: 150px;
+    margin-left: 15%;
     margin-bottom: 50px;
-    max-width: 880px;
+    width: 60%;
 
     display: flex;
 
@@ -109,14 +109,14 @@ export const Paciente = styled.div`
     @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,500&display=swap');
 
     margin-top: 1px;
-    margin-left: 150px;
-    max-width: 700px;
+    margin-left: 15%;
+    width: 60%;
 
     a{
         background: #fff;
-        border-radius:5px;
+        border-radius:8px;
         width:100%;
-        padding: 24px;
+        padding: 16px;
         display: block;
         text-decoration: none;
         margin-bottom: 15px;
@@ -148,6 +148,9 @@ export const Paciente = styled.div`
 
             p{
                 color: #831e62;
+                padding:0px;
+                margin:0px;
+
             }
 
             span {
