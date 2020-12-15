@@ -37,7 +37,7 @@ export default function SideBar(){
                             </Link>
                         </li>
                         <li>
-                            <Link to="/#">
+                            <Link to="/artigos">
                                 <span>Artigos</span>
                             </Link>
                         </li>

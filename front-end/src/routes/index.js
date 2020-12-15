@@ -14,6 +14,9 @@ import RegisterPaciente from '../pages/registroPaciente/index'
 import RegisterReceitas from '../pages/receitasRegister/index'
 import Receitas from '../pages/receitasListagem/index'
 import Receita from '../pages/receitasEdit/index'
+import RegisterArtigos from '../pages/artigosRegister/index'
+import Artigos from '../pages/artigoListagem/index'
+import Artigo from '../pages/artigoEdit/index'
 
 export default function Routes(){
     return (
@@ -31,6 +34,9 @@ export default function Routes(){
                 <Route path="/registrar-receita" isPrivate component={RegisterReceitas} />
                 <Route path="/receitas" isPrivate component={Receitas} />
                 <Route path="/receita/:receita" isPrivate component={Receita} />
+                <Route path="/registrar-artigo" isPrivate component={RegisterArtigos} />
+                <Route path="/artigos" isPrivate component={Artigos} />
+                <Route path="/artigo/:artigo" isPrivate component={Artigo} />
             </Switch>
         </BrowserRouter>
     )
