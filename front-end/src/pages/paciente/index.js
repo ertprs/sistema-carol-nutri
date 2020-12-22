@@ -6,6 +6,23 @@ import { Form, Input, Check } from '@rocketseat/unform'
 import * as Yup from 'yup'
 import history from '../../services/history'
 
+import tipo1 from '../../assets/bristol/tipo1.png'
+import tipo2 from '../../assets/bristol/tipo2.png'
+import tipo3 from '../../assets/bristol/tipo3.png'
+import tipo4 from '../../assets/bristol/tipo4.png'
+import tipo5 from '../../assets/bristol/tipo5.png'
+import tipo6 from '../../assets/bristol/tipo6.png'
+import tipo7 from '../../assets/bristol/tipo7.png'
+
+import escala1 from '../../assets/Urina/escala1.png'
+import escala2 from '../../assets/Urina/escala2.png'
+import escala3 from '../../assets/Urina/escala3.png'
+import escala4 from '../../assets/Urina/escala4.png'
+import escala5 from '../../assets/Urina/escala5.png'
+import escala6 from '../../assets/Urina/escala6.png'
+import escala7 from '../../assets/Urina/escala7.png'
+import escala8 from '../../assets/Urina/escala8.png'
+
 import api from '../../services/api'
 
 import {Return, UsuarioInfo, Modal, Container} from './styles'
@@ -59,25 +76,81 @@ export default function Paciente(){
     })
 
     const { params } = useRouteMatch();
-
+    const [urina, setUrina] = useState([]);
+    const [bristol, setBristol] = useState();
     const [paciente, setPaciente] = useState([]);
     const [dataReal, setDataReal] = useState([]);
 
     useEffect(async () => {
         api.get(`user/user/${params.paciente}`).then((response) => {
             setPaciente(response.data)
-
         
             var ano  = response.data.PersonalInformation.dateBirth.split("-")[0];
             var mes  = response.data.PersonalInformation.dateBirth.split("-")[1];
             var dia  = response.data.PersonalInformation.dateBirth.split("-")[2];
             setDataReal(dia + '/' + ("0"+mes).slice(-2) + '/' + (ano))
+
+            switch (response.data?.PersonalInformation.IntestinalTransit) {
+                case '1':
+                    setBristol(tipo1)
+                  break;
+                case '2':
+                    setBristol(tipo2)
+                    break;
+                case '3':
+                    setBristol(tipo3)
+                    break;
+                case '4':
+                    setBristol(tipo4)
+                    break;
+                case '5':
+                    setBristol(tipo5)
+                    break;
+                case '6':
+                    setBristol(tipo6)
+                    break;
+                case '7':
+                    setBristol(tipo7)
+                    break;
+                default:
+                  console.log(`Sorry, we are out of.`);
+              }
             
+              switch (response.data?.PersonalInformation.UrinaryStaining) {
+                case '1':
+                    setUrina(escala1)
+                  break;
+                case '2':
+                    setUrina(escala2)
+                    break;
+                case '3':
+                    setUrina(escala3)
+                    break;
+                case '4':
+                    setUrina(escala4)
+                    break;
+                case '5':
+                    setUrina(escala5)
+                    break;
+                case '6':
+                    setUrina(escala6)
+                    break;
+                case '7':
+                    setUrina(escala7)
+                    break;
+                case '8':
+                    setUrina(escala8)
+                default:
+                  console.log(`Sorry, we are out of.`);
+            }
+
         }).catch((error) => {
             let erro = JSON.parse(error.request.response)
             toast.error(erro.error)
         })
     },[params.paciente])
+
+    console.log(urina)
 
 
     async function handlSubmit(data) {
@@ -94,19 +167,14 @@ export default function Paciente(){
             },            
         }).then((response) => {
             setPaciente(response.data)
-
-        
-            var ano  = response.data.PersonalInformation.dateBirth.split("-")[0];
-            var mes  = response.data.PersonalInformation.dateBirth.split("-")[1];
-            var dia  = response.data.PersonalInformation.dateBirth.split("-")[2];
-            setDataReal(dia + '/' + ("0"+mes).slice(-2) + '/' + (ano))
             toast.success('Dados atualizados.')
         }).catch((error) => {
             let erro = JSON.parse(error.request.response)
             toast.error(erro.error)
         })
-
+        
     }
+
 
     return (
     <Container>
@@ -152,26 +220,25 @@ export default function Paciente(){
                     </li>
                     <li>
                         <strong>Transito intestinal:</strong>
-                        <p name="IntestinalTransit" placeholder="Data de nascimento" >{paciente.PersonalInformation?.IntestinalTransit}</p>
                     </li>
-                        <img src="https://lh3.googleusercontent.com/Pl2iFKHxnuFuHLa70ArMImaeugd2YYOpWM14bSOWsjxgnw_jNaNXJwPLLgWeQ4kME-sA5GTyBcaXvEYxnbllfeWsLLBAqDO3NXHffBxqTi5FlM80yztYOIJwdMfw=w740"/>
+                    <img src={ bristol }/>
                     <li>
                         <strong>Qualidade do sono:</strong>
                         <p name="sleepQuality" placeholder="Data de nascimento" >{paciente.PersonalInformation?.sleepQuality}</p>
                     </li>
                     <li>
                         <strong>Peso:</strong>
-                        <p name="Weight" placeholder="Data de nascimento" >{paciente.PersonalInformation?.Weight}</p>
+                        <p name="Weight" placeholder="Data de nascimento" >{paciente.PersonalInformation?.Weight} kg</p>
                     </li>
                     <li>
                         <strong>Altura:</strong>
-                        <p name="height" placeholder="Data de nascimento" >{paciente.PersonalInformation?.height}</p>
+                        <p name="height" placeholder="Data de nascimento" >{paciente.PersonalInformation?.height} m</p>
                     </li>
                     <li>
                         <strong>Urina:</strong>
-                        <p name="UrinaryStaining" placeholder="Data de nascimento" >{paciente.PersonalInformation?.UrinaryStaining}</p>
                     </li>
-                    <img src="https://lh3.googleusercontent.com/2azCfzgRueAnncTRuIhJJKT0dGA5ismy3aGDqYT9fcVhPeRxgJ78mlEbKmaPVJJTjVHmTP80sWkq3lp9ac-oXY7CmRaDqOqKGw_R2x0okPw8_nJWjfsZqiNhqn4v=w318"/>
+                    <img src={urina}/>
+
                 </ul>
                 <a type="button" href="#popup1">Editar <FiChevronRight/></a>
                     <Modal id="popup1">
