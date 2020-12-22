@@ -12,37 +12,18 @@ const UserSchema = mongoose.Schema({
         type: String,
         require: true
     },
-    PersonalInformation: {
-        dateBirth: {
-            type: String,
-        },
-        maritalStatus: {
-            type: String,
-        },
-        phone: {
-            type: String,
-        },
-        IntestinalTransit:{
-            type: String,
-        },
-        sleepQuality: {
-            type: String,
-        },
-        Weight: {
-            type: String,
-        },
-        height: {
-            type: String,
-        },
-        UrinaryStaining:{
-            type: String,
-        },
+    phone: {
+        type: String,
     },
     email: {
         type: String,
         require: true,
         unique: true,
         lowecase: true
+    },
+    status: {
+        type: String,
+        default: "Cadastrado"
     },
     password: {
         type: String,
@@ -53,7 +34,6 @@ const UserSchema = mongoose.Schema({
         type: String,
         select: false
     },
-
     passwordResetTxpires: {
         type: Date,
         default: Date.now,

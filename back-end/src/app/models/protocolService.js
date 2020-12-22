@@ -13,52 +13,46 @@ const ProtocolService = new mongoose.Schema({
         ref: "User",
         required: true
     },
-    personalData: {
-        name: {
-            type: String,
-            required: true,
-        },
+    PersonalInformation: {
         dateBirth: {
             type: String,
-            required: true,
-        },
-        age: {
-            type: Number,
-            required: true
-        },
-        genre: {
-            type: String,
-            required: true
         },
         maritalStatus: {
             type: String,
-            required: true
+        },
+        IntestinalTransit:{
+            type: String,
+        },
+        sleepQuality: {
+            type: String,
+        },
+        Weight: {
+            type: String,
+        },
+        height: {
+            type: String,
+        },
+        UrinaryStaining:{
+            type: String,
+        },
+        genre: {
+            type: String,
         },
         profession: {
             type: String,
-            required: true
         },
         clinicalHistory: {
-            type: String,
-            required: true,
+            type: String,,
         },
         objective: {
             type: String,
-            required: true
         }
     },
 
     nutritionalSemiology: {
         weightChanges: {
-            weightLoss: {
-                type: Boolean,   
-            },
-            weightAgain: {
-                type: Boolean,
-            },
             kg: {
                 type: String,
-                required: true
             },
             Obs: {
                 type: String
@@ -67,25 +61,25 @@ const ProtocolService = new mongoose.Schema({
 
         physicalExam: {
             drySkin: {
-                type: Boolean,
+                type: String,
             },
             mucousMoisture: {
-                type: Boolean,
+                type: String,
             },
             lossOfHair: {
-                type: Boolean,
+                type: String,
             },
             edema: {
-                type: Boolean,
+                type: String,
             },
             weakness: {
-                type: Boolean,
+                type: String,
             },
             conjunctivalPallor: {
-                type: Boolean,
+                type: String,
             },
             koilonychicNails: {
-                type: Boolean,
+                type: String,
             },
             Obs: {
                 type: String,
@@ -94,19 +88,19 @@ const ProtocolService = new mongoose.Schema({
 
         disgestiveSystem: {
             dyspepsia: {
-                type: Boolean
+                type: String
             },
             stomachPains: {
-                type: Boolean
+                type: String
             },
             nausea: {
-                type: Boolean
+                type: String
             },
             vomiting: {
-                type: Boolean
+                type: String
             },
             dysphagia: {
-                type: Boolean
+                type: String
             },
             Obs: {
                 type: String,
@@ -115,10 +109,10 @@ const ProtocolService = new mongoose.Schema({
 
         intestinalChanges: {
             diarrhea: {
-                type: Boolean
+                type: String
             },
             cold: {
-                type: Boolean
+                type: String
             },
             Obs: {
                 type: String,
@@ -128,7 +122,6 @@ const ProtocolService = new mongoose.Schema({
 
     waterConsumption: {
         type: String,
-        required: true
     },
 
     allergiesAndIntolerances: {
@@ -143,7 +136,7 @@ const ProtocolService = new mongoose.Schema({
         }
     },
 
-    useOfMedicines: {
+    useOfMedicines: [{
         medicinesOrSupplements: {
             type: String,
         },
@@ -153,12 +146,11 @@ const ProtocolService = new mongoose.Schema({
         schedule: {
             type: String,
         }
-    },
+    }],
 
     physicalActivity: {
         yesNo: {
-            type: Boolean,
-            required: true,
+            type: String,
         },
         frequency: {
             type: String
@@ -167,8 +159,7 @@ const ProtocolService = new mongoose.Schema({
 
     alcoholicBeverage: {
         yesNo: {
-            type: Boolean,
-            required: true,
+            type: String,
         },
         frequency: {
             type: String
@@ -176,139 +167,102 @@ const ProtocolService = new mongoose.Schema({
     },
 
     smoking: {
-        type: Boolean,
-        required: true
+        type: String,
     },
 
     schedules: {
         wakeUp: {
             type: String,
-            required: true
         },
         sleeps: {
             type: String,
-            required: true
         },
         physicalActivity: {
             type: String,
-            required: true
         }
     },
 
-    dietaryEvaluation: {
+    dietaryEvaluation: [{
         mealAndScheduleAndLocal: {
             type: String,
-            required: true
         },
         foods: {
             type: String,
-            required: true
         },
         quantities: {
             type: String,
-            required: true
         }
-    },
+    }],
 
-    preferencesAndAversions: {
+    preferencesAndAversions: [{
         preferences: {
             type: String,
-            required: true
         },
         aversions: {
             type: String,
-            required: true
         }
-    },
+    }],
 
     foodIngestion: {
         inappetence: {
-            type: String,
-            required: true
+            type: String
         },
         hyperphagia: {
             type: String,
-            required: true
         }
     },
 
     anthropometricEvaluation: {
         date: {
-            type: Date,
-            default: Date.now,
-            required: true
-        },
-        currentWeight: {
-            type: Number,
-            required: true
-        },
-        height: {
-            type: Number,
-            required: true
+            type: String,
         },
         imc: {
             type: Number,
-            required: true
         },
         waist: {
             type: Number,
-            required: true
         },
         arm: {
             type: Number,
-            required: true
         },
         hip: {
             type: Number,
-            required: true
         },
         bicepsSkinfold: {
             type: Number,
-            required: true
         },
         tricepsSkinfold: {
             type: Number,
-            required: true
         },
         mediumAxillarySkinfold : {
             type: Number,
-            required: true
         },
         breastplateSkinfold: {
             type: Number,
-            required: true
         },
         suprailiacSkinfold: {
             type: Number,
-            required: true
         },
         subscapularSkinfold: {
             type: Number,
-            required: true
         },
         abdominalSkinfold: {
             type: Number,
-            required: true
         },
         thighSkinfold: {
             type: Number,
-            required: true
         },
         calfSkinfold: {
             type: Number,
-            required: true
         },
         ThoracicSkinfold: {
             type: Number,
-            required: true
         },
         calf: {
             type: Number,
-            required: true
         },
         NAF: {
             type: Number,
-            required: true
         },
         energyExpenditure: {
             HarrisBenedict: {
