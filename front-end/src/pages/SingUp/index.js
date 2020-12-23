@@ -9,7 +9,6 @@ import { Wrapper, Content } from './styles'
 
 import api from '../../services/api'
 
-
 const schema = Yup.object().shape({
 
     name: Yup.string()
@@ -21,6 +20,9 @@ const schema = Yup.object().shape({
 
     password: Yup.string()
         .required("A senha é obrigatória!"),
+
+    phone: Yup.string()
+        .required("O telefone é obrigatório!"),
 })
 
 
@@ -28,12 +30,21 @@ export default function SignUp(){
 
     var history = useHistory()
 
+    async function onChange(event){
+        event.target.value = event.target.value
+            .replace(/\D/g,'')
+            .replace(/(\d{0})(\d)/, '$1($2')
+            .replace(/(\d{2})(\d)/, '$1) $2 ')
+            .replace(/(\d{5})(\d)/, '$1-$2')
+    }
+
     async function handlesubmit(data){
         await api.post('auth/register'  ,{
             name: data.name,
             email: data.email,
+            phone: data.phone,
             password: data.password
-        }).then((response) => {
+        }).then(() => {
 
             toast.success('Cadastro realizado!')
             history.push('/signin')
@@ -53,6 +64,7 @@ export default function SignUp(){
                     <Form schema={schema} onSubmit={handlesubmit}>
                         <Input name="name" type="text" placeholder="Seu nome completo" />
                         <Input name="email" type="email" placeholder="Seu e-mail" />
+                        <Input name="phone" onInput={onChange} maxLength="16" type="text" placeholder="Seu telefone" />
                         <Input name="password" type="password" placeholder="Sua senha" />
 
                         <button type="submit">Cadastrar</button>

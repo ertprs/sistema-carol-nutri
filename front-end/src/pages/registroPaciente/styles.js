@@ -5,7 +5,6 @@ export const Container = styled.div`
     max-width: 600px;
     margin: 50px auto;
 
-
     form {
         display: flex;
         flex-direction: column;
@@ -29,12 +28,6 @@ export const Container = styled.div`
             }
         }
     
-        span {
-            color: #fff;
-            align-self: self-start;
-            margin: 0 0 10px;
-            font-weight: bold;
-        }
     
         hr {
             border: 0;
@@ -59,8 +52,6 @@ export const Container = styled.div`
             }
         }
     }
-
-
 `
 
 export const Return = styled.div`
@@ -71,16 +62,19 @@ export const Return = styled.div`
     justify-content: flex-end;
 
     a {
+        padding: 5px;
         margin: 3% 20% 5px 5px;
         display: flex;
         align-items: center;
         text-decoretion: none;
         color: #fff;
         transition: .3s;
+        border-radius: 6px;
 
 
         &:hover{
             color: #a8a8b3;
+            background: rgba(320, 320, 320, 0.1)
         }
 }
 `

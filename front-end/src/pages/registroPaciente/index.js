@@ -8,7 +8,7 @@ import * as Yup from 'yup'
 import {toast} from 'react-toastify'
 
 import api from '../../services/api'
-import history from '../../services/history'
+import {useHistory} from 'react-router-dom'
 
 const schema = Yup.object().shape({
 
@@ -22,60 +22,39 @@ const schema = Yup.object().shape({
     password: Yup.string()
         .required("A senha é obrigatória!"),
 
-    dateBirth: Yup.string()
-        .required("Data de nascimento é um campo obrigatório!"),
-
-    maritalStatus: Yup.string()
-        .required("Estado cívil é um campo obrigatório!"),
-
     phone: Yup.string()
-        .required("Telefone é um campo obrigatorio!"),
-
-    IntestinalTransit: Yup.string()
-        .required("Transito intestinal é um campo obrigatório!"),
-
-    sleepQuality: Yup.string()
-        .required("Qualidade do sono é um campo obrigatório!"),
-
-    Weight: Yup.string()
-        .required("Peso é um campo obrigatório!"),
-
-    height: Yup.string()
-        .required("Altura é um campo obrigatorio!"),
-
-    UrinaryStaining: Yup.string()
-        .required("Tipo da urina é um campo obrigatorio!")
 
 })
 
 export default function RegisterPaciente(){
 
-    async function handlSubmit(data) {
-        console.log(data)
-        
+    const historico = useHistory()
+
+    async function onChange(event){
+        event.target.value = event.target.value
+            .replace(/\D/g,'')
+            .replace(/(\d{0})(\d)/, '$1($2')
+            .replace(/(\d{2})(\d)/, '$1) $2 ')
+            .replace(/(\d{4})(\d)/, '$1-$2')
+    }
+
+    async function handlSubmit(data) {    
+        console.log(data)   
+        console.log(data.namess)    
         await api.post(`auth/register` ,{ 
             name: data.name,
             email: data.email,
             password: data.password,
-
-            PersonalInformation: {
-                dateBirth: data.dateBirth,
-                maritalStatus: data.maritalStatus,
-                phone: data.phone,
-                IntestinalTransit: data.IntestinalTransit,
-                sleepQuality: data.sleepQuality,
-                Weight: data.Weight,
-                height: data.height,
-                UrinaryStaining: data.UrinaryStaining
-            },
+            phone: data.phone,
+            status: 'cadastrado'
 
          }).then(async () => {
-            history.go('/pacientes')
+            toast.success('Usuário cadastrado.')
         }).catch((error) => {
             let erro = JSON.parse(error.request.response)
             toast.error(erro.error)
         })
-
+        historico.push('/pacientes')
     }
 
 
@@ -87,24 +66,16 @@ export default function RegisterPaciente(){
                     Voltar
                 </Link>
             </Return>
-            <Container>
-                <Form schema={schema} onSubmit={handlSubmit}>
-                    <h2>Dados de acesso</h2>
-                    <Input  name="name" placeholder="Nome e sobrenome"/>
-                    <Input  type="email" name="email" placeholder="E-mail"/>
-                    <Input type="password" name="password" placeholder="Informe a senha" />
-                    <hr/>
-                    <h2>Iformações pessoais</h2>
-                    <Input  type="date" name="dateBirth" placeholder="Data de nascimento"/>
-                    <Input  name="maritalStatus" placeholder="status civil"/>
-                    <Input  type="text" name="phone" placeholder="Número de telefone"/>
-                    <Input  type="text" name="IntestinalTransit" placeholder="Transito intestinal"/>
-                    <Input  type="text" name="sleepQuality" placeholder="Qualidade do sono"/>
-                    <Input  type="text"  name="Weight" placeholder="Peso"/>
-                    <Input  type="text" step=".1" name="height" placeholder="Altura"/>
-                    <Input  type="text" name="UrinaryStaining" placeholder="Tipo da urina"/>
 
-                    <button type="submit">Cadastrar</button>
+            <Container>
+                <Form onSubmit={handlSubmit} schema={schema}>
+                    <h2>Dados de acesso</h2>
+                    <Input  type="text" name="name" maxLength="60" placeholder="Nome e sobrenome"/>
+                    <Input  type="email" maxLength="60" name="email" placeholder="E-mail"/>
+                    <Input  name="phone" onInput={onChange} maxLength="16"  placeholder="Informe o telefone"/>
+                    <Input  type="password" maxLength="14" name="password" placeholder="Informe a senha" />
+                    <hr/>
+                     <button type="submit">Cadastrar</button>
                 </Form>
             </Container>
         </>

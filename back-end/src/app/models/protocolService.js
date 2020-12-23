@@ -42,7 +42,7 @@ const ProtocolService = new mongoose.Schema({
             type: String,
         },
         clinicalHistory: {
-            type: String,,
+            type: String,
         },
         objective: {
             type: String,

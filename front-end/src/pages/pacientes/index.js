@@ -72,7 +72,7 @@ export default function Pacientes(){
                 <h1>Explore a lista dos pacientes.</h1>
             </Container>
 
-            <Formulario>
+            <Formulario onSubmit={e => { e.preventDefault()}}>
                 <input value={busca} onChange={onChange} name="pesquisa" type="text" placeholder="Informe o nome do usuário"/>
                 <button onClick={handleClick} type="button">Atualizar lista <AiOutlineRedo size={20} /></button>
                 <Link>
@@ -94,7 +94,7 @@ export default function Pacientes(){
                             <div className="conteudo">
                                 <strong>{paciente.name}</strong>
                                 <p>{paciente.email}</p>
-                                <span>status</span>
+                                <span>{paciente.status}</span>
                             </div>
                         </div>
 
