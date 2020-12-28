@@ -3,10 +3,6 @@ const router = express.Router();
 
 const ProtocolService = require('../controllers/protocolServiceController')
 
-const midwareAuthEadminControl = require('../middlewares/eAdmin')
-
-router.use(midwareAuthEadminControl)
-
 // -- Rotas do CRUD do usuário -- //
 router.post('/register', ProtocolService.store);
 router.get('/list', ProtocolService.index);

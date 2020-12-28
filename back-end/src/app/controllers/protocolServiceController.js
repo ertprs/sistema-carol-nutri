@@ -52,11 +52,20 @@ module.exports = {
     async show(req, res) {
         try {
 
-            const protocolService = await ProtocolService.findById(req.params.id)
+            const protocolService = (await ProtocolService.findById({user: req.params.id})).populate
+
+            console.log(protocolService)
+
+            if(protocolService == undefined){
+                return res.status(400).send({error: 'Este usuário não possui dados médicos.'})
+            }
+
             return res.json(protocolService);
 
         }
+
         catch (error) {
+            console.log(error)
             return res.status(400).send({error: 'Erro ao listar dados do atendimento.'})
         }
     },
