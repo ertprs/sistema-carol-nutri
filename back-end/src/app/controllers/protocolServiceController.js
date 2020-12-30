@@ -54,7 +54,9 @@ module.exports = {
 
             const protocolService = (await ProtocolService.findById({user: req.params.id})).populate
 
-            console.log(protocolService)
+            if(!protocolService){
+                return res.status(400).send({error: 'Este usuário não possui dados médicos.' })
+            }
 
             if(protocolService == undefined){
                 return res.status(400).send({error: 'Este usuário não possui dados médicos.'})

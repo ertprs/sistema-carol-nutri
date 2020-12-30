@@ -14,6 +14,8 @@ const DaDireitaParaEsquerda = keyframes`
 
 export const Container = styled.div`
     animation: ${DaDireitaParaEsquerda} 1s;
+    width 70%;
+    margin: auto;
 `
 
 export const Return = styled.div`
@@ -24,8 +26,8 @@ export const Return = styled.div`
     justify-content: flex-end;
 
     a {
+        margin-top:20px;
         padding: 5px;
-        margin: 3% 20% 5px 5px;
         display: flex;
         align-items: center;
         text-decoretion: none;
@@ -43,16 +45,14 @@ export const Return = styled.div`
 
 export const UsuarioInfo = styled.section`
     @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,500&display=swap');
-    margin-top: 40px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-left: 20%;
-    margin-bottom: 5%;
+    align-self: center;
+    margin-top:20px;
 
     header {
         display: flex;
-        width: 70%;
 
         img {
             width: 100px;
@@ -83,67 +83,106 @@ export const UsuarioInfo = styled.section`
         }
     }
     hr {
-        width: 80%;
         border: 0;
         height: 1px;
         background: #fff;
         margin: 10px 0 20px;
     }
-
-
 `
 
-export const medicalInfo = styled.div`
-    max-width: 600px;
-    margin: 50px auto;
-
-    div{
-        
-    }
-
+export const MedicalInfo = styled.div`
     form {
         display: flex;
         flex-direction: column;
-        margin-top: 30px;
-    }
 
-    input {
-        background: rgba(0, 0, 0, 0.1);
-        border: 0;
-        border-radius: 4px;
-        height: 44px;
-        padding: 0 15px;
-        color #fff;
-        margin: 0 0 10px;
+        h5{
+            color: #fff;
+            margin:0;
+            margin-top: 100px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
 
-        &::placeholder {
-            color: rgba(255, 255, 255, 0.7);
+        h4{
+            color: #fff;
+            margin: auto;
+            margin-bottom: 20px;
+            
+        }
+
+        div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding:0;
+            width: 100%;
+
+            div {
+                display: flex;
+                flex-direction: column;
+                margin:15px;
+                width: 100%;
+                vertical-align: middle;
+
+                label{
+                    display: flex;
+                    justify-content: center;
+                    margin: 0;
+                    color : #fff;
+                    width: 100%;              
+                }
+
+                input, select {
+                    width: 100%;
+                    background: rgba(0, 0, 0, 0.1);
+                    border: 0;
+                    border-radius: 4px;
+                    height: 44px;
+                    padding: 0 15px;
+                    color #fff;
+                    margin:auto;    
+            
+                    &::placeholder {
+                        color: rgba(255, 255, 255, 0.7);
+                    }
+
+                }
+
+                textarea {
+                    background: rgba(0, 0, 0, 0.1);
+                    border: 0;
+                    border-radius: 4px;
+                    padding: 10px;
+                    color #fff;
+                    width: 100%;
+            
+                    &::placeholder {
+                        color: rgba(255, 255, 255, 0.7);
+                    }
+                }
+
+            }
+        }
+    
+        hr {
+            border: 0;
+            height: 1px;
+            background: #fff;
+            margin: 10px 0 20px;
+        }
+    
+        button {
+            width: 80%;
+            margin: 5px auto;
+            height: 44px;
+            background: #3b9eff;
+            font-weight: bold;
+            color #fff;
+            border: 0;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: background 0.3s;
         }
     }
 
-    span {
-        color: #fff;
-        align-self: self-start;
-        margin: 0 0 10px;
-        font-weight: bold;
-    }
-
-    hr {
-        border: 0;
-        height: 1px;
-        background: #fff;
-        margin: 10px 0 20px;
-    }
-
-    button {
-        margin: 5px 0 0;
-        height: 44px;
-        background: #3b9eff;
-        font-weight: bold;
-        color #fff;
-        border: 0;
-        border-radius: 4px;
-        font-size: 16px;
-        transition: background 0.3s;
-    }
 `
