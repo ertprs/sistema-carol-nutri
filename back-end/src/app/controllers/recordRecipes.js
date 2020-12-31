@@ -72,7 +72,7 @@ module.exports = {
             
             await RecordRecipes.findByIdAndRemove(req.params.id);
 
-            return res.status(200).send('Artigo deletado!');
+            return res.send('Artigo deletado!');
 
         } catch (error) {
             

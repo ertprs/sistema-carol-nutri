@@ -8,7 +8,7 @@ import * as Yup from 'yup'
 import {toast} from 'react-toastify'
 
 import api from '../../services/api'
-import history from '../../services/history'
+import { useHistory } from 'react-router-dom'
 
 const schema = Yup.object().shape({
 
@@ -28,8 +28,9 @@ const schema = Yup.object().shape({
 
 export default function RegisterReceitas(){
 
+    var history = useHistory()
+    
     async function handlSubmit(data) {
-        console.log(data)
         
         await api.post(`receitas/register` ,{ 
             image: data.image,
@@ -37,12 +38,12 @@ export default function RegisterReceitas(){
             description: data.description,
             link: data.link,
          }).then(async () => {
-             toast.success('receita cadastrada')
+            toast.success('receita cadastrada')
+            history.push('/receitas')
         }).catch((error) => {
             let erro = JSON.parse(error.request.response)
             toast.error(erro.error)
         })
-
     }
 
 

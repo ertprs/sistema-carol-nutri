@@ -26,8 +26,9 @@ export default function Receita(){
         })
     },[params.Receita])
 
-    async function handlesubmit(){
-        await api.post(`receitas/delete/${params.receita}` ,{
+    async function handClick(){
+        console.log('entrou na função')
+        await api.delete(`receitas/delete/${params.receita}` ,{
         }).then(() => {
             toast.success('Receita excluída!')
             history.push('/receitas')
@@ -60,11 +61,9 @@ export default function Receita(){
             </header>
             <div className="botoes">
                 <a href={Receita.link} target="_blank">ver<FiChevronRight/></a>
-                <button onClick={handlesubmit} type="button">Excluir <AiOutlineClose size={20} /></button>
+                <button onClick={handClick} type="button">Excluir <AiOutlineClose size={20} /></button>
             </div>
         </UsuarioInfo>
     </Container>
     )
-
-
 }

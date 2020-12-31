@@ -8,7 +8,6 @@ import * as Yup from 'yup'
 import {toast} from 'react-toastify'
 
 import api from '../../services/api'
-import history from '../../services/history'
 
 const schema = Yup.object().shape({
 
