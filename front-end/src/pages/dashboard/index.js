@@ -8,15 +8,19 @@ export default function Dashboard(){
 
     const { user } = useContext(AuthContext)
 
-    if(user.eAdmin == true){
+    if(user.eAdmin === true){
         return (
-            <p>e adm</p>
+            <>
+                <p>é adm</p>
+            </>
         )
     }
 
-    if(user.eAdmin == false){
+    if(user.eAdmin === false){
         return (
-            <p>Não é adm</p>
+            <>
+                <p>Não é adm</p>
+            </>
         )
     }
 

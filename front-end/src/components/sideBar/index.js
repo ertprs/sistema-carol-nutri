@@ -9,7 +9,7 @@ export default function SideBar(){
 
     const { user } = useContext(AuthContext)
 
-    if(user.eAdmin == true){
+    if(user.eAdmin === true){
         return (
             <Content>
                 <input type="checkbox" id="chec" />
@@ -47,7 +47,7 @@ export default function SideBar(){
         )
     }
 
-    if(user.eAdmin == false){
+    if(user.eAdmin === false){
         return (
             <Content>
                 <input type="checkbox" id="chec" />

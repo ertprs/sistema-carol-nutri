@@ -2,45 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { Link, useRouteMatch } from 'react-router-dom'
 
 import {toast} from 'react-toastify'
-import * as Yup from 'yup'
-import { Form, Input, Textarea } from '@rocketseat/unform'
+import { Form, Input, Textarea, Select } from '@rocketseat/unform'
 
 import { FiChevronLeft } from 'react-icons/fi'
 import {AiOutlineMail, AiOutlinePhone, AiOutlineBell} from 'react-icons/ai'
-
-import tipo1 from '../../assets/bristol/tipo1.png'
-import tipo2 from '../../assets/bristol/tipo2.png'
-import tipo3 from '../../assets/bristol/tipo3.png'
-import tipo4 from '../../assets/bristol/tipo4.png'
-import tipo5 from '../../assets/bristol/tipo5.png'
-import tipo6 from '../../assets/bristol/tipo6.png'
-import tipo7 from '../../assets/bristol/tipo7.png'
-
-import escala1 from '../../assets/Urina/escala1.png'
-import escala2 from '../../assets/Urina/escala2.png'
-import escala3 from '../../assets/Urina/escala3.png'
-import escala4 from '../../assets/Urina/escala4.png'
-import escala5 from '../../assets/Urina/escala5.png'
-import escala6 from '../../assets/Urina/escala6.png'
-import escala7 from '../../assets/Urina/escala7.png'
-import escala8 from '../../assets/Urina/escala8.png'
-
 import api from '../../services/api'
 
 import {Return, UsuarioInfo, Container, MedicalInfo} from './styles'
-
-/*
-As informações pessoais, dá para deixar, só para a visualização da nutricionista. Já as
-informações do usuário, dá para deixar da mesma forma, porém terá um botão para editar.
-Clicando no botão, abrirá um modal para editar as informações deste usuário. Ao lado deste botão,
-deve ter um botão em vermelho para deletar o usuário. Este botão, também deverá abrir um modal para
-a confirmação da exclusão do usuário.
-*/
-
-const schema = Yup.object().shape({
-
-
-})
 
 
 export default function Paciente(){
@@ -49,7 +17,6 @@ export default function Paciente(){
 
     const [paciente, setPaciente] = useState([]);
     const [informacoesMedicas, setInformacoes] = useState([]);
-    const [loading, setLoading] = useState([]);
 
     useEffect(async () => {
         await api.get(`user/user/${params.paciente}`).then((response) => {
@@ -65,6 +32,11 @@ export default function Paciente(){
             toast.error(erro.error)
         })
     },[params.paciente])
+
+    async function handleSubmit(data){
+        console.log('entrou na função')
+        console.log(data)
+    }
 
     return (
         <Container>
@@ -99,7 +71,7 @@ export default function Paciente(){
             </UsuarioInfo>
 
             <MedicalInfo>
-                <Form schema={schema} initialData={informacoesMedicas}>
+                <Form onSubmit={handleSubmit}>
                     <h4>1. INFORMAÇÕES PESSOAIS</h4>
                     <div>
                         <div>
@@ -163,7 +135,7 @@ export default function Paciente(){
                         </div>
                         <div>
                             <label for="sleepQuality">Qualidade do sono:</label>
-                            <select name="sleepQuality" id="sleepQuality">
+                            <select name="sleepQuality" id="sleepQuality" value=''>
                                 <option value="Solteiro">Bom</option>
                                 <option value="Casado">Ruin</option>
                             </select>
@@ -228,7 +200,7 @@ export default function Paciente(){
                             <label for="weakness">Fraqueza</label>
                         </div>
                         <div>
-                            <Input type="checkbox" id="conjunctivalPallor" name="conjunctivalPallor"/>
+                            <Input type="checkbox" value="sim" id="conjunctivalPallor" name="conjunctivalPallor"/>
                             <label for="conjunctivalPallor">Palidez conjutival</label>
                         </div>
                         <div>
@@ -391,7 +363,7 @@ export default function Paciente(){
                     <hr/>
 
 
-                    <button type="submit">Atualizar dados</button>
+                    <button type="submit" onSubmit={e => { e.preventDefault()}}>Atualizar dados</button>
                 </Form>
             </MedicalInfo>
 

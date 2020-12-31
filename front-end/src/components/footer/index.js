@@ -1,5 +1,5 @@
 import React from 'react'
-import {  AiFillFacebook, AiFillInstagram,  AiOutlineWhatsApp, AiOutlineMail } from "react-icons/ai";
+import {  AiFillFacebook, AiFillInstagram,  AiOutlineWhatsApp } from "react-icons/ai";
 
 import {Container} from './styles.js'
 

@@ -2,7 +2,7 @@ import React from "react";
 import ReactCardCarousel from "react-card-carousel";
 import {
   Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button
+  CardTitle
 } from 'reactstrap';
 
 import {Container, Content} from './styles.js'
