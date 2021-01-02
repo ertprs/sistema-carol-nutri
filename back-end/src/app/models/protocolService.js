@@ -51,10 +51,10 @@ const ProtocolService = new mongoose.Schema({
 
     nutritionalSemiology: {
         weightChanges: {
-            kg: {
+            kgChanges: {
                 type: String,
             },
-            Obs: {
+            obsWeight: {
                 type: String
             }
         },
@@ -81,7 +81,7 @@ const ProtocolService = new mongoose.Schema({
             koilonychicNails: {
                 type: String,
             },
-            Obs: {
+            obsPhysicalExam: {
                 type: String,
             }
         },
@@ -102,7 +102,7 @@ const ProtocolService = new mongoose.Schema({
             dysphagia: {
                 type: String
             },
-            Obs: {
+            obsDisgestiveSystem: {
                 type: String,
             }
         },
@@ -114,7 +114,7 @@ const ProtocolService = new mongoose.Schema({
             cold: {
                 type: String
             },
-            Obs: {
+            obsIntestinalChanges: {
                 type: String,
             }
         }
@@ -149,19 +149,19 @@ const ProtocolService = new mongoose.Schema({
     }],
 
     physicalActivity: {
-        yesNo: {
+        physicalActivityYesNo: {
             type: String,
         },
-        frequency: {
+        frequencyActivity: {
             type: String
         }
     },
 
     alcoholicBeverage: {
-        yesNo: {
+        yesNoBeverage: {
             type: String,
         },
-        frequency: {
+        frequencyBeverage: {
             type: String
         }
     },
@@ -282,7 +282,7 @@ const ProtocolService = new mongoose.Schema({
 })
 
 ProtocolService.pre('save', async function(next){
-
+/*
     const energyExpend = this.anthropometricEvaluation.energyExpenditure;
     const { height, currentWeight, NAF } = this.anthropometricEvaluation;
     const { age, genre } = this.personalData;
@@ -291,6 +291,7 @@ ProtocolService.pre('save', async function(next){
     energyExpend.HarrisBenedict = functionEnergyExpend.harrisBenedict(height, currentWeight, age, genre);
     energyExpend.iom = functionEnergyExpend.iom(height, currentWeight, age, genre, NAF);
     this.anthropometricEvaluation.dailyHydraulicNeed = (0.035 * currentWeight).toFixed(2);
+    */
     
 })
 

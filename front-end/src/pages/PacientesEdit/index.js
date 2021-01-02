@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useRouteMatch } from 'react-router-dom'
 
 import {toast} from 'react-toastify'
-import { Form, Input, Textarea, Select } from '@rocketseat/unform'
+import { Form, Input, Textarea, Select, Check } from '@rocketseat/unform'
 
 import { FiChevronLeft } from 'react-icons/fi'
 import {AiOutlineMail, AiOutlinePhone, AiOutlineBell} from 'react-icons/ai'
@@ -16,17 +16,17 @@ export default function Paciente(){
     const { params } = useRouteMatch();
 
     const [paciente, setPaciente] = useState([]);
-    const [informacoesMedicas, setInformacoes] = useState([]);
+    const [informacoesMedicas, setInformacoesMedicas] = useState({});
 
     useEffect(async () => {
-        await api.get(`user/user/${params.paciente}`).then((response) => {
-            setPaciente(response.data)
+        await api.get(`form/list/${params.paciente}`).then((response) => {
+            setInformacoesMedicas(response.data)
         }).catch((error) => {
             let erro = JSON.parse(error.request.response)
             toast.error(erro.error)
         })
-        await api.get(`form//list/${params.paciente}`).then((response) => {
-            setInformacoes(response.data)
+        await api.get(`user/user/${params.paciente}`).then((response) => {
+            setPaciente(response.data)
         }).catch((error) => {
             let erro = JSON.parse(error.request.response)
             toast.error(erro.error)
@@ -34,13 +34,40 @@ export default function Paciente(){
     },[params.paciente])
 
     async function handleSubmit(data){
-        console.log('entrou na função')
-        console.log(data)
+
+        if(!informacoesMedicas){
+            await api.post(`form/register`, {
+                user: params.paciente,
+                PersonalInformation: {
+                    dateBirth: data.dateBirth
+                }
+            }).then((response) => {
+                setInformacoesMedicas(response.data)
+                toast.success('Dados atualizados')
+            }).catch((error) => {
+                let erro = JSON.parse(error.request.response)
+                toast.error(erro.error)
+            })
+
+        } else{
+
+            await api.put(`form/edit/${informacoesMedicas._id}`, {
+                user: params.paciente,
+                PersonalInformation: {
+                    dateBirth: data.dateBirth
+                }
+            }).then((response) => {
+                setInformacoesMedicas(response.data)
+                toast.success('Dados atualizados')
+            }).catch((error) => {
+                let erro = JSON.parse(error.request.response)
+                toast.error(erro.error)
+            })        
+        }
     }
 
     return (
         <Container>
-
             <Return>
                 <Link to="/pacientes">
                     <FiChevronLeft/>
@@ -71,87 +98,49 @@ export default function Paciente(){
             </UsuarioInfo>
 
             <MedicalInfo>
-                <Form onSubmit={handleSubmit}>
+                <Form onSubmit={handleSubmit}  initialData={informacoesMedicas.PersonalInformation}>
                     <h4>1. INFORMAÇÕES PESSOAIS</h4>
                     <div>
                         <div>
-                            <label for="dateBirth">Data de nascimento:</label>
-                            <Input type="date" name="dateBirth" placeholder="Data de nascimento" />
+                            <Input label="Data de nascimento" type="date" name="dateBirth" placeholder="Data de nascimento" />
                         </div>
                         <div>
-                            <label for="maritalStatus">Estado civil:</label>
-                            <select name="maritalStatus" id="maritalStatus">
-                                <option value="Solteiro">Solteiro</option>
-                                <option value="Casado">Casado</option>
-                                <option value="Divorciado">Divorciado</option>
-                            </select>
+                            <Select label="Estado civil" name="maritalStatus" id="maritalStatus" options={[{id: "solteiro", title: 'Solteiro'}, {id: "casado", title: 'Casado'}, {id: "divorciado", title: 'Divorciado'}]} placeholder="Selecione uma opção"/>  
                         </div>
                         <div>
-                            <label for="Weight">Peso:</label>
-                            <Input type="Number" max="400" step="0.1" name="Weight" placeholder="Peso em kg" />
+                            <Input label="Peso" type="Number" max="400" min="0" step="0.1" name="Weight" placeholder="Peso em kg" />
                         </div>
                         <div>
-                            <label for="height">Altura:</label>
-                            <Input type="Number" max="3.00" step="0.01" name="height" placeholder="Altura em metros" />
+                            <Input label="Altura" type="Number" max="3.00" min="0" step="0.01" name="height" placeholder="Altura em metros" />
                         </div>               
                     </div>
 
                     <div>
                         <div>
-                            <label for="profession">Profissão:</label>
-                            <Input type="text" name="profession" placeholder="Profissão" />
+                            <Input label="Profissão" type="text" name="profession" placeholder="Profissão" />
                         </div>  
                         <div>
-                        <label for="IntestinalTransit">Transito intestinal:</label>
-                            <select name="IntestinalTransit" id="IntestinalTransit">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                            </select>
+                            <Select label="Transito intestinal" name="IntestinalTransit" id="IntestinalTransit" options={[{id: "1", title: '1'}, {id: "2", title: '2'}, {id: "3", title: '3'}, {id: "4", title: '4'}, {id: "5", title: '5'}, {id: "6", title: '6'}, {id: '7', title: '7'}]} placeholder="Selecione uma opção" /> 
                         </div>
                         <div>
-                        <label for="UrinaryStaining">Escala urinaria:</label>
-                            <select name="UrinaryStaining" id="UrinaryStaining">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                            </select>
+                            <Select label="Escala urinaria" name="UrinaryStaining" id="UrinaryStaining" options={[{id: "1", title: '1'}, {id: "2", title: '2'}, {id: "3", title: '3'}, {id: "4", title: '4'}, {id: "5", title: '5'}, {id: "6", title: '6'}, {id: '7', title: '7'}, {id: '8', title: '8'}]} placeholder="Selecione uma opção" />
                         </div>
                         <div>
-                            <label for="genre">Genero fisiologico:</label>
-                            <select name="genre" id="genre">
-                                <option value="Solteiro">Mulher</option>
-                                <option value="Casado">Homem</option>
-                            </select>
+                            <Select label="Genero fisiologico" name="genre" id="genre" options={[{id: "Mulher", title: 'Mulher'}, {id: "Homem", title: 'Homem'}]} placeholder="Selecione uma opção" />
                         </div>
                         <div>
-                            <label for="sleepQuality">Qualidade do sono:</label>
-                            <select name="sleepQuality" id="sleepQuality" value=''>
-                                <option value="Solteiro">Bom</option>
-                                <option value="Casado">Ruin</option>
-                            </select>
+                            <Select label="Qualidade do sono" name="sleepQuality" id="sleepQuality" options={[{id: "Ruim", title: 'Ruim'}, {id: "Bom", title: 'Bom'}]} placeholder="Selecione uma opção" />
                         </div>
                     </div>
 
                     <div>
                         <div>
-                            <label for="clinicalHistory">Historico clínico:</label>
-                            <Textarea id="clinicalHistory" name="clinicalHistory" rows="6" cols="30">
+                            <Textarea label="Historico clínico" id="clinicalHistory" name="clinicalHistory" rows="6" cols="30">
                             </Textarea>
                         </div>
 
                         <div>
-                            <label for="objective">Objetivo:</label>
-                            <Textarea id="objective" name="objective" rows="6" cols="30">
+                            <Textarea label="Objetivo" id="objective" name="objective" rows="6" cols="30">
                             </Textarea>
                         </div>
                     </div>
@@ -162,56 +151,43 @@ export default function Paciente(){
                     <h5>2.1 ALTERAÇÃO DE PESO</h5>
                     <div>
                         <div>
-                            <label for="maritalStatus">Tipo:</label>
-                            <select name="maritalStatus" id="maritalStatus">
-                                <option value="Solteiro">Perda de peso</option>
-                                <option value="Casado">Ganho de peso</option>
-                            </select>
+                            <Select label="Tipo" name="kgChanges" id="kgChanges" options={[{id: "PerdaPeso", title: 'Perda de Peso'}, {id: "GanhoPeso", title: 'Ganho de Peso'}]} placeholder="Selecione uma opção" placeholder="Selecione uma opção"/>
                         </div>
                         <div>
-                            <label for="height">Quantidade:</label>
-                            <Input type="Number" max="400" step="0.1" name="height" placeholder="Altura em metros" />
+                            <Input label="Quantidade" type="Number" max="400" step="0.1" name="obsWeight" placeholder="Peso em kg" />
                         </div>               
                     </div>
 
                     <h5>2.2 EXAME FÍSICO</h5>
                     <div>
                         <div>
-                            <Input type="checkbox" id="drySkin" name="drySkin" />
-                            <label for="drySkin">Pele Ressecada</label>
+                            <Check label="Pele Ressecada"  id="drySkin" name="drySkin" />
                         </div>
 
                         <div>
-                            <Input type="checkbox" id="mucousMoisture" name="mucousMoisture"/>
-                            <label for="mucousMoisture">Umidade das mucosas</label>
+                            <Check label="Umidade das mucosas"  id="mucousMoisture" name="mucousMoisture"/>
                         </div>
                         <div>
-                            <Input type="checkbox" id="lossOfHair" name="lossOfHair"/>
-                            <label for="lossOfHair">Queda de cabelo</label>
-                        </div>
-                    </div>
-                    <div>
-                    <div>
-                            <Input type="checkbox" id="edema" name="edema"/>
-                            <label for="edema">Edema</label>
-                        </div>
-                        <div>
-                            <Input type="checkbox" id="weakness" name="weakness"/>
-                            <label for="weakness">Fraqueza</label>
-                        </div>
-                        <div>
-                            <Input type="checkbox" value="sim" id="conjunctivalPallor" name="conjunctivalPallor"/>
-                            <label for="conjunctivalPallor">Palidez conjutival</label>
-                        </div>
-                        <div>
-                            <Input type="checkbox" id="koilonychicNails" name="koilonychicNails"/>
-                            <label for="koilonychicNails">Unhas coiloníquas</label>
+                            <Check label="Queda de cabelo"  id="lossOfHair" name="lossOfHair"/>
                         </div>
                     </div>
                     <div>
                         <div>
-                            <label for="Obs">Observação:</label>
-                            <Textarea id="Obs" name="Obs" rows="6" cols="30">
+                            <Check label="Edema"  id="edema" name="edema"/>
+                        </div>
+                        <div>
+                            <Check label="Fraqueza" id="weakness" name="weakness"/>
+                        </div>
+                        <div>
+                            <Check label="Palidez conjutival" value="sim" id="conjunctivalPallor" name="conjunctivalPallor"/>
+                        </div>
+                        <div>
+                            <Check label="Unhas coiloníquas" id="koilonychicNails" name="koilonychicNails"/>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <Textarea label="Observação" id="obsPhysicalExam" name="obsPhysicalExam" rows="6" cols="30">
                             </Textarea>
                         </div>
                     </div>
@@ -219,33 +195,26 @@ export default function Paciente(){
                     <h5>2.3 ALTERAÇÃO NO APARELHO DIGESTIVO</h5>
                     <div>
                         <div>
-                            <Input type="checkbox" id="dyspepsia" name="dyspepsia" />
-                            <label for="dyspepsia">Dispepsia</label>
+                            <Check label="Dispepsia" id="dyspepsia" name="dyspepsia" />
                         </div>
 
                         <div>
-                            <Input type="checkbox" id="stomachPains" name="stomachPains"/>
-                            <label for="stomachPains">Dores estomacais</label>
+                            <Check label="Dores estomacais" id="stomachPains" name="stomachPains"/>
                         </div>
                         <div>
-                            <Input type="checkbox" id="nausea" name="nausea"/>
-                            <label for="nausea">Nauseas</label>
+                            <Check label="Nauseas" id="nausea" name="nausea"/>
                         </div>
 
                         <div>
-                            <Input type="checkbox" id="vomiting" name="evomitingdema"/>
-                            <label for="vomiting">Vômitos</label>
+                            <Check label="Vômitos" id="vomiting" name="vomiting"/>
                         </div>
                         <div>
-                            <Input type="checkbox" id="dysphagia" name="dysphagia"/>
-                            <label for="dysphagia">Disfagia</label>
+                            <Check label="Disfagia" id="dysphagia" name="dysphagia"/>
                         </div>
-
                     </div>
                     <div>
                         <div>
-                            <label for="Obs">Observação:</label>
-                            <Textarea id="Obs" name="Obs" rows="6" cols="30">
+                            <Textarea label="Observação" id="obsDisgestiveSystem" name="obsDisgestiveSystem" rows="6" cols="30">
                             </Textarea>
                         </div>
                     </div>
@@ -253,16 +222,13 @@ export default function Paciente(){
                     <h5>2.4 ALTERAÇÕES INTESTINAIS</h5>
                     <div>
                         <div>
-                            <Input type="checkbox" id="diarrhea" name="diarrhea"/>
-                            <label for="diarrhea">Diareeia</label>
+                            <Check label="Diarreia" id="diarreia" name="diarreia"/>
                         </div>
                         <div>
-                            <Input type="checkbox" id="cold" name="cold"/>
-                            <label for="cold">Constipação</label>
+                            <Check label="Constipação" id="cold" name="cold"/>
                         </div>
                         <div>
-                            <label for="Obs">Observação:</label>
-                            <Textarea id="Obs" name="Obs" rows="6" cols="30">
+                            <Textarea label="Observação" id="obsIntestinalChanges" name="obsIntestinalChanges" rows="6" cols="30">
                             </Textarea>
                         </div>
                     </div>
@@ -271,8 +237,7 @@ export default function Paciente(){
                     <h4>3. CONSUNO DE ÁGUA</h4>
                     <div>
                         <div>
-                            <label for="waterConsumption">Observação:</label>
-                            <Textarea id="waterConsumption" name="waterConsumption" rows="6" cols="30">
+                            <Textarea labe="Descrição" id="waterConsumption" name="waterConsumption" rows="6" cols="30">
                             </Textarea>
                         </div>
                     </div>
@@ -281,20 +246,17 @@ export default function Paciente(){
                     <h4>4. ALERGIAS E INTOLERÂNCIAS</h4>
                     <div>
                         <div>
-                            <label for="foodAllergy">Alergia alimentar:</label>
-                            <Textarea id="foodAllergy" name="foodAllergy" rows="6" cols="30">
+                            <Textarea label="Alergia alimentar" id="foodAllergy" name="foodAllergy" rows="6" cols="30">
                             </Textarea>
                         </div>
 
                         <div>
-                            <label for="otherAllergies">Outras alergias:</label>
-                            <Textarea id="otherAllergies" name="otherAllergies" rows="6" cols="30">
+                            <Textarea label="Outras alergias" id="otherAllergies" name="otherAllergies" rows="6" cols="30">
                             </Textarea>
                         </div>
 
                         <div>
-                            <label for="intolerances">Intolerâncias:</label>
-                            <Textarea id="intolerances" name="intolerances" rows="6" cols="30">
+                            <Textarea label="Intolerâncias" id="intolerances" name="intolerances" rows="6" cols="30">
                             </Textarea>
                         </div>
                     </div>
@@ -306,12 +268,10 @@ export default function Paciente(){
                     <h4>6. ATIVIDADE FÍSICA</h4>
                     <div>
                         <div>
-                            <Input type="checkbox" id="yesNo" name="yesNo"/>
-                            <label for="yesNo">Pratica atividade Física</label>
+                            <Check label="Pratica atividade Física" id="physicalActivityYesNo" name="physicalActivityYesNo"/>
                         </div>
                         <div>
-                            <label for="frequency">Discrição da frenquência:</label>
-                            <Textarea id="frequency" name="frequency" rows="6" cols="30">
+                            <Textarea label="Discrição da frenquência" id="frequencyActivity" name="frequencyActivity" rows="6" cols="30">
                             </Textarea>
                         </div>
                     </div>
@@ -320,12 +280,10 @@ export default function Paciente(){
                     <h4>7. BEBIDA ALCOÓLICA</h4>
                     <div>
                         <div>
-                            <Input type="checkbox" id="yesNo" name="yesNo"/>
-                            <label for="yesNo">Ingere bebida alcoolica</label>
+                            <Check label="Ingere bebida alcoolica" id="yesNoBeverage" name="yesNoBeverage"/>
                         </div>
                         <div>
-                            <label for="frequency">Discrição da frenquência:</label>
-                            <Textarea id="frequency" name="frequency" rows="6" cols="30">
+                            <Textarea label="Discrição da frenquência" id="frequencyBeverage" name="frequencyBeverage" rows="6" cols="30">
                             </Textarea>
                         </div>
                     </div>
@@ -334,8 +292,7 @@ export default function Paciente(){
                     <h4>8. TABAGISMO</h4>
                     <div>
                         <div>
-                            <Input type="checkbox" id="yesNo" name="yesNo"/>
-                            <label for="yesNo">Fumante</label>
+                            <Check label="Fumante" id="smoking" name="smoking"/>
                         </div>
                     </div>
                     <hr/>
@@ -343,16 +300,13 @@ export default function Paciente(){
                     <h4>9. HORARIOS</h4>
                     <div>
                         <div>
-                            <label for="profession">Acorda às:</label>
-                            <Input type="time" name="profession" placeholder="Profissão" />
+                            <Input label="Acorda às" type="time" name="wakeUp" />
                         </div>
                         <div>
-                            <label for="profession">Dorme às:</label>
-                            <Input type="time" name="profession" placeholder="Profissão" />
+                            <Input label="Dorme às" type="time" name="profession" />
                         </div>
                         <div>
-                            <label for="profession">Atividade física às:</label>
-                            <Input type="time" name="profession" placeholder="Profissão" />
+                            <Input label="Atividade física às" type="time" name="physicalActivity" />
                         </div> 
                     </div>
                     <hr/>

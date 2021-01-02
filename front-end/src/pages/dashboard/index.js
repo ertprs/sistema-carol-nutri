@@ -14,15 +14,11 @@ export default function Dashboard(){
                 <p>é adm</p>
             </>
         )
-    }
-
-    if(user.eAdmin === false){
+    } else {
         return (
             <>
                 <p>Não é adm</p>
             </>
         )
     }
-
-
 }
