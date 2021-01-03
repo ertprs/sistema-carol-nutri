@@ -61,25 +61,25 @@ const ProtocolService = new mongoose.Schema({
 
         physicalExam: {
             drySkin: {
-                type: String,
+                type: Boolean,
             },
             mucousMoisture: {
-                type: String,
+                type: Boolean,
             },
             lossOfHair: {
-                type: String,
+                type: Boolean,
             },
             edema: {
-                type: String,
+                type: Boolean,
             },
             weakness: {
-                type: String,
+                type: Boolean,
             },
             conjunctivalPallor: {
-                type: String,
+                type: Boolean,
             },
             koilonychicNails: {
-                type: String,
+                type: Boolean,
             },
             obsPhysicalExam: {
                 type: String,
@@ -88,19 +88,19 @@ const ProtocolService = new mongoose.Schema({
 
         disgestiveSystem: {
             dyspepsia: {
-                type: String
+                type: Boolean
             },
             stomachPains: {
-                type: String
+                type: Boolean
             },
             nausea: {
-                type: String
+                type: Boolean
             },
             vomiting: {
-                type: String
+                type: Boolean
             },
             dysphagia: {
-                type: String
+                type: Boolean
             },
             obsDisgestiveSystem: {
                 type: String,
@@ -109,10 +109,10 @@ const ProtocolService = new mongoose.Schema({
 
         intestinalChanges: {
             diarrhea: {
-                type: String
+                type: Boolean
             },
             cold: {
-                type: String
+                type: Boolean
             },
             obsIntestinalChanges: {
                 type: String,
