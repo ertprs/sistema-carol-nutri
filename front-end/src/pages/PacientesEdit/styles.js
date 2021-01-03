@@ -91,6 +91,28 @@ export const UsuarioInfo = styled.section`
 `
 
 export const MedicalInfo = styled.div`
+    .Edit{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        background: #fff;
+        color #3b9eff;
+        margin: 10px;
+        font-weight: bold;
+        border: 0;
+        box-shadow: 2px 2px #363636;
+        border-radius: 50%;
+        transition: background 0.5s;
+
+        &:hover{
+            background: #e8e1e1;
+
+            div{
+                visibility: visible;
+            }
+        }
+    }
     form {
         display: flex;
         flex-direction: column;
@@ -170,19 +192,23 @@ export const MedicalInfo = styled.div`
             background: #fff;
             margin: 10px 0 20px;
         }
-    
-        button {
-            width: 80%;
-            margin: 5px auto;
-            height: 44px;
+    }
+
+        .Salve{
+            width: 100%;
             background: #3b9eff;
-            font-weight: bold;
             color #fff;
+            margin: 10px;;
+            height: 36px;
+            font-weight: bold;
             border: 0;
             border-radius: 4px;
             font-size: 16px;
-            transition: background 0.3s;
-        }
-    }
+            transition: background 0.5s;
 
+            &:hover{
+                background: #3273ed;
+            }
+        }
+    
 `
