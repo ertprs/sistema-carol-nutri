@@ -1,10 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Container, Content, Profile } from "./styles.js"
+import { Container, Content, Profile, ContainerSegundario } from "./styles.js"
 import logo from '../../assets/logo.svg'
 
 export default function HeaderAuth(){
     return (
+        <>
         <Container>
             <Content>
                 <nav>
@@ -21,5 +22,20 @@ export default function HeaderAuth(){
                 </aside>
             </Content>
         </Container>
+
+        <ContainerSegundario>
+            <nav>
+                <Link className="Link">
+                    Sobre Carol
+                </Link>
+                <Link className="Link" to="/receitasPublicos">
+                    Receitas
+                </Link>
+                <Link className="Link" to="/artigosPublicos">
+                    Artigos
+                </Link>
+            </nav>
+        </ContainerSegundario>
+        </>
     )
 }

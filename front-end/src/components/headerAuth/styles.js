@@ -1,11 +1,40 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
     padding: 10px 30px;
     background: #fff;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+`
+
+export const ContainerSegundario = styled.div`
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
+    padding: 10px;
+    background: #831e62;
+    border-top: 1px solid;
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
-    
+
+    nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        a {
+            padding: 0;
+            color: #fff;
+            margin 0px 5%;
+            border-bottom: 0;
+            text-decoration: none;
+        }
+
+        .Link {
+            transition: 0.3s;
+            &:hover{
+                letter-spacing: 1px;
+                text-shadow: 3px 3px 4px #121112;
+            }
+        }
+    }
 `
 
 export const Content = styled.div`

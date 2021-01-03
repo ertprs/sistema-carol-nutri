@@ -4,15 +4,15 @@ import {Link} from 'react-router-dom'
 import {toast} from 'react-toastify'
 import {FiChevronRight} from 'react-icons/fi'
 import {AiFillPlusCircle, AiOutlineRedo} from 'react-icons/ai'
+import ReactLoading from 'react-loading'
 
-import {Container, Formulario, Artigo, Loading} from './styles'
+import {Container, Formulario, Receita, Loading} from './styles'
 import Logo from '../../assets/logo-branca.svg'
 import api from "../../services/api"
 import Tooltip from '../../components/tooltip/index'
-import ReactLoading from 'react-loading'
 
-export default function Artigos(){
-    const [artigos, setArtigo] = useState([]);
+export default function Receitas(){
+    const [receitas, setReceitas] = useState([]);
     const [busca, setBusca] = useState('');
     const [loading, setLoading] = useState(false);
 
@@ -22,8 +22,8 @@ export default function Artigos(){
     //função que é chamada por uma causa. Sempre que cb mudar, está função será chamada
     useEffect(async () => {
         setLoading(true)
-        api.get('artigo/list').then((response) => {
-            setArtigo(response.data.docs)
+        api.get('receitas/list').then((response) => {
+            setReceitas(response.data.docs)
             setLoading(false)
         }).catch((error) => {
             setLoading(false)
@@ -39,8 +39,8 @@ export default function Artigos(){
     function handleClick(){
         setLoading(true)
         if(busca == ''|| busca == undefined){
-            api.get('artigo/list').then((response) => {
-                setArtigo(response.data.docs)
+            api.get('receitas/list').then((response) => {
+                setReceitas(response.data.docs)
                 setLoading(false)
                 toast.success('Lista atualizada.')
             }).catch((error) => {
@@ -49,8 +49,8 @@ export default function Artigos(){
                 setLoading(false)
             }) 
         } else {
-            api.get(`artigo/list/${busca}`).then((response) => {
-                setArtigo(response.data)
+            api.get(`receitas/list/${busca}`).then((response) => {
+                setReceitas(response.data)
                 setLoading(false)
                 toast.success('Lista atualizada.')
             }).catch((error) => {
@@ -69,7 +69,7 @@ export default function Artigos(){
         <>
             <Container>
                 <img src={Logo} alt="Carol Nutri"/>
-                <h1>Explore a lista de artigos.</h1>
+                <h1>Explore a lista de receitas.</h1>
             </Container>
 
             <Formulario>
@@ -77,29 +77,31 @@ export default function Artigos(){
                 <button onClick={handleClick} type="button">Atualizar lista <AiOutlineRedo size={20} /></button>
                 <Link>
                     <div>
-                        <Link to="/registrar-artigo">
+                        <Link to="/registrar-receita">
                             <AiFillPlusCircle size={60}/>
-                            <Tooltip texto="Cadastrar novo artigo."/>
+                            <Tooltip texto="Cadastrar novo usuário."/>
                         </Link>
                     </div>
                 </Link>
             </Formulario>
 
-            {artigos.map(artigo => (
+            {receitas.map(receita => (
                 
-                <Artigo>
-                    <Link key={String(artigo._id)}  to={`/artigo/${artigo._id}`}>
+                <Receita>
+                    <Link key={String(receita._id)}  to={`/receita/${receita._id}`}>
+                        <img src={receita.image}/>
                         <div>
                             <div className="conteudo">
-                                <strong>{artigo.title}</strong>
-                                <p>{artigo.description}</p>
+                                <strong>{receita.title}</strong>
+                                <p>{receita.description}</p>
                             </div>
                         </div>
 
                         <FiChevronRight size={20}/>
                     </Link>
-                </Artigo>
+                </Receita>
             ))}
         </>
     )
+    
 }

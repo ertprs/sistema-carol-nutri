@@ -9,6 +9,7 @@ import {Container, Formulario, Artigo, Loading} from './styles'
 import Logo from '../../assets/logo-branca.svg'
 import api from "../../services/api"
 import Tooltip from '../../components/tooltip/index'
+
 import ReactLoading from 'react-loading'
 
 export default function Artigos(){

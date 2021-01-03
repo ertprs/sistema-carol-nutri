@@ -5,7 +5,7 @@ import {toast} from 'react-toastify'
 import {FiChevronRight} from 'react-icons/fi'
 import {AiFillPlusCircle, AiOutlineRedo} from 'react-icons/ai'
 
-import {Container, Formulario, Paciente, Loading} from './styles'
+import {Container, Formulario, Receita, Loading} from './styles'
 import Logo from '../../assets/logo-branca.svg'
 import api from "../../services/api"
 import Tooltip from '../../components/tooltip/index'
@@ -87,7 +87,7 @@ export default function Receitas(){
 
             {receitas.map(receita => (
                 
-                <Paciente>
+                <Receita>
                     <Link key={String(receita._id)}  to={`/receita/${receita._id}`}>
                         <img src={receita.image}/>
                         <div>
@@ -99,7 +99,7 @@ export default function Receitas(){
 
                         <FiChevronRight size={20}/>
                     </Link>
-                </Paciente>
+                </Receita>
             ))}
         </>
     )

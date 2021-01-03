@@ -4,8 +4,7 @@ import './styles.js'
 import Carousel_ from '../../components/carousel/index'
 import logo from '../../assets/logo-completa.svg'
 import foto from '../../assets/carol-nutri-maca.jpg'
-import {Wrapper, Content, WrapperDepoiment} from './styles'
-import MyCarousel from '../../components/depoimentos/index'
+import {Wrapper, Content, WrapperDiment} from './styles'
 
 export default function LandingPage(){
     return (
@@ -38,9 +37,6 @@ export default function LandingPage(){
                     <img className="foto" src={foto} alt="Carol-nutricionista"/>
                 </Content>
             </Wrapper>
-            <WrapperDepoiment>
-                <MyCarousel/>
-            </WrapperDepoiment>  
         </div>
     )
 }
