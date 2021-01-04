@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/carolNutricionista',  {
+mongoose.connect("mongodb+srv://devorion01:as123@cluster0-czhpf.mongodb.net/carol-nutricionista?retryWrites=true&w=majority",  {
 
     useNewUrlParser: true,
 
