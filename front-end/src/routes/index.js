@@ -7,7 +7,7 @@ import SignIn_ from '../pages/SingIn/index'
 import SignUp from '../pages/SingUp/index'
 
 import Profile from '../pages/Profile/index'
-import Dashboard from '../pages/Dashboard/index'
+//import Dashboard from '../pages/Dashboard/index'
 import ForgotPassword from '../pages/ForgotPassword/index'
 
 import Pacientes from '../pages/PacientesListagem/index'
