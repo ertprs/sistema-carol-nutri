@@ -2,14 +2,59 @@ import styled from 'styled-components'
 import { darken } from 'polished'
 
 export const Container = styled.div`
-    max-width: 600px;
+    max-width: 60%;
     margin: 50px auto;
+
+    div {
+        display: flex;
+        align-items: center;
+        
+        .Edit{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            background: #fff;
+            color #3b9eff;
+            margin: 10px;
+            font-weight: bold;
+            border: 0;
+            box-shadow: 2px 2px #363636;
+            border-radius: 50%;
+            transition: background 0.5s;
+
+            svg{
+                color: #be317f;  
+            }
+    
+            &:hover{
+                background: #e8e1e1;
+    
+                div{
+                    visibility: visible;
+                }
+            }
+        }
+
+        h1{
+            @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,500&display=swap');
+            font-family: Roboto;
+            color: #fff;
+            font-weight: bold;
+        }
+
+    }
 
 
     form {
         display: flex;
         flex-direction: column;
         margin-top: 30px;
+    }
+    
+    label {
+        margin: 0;
+        color: #fff;
     }
 
     input {

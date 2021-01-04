@@ -55,6 +55,28 @@ module.exports = {
 
     },
 
+    async showName(req, res){
+        try {
+
+            const revenue = await RecordRecipes.find({title: req.params.id})
+
+            if(!revenue){
+                return res.status(400).send({error: 'Não existe resultados para a busca com este parametro.' })
+            }
+
+            if(revenue.length == 0){
+                return res.status(400).send({error: 'Receita não encontrado.' })
+            }
+
+            return res.json(revenue);
+
+        } catch (error) {
+            return res.status(400).send({error: 'Erro ao listar artigo.' })
+
+        }
+
+    },
+
     async update(req, res){
         try {
 

@@ -23,7 +23,7 @@ export default function Artigos(){
     useEffect(async () => {
         setLoading(true)
         api.get('artigo/list').then((response) => {
-            setArtigo(response.data.docs)
+            setArtigo(response.data?.docs)
             setLoading(false)
         }).catch((error) => {
             setLoading(false)
@@ -49,7 +49,7 @@ export default function Artigos(){
                 setLoading(false)
             }) 
         } else {
-            api.get(`artigo/list/${busca}`).then((response) => {
+            api.get(`artigo/listName/${busca}`).then((response) => {
                 setArtigo(response.data)
                 setLoading(false)
                 toast.success('Lista atualizada.')

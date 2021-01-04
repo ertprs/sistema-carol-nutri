@@ -1,40 +1,39 @@
 import styled from 'styled-components'
 
-export const Wrapper = styled.div`
-    height: 900px;
+export const Container = styled.div`
     background: #fff;
-    padding-top: 30px;
+    padding: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-`
 
-export const WrapperDepoiment = styled.div`
-    background: black;
-    height: 100%;
-    position: relative;
-`
-export const Content = styled.div`
-    display: flex;
-    flex-direction row;
-    align-items: center;
+    .imgs {
+        display: flex;
+        flex-direction: column;
+        width:30%;
 
-    .logo {
-        left: 0;
-        height: 400px;
+        .foto {
+            width: 150px;
+            height:150px;
+            border-radius: 50%;
+        }
+
+        .logo{
+            width: 300px;
+            height:300px;
+
+        }
     }
 
     .conteudo {
-        margin: 50px;
-        max-width: 500px;
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,500&display=swap');
-        {
-            font-family: roboto;
+        width:60%;
+        display: flex;
+        flex-direction: column;
+        p{
             font-size: 20px;
             align: center;
         }
         h1 {
-            font-family: roboto;
             font-weight: 900;
             color: #831e62;
         }
@@ -43,8 +42,4 @@ export const Content = styled.div`
         }
     }
 
-    .foto {
-        height: 250px;
-        border-radius: 50%;
-    }
 `

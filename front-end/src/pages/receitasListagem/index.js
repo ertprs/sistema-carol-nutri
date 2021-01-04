@@ -40,7 +40,7 @@ export default function Receitas(){
         setLoading(true)
         if(busca == ''|| busca == undefined){
             api.get('receitas/list').then((response) => {
-                setReceitas(response.data.docs)
+                setReceitas(response.data?.docs)
                 setLoading(false)
                 toast.success('Lista atualizada.')
             }).catch((error) => {
@@ -49,12 +49,12 @@ export default function Receitas(){
                 setLoading(false)
             }) 
         } else {
-            api.get(`receitas/list/${busca}`).then((response) => {
-                setReceitas(response.data)
+            api.get(`receitas/listName/${busca}`).then((response) => {
+                setReceitas(response?.data)
                 setLoading(false)
                 toast.success('Lista atualizada.')
             }).catch((error) => {
-                let erro = JSON.parse(error.request.response)
+                let erro = JSON.parse(error.request?.response)
                 toast.error(erro.error)
                 setLoading(false)
             }) 

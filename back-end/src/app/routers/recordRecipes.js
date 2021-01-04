@@ -8,6 +8,7 @@ const midwareAuthControl = require('../middlewares/auth')
 router.post('/register', RecordRecipes.store);
 router.get('/list', RecordRecipes.index);
 router.get('/list/:id', RecordRecipes.show);
+router.get('/listName/:id', RecordRecipes.showName);
 router.put('/edit/:id', RecordRecipes.update);
 router.delete('/delete/:id', RecordRecipes.destroy);
 

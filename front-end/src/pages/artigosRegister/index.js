@@ -6,6 +6,7 @@ import { Container, Return } from './styles'
 import { Form, Input, Textarea } from '@rocketseat/unform'
 import * as Yup from 'yup'
 import {toast} from 'react-toastify'
+import { useHistory } from 'react-router-dom'
 
 import api from '../../services/api'
 
@@ -24,15 +25,16 @@ const schema = Yup.object().shape({
 
 export default function RegisterArtigos(){
 
-    async function handlSubmit(data) {
-        console.log(data)
-        
+    var history = useHistory()
+
+    async function handlSubmit(data) {        
         await api.post(`artigo/register` ,{ 
             title: data.title,
             description: data.description,
             link: data.link,
          }).then(async () => {
              toast.success('Artigo cadastrado')
+             history.push('/artigos')
         }).catch((error) => {
             let erro = JSON.parse(error.request.response)
             toast.error(erro.error)
@@ -52,9 +54,9 @@ export default function RegisterArtigos(){
             <Container>
                 <Form schema={schema} onSubmit={handlSubmit}>
                     <h2>Informações do artigo</h2>
-                    <Input  name="title" placeholder="informe o titulo do artigo"/>
-                    <Textarea  name="description" placeholder="Informe a descrição do artigo" />
-                    <Input  name="link" placeholder="Informe o link do documento" />
+                    <Input label="Link do documento" name="link" placeholder="Link do documento do drive" />
+                    <Input label="Titulo do artigo"  name="title" placeholder="Ex.: Fungos no alimentos"/>
+                    <Textarea label="Descrição sobre o artigo" name="description" placeholder="Informe um breve descrição sobre artigo" />
                     <button type="submit">Cadastrar</button>
                 </Form>
             </Container>

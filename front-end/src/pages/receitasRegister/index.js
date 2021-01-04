@@ -3,7 +3,7 @@ import React from 'react';
 import {Link} from 'react-router-dom'
 import { FiChevronLeft } from 'react-icons/fi'
 import { Container, Return } from './styles'
-import { Form, Input } from '@rocketseat/unform'
+import { Form, Input, Textarea } from '@rocketseat/unform'
 import * as Yup from 'yup'
 import {toast} from 'react-toastify'
 
@@ -58,10 +58,10 @@ export default function RegisterReceitas(){
             <Container>
                 <Form schema={schema} onSubmit={handlSubmit}>
                     <h2>Informações da receita</h2>
-                    <Input  name="image" placeholder="link de uma imagem"/>
-                    <Input  name="title" placeholder="informe o titulo da receita"/>
-                    <Input  name="description" placeholder="Informe a descrição da receita" />
-                    <Input  name="link" placeholder="Informe o link do documento" />
+                    <Input label="link da imagem"  name="image" placeholder="link de uma imagem"/>
+                    <Input label="link do documento"  name="link" placeholder="Informe o link do documento do drive" />
+                    <Input label="Titulo da receita"  name="title" placeholder="Nome da receita"/>
+                    <Textarea label="Descrição da receita"  name="description" placeholder="Uma breve descrição" />
                     <button type="submit">Cadastrar</button>
                 </Form>
             </Container>

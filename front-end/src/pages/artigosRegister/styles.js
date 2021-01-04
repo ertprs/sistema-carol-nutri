@@ -14,6 +14,24 @@ export const Container = styled.div`
         h2 {
             color: #fff;
         }
+
+        label {
+            margin: 0;
+            color: #fff;
+        }
+
+        textarea {
+            background: rgba(0, 0, 0, 0.1);
+            border: 0;
+            border-radius: 4px;
+            padding: 10px;
+            color #fff;
+            width: 100%;
+    
+            &::placeholder {
+                color: rgba(255, 255, 255, 0.7);
+            }
+        }
         
         input {
             background: rgba(0, 0, 0, 0.1);

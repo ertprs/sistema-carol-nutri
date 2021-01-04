@@ -48,6 +48,33 @@ module.exports = {
 
     },
 
+    async showName(req, res){
+        try {
+
+            if(!req.params.id){
+                return res.status(400).send({error: 'A pesquisa deve possoir paramentro para a busca.' })
+            }
+
+            const article = await RegistrationArticle.find({title: req.params.id})
+
+            if(!article){
+                return res.status(400).send({error: 'Não existe resultados para a busca com este parametro.' })
+            }
+
+            if(article.length == 0){
+                return res.status(400).send({error: 'Artigo não encontrado.' })
+            }
+
+            return res.json(article);
+
+        } catch (error) {
+
+            return res.status(400).send({error: 'Erro ao listar artigo.' })
+
+        }
+
+    },
+
     async update(req, res){
         try {
 

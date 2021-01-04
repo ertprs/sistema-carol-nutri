@@ -92,9 +92,12 @@ export default function Paciente(){
     }
 
     async function handleClick(){
-        console.log(edit)
         setEdit(false == edit)
-        console.log(edit)
+        if(edit){
+            toast.info('Campos de edição habilitado')
+        } else {
+            toast.info('Campos de edição desabilitado')
+        }
     }
 
     if(!informacoesMedicas){

@@ -13,6 +13,7 @@ import Tooltip from '../../components/tooltip/index'
 import ReactLoading from 'react-loading'
 
 export default function Artigos(){
+
     const [artigos, setArtigo] = useState([]);
     const [busca, setBusca] = useState('');
     const [loading, setLoading] = useState(false);
@@ -50,7 +51,7 @@ export default function Artigos(){
                 setLoading(false)
             }) 
         } else {
-            api.get(`artigo/list/${busca}`).then((response) => {
+            api.get(`artigo/listName/${busca}`).then((response) => {
                 setArtigo(response.data)
                 setLoading(false)
                 toast.success('Lista atualizada.')
@@ -89,7 +90,7 @@ export default function Artigos(){
             {artigos.map(artigo => (
                 
                 <Artigo>
-                    <Link key={String(artigo._id)}  to={`/artigo/${artigo._id}`}>
+                    <a key={String(artigo._id)} href={artigo.link} target="_blank" >
                         <div>
                             <div className="conteudo">
                                 <strong>{artigo.title}</strong>
@@ -98,7 +99,7 @@ export default function Artigos(){
                         </div>
 
                         <FiChevronRight size={20}/>
-                    </Link>
+                    </a>
                 </Artigo>
             ))}
         </>

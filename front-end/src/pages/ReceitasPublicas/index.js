@@ -49,7 +49,7 @@ export default function Receitas(){
                 setLoading(false)
             }) 
         } else {
-            api.get(`receitas/list/${busca}`).then((response) => {
+            api.get(`receitas/listName/${busca}`).then((response) => {
                 setReceitas(response.data)
                 setLoading(false)
                 toast.success('Lista atualizada.')
@@ -88,7 +88,7 @@ export default function Receitas(){
             {receitas.map(receita => (
                 
                 <Receita>
-                    <Link key={String(receita._id)}  to={`/receita/${receita._id}`}>
+                    <a key={String(receita._id)}  href={receita.link} target="_blank">
                         <img src={receita.image}/>
                         <div>
                             <div className="conteudo">
@@ -98,7 +98,7 @@ export default function Receitas(){
                         </div>
 
                         <FiChevronRight size={20}/>
-                    </Link>
+                    </a>
                 </Receita>
             ))}
         </>

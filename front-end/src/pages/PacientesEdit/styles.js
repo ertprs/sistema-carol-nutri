@@ -105,6 +105,10 @@ export const MedicalInfo = styled.div`
         border-radius: 50%;
         transition: background 0.5s;
 
+        svg{
+            color: #be317f;  
+        }
+
         &:hover{
             background: #e8e1e1;
 
