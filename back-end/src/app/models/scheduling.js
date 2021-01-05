@@ -8,7 +8,7 @@ const Scheduling = new mongoose.Schema({
         default: Date.now
     },
     virtualDate:{
-        type: Date,
+        type: String,
         required: true
     },
     actualDate: {

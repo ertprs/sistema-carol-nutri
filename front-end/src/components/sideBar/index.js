@@ -27,7 +27,7 @@ export default function SideBar(){
                             </Link>
                         </li>
                         <li>
-                            <Link to="/#">
+                            <Link to="/agenda">
                                 <span>Agenda</span>
                             </Link>
                         </li>
@@ -74,6 +74,7 @@ export default function SideBar(){
                                 <span>Artigos</span>
                             </Link>
                         </li>
+                        
                     </ul>
                 </nav>
             </Content>

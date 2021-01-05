@@ -10,6 +10,7 @@ import {AiFillEdit} from 'react-icons/ai'
 import {AuthContext} from '../../context/AuthContext'
 import Tooltip from '../../components/tooltip/index'
 import api from '../../services/api'
+import AvatarInput from './AvatarInput'
 
 const schema = Yup.object().shape({
 
@@ -85,6 +86,9 @@ export default function Profile(){
                     <button className="Edit" onClick={handleClick}><AiFillEdit size={20}/><Tooltip texto="Habilitar campos de edição"/></button>
                 </div>
                 <Form schema={schema} initialData={user} onSubmit={handlSubmit}>
+
+                    <AvatarInput name="avatar_id" />
+
                     {
                         edit ? <Input label="Nome e sobrenome" name="name" placeholder="Nome e sobrenome" disabled/> : <Input label="Nome e sobrenome" name="name" placeholder="Nome e sobrenome"/>
                     }

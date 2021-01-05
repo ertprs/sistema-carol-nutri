@@ -7,22 +7,25 @@ import SignIn_ from '../pages/SingIn/index'
 import SignUp from '../pages/SingUp/index'
 
 import Profile from '../pages/Profile/index'
-import Dashboard from  '../pages/Dashboard/index'
+import Dashboard from  '../pages/dashboard/index'
 import ForgotPassword from '../pages/ForgotPassword/index'
 
 import Pacientes from '../pages/PacientesListagem/index'
 import Paciente from '../pages/PacientesEdit/index'
 import RegisterPaciente from '../pages/PacientesRegister/index'
 
-import RegisterReceitas from '../pages/ReceitasRegister/index'
-import Receitas from '../pages/ReceitasListagem/index'
+import RegisterReceitas from '../pages/receitasRegister/index'
+import Receitas from '../pages/receitasListagem/index'
 import ReceitasPublicas from '../pages/ReceitasPublicas/index'
-import Receita from '../pages/ReceitasEdit/index'
+import Receita from '../pages/receitasEdit/index'
 
-import RegisterArtigos from '../pages/ArtigosRegister/index'
+import RegisterArtigos from '../pages/artigosRegister/index'
 import Artigos from '../pages/ArtigosListagem/index'
 import ArtigosPublicos from '../pages/ArtigosPublicos/index'
 import Artigo from '../pages/ArtigosEdit/index'
+
+import Agendamento from "../pages/AgendamentosListar/index"
+import RegistrarAgendamento from "../pages/AgendamentosRegistrar/index"
 
 export default function Routes(){
     return (
@@ -49,6 +52,9 @@ export default function Routes(){
                 <Route path="/artigos" isPrivate component={Artigos} />
                 <Route path="/artigosPublicos" component={ArtigosPublicos} />
                 <Route path="/artigo/:artigo" isPrivate component={Artigo} />
+
+                <Route path="/agenda" isPrivate component={Agendamento} />
+                <Route path="/cadastrar-agendamento" isPrivate component={RegistrarAgendamento} />
             </Switch>
         </BrowserRouter>
     )
