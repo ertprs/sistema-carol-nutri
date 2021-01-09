@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { darken } from 'polished'
 
 export const Container = styled.div`
-    max-width: 600px;
+    max-width: 60%;
     margin: 50px auto;
 
 
@@ -89,16 +89,19 @@ export const Return = styled.div`
     justify-content: flex-end;
 
     a {
+        padding: 5px;
         margin: 3% 20% 5px 5px;
         display: flex;
         align-items: center;
         text-decoretion: none;
         color: #fff;
         transition: .3s;
+        border-radius: 6px;
 
 
         &:hover{
             color: #a8a8b3;
+            background: rgba(320, 320, 320, 0.1)
         }
 }
 `

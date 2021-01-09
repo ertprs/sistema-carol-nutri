@@ -11,13 +11,14 @@ const Scheduling = new mongoose.Schema({
         type: String,
         required: true
     },
-    actualDate: {
+    hours:{
         type: String,
         required: true
     },
     status: {
         type: Boolean,
-        required: true
+        required: true,
+        default: true
     },
     note: {
         type: String,

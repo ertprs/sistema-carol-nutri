@@ -3,10 +3,11 @@ import React from 'react';
 import {Link} from 'react-router-dom'
 import { FiChevronLeft } from 'react-icons/fi'
 import { Container, Return } from './styles'
-import { Form, Input, Textarea } from '@rocketseat/unform'
+import { Form, Input, Textarea} from '@rocketseat/unform'
 import * as Yup from 'yup'
 import {toast} from 'react-toastify'
 
+import { useHistory } from 'react-router-dom'
 import api from '../../services/api'
 
 const schema = Yup.object().shape({
@@ -14,30 +15,25 @@ const schema = Yup.object().shape({
     virtualDate: Yup.string()
         .required("Data de agendamento obrigatória!"),
 
-    actualDate: Yup.string()
-        .required("Data de criação do agendamento obrigatório!"),
-
-    schedule: Yup.string()
+    hours: Yup.string()
         .required("Horário é obrigatório para registrar um agendamento"),
-    
-    status: Yup.string()
-        .required("Campo obrigatório"),
     
     note: Yup.string()
 })
 
 export default function RegisterAgendamentos(){
 
+    var history = useHistory()
+
     async function handlSubmit(data) {
         
         await api.post(`agendamento/register` ,{ 
             virtualDate: data.virtualDate,
-            actualDate: data.actualDate,
-            schedule: data.schedule,
-            status: data.status,
+            hours: data.hours,
             note: data.note
          }).then(async () => {
              toast.success('Agendamento cadastrado com sucesso!')
+             history.go('/cadastrar-agendamento')
         }).catch((error) => {
             let erro = JSON.parse(error.request.response)
             toast.error(erro.error)
@@ -56,13 +52,10 @@ export default function RegisterAgendamentos(){
             <Container>
                 <Form schema={schema} onSubmit={handlSubmit}>
                     <h2>Informações sobre os agendamentos</h2>
-                    <Input  name="virtualDate" label="Informe a data para agendamento"/>
-                    <Input  name="actualDate" label="Informe a data atual" />
-                    <Input  name="schedule" placeholder="Informe o horário da consulta" />
-                    <Input  name="status" placeholder="Informe se o horario está disponivel ou indisponível" />
-                    <Textarea label="Informe uma anotação" name="note" placeholder="Descrição (opcional)" />
+                    <Input  name="virtualDate" type="date" label="Data para o agendamento"/>
+                    <Input  name="hours" type="time" placeholder="Informe o horário da consulta" label="Horário" />
+                    <Textarea name="note" label="Informe uma anotação" placeholder="Descrição (opcional)" />
                     <button type="submit">Cadastrar</button>
-                    
                 </Form>
             </Container>
         </>
