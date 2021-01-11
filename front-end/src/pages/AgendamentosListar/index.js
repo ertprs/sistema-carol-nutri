@@ -24,7 +24,9 @@ export default function Scheduling(){
     );
 
     useEffect(async () => {
-        await api.get(`agendamento/list/${new Date(date)}`).then((response) => {
+        const data = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`
+        console.log(data)
+        await api.get(`agendamento/list/${data.toString()}`).then((response) => {
             setSchedule(response.data)
             setLoading(false)
         }).catch((error) => {
@@ -64,7 +66,7 @@ export default function Scheduling(){
                             <MdChevronRight size={36} color="#FFF"/>
                         </button>
                     </header>
-                    <h2>Nada agendado para este dia <AiOutlineClose/></h2>
+                    <h2>Nada agendado para este dia</h2>
                 </Container>
             )
         } else {

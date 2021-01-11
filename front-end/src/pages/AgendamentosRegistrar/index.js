@@ -26,16 +26,22 @@ export default function RegisterAgendamentos(){
     var history = useHistory()
 
     async function handlSubmit(data) {
-
         let Rdata = new Date(data.virtualDate)
-        Rdata = `${Rdata.getFullYear()}-${Rdata.getMonth()}-${Rdata.getDate()}`
-        
+
+        console.log(Rdata.getDate())
+
+        if(Rdata.getDate() == 31){
+            Rdata = await `${Rdata.getFullYear()}-${parseInt(Rdata.getMonth())+1}-1`      
+        }
+        else {
+            Rdata = await `${Rdata.getFullYear()}-${parseInt(Rdata.getMonth())+1}-${parseInt(Rdata.getDate())+1}`      
+        }
         await api.post(`agendamento/register` ,{ 
             virtualDate: Rdata,
             hours: data.hours,
             note: data.note
          }).then(async () => {
-            history.go('/cadastrar-agendamento')
+           // history.go('/cadastrar-agendamento')
             toast.success('Agendamento cadastrado com sucesso!')
         }).catch((error) => {
             let erro = JSON.parse(error.request.response)

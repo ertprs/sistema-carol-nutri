@@ -8,7 +8,7 @@ const Scheduling = new mongoose.Schema({
         default: Date.now
     },
     virtualDate:{
-        type: Date,
+        type: String,
         required: true
     },
     hours:{
@@ -17,7 +17,6 @@ const Scheduling = new mongoose.Schema({
     },
     status: {
         type: Boolean,
-        required: true,
         default: true
     },
     note: {
