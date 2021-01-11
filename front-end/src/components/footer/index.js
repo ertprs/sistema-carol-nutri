@@ -9,7 +9,7 @@ export default function Footer(){
                 <nav>
                     <h3>KEEP IN TOUCH</h3>
                     <div className="icons">
-                        <a href="https://api.whatsapp.com/send?phone=+558494794472" target="_blank">
+                        <a href="https://api.whatsapp.com/send?phone=+558494794472&text=Olá Carol. Gostaria de solicitar um orçamento.%20" target="_blank">
                             <AiOutlineWhatsApp className="icon" size={35}/>
                         </a>
                         <a href="https://www.instagram.com/carolbl_/?hl=pt-br" target="_blank">

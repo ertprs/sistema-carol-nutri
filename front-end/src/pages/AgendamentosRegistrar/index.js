@@ -26,14 +26,17 @@ export default function RegisterAgendamentos(){
     var history = useHistory()
 
     async function handlSubmit(data) {
+
+        let Rdata = new Date(data.virtualDate)
+        Rdata = `${Rdata.getFullYear()}-${Rdata.getMonth()}-${Rdata.getDate()}`
         
         await api.post(`agendamento/register` ,{ 
-            virtualDate: data.virtualDate,
+            virtualDate: Rdata,
             hours: data.hours,
             note: data.note
          }).then(async () => {
-             toast.success('Agendamento cadastrado com sucesso!')
-             history.go('/cadastrar-agendamento')
+            history.go('/cadastrar-agendamento')
+            toast.success('Agendamento cadastrado com sucesso!')
         }).catch((error) => {
             let erro = JSON.parse(error.request.response)
             toast.error(erro.error)
@@ -51,10 +54,9 @@ export default function RegisterAgendamentos(){
             </Return>
             <Container>
                 <Form schema={schema} onSubmit={handlSubmit}>
-                    <h2>Informações sobre os agendamentos</h2>
+                    <h2>Cadastrar agendamento para consulta</h2>
                     <Input  name="virtualDate" type="date" label="Data para o agendamento"/>
                     <Input  name="hours" type="time" placeholder="Informe o horário da consulta" label="Horário" />
-                    <Textarea name="note" label="Informe uma anotação" placeholder="Descrição (opcional)" />
                     <button type="submit">Cadastrar</button>
                 </Form>
             </Container>

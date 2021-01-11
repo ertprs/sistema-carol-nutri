@@ -14,7 +14,7 @@ import ReactLoading from 'react-loading'
 export default function Pacientes(){
     const [pacientes, setPacientes] = useState([]);
     const [busca, setBusca] = useState('');
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     //Objeto mutavel
     const cb = useRef() //serve para ser a causa de disparo do usuEffect quando  este Component é gerado, ou seja, useEffect será chamado quando o usuário entrar nesta página.
@@ -26,7 +26,6 @@ export default function Pacientes(){
             setPacientes(response.data.docs)
             setLoading(false)
         }).catch((error) => {
-            setLoading(false)
             let erro = JSON.parse(error.request.response)
             toast.error(erro.error)
         }) 

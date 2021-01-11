@@ -36,8 +36,11 @@ module.exports = {
 
     async show(req, res){
         try {
+            const schedule = await Scheduling.find({virtualDate: req.params.id})
 
-            const schedule = await Scheduling.findById(req.params.id)
+            if(schedule == [] || schedule ==undefined){
+                return res.status(400).send({error: 'Nenhum agendamento para este dia.' })
+            }
 
             return res.json(schedule);
 
@@ -63,8 +66,10 @@ module.exports = {
 
     async destroy(req, res){
         try {
+
+            console.log(req.params.id)
             
-            await Scheduling.findByIdAndRemove(req.params.id);
+            await Scheduling.findByIdAndRemove(req.params);
 
             return res.send('Agendamento deletado!');
 
