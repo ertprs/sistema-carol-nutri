@@ -5,6 +5,7 @@ const cors = require('cors')
 
 
 const app = express()
+
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false}))
 app.use(cors())
@@ -17,7 +18,8 @@ app.use('/form', require('./app/routers/nutritionistForm'))
 app.use('/agendamento', require('./app/routers/scheduling'))
 app.use('/artigo', require('./app/routers//article'))
 app.use('/receitas', require('./app/routers//recordRecipes'))
+app.use("/files", require("./app/routers/perfil")) 
 
 app.listen(PORT, () => {
-    console.log("servidor rodando..." + PORT)
+    console.log("servidor rodando..." + PORT) 
 })

@@ -45,7 +45,7 @@ export default function Profile(){
         await api.put(`user/userUp/${user._id}` ,{
             name: data.name,
             email: data.email,
-            phone: data.phone
+            phone: data.phone,
         }).then(() => {
             update({
                 email: data.email,
@@ -87,7 +87,7 @@ export default function Profile(){
                 </div>
                 <Form schema={schema} initialData={user} onSubmit={handlSubmit}>
 
-                    <AvatarInput name="avatar_id" />
+                    <AvatarInput name="avatar" />
 
                     {
                         edit ? <Input label="Nome e sobrenome" name="name" placeholder="Nome e sobrenome" disabled/> : <Input label="Nome e sobrenome" name="name" placeholder="Nome e sobrenome"/>

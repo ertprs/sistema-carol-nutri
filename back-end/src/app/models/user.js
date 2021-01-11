@@ -21,6 +21,10 @@ const UserSchema = mongoose.Schema({
         unique: true,
         lowecase: true
     },
+    avatar:{
+        type: String,
+        default: "https://image.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg"
+    },
     status: {
         type: String,
         default: "Cadastrado"
@@ -48,8 +52,14 @@ const UserSchema = mongoose.Schema({
 UserSchema.pre('save', async function(next){
     const hash = await bcrypt.hash(this.password, 10)
     this.password = hash
+
+    if(this.avatar == ""){
+        this.avatar = "https://image.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg"
+    }
 })
 // Definido o pluglin para poder utilizar a função paginate
 UserSchema.plugin(mongoosePaginate)
 
-mongoose.model('User', UserSchema)
+const User = mongoose.model('User', UserSchema)
+
+module.exports = User
