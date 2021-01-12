@@ -16,7 +16,7 @@ import RegisterPaciente from '../pages/PacientesRegister/index'
 
 import RegisterReceitas from '../pages/receitasRegister/index'
 import Receitas from '../pages/receitasListagem/index'
-import ReceitasPublicas from '../pages/receitasPublicas/index'
+import ReceitasPublicas from '../pages/ReceitasPublicas/index'
 import Receita from '../pages/receitasEdit/index'
 
 import RegisterArtigos from '../pages/artigosRegister/index'
