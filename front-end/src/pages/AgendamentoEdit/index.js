@@ -81,7 +81,7 @@ export default function Artigo(){
         </Return>
 
         <ArtigoInfo>
-            <h1>Informações do artigo</h1>
+            <h1>NÃO ESTÁ CONCLUÍDO</h1>
             <header>
                 <div>
                     <strong>
@@ -96,7 +96,7 @@ export default function Artigo(){
         </ArtigoInfo>
         <Editor>
             <div>
-                <h2>Editar artigo</h2>
+                <h2>Editar agendamento</h2>
                 <button className="Edit" onClick={handleClick}><AiFillEdit size={20}/><Tooltip texto="Habilitar campos para edição"/></button>
             </div>
 
