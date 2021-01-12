@@ -26,6 +26,7 @@ import Artigo from '../pages/ArtigosEdit/index'
 
 import Agendamento from "../pages/AgendamentosListar/index"
 import RegisterAgendamentos from "../pages/AgendamentosRegistrar/index"
+import AgendamentoEdit from "../pages/AgendamentoEdit/index"
 
 export default function Routes(){
     return (
@@ -55,6 +56,7 @@ export default function Routes(){
 
                 <Route path="/agenda" isPrivate component={Agendamento} />
                 <Route path="/cadastrar-agendamento" isPrivate component={RegisterAgendamentos} />
+                <Route path="/editar-agendamento/:id" isPrivate component={AgendamentoEdit} />
             </Switch>
         </BrowserRouter>
     )

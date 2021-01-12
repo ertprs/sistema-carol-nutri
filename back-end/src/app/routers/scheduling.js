@@ -6,6 +6,7 @@ const SchedulingDate = require('../controllers/schedulingDate')
 // -- Rotas do CRUD do usuário -- //
 router.post('/register', SchedulingDate.store);
 router.get('/list', SchedulingDate.index);
+router.get('/listId/:id', SchedulingDate.showId);
 router.get('/list/:id', SchedulingDate.show);
 router.put('/edit/:id', SchedulingDate.update);
 router.delete('/delete/:id', SchedulingDate.destroy);

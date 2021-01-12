@@ -51,6 +51,24 @@ module.exports = {
 
     },
 
+    async showId(req, res){
+        try {
+            const schedule = await Scheduling.findById(req.params.id)
+
+            if(schedule == [] || schedule ==undefined){
+                return res.status(400).send({error: 'Nenhum agendamento para este dia.' })
+            }
+
+            return res.json(schedule);
+
+        } catch (error) {
+
+            return res.status(400).send({error: 'Erro ao lista agendamento.' })
+
+        }
+
+    },
+
     async update(req, res){
         try {
 
