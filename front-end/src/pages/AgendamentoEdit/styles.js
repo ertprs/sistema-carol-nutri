@@ -42,116 +42,8 @@ export const Return = styled.div`
 }
 `
 
-export const ArtigoInfo = styled.section`
-    width 65%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-self: center;
-    margin: 50px auto;
-
-    h1{
-        color: #fff;
-        font-weight: bold;
-        margin-bottom: 50px;
-    }
-
-    header {
-        display: flex;
-
-        img {
-            width: 150px;
-            height:150px;
-            border-radius: 50%;
-            margin: 0;
-            padding: 0;
-        }
-
-        div {
-            display: flex;
-            justify-content: center;
-            align-self: center;
-            flex-direction: column;
-            margin-left: 24px;
-
-            strong {
-                font-size: 28px;
-                color: #fff;
-            }
-
-            p{
-                font-size: 20px;
-                color: #fff;
-                margin-top: 4px;
-                margin-bottom: 4px;
-            }
-
-            span {
-                color: #fff;
-            }
-        }
-    }
-
-    .botoes {
-        display: flex;
-        justify-content: space-between;
-        margin: 20px 15px;
-
-        button {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #fff;
-            background: #ff6464;
-
-            width: 100px;
-            height: 40px;
-            border: none;
-            border-radius: 6px;
-            transition: 0.5s;
-    
-            &:hover {
-                background: #ff3c3c;
-            }
-        }
-
-        a {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #fff;
-            background: #17A2b8;
-            font-family: roboto;
-
-            width: 100px;
-            height: 40px;
-            border: none;
-            border-radius: 6px;
-            transition: 0.5s;
-    
-            &:hover {
-                background: #5FC2FF;
-            }
-
-            svg {
-                margin: 0;
-            }
-        }
-
-        .excluir {
-            background: red;
-        }
-    }
-    hr {
-        border: 0;
-        height: 1px;
-        background: #fff;
-        margin: 10px 0 20px;
-    }
-`
-
 export const Editor = styled.div`
-    max-width: 65%;
+    max-width: 40%;
     margin: 50px auto;
 
     div {
@@ -196,13 +88,29 @@ export const Editor = styled.div`
         display: flex;
         flex-direction: column;
         margin-top: 30px;
+        color: #fff;
 
-        h2 {
-            color: #fff;
+        div {
+
+            input {
+                width: 100%;
+                margin: 10px;
+                background: rgba(0, 0, 0, 0.1);
+                border: 0;
+                border-radius: 4px;
+                height: 44px;
+                padding: 0 15px;
+                color #fff;
+        
+                &::placeholder {
+                    color: rgba(255, 255, 255, 0.7);
+                }
+    
+            }
         }
 
         label {
-            margin: 0;
+            margin: auto;
             color: #fff;
         }
 
@@ -220,17 +128,19 @@ export const Editor = styled.div`
         }
         
         input {
+            width: 100%;
+            margin: 10px;
             background: rgba(0, 0, 0, 0.1);
             border: 0;
             border-radius: 4px;
             height: 44px;
             padding: 0 15px;
             color #fff;
-            margin: 0 0 10px;
     
             &::placeholder {
                 color: rgba(255, 255, 255, 0.7);
             }
+
         }
     
         span {

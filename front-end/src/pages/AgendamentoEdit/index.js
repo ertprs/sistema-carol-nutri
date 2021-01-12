@@ -2,72 +2,63 @@ import React, { useEffect, useState } from 'react';
 import { Link, useRouteMatch } from 'react-router-dom'
 
 import {toast} from 'react-toastify'
-import { FiChevronLeft,  FiChevronRight } from 'react-icons/fi'
-import { AiOutlineClose, AiFillEdit } from "react-icons/ai";
+import { FiChevronLeft } from 'react-icons/fi'
+import { AiFillEdit } from "react-icons/ai";
 import { useHistory } from 'react-router-dom'
-import { Form, Input, Textarea } from '@rocketseat/unform'
+import { Form, Input, Textarea, Check } from '@rocketseat/unform'
 import * as Yup from 'yup'
 
 import api from '../../services/api'
-import {Return, ArtigoInfo, Container, Editor} from './styles'
+import {Return, Container, Editor} from './styles'
 import Tooltip from '../../components/tooltip/index'
 
-export default function Artigo(){
+export default function Agendamento(){
 
     var history = useHistory()
 
     const { params } = useRouteMatch();
 
-    console.log(params.id)
-
-    const [artigo, setArtigo] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [agendamento, setAgendamento] = useState([]);
     const [edit, setEdit] = useState(true);
 
     useEffect(async () => {
+        setLoading(true)
         api.get(`agendamento/listId/${params.id}`).then((response) => {
-            setArtigo(response.data)
+            setAgendamento(response.data)
+            setLoading(false)
         }).catch((error) => {
             let erro = JSON.parse(error.request.response)
             toast.error(erro.error)
         })
-    },[params.artigo])
-
-    const schema = Yup.object().shape({
-
-        title: Yup.string()
-            .required("Titulo é obrigatório!"),
-    
-        description: Yup.string()
-            .required("Descrição é obrigatória!"),
-    
-        link: Yup.string()
-            .required("Link é um campo obrigatório!"),
-    
-    })
+    },[params.id])
 
     async function handlSubmit(data) {
         console.log(data)
-        
-        await api.put(`artigo/edit/${artigo._id}` ,{ 
-            title: data.title,
-            description: data.description,
-            link: data.link,
-         }).then(async () => {
-             toast.success('Artigo atualizado')
-             history.push('/artigos')
-        }).catch((error) => {
-            let erro = JSON.parse(error.request.response)
-            toast.error(erro.error)
-        })
-
+        if(data.virtualDate == "" || data.hours == "" || data.note == ""){
+            toast.info('Campos obrigatórios vazios')
+        } else {
+            await api.put(`agendamento/edit/${agendamento._id}` ,{ 
+                virtualDate: data.virtualDate,
+                hours: data.hours,
+                note: data.note,
+                status: data.status,
+             }).then(async () => {
+                 toast.success('Agendamento atualizado')
+                 history.push('/agenda')
+            }).catch((error) => {
+                let erro = JSON.parse(error.request.response)
+                toast.error(erro.error)
+            })
+        }
     }
     
     async function handleClick(){
         setEdit(false == edit)
         if(edit){
-            toast.info('Campos de edição habilitado')
+            toast.info('Campos de edição habilitados')
         } else {
-            toast.info('Campos de edição desabilitado')
+            toast.info('Campos de edição desabilitados')
         }
     }
 
@@ -80,39 +71,32 @@ export default function Artigo(){
             </Link>
         </Return>
 
-        <ArtigoInfo>
-            <h1>NÃO ESTÁ CONCLUÍDO</h1>
-            <header>
-                <div>
-                    <strong>
-                        {artigo.title}
-                    </strong>
-                    <p>
-                        {artigo.description}
-                    </p>
-                </div>
-            </header>
-            <hr/>
-        </ArtigoInfo>
         <Editor>
             <div>
                 <h2>Editar agendamento</h2>
                 <button className="Edit" onClick={handleClick}><AiFillEdit size={20}/><Tooltip texto="Habilitar campos para edição"/></button>
             </div>
 
-            <Form schema={schema} onSubmit={handlSubmit} initialData={artigo}>
+            <Form onSubmit={handlSubmit} initialData={agendamento}>
+                <div>
                 {
-                    edit ? <Input label="Link do documento" name="link" placeholder="Link do documento do drive" disabled /> : <Input label="Link do documento" name="link" placeholder="Link do documento do drive" />
+                    edit ? <Input  name="virtualDate" type="date" label="Data para o agendamento" disabled /> : <Input  name="virtualDate" type="date" label="Data para o agendamento"/>
                 }
                 {
-                    edit ? <Input label="Titulo do artigo"  name="title" placeholder="Ex.: Fungos no alimentos" disabled/> : <Input label="Titulo do artigo"  name="title" placeholder="Ex.: Fungos no alimentos"/>
+                    edit ? <Input  name="hours" type="time" placeholder="Informe o horário da consulta" label="Horário" disabled /> : <Input  name="hours" type="time" placeholder="Informe o horário da consulta" label="Horário" />
+                }
+                </div>
+
+                {
+                    edit ?  <Textarea rows="4" label="Irfomações sobre o agendamento" name="note" placeholder="Ex.: Consulta online com Alice Costa ..." disabled/> : <Textarea rows="4" label="Descrição sobre o agendamento" name="note" placeholder="Informe um breve descrição sobre agendamento" />
                 }
                 {
-                    edit ?  <Textarea rows="4" label="Descrição sobre o artigo" name="description" placeholder="Informe um breve descrição sobre artigo" disabled/> : <Textarea rows="4" label="Descrição sobre o artigo" name="description" placeholder="Informe um breve descrição sobre artigo" />
+                    edit ?  <Check label="Agendamento disponível" name="status" disabled/> : <Check label="Agendamento disponível" name="status" />
                 }
                 {
                     edit ? <button disabled>Desabilitado</button> : <button onSubmit={e => { e.preventDefault()}} type="submit" >Atualizar dados</button>
                 }
+
             </Form>
         </Editor>
     </Container>

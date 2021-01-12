@@ -31,7 +31,7 @@ export default function RegisterAgendamentos(){
             hours: data.hours,
             note: data.note
          }).then(async () => {
-           // history.go('/cadastrar-agendamento')
+            history.go('/cadastrar-agendamento')
             toast.success('Agendamento cadastrado com sucesso!')
         }).catch((error) => {
             let erro = JSON.parse(error.request.response)

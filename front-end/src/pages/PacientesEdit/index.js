@@ -155,13 +155,13 @@ export default function Paciente(){
                                 <Input label="Profissão" type="text" name="profession" placeholder="Profissão" />
                             </div>  
                             <div>
-                                <Select label="Transito intestinal" name="IntestinalTransit" id="IntestinalTransit" options={[{id: "1", title: '1'}, {id: "2", title: '2'}, {id: "3", title: '3'}, {id: "4", title: '4'}, {id: "5", title: '5'}, {id: "6", title: '6'}, {id: '7', title: '7'}]} placeholder="Selecione uma opção" /> 
+                                <Select label="Trânsito intestinal" name="IntestinalTransit" id="IntestinalTransit" options={[{id: "1", title: '1'}, {id: "2", title: '2'}, {id: "3", title: '3'}, {id: "4", title: '4'}, {id: "5", title: '5'}, {id: "6", title: '6'}, {id: '7', title: '7'}]} placeholder="Selecione uma opção" /> 
                             </div>
                             <div>
-                                <Select label="Escala urinaria" name="UrinaryStaining" id="UrinaryStaining" options={[{id: "1", title: '1'}, {id: "2", title: '2'}, {id: "3", title: '3'}, {id: "4", title: '4'}, {id: "5", title: '5'}, {id: "6", title: '6'}, {id: '7', title: '7'}, {id: '8', title: '8'}]} placeholder="Selecione uma opção" />
+                                <Select label="Escala urinária" name="UrinaryStaining" id="UrinaryStaining" options={[{id: "1", title: '1'}, {id: "2", title: '2'}, {id: "3", title: '3'}, {id: "4", title: '4'}, {id: "5", title: '5'}, {id: "6", title: '6'}, {id: '7', title: '7'}, {id: '8', title: '8'}]} placeholder="Selecione uma opção" />
                             </div>
                             <div>
-                                <Select label="Genero fisiologico" name="genre" id="genre" options={[{id: "Mulher", title: 'Mulher'}, {id: "Homem", title: 'Homem'}]} placeholder="Selecione uma opção" />
+                                <Select label="Gênero fisiológico" name="genre" id="genre" options={[{id: "Mulher", title: 'Mulher'}, {id: "Homem", title: 'Homem'}]} placeholder="Selecione uma opção" />
                             </div>
                             <div>
                                 <Select label="Qualidade do sono" name="sleepQuality" id="sleepQuality" options={[{id: "Ruim", title: 'Ruim'}, {id: "Bom", title: 'Bom'}]} placeholder="Selecione uma opção" />
@@ -170,7 +170,7 @@ export default function Paciente(){
     
                         <div>
                             <div>
-                                <Textarea label="Historico clínico" id="clinicalHistory" name="clinicalHistory" rows="6" cols="30">
+                                <Textarea label="Histórico clínico" id="clinicalHistory" name="clinicalHistory" rows="6" cols="30">
                                 </Textarea>
                             </div>
     
@@ -196,7 +196,7 @@ export default function Paciente(){
                         <h5>2.2 EXAME FÍSICO</h5>
                         <div>
                             <div>
-                                <Check label="Pele Ressecada"  id="drySkin" name="drySkin" />
+                                <Check label="Pele ressecada"  id="drySkin" name="drySkin" />
                             </div>
     
                             <div>
@@ -217,7 +217,7 @@ export default function Paciente(){
                                 <Check label="Palidez conjutival" defaultChecked="sim" id="conjunctivalPallor" name="conjunctivalPallor"/>
                             </div>
                             <div>
-                                <Check label="Unhas coiloníquas" id="koilonychicNails" name="koilonychicNails"/>
+                                <Check label="Unhas quebradiças" id="koilonychicNails" name="koilonychicNails"/>
                             </div>
                         </div>
                         <div>
@@ -230,7 +230,7 @@ export default function Paciente(){
                         <h5>2.3 ALTERAÇÃO NO APARELHO DIGESTIVO</h5>
                         <div>
                             <div>
-                                <Check label="Dispepsia" id="dyspepsia" name="dyspepsia" />
+                                <Check label="Má digestão" id="dyspepsia" name="dyspepsia" />
                             </div>
     
                             <div>
@@ -244,7 +244,7 @@ export default function Paciente(){
                                 <Check label="Vômitos" id="vomiting" name="vomiting"/>
                             </div>
                             <div>
-                                <Check label="Disfagia" id="dysphagia" name="dysphagia"/>
+                                <Check label="Dificuldade de engolir" id="dysphagia" name="dysphagia"/>
                             </div>
                         </div>
                         <div>
@@ -269,7 +269,7 @@ export default function Paciente(){
                         </div>
                         <hr/>
     
-                        <h4>3. CONSUNO DE ÁGUA</h4>
+                        <h4>3. CONSUMO DE ÁGUA</h4>
                         <div>
                             <div>
                                 <Textarea labe="Descrição" id="waterConsumption" name="waterConsumption" rows="6" cols="30">
@@ -303,10 +303,10 @@ export default function Paciente(){
                         <h4>6. ATIVIDADE FÍSICA</h4>
                         <div>
                             <div>
-                                <Check label="Pratica atividade Física" id="physicalActivityYesNo" name="physicalActivityYesNo"/>
+                                <Check label="Pratica atividade física" id="physicalActivityYesNo" name="physicalActivityYesNo"/>
                             </div>
                             <div>
-                                <Textarea label="Discrição da frenquência" id="frequencyActivity" name="frequencyActivity" rows="6" cols="30">
+                                <Textarea label="Descrição da frequência" id="frequencyActivity" name="frequencyActivity" rows="6" cols="30">
                                 </Textarea>
                             </div>
                         </div>
@@ -315,10 +315,10 @@ export default function Paciente(){
                         <h4>7. BEBIDA ALCOÓLICA</h4>
                         <div>
                             <div>
-                                <Check label="Ingere bebida alcoolica" id="yesNoBeverage" name="yesNoBeverage"/>
+                                <Check label="Ingestão de bebida alcoólica" id="yesNoBeverage" name="yesNoBeverage"/>
                             </div>
                             <div>
-                                <Textarea label="Discrição da frenquência" id="frequencyBeverage" name="frequencyBeverage" rows="6" cols="30">
+                                <Textarea label="Descrição da frequência" id="frequencyBeverage" name="frequencyBeverage" rows="6" cols="30">
                                 </Textarea>
                             </div>
                         </div>
@@ -332,7 +332,7 @@ export default function Paciente(){
                         </div>
                         <hr/>
     
-                        <h4>9. HORARIOS</h4>
+                        <h4>9. HORÁRIOS</h4>
                         <div>
                             <div>
                                 <Input label="Acorda às" type="time" name="wakeUp" />
@@ -424,17 +424,17 @@ export default function Paciente(){
                                 </div>  
                                 <div>
                                     {
-                                        edit ? <Input label="Transito intestinal" name="IntestinalTransit" id="IntestinalTransit"  placeholder="Sem informação" disabled/> : <Select label="Transito intestinal" name="IntestinalTransit" id="IntestinalTransit" options={[{id: "1", title: '1'}, {id: "2", title: '2'}, {id: "3", title: '3'}, {id: "4", title: '4'}, {id: "5", title: '5'}, {id: "6", title: '6'}, {id: '7', title: '7'}]} placeholder="Selecione uma opção" />
+                                        edit ? <Input label="Trânsito intestinal" name="IntestinalTransit" id="IntestinalTransit"  placeholder="Sem informação" disabled/> : <Select label="Transito intestinal" name="IntestinalTransit" id="IntestinalTransit" options={[{id: "1", title: '1'}, {id: "2", title: '2'}, {id: "3", title: '3'}, {id: "4", title: '4'}, {id: "5", title: '5'}, {id: "6", title: '6'}, {id: '7', title: '7'}]} placeholder="Selecione uma opção" />
                                     }
                                 </div>
                                 <div>
                                     {
-                                        edit ? <Input  label="Escala urinaria" name="UrinaryStaining" id="UrinaryStaining" placeholder="Sem informação" disabled/> : <Select  label="Escala urinaria" name="UrinaryStaining" id="UrinaryStaining" options={[{id: "1", title: '1'}, {id: "2", title: '2'}, {id: "3", title: '3'}, {id: "4", title: '4'}, {id: "5", title: '5'}, {id: "6", title: '6'}, {id: '7', title: '7'}, {id: '8', title: '8'}]} placeholder="Selecione uma opção" />
+                                        edit ? <Input  label="Escala urinária" name="UrinaryStaining" id="UrinaryStaining" placeholder="Sem informação" disabled/> : <Select  label="Escala urinaria" name="UrinaryStaining" id="UrinaryStaining" options={[{id: "1", title: '1'}, {id: "2", title: '2'}, {id: "3", title: '3'}, {id: "4", title: '4'}, {id: "5", title: '5'}, {id: "6", title: '6'}, {id: '7', title: '7'}, {id: '8', title: '8'}]} placeholder="Selecione uma opção" />
                                     }
                                 </div>
                                 <div>
                                     {
-                                        edit ? <Input label="Genero fisiologico" name="genre" id="genre" placeholder="Sem informação"  disabled/> : <Select label="Genero fisiologico" name="genre" id="genre" options={[{id: "Mulher", title: 'Mulher'}, {id: "Homem", title: 'Homem'}]} placeholder="Selecione uma opção" />
+                                        edit ? <Input label="Gênero fisiológico" name="genre" id="genre" placeholder="Sem informação"  disabled/> : <Select label="Genero fisiologico" name="genre" id="genre" options={[{id: "Mulher", title: 'Mulher'}, {id: "Homem", title: 'Homem'}]} placeholder="Selecione uma opção" />
                                     }
                                 </div>
                                 <div>
@@ -446,7 +446,7 @@ export default function Paciente(){
                             <div>
                                 <div>
                                     {
-                                        edit ? <Textarea label="Historico clínico" id="clinicalHistory" name="clinicalHistory" rows="6" cols="30" disabled/> : <Textarea label="Historico clínico" id="clinicalHistory" name="clinicalHistory" rows="6" cols="30" />
+                                        edit ? <Textarea label="Histórico clínico" id="clinicalHistory" name="clinicalHistory" rows="6" cols="30" disabled/> : <Textarea label="Historico clínico" id="clinicalHistory" name="clinicalHistory" rows="6" cols="30" />
                                     }
                                 </div>
         
@@ -482,7 +482,7 @@ export default function Paciente(){
                             <div>
                                 <div>
                                     {
-                                        edit ? <Check label="Pele Ressecada"  id="drySkin" name="drySkin" disabled /> : <Check label="Pele Ressecada"  id="drySkin" name="drySkin" />
+                                        edit ? <Check label="Pele ressecada"  id="drySkin" name="drySkin" disabled /> : <Check label="Pele ressecada"  id="drySkin" name="drySkin" />
                                     }
                                 </div>
         
@@ -518,7 +518,7 @@ export default function Paciente(){
                                 </div>
                                 <div>
                                     {
-                                        edit ? <Check label="Unhas coiloníquas" id="koilonychicNails" name="koilonychicNails" disabled /> : <Check label="Unhas coiloníquas" id="koilonychicNails" name="koilonychicNails"/>
+                                        edit ? <Check label="Unhas quebradiças" id="koilonychicNails" name="koilonychicNails" disabled /> : <Check label="Unhas quebradiças" id="koilonychicNails" name="koilonychicNails"/>
                                     }
                                     
                                 </div>
@@ -537,7 +537,7 @@ export default function Paciente(){
                             <div>
                                 <div>
                                     {
-                                        edit ? <Check label="Dispepsia" id="dyspepsia" name="dyspepsia" disabled /> : <Check label="Dispepsia" id="dyspepsia" name="dyspepsia" />
+                                        edit ? <Check label="Má digestão" id="dyspepsia" name="dyspepsia" disabled /> : <Check label="Má digestão" id="dyspepsia" name="dyspepsia" />
                                     }
                                     
                                 </div>
@@ -562,7 +562,7 @@ export default function Paciente(){
                                 </div>
                                 <div>
                                     {
-                                        edit ? <Check label="Disfagia" id="dysphagia" name="dysphagia" disabled /> : <Check label="Disfagia" id="dysphagia" name="dysphagia"/>
+                                        edit ? <Check label="Dificuldade de engolir" id="dysphagia" name="dysphagia" disabled /> : <Check label="Dificuldade de engolir" id="dysphagia" name="dysphagia"/>
                                     }
                                     
                                 </div>
@@ -602,7 +602,7 @@ export default function Paciente(){
                     </Scope>
                         <hr/>
 
-                        <h4>3. CONSUNO DE ÁGUA</h4>
+                        <h4>3. CONSUMO DE ÁGUA</h4>
                         <div>
                             <div>
                                 {
@@ -650,7 +650,7 @@ export default function Paciente(){
                                 </div>
                                 <div>
                                     {
-                                        edit ? <Textarea label="Discrição da frenquência" id="frequencyActivity" name="frequencyActivity" rows="6" cols="30" disabled /> : <Textarea label="Discrição da frenquência" id="frequencyActivity" name="frequencyActivity" rows="6" cols="30" />
+                                        edit ? <Textarea label="Descrição da frequência" id="frequencyActivity" name="frequencyActivity" rows="6" cols="30" disabled /> : <Textarea label="Descrição da frenquência" id="frequencyActivity" name="frequencyActivity" rows="6" cols="30" />
                                     }
                                 </div>
                             </div>
@@ -662,12 +662,12 @@ export default function Paciente(){
                             <div>
                                 <div>
                                     {
-                                        edit ? <Check label="Ingere bebida alcoolica" id="yesNoBeverage" name="yesNoBeverage" disabled/> : <Check label="Ingere bebida alcoolica" id="yesNoBeverage" name="yesNoBeverage"/>
+                                        edit ? <Check label="Ingestão de bebida alcoólica" id="yesNoBeverage" name="yesNoBeverage" disabled/> : <Check label="Ingestão de bebida alcoólica" id="yesNoBeverage" name="yesNoBeverage"/>
                                     }
                                 </div>
                                 <div>
                                     {
-                                        edit ? <Textarea label="Discrição da frenquência" id="frequencyBeverage" name="frequencyBeverage" rows="6" cols="30" disabled /> : <Textarea label="Discrição da frenquência" id="frequencyBeverage" name="frequencyBeverage" rows="6" cols="30" />
+                                        edit ? <Textarea label="Descrição da frequência" id="frequencyBeverage" name="frequencyBeverage" rows="6" cols="30" disabled /> : <Textarea label="Descrição da frenquência" id="frequencyBeverage" name="frequencyBeverage" rows="6" cols="30" />
                                     }
                                 </div>
                             </div>
@@ -684,7 +684,7 @@ export default function Paciente(){
                         </div>
                         <hr/>
     
-                        <h4>9. HORARIOS</h4>
+                        <h4>9. HORÁRIOS</h4>
                         <Scope path="schedules">
                             <div>
                                 <div>
