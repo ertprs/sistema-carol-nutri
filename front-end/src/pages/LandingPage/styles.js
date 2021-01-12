@@ -25,16 +25,19 @@ export const Container = styled.div`
         }
     }
 
-    .conteudo {
+    div {
         width:60%;
         display: flex;
         flex-direction: column;
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,500&display=swap');
+        
         p{
             text-align: justify;
             font-size: 20px;
             align: center;
         }
         h1 {
+            font-family: roboto;
             font-weight: 900;
             color: #831e62;
         }

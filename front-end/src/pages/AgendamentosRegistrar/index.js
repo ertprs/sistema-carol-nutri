@@ -26,18 +26,8 @@ export default function RegisterAgendamentos(){
     var history = useHistory()
 
     async function handlSubmit(data) {
-        let Rdata = new Date(data.virtualDate)
-
-        console.log(Rdata.getDate())
-
-        if(Rdata.getDate() == 31){
-            Rdata = await `${Rdata.getFullYear()}-${parseInt(Rdata.getMonth())+1}-1`      
-        }
-        else {
-            Rdata = await `${Rdata.getFullYear()}-${parseInt(Rdata.getMonth())+1}-${parseInt(Rdata.getDate())+1}`      
-        }
         await api.post(`agendamento/register` ,{ 
-            virtualDate: Rdata,
+            virtualDate: data.virtualDate,
             hours: data.hours,
             note: data.note
          }).then(async () => {

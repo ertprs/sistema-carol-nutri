@@ -74,14 +74,12 @@ export default function Pacientes(){
             <Formulario onSubmit={e => { e.preventDefault()}}>
                 <input value={busca} onChange={onChange} name="pesquisa" type="text" placeholder="Informe o nome do usuário"/>
                 <button onClick={handleClick} type="button">Atualizar lista <AiOutlineRedo size={20} /></button>
-                <Link>
-                    <div>
-                        <Link to="/registrar-paciente">
-                            <AiFillPlusCircle size={60}/>
-                            <Tooltip texto="Cadastrar novo usuário."/>
-                        </Link>
-                    </div>
-                </Link>
+                <div>
+                    <Link to="/registrar-paciente">
+                        <AiFillPlusCircle size={60}/>
+                        <Tooltip texto="Cadastrar novo usuário."/>
+                    </Link>
+                </div>
             </Formulario>
 
             {pacientes.map(paciente => (

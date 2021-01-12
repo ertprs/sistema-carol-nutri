@@ -17,7 +17,7 @@ export default function LandingPage(){
                             <img className="logo" src={logo} alt="Carol-nutricionista"/>
                             <img className="foto" src={foto2} alt="Carol-nutricionista"/>
                         </div>
-                        <div className="conteudo" id="sobre">
+                        <div>
                             <h1>Sobre Carol</h1>
                             <p> Sou Carol Bernardino, tenho 22 anos e escolhi cuidar do próximo através do
                                 alimento desde os 17 anos quando ingressei no curso de nutrição. Atuo na

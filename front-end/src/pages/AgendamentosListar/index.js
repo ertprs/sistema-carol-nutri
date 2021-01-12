@@ -8,7 +8,7 @@ import Logo from '../../assets/logo-branca.svg'
 import {toast} from 'react-toastify'
 import api from "../../services/api"
 import Tooltip from '../../components/tooltip/index'
-import {AiFillPlusCircle, AiOutlineClose} from 'react-icons/ai'
+import {AiFillPlusCircle} from 'react-icons/ai'
 
 import {Container, Time, Loading} from './styles.js'
 import ReactLoading from 'react-loading'
@@ -24,8 +24,20 @@ export default function Scheduling(){
     );
 
     useEffect(async () => {
-        const data = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`
-        console.log(data)
+        setLoading(true)
+
+        var data = ''
+        if(date.getMonth() < 10){
+            data = `${date.getFullYear()}-0${date.getMonth()+1}`
+        }else {
+            data = `${date.getFullYear()}-${date.getMonth()+1}`
+        }
+        if(date.getDate() < 10){
+            data = `${data}-0${date.getDate()}`
+        } else {
+            data = `${data}-${date.getDate()}`
+        }
+
         await api.get(`agendamento/list/${data.toString()}`).then((response) => {
             setSchedule(response.data)
             setLoading(false)
@@ -92,11 +104,11 @@ export default function Scheduling(){
     
                     <ul>
                         { schedule.map(agendamento => (
-                            <Time key={String(agendamento._id)} >
-                                <strong >{agendamento.status ? 'Disponível para agendamento' : 'Não Disponível'}</strong>                        
-                                <span>{agendamento.hours}</span>
-                                <p>{agendamento.note}</p>
-                            </Time>
+                            <div key={String(agendamento._id)} >
+                                {
+                                    agendamento.status ? <Time available ><Link to={`/data/${agendamento._id}`}><strong >{agendamento.status ? 'Disponível para agendamento' : 'Não Disponível'}</strong><span>{agendamento.hours}</span><p>{agendamento.note}</p></Link></Time> : <Time past ><Link to={`/data/${agendamento._id}`}><strong >{agendamento.status ? 'Disponível para agendamento' : 'Não Disponível'}</strong><span>{agendamento.hours}</span><p>{agendamento.note}</p></Link></Time>
+                                }
+                            </div>
                         ))}
                     </ul>
                 </Container>

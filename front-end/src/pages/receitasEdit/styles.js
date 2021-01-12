@@ -103,7 +103,7 @@ export const UsuarioInfo = styled.section`
             align-items: center;
             color: #fff;
             background: #ff6464;
-            font-family: roboto, sans-serif;
+            font-family: roboto;
 
             width: 100px;
             height: 40px;
@@ -122,7 +122,7 @@ export const UsuarioInfo = styled.section`
             align-items: center;
             color: #fff;
             background: #17A2b8;
-            font-family: roboto, sans-serif;
+            font-family: roboto;
 
             width: 100px;
             height: 40px;

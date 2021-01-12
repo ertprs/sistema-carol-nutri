@@ -31,7 +31,7 @@ export const Container = styled.div`
     }
 
     h1 {
-        font-family: roboto, sans-serif;
+        font-family: roboto;
         font-size: 36px;
         color: 3a3a3a;
         max-width: 450px;
@@ -54,7 +54,7 @@ export const Formulario = styled.form`
     display: flex;
 
     input {
-        font-family: Roboto, sans-serif;
+        font-family: roboto;
         color: #3a3a3a;
         flex: 1;
         height: 60px;
@@ -64,7 +64,7 @@ export const Formulario = styled.form`
     }
 
     button {
-        font-family: roboto, sans-serif;
+        font-family: roboto;
         background: #3b9eff;
         width: 210px;
         height: 60px;

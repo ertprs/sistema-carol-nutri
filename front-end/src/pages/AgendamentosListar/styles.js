@@ -1,4 +1,17 @@
-import styled from 'styled-components';
+import styled, { keyframes} from 'styled-components';
+
+
+const DaDireitaParaEsquerda = keyframes`
+    from{
+        opacity: 0;
+        transform: translateX(10%)
+
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0)
+    }
+`
 
 export const Container = styled.div`
     max-width: 60%;
@@ -7,6 +20,8 @@ export const Container = styled.div`
     flex-direction: column;
 
     h2 {
+        animation: ${DaDireitaParaEsquerda} 0.2s;
+
         border-radius: 20px;
         display: flex;
         align-items: center;
@@ -19,7 +34,6 @@ export const Container = styled.div`
 
         &:hover{
             box-shadow: 2px 4px black;
-            
         }
 
     }
@@ -96,28 +110,38 @@ export const Container = styled.div`
 `;
 
 export const Time = styled.li`
+    animation: ${DaDireitaParaEsquerda} 0.2s;
+    min-width: 100%;
     padding: 20px;
-    border-radius: 4px;
+    border-radius: 8px;
     background: #fff;
+
+    a {
+        display: block;
+        text-decoration: none;
+        color: #831e62;
+    }
 
     opacity: ${props => (props.past ? 0.6 : 1)};
 
     strong {
         display: block;
-        color: ${props => (props.available ? '#999' : '#7159c1')};
-        font-size: 20px;
-        font-weight: normal;
+        text-decoration: none;
+        color: ${props => (props.available ? '#831e62' : '#831e62')};
     }
 
     span {
         display: block;
+        text-decoration: none;
         margin-top: 3px;
-        color: ${props => (props.available ? '#999' : '#666')};
+        font-weight: bold;
+        font-size: 18px;
+        color: ${props => (props.available ? '#831e62' : '#831e62')};
     }
 `
 
 export const Loading = styled.div`
-    height: 500px;
+    height: 50%;
 
     display: flex;
     flex-direction column;
