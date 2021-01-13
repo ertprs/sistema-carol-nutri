@@ -28,9 +28,7 @@ export default function HeaderAuth(){
                 <Link className="Link" to="/agendamento-publico">
                     Agendamento
                 </Link>
-                <Link className="Link" to="/#sobre">
-                    Sobre Carol
-                </Link>
+
                 <Link className="Link" to="/receitasPublicos">
                     Receitas
                 </Link>

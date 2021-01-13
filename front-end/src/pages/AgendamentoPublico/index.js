@@ -64,10 +64,6 @@ export default function Scheduling(){
                     <div className="cabe">
                         <img src={Logo} alt="Carol Nutri"/>
                         <h1>Explore o agendamento</h1>
-                        <Link to="/cadastrar-agendamento">
-                            <AiFillPlusCircle size={60}/>
-                            <Tooltip texto="Cadastrar nova data."/>
-                        </Link>
                     </div>
                     <header>
                         <button type="button" onClick={handlePrevDay}> 
