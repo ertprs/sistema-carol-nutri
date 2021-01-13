@@ -25,6 +25,7 @@ import ArtigosPublicos from '../pages/ArtigosPublicos/index'
 import Artigo from '../pages/ArtigosEdit/index'
 
 import Agendamento from "../pages/AgendamentosListar/index"
+import AgendamentoPublico from "../pages/AgendamentoPublico/index"
 import RegisterAgendamentos from "../pages/AgendamentosRegistrar/index"
 import AgendamentoEdit from "../pages/AgendamentoEdit/index"
 
@@ -55,6 +56,7 @@ export default function Routes(){
                 <Route path="/artigo/:artigo" isPrivate component={Artigo} />
 
                 <Route path="/agenda" isPrivate component={Agendamento} />
+                <Route path="/agendamento-publico" component={AgendamentoPublico} />
                 <Route path="/cadastrar-agendamento" isPrivate component={RegisterAgendamentos} />
                 <Route path="/editar-agendamento/:id" isPrivate component={AgendamentoEdit} />
             </Switch>

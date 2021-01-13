@@ -25,7 +25,10 @@ export default function HeaderAuth(){
 
         <ContainerSegundario>
             <nav>
-                <Link className="Link" to="#sobre">
+                <Link className="Link" to="/agendamento-publico">
+                    Agendamento
+                </Link>
+                <Link className="Link" to="/#sobre">
                     Sobre Carol
                 </Link>
                 <Link className="Link" to="/receitasPublicos">

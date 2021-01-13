@@ -38,8 +38,10 @@ export default function Agendamento(){
         if(data.virtualDate == "" || data.hours == "" || data.note == ""){
             toast.info('Campos obrigatórios vazios')
         } else {
+            const vet = data.virtualDate.split('-')
+            const dataFake = `${vet[2]}-${vet[1]}-${vet[0]}`
             await api.put(`agendamento/edit/${agendamento._id}` ,{ 
-                virtualDate: data.virtualDate,
+                virtualDate: dataFake,
                 hours: data.hours,
                 note: data.note,
                 status: data.status,
