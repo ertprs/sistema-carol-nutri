@@ -11,7 +11,11 @@ export const Container = styled.div`
         margin-top:20px;
         width:95%;
         display: flex;
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,500&display=swap');
+
+        img{
+            width:480px;
+            height: 480px;
+        }   
 
         .conteudo {
             width:100%;
@@ -31,8 +35,6 @@ export const Container = styled.div`
                 color: #831e62;
             }
         }
-        
-
     }
 
     .insta {

@@ -20,9 +20,7 @@ export default function LandingPage(){
             <Carousel_/>
                 <Container>
                     <div className="content1">
-                        <div>
-                            <img src={logo} alt="Carol-nutricionista"/>
-                        </div>
+                        <img src={logo} alt="Carol-nutricionista"/>
                         <div className="conteudo">
                             <h1>Sobre Carol</h1>
                             <p> Sou Carol Bernardino, tenho 22 anos e escolhi cuidar do próximo através do
