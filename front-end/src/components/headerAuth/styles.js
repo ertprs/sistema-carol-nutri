@@ -25,6 +25,10 @@ export const ContainerSegundario = styled.div`
             margin 0px 5%;
             border-bottom: 0;
             text-decoration: none;
+
+            @media(max-width: 800px) {
+                font-size: 10px;
+            }
         }
 
         .Link {
@@ -47,6 +51,10 @@ export const Content = styled.div`
     justify-content: space-between;
     align-items: center;
 
+    @media(max-width: 800px) {
+        height: 32px;
+    }
+
     nav {
         background: #fff;
         display: flex;
@@ -57,6 +65,10 @@ export const Content = styled.div`
             height: 64px;
             margin-right: 2px;
             padding-right: 2px;
+
+            @media(max-width: 800px) {
+                height: 32px;
+            }
         }
 
         a {
@@ -102,16 +114,28 @@ export const Profile = styled.div`
             border-bottom: 4px solid#fff;
             padding: 20px 0;
             margin: 0 20px;
+
+            @media(max-width: 800px) {
+                font-size: 14px;
+                padding: 10px 0;
+                margin: 0 10px;
+            }
           }
           .link-1:hover {
             border-top: 4px solid #831e62;
             border-bottom: 4px solid #831e62;
-            padding: 6px 0; 
+            padding: 6px 0;
+
           }
     }
 
     img {
         height: 40px;
         border-radius: 100%;
+
+        
+        @media(max-width: 800px) {
+            height: 20px;
+        }
     }
 `

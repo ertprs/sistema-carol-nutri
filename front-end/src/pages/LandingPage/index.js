@@ -10,6 +10,7 @@ import foto4 from '../../assets/nutri2.jpg'
 import foto5 from '../../assets/Loc.jpg'
 import foto6 from '../../assets/Loc1.jpg'
 import Logo1 from '../../assets/logo.svg'
+import Logo2 from '../../assets/logo_insta.png'
 import { GoLocation } from "react-icons/go";
 
 import {Container} from './styles'
@@ -44,6 +45,9 @@ export default function LandingPage(){
                         </div>
                     </div>
                     <a className="insta"  href="https://www.instagram.com/carolbl_/?hl=pt-br" target="_blank">
+                        <nav>
+                            <img src={Logo2} alt="Carol-nutricionista"/>
+                        </nav>
                         <div className="perfil" >
                             <img src={foto4} alt="Carol-nutricionista"/>
                             <div className="cabec">

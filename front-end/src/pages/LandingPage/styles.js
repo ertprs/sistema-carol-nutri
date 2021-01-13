@@ -11,20 +11,37 @@ export const Container = styled.div`
         margin-top:20px;
         width:95%;
         display: flex;
+        
+        @media(max-width: 800px) {
+            flex-direction: column;
+            position: relative;
+        }
 
         img{
-            width:480px;
-            height: 480px;
+            width:30%;
+            height: 30%;
+            @media(max-width: 800px) {
+                width:60%;
+                height: 60%;
+            }
         }   
 
         .conteudo {
             width:100%;
             display: flex;
             flex-direction: column;
+            
             p{
                 text-align: justify;
                 font-size: 20px;
                 align: center;
+
+                @media(max-width: 800px) {
+                    text-align: justify;
+                    font-size: 10px;
+                    align: center;
+                    padding:10px;
+                }
             }
             h1 {
                 font-family: roboto;
@@ -38,15 +55,30 @@ export const Container = styled.div`
     }
 
     .insta {
+        background: #fafafa;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
-        width: 80%;
+        width: 100%;
         text-decoration: none;
-        color: #C0C0C0	;
+        color: #A9A9A9;
         transition: 0.5s;
         margin-bottom: 100px;
         margin-top: 45px;
+
+        nav {
+            width:100%;
+            background: #FFFFFF;
+            padding: 15px 0 15px 0;
+            border-top: solid 2px rgba(150,150,150,0.5);
+            border-opacity: 0.9;
+
+            img{
+                margin-left: 4%;
+                width:10%;
+                height: 10%;
+            }
+        }
 
         &:hover{
             color: #831e62;
@@ -56,21 +88,39 @@ export const Container = styled.div`
             display: flex;
 
             img{
-                margin: 15px;
-                width:150px;
-                height: 150px;
+                margin: 2%;
+                width:15%;
+                height: 15%;
                 border-radius: 50%;
                 border-style: groove;
+
+                @media(max-width: 800px) {
+                    width:20%;
+                    height: 20%;
+                }
             }
 
             .cabec {
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+
                 span {
-                    margin: 25px;
+                    margin-bottom: 5%;
+                    margin-left: 8%;
                     font-size: 28px;
+
+                    @media(max-width: 800px) {
+                        font-size: 18px;
+                    }
                 }
                 p {
-                    margin: 25px;
+                    margin-left: 8%;
                     font-size: 20px;
+
+                    @media(max-width: 800px) {
+                        font-size: 10px;
+                    }
     
                     strong {
                         color: #831e62;
@@ -87,9 +137,9 @@ export const Container = styled.div`
             
             
             img {
-                width: 320px;
-                height: 320px;
-                margin: 15px;
+                width: 30%;
+                height: 30%;
+                margin: 0.5%px;
             }
         }
     }
@@ -109,8 +159,15 @@ export const Container = styled.div`
 
         .imagesLoc{
             display: flex;
+            justify-content: center;
             margin:auto;
             padding: 0;
+
+            img{
+                width: 40%;
+                height: 40%;
+                margin:0;
+            }
 
         }
 
@@ -135,13 +192,47 @@ export const Container = styled.div`
 
                 h1 {
                     margin: 0;
-        
+                    @media(max-width: 800px) {
+                        font-size: 20px;
+                    }
                 }
 
                 img {
                     height: 75px;
                     margin: 0;
                     align-item: center;
+                    @media(max-width: 800px) {
+                        height: 45px;
+                    }
+                }
+            }
+
+            .end{
+
+                strong{
+                    font-size: 20px;
+                    @media(max-width: 800px) {
+                        font-size: 10px;
+                    }
+                }
+                p{
+                    font-size: 20px;
+                    @media(max-width: 800px) {
+                        font-size: 10px;
+                    }
+                }
+
+                span{
+                    font-size: 20px;
+                    @media(max-width: 800px) {
+                        font-size: 10px;
+                    }
+                }
+
+                svg {
+                    @media(max-width: 800px) {
+                        height: 10px;
+                    }
                 }
             }
 
