@@ -98,7 +98,7 @@ export default function Scheduling(){
                         { schedule.map(agendamento => (
                             <div key={String(agendamento._id)} >
                                 {
-                                    agendamento.status ? <Time available ><a href={`https://api.whatsapp.com/send?phone=+558494794472&text=Olá Carol. Vi em seu sistema que você possuí disponibilidade de consulta online para o dia ${agendamento.virtualDate.replace("-", "/")} às ${agendamento.hours}. Gostaria de marcar uma consulta nesta data e horário.%20`} target="_blank"><strong >{agendamento.status ? 'Disponível para agendamento' : 'Não Disponível'}</strong><span>{agendamento.hours}</span><p>Click para agendar uma consulta</p></a></Time> : <Time past ><strong >{agendamento.status ? 'Disponível para agendamento' : 'Não Disponível'}</strong><span>{agendamento.hours}</span><p>Horário agendado com um paciente</p></Time>
+                                    agendamento.status ? <Time available ><a href={`https://api.whatsapp.com/send?phone=+558494794472&text=Olá Carol. Vi em seu sistema que você possuí disponibilidade de consulta online para o dia ${agendamento.virtualDate.replace("-", "/").replace("-", "/")} às ${agendamento.hours}. Gostaria de marcar uma consulta nesta data e horário.%20`} target="_blank"><strong >{agendamento.status ? 'Disponível para agendamento' : 'Não Disponível'}</strong><span>{agendamento.hours}</span><p>Click para agendar uma consulta</p></a></Time> : <Time past ><strong >{agendamento.status ? 'Disponível para agendamento' : 'Não Disponível'}</strong><span>{agendamento.hours}</span><p>Horário agendado com um paciente</p></Time>
                                 }
                             </div>
                         ))}
