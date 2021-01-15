@@ -14,7 +14,7 @@ const DaDireitaParaEsquerda = keyframes`
 `
 
 export const Container = styled.div`
-    max-width: 60%;
+    max-width: 80%;
     margin: 50px auto;
     display: flex;
     flex-direction: column;
@@ -81,6 +81,10 @@ export const Container = styled.div`
             color: #fff;
             margin: 0;
 
+            @media(max-width: 800px) {
+                font-size: 20px;
+                margin: 0 7px;
+            }
         }
     }
     
@@ -98,6 +102,12 @@ export const Container = styled.div`
             color: #fff;
             font-size: 24px;
             margin: 0 15px;
+
+            @media(max-width: 800px) {
+                font-size: 16px;
+                margin: 0 7px;
+            }
+            
         }
     }
 
@@ -116,6 +126,11 @@ export const Time = styled.li`
     border-radius: 8px;
     background: #fff;
 
+
+    @media(max-width: 800px) {
+        padding: 10px;
+    }
+
     a {
         display: block;
         text-decoration: none;
@@ -128,6 +143,9 @@ export const Time = styled.li`
         display: block;
         text-decoration: none;
         color: ${props => (props.available ? '#831e62' : '#831e62')};
+        @media(max-width: 800px) {
+            font-size: 10px;
+        }
     }
 
     span {
@@ -136,7 +154,15 @@ export const Time = styled.li`
         margin-top: 3px;
         font-weight: bold;
         font-size: 18px;
+        @media(max-width: 800px) {
+            font-size: 10px;
+        }
         color: ${props => (props.available ? '#831e62' : '#831e62')};
+    }
+    p{
+        font-size: 16px;
+        @media(max-width: 800px) {
+            font-size: 10px;
     }
 `
 

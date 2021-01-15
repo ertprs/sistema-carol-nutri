@@ -350,7 +350,60 @@ export default function Paciente(){
     
                         <h5>10.1. PREFERÊNCIAS E AVERSÕES</h5>
                         <hr/>
-    
+
+                        <h5>10.2. ALTERAÇÕES DA INGESTÃO ALIMENTAR</h5>
+                        <div>
+                            <div>
+                            <Textarea label="Inapetência" id="Inapetência" name="frequencyBeverage" rows="6" cols="30">
+                                </Textarea>
+                            </div>
+                            <div>
+                                <Textarea label="Hiperfagia" id="frequencyBeverage" name="frequencyBeverage" rows="6" cols="30">
+                                </Textarea>
+                            </div>
+                        </div>
+                        <hr/>
+
+                        <h4>11. AVALIAÇÃO ANTROPOMETRICA</h4>
+                        <div>
+                            <div>
+                                <Input label="Circunferência da cintura" type="Number" max="400" min="0" step="0.1" name="waist" placeholder="Em cetímetros" />
+                            </div>
+                            <div>
+                                <Input label="Circunferência do braço" type="Number" max="400" min="0" step="0.1" name="arm" placeholder="Em cetímetros" />
+                            </div>
+                            <div>
+                                <Input label="Circunferência do quadril" type="Number" max="400" min="0" step="0.1" name="hip" placeholder="Em cetímetros" />
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <Input label="Dobra cutânea tricipital" type="Number" max="400" min="0" step="0.1" name="tricepsSkinfold" placeholder="Em cetímetros" />
+                            </div>
+                            <div>
+                                <Input label="Dobra cutânea axilar média" type="Number" max="400" min="0" step="0.1" name="mediumAxillarySkinfold" placeholder="Em cetímetros" />
+                            </div>
+                            <div>
+                                <Input label="Dobra cutânea peitoral" type="Number" max="400" min="0" step="0.1" name="breastplateSkinfold" placeholder="Em cetímetros" />
+                            </div>
+                            <div>
+                                <Input label="Dobra cutânea suprailíaca" type="Number" max="400" min="0" step="0.1" name="suprailiacSkinfold" placeholder="Em cetímetros" />
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <Input label="Dobra cutânea subescapular" type="Number" max="400" min="0" step="0.1" name="subscapularSkinfold" placeholder="Em cetímetros" />
+                            </div>
+                            <div>
+                                <Input label="Dobra cutânea bicipital" type="Number" max="400" min="0" step="0.1" name="bicepsSkinfold" placeholder="Em cetímetros" />
+                            </div>
+                            <div>
+                                <Input label="Dobra cutânea abdominal" type="Number" max="400" min="0" step="0.1" name="abdominalSkinfold" placeholder="Em cetímetros" />
+                            </div>
+                            <div>
+                                <Input label="Dobra cutânea coxa" type="Number" max="400" min="0" step="0.1" name="thighSkinfold" placeholder="Em cetímetros" />
+                            </div>
+                        </div>
                         <button className="Salve" type="submit" onSubmit={e => { e.preventDefault()}} >Cadastrar dados</button>
                     </Form>
                 </MedicalInfo>
