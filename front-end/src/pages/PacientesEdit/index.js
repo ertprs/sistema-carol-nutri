@@ -79,7 +79,8 @@ export default function Paciente(){
             schedules: data.schedules,
             dietaryEvaluation: data.dietaryEvaluation,
             preferencesAndAversions: data.preferencesAndAversions,
-            anthropometricEvaluation: data.anthropometricEvaluation
+            anthropometricEvaluation: data.anthropometricEvaluation,
+            consultaDate: data.consultaDate
 
         }).then((response) => {
             setEdit(true)
@@ -135,138 +136,148 @@ export default function Paciente(){
                 <MedicalInfo>
                     <Form onSubmit={handleSubmitRegister}>
                         <h4>1. INFORMAÇÕES PESSOAIS</h4>
-                        <div name="PersonalInformation">
+                        <Scope path="PersonalInformation">
                             <div>
-                                <Input label="Data de nascimento" type="date" name="dateBirth" placeholder="Data de nascimento" />
+                                <div>
+                                    <Input label="Data de nascimento" type="date" name="dateBirth" placeholder="Data de nascimento" required/>
+                                </div>
+                                <div>
+                                    <Select label="Estado civil" name="maritalStatus" id="maritalStatus" options={[{id: "solteiro", title: 'Solteiro'}, {id: "casado", title: 'Casado'}, {id: "divorciado", title: 'Divorciado'}]} placeholder="Selecione uma opção"/>  
+                                </div>
+                                <div>
+                                    <Input label="Peso" type="Number" max="400" min="0" step="0.1" name="Weight" placeholder="Peso em kg" required/>
+                                </div>
+                                <div>
+                                    <Input label="Altura" type="Number" max="3.00" min="0" step="0.01" name="height" placeholder="Altura em metros" required/>
+                                </div>               
                             </div>
+        
                             <div>
-                                <Select label="Estado civil" name="maritalStatus" id="maritalStatus" options={[{id: "solteiro", title: 'Solteiro'}, {id: "casado", title: 'Casado'}, {id: "divorciado", title: 'Divorciado'}]} placeholder="Selecione uma opção"/>  
+                                <div>
+                                    <Input label="Profissão" type="text" name="profession" placeholder="Profissão" />
+                                </div>  
+                                <div>
+                                    <Select label="Trânsito intestinal" name="IntestinalTransit" id="IntestinalTransit" options={[{id: "1", title: '1'}, {id: "2", title: '2'}, {id: "3", title: '3'}, {id: "4", title: '4'}, {id: "5", title: '5'}, {id: "6", title: '6'}, {id: '7', title: '7'}]} placeholder="Selecione uma opção" /> 
+                                </div>
+                                <div>
+                                    <Select label="Escala urinária" name="UrinaryStaining" id="UrinaryStaining" options={[{id: "1", title: '1'}, {id: "2", title: '2'}, {id: "3", title: '3'}, {id: "4", title: '4'}, {id: "5", title: '5'}, {id: "6", title: '6'}, {id: '7', title: '7'}, {id: '8', title: '8'}]} placeholder="Selecione uma opção" />
+                                </div>
+                                <div>
+                                    <Select label="Gênero fisiológico" name="genre" id="genre" options={[{id: "Mulher", title: 'Mulher'}, {id: "Homem", title: 'Homem'}]} placeholder="Selecione uma opção" required/>
+                                </div>
+                                <div>
+                                    <Select label="Qualidade do sono" name="sleepQuality" id="sleepQuality" options={[{id: "Ruim", title: 'Ruim'}, {id: "Bom", title: 'Bom'}]} placeholder="Selecione uma opção" />
+                                </div>
                             </div>
+        
                             <div>
-                                <Input label="Peso" type="Number" max="400" min="0" step="0.1" name="Weight" placeholder="Peso em kg" />
+                                <div>
+                                    <Textarea label="Histórico clínico" id="clinicalHistory" name="clinicalHistory" rows="6" cols="30">
+                                    </Textarea>
+                                </div>
+        
+                                <div>
+                                    <Textarea label="Objetivo" id="objective" name="objective" rows="6" cols="30">
+                                    </Textarea>
+                                </div>
                             </div>
-                            <div>
-                                <Input label="Altura" type="Number" max="3.00" min="0" step="0.01" name="height" placeholder="Altura em metros" />
-                            </div>               
-                        </div>
-    
-                        <div>
-                            <div>
-                                <Input label="Profissão" type="text" name="profession" placeholder="Profissão" />
-                            </div>  
-                            <div>
-                                <Select label="Trânsito intestinal" name="IntestinalTransit" id="IntestinalTransit" options={[{id: "1", title: '1'}, {id: "2", title: '2'}, {id: "3", title: '3'}, {id: "4", title: '4'}, {id: "5", title: '5'}, {id: "6", title: '6'}, {id: '7', title: '7'}]} placeholder="Selecione uma opção" /> 
-                            </div>
-                            <div>
-                                <Select label="Escala urinária" name="UrinaryStaining" id="UrinaryStaining" options={[{id: "1", title: '1'}, {id: "2", title: '2'}, {id: "3", title: '3'}, {id: "4", title: '4'}, {id: "5", title: '5'}, {id: "6", title: '6'}, {id: '7', title: '7'}, {id: '8', title: '8'}]} placeholder="Selecione uma opção" />
-                            </div>
-                            <div>
-                                <Select label="Gênero fisiológico" name="genre" id="genre" options={[{id: "Mulher", title: 'Mulher'}, {id: "Homem", title: 'Homem'}]} placeholder="Selecione uma opção" />
-                            </div>
-                            <div>
-                                <Select label="Qualidade do sono" name="sleepQuality" id="sleepQuality" options={[{id: "Ruim", title: 'Ruim'}, {id: "Bom", title: 'Bom'}]} placeholder="Selecione uma opção" />
-                            </div>
-                        </div>
-    
-                        <div>
-                            <div>
-                                <Textarea label="Histórico clínico" id="clinicalHistory" name="clinicalHistory" rows="6" cols="30">
-                                </Textarea>
-                            </div>
-    
-                            <div>
-                                <Textarea label="Objetivo" id="objective" name="objective" rows="6" cols="30">
-                                </Textarea>
-                            </div>
-                        </div>
+                        </Scope>
                         <hr/>
     
                         <h4>2. SEMIOLOGIA NUTRICIONAL</h4>
-    
-                        <h5>2.1 ALTERAÇÃO DE PESO</h5>
-                        <div>
-                            <div>
-                                <Select label="Tipo" name="kgChanges" id="kgChanges" options={[{id: "PerdaPeso", title: 'Perda de Peso'}, {id: "GanhoPeso", title: 'Ganho de Peso'}]} placeholder="Selecione uma opção" placeholder="Selecione uma opção"/>
-                            </div>
-                            <div>
-                                <Input label="Quantidade" type="Number" max="400" step="0.1" name="obsWeight" placeholder="Peso em kg" />
-                            </div>               
-                        </div>
-    
-                        <h5>2.2 EXAME FÍSICO</h5>
-                        <div>
-                            <div>
-                                <Check label="Pele ressecada"  id="drySkin" name="drySkin" />
-                            </div>
-    
-                            <div>
-                                <Check label="Umidade das mucosas"  id="mucousMoisture" name="mucousMoisture"/>
-                            </div>
-                            <div>
-                                <Check label="Queda de cabelo"  id="lossOfHair" name="lossOfHair"/>
-                            </div>
-                        </div>
-                        <div>
-                            <div>
-                                <Check label="Edema"  id="edema" name="edema"/>
-                            </div>
-                            <div>
-                                <Check label="Fraqueza" id="weakness" name="weakness"/>
-                            </div>
-                            <div>
-                                <Check label="Palidez conjutival" defaultChecked="sim" id="conjunctivalPallor" name="conjunctivalPallor"/>
-                            </div>
-                            <div>
-                                <Check label="Unhas quebradiças" id="koilonychicNails" name="koilonychicNails"/>
-                            </div>
-                        </div>
-                        <div>
-                            <div>
-                                <Textarea label="Observação" id="obsPhysicalExam" name="obsPhysicalExam" rows="6" cols="30">
-                                </Textarea>
-                            </div>
-                        </div>
-    
-                        <h5>2.3 ALTERAÇÃO NO APARELHO DIGESTIVO</h5>
-                        <div>
-                            <div>
-                                <Check label="Má digestão" id="dyspepsia" name="dyspepsia" />
-                            </div>
-    
-                            <div>
-                                <Check label="Dores estomacais" id="stomachPains" name="stomachPains"/>
-                            </div>
-                            <div>
-                                <Check label="Nauseas" id="nausea" name="nausea"/>
-                            </div>
-    
-                            <div>
-                                <Check label="Vômitos" id="vomiting" name="vomiting"/>
-                            </div>
-                            <div>
-                                <Check label="Dificuldade de engolir" id="dysphagia" name="dysphagia"/>
-                            </div>
-                        </div>
-                        <div>
-                            <div>
-                                <Textarea label="Observação" id="obsDisgestiveSystem" name="obsDisgestiveSystem" rows="6" cols="30">
-                                </Textarea>
-                            </div>
-                        </div>
-    
-                        <h5>2.4 ALTERAÇÕES INTESTINAIS</h5>
-                        <div>
-                            <div>
-                                <Check label="Diarreia" id="diarreia" name="diarreia"/>
-                            </div>
-                            <div>
-                                <Check label="Constipação" id="cold" name="cold"/>
-                            </div>
-                            <div>
-                                <Textarea label="Observação" id="obsIntestinalChanges" name="obsIntestinalChanges" rows="6" cols="30">
-                                </Textarea>
-                            </div>
-                        </div>
+                        <Scope path="nutritionalSemiology">
+                            <h5>2.1 ALTERAÇÃO DE PESO</h5>
+                            <Scope path="weightChanges">
+                                <div>
+                                    <div>
+                                        <Select label="Tipo" name="kgChanges" id="kgChanges" options={[{id: "PerdaPeso", title: 'Perda de Peso'}, {id: "GanhoPeso", title: 'Ganho de Peso'}]} placeholder="Selecione uma opção" placeholder="Selecione uma opção"/>
+                                    </div>
+                                    <div>
+                                        <Input label="Quantidade" type="Number" max="400" step="0.1" name="obsWeight" placeholder="Peso em kg" />
+                                    </div>               
+                                </div>
+                            </Scope>
+        
+                            <Scope path="physicalExam">
+                                <h5>2.2 EXAME FÍSICO</h5>
+                                <div>
+                                    <div>
+                                        <Check label="Pele ressecada"  id="drySkin" name="drySkin" />
+                                    </div>
+            
+                                    <div>
+                                        <Check label="Umidade das mucosas"  id="mucousMoisture" name="mucousMoisture"/>
+                                    </div>
+                                    <div>
+                                        <Check label="Queda de cabelo"  id="lossOfHair" name="lossOfHair"/>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div>
+                                        <Check label="Edema"  id="edema" name="edema"/>
+                                    </div>
+                                    <div>
+                                        <Check label="Fraqueza" id="weakness" name="weakness"/>
+                                    </div>
+                                    <div>
+                                        <Check label="Palidez conjutival" defaultChecked="sim" id="conjunctivalPallor" name="conjunctivalPallor"/>
+                                    </div>
+                                    <div>
+                                        <Check label="Unhas quebradiças" id="koilonychicNails" name="koilonychicNails"/>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div>
+                                        <Textarea label="Observação" id="obsPhysicalExam" name="obsPhysicalExam" rows="6" cols="30">
+                                        </Textarea>
+                                    </div>
+                                </div>
+                            </Scope>
+                            <h5>2.3 ALTERAÇÃO NO APARELHO DIGESTIVO</h5>
+
+                            <Scope path="disgestiveSystem">
+                                <div>
+                                    <div>
+                                        <Check label="Má digestão" id="dyspepsia" name="dyspepsia" />
+                                    </div>
+            
+                                    <div>
+                                        <Check label="Dores estomacais" id="stomachPains" name="stomachPains"/>
+                                    </div>
+                                    <div>
+                                        <Check label="Nauseas" id="nausea" name="nausea"/>
+                                    </div>
+            
+                                    <div>
+                                        <Check label="Vômitos" id="vomiting" name="vomiting"/>
+                                    </div>
+                                    <div>
+                                        <Check label="Dificuldade de engolir" id="dysphagia" name="dysphagia"/>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div>
+                                        <Textarea label="Observação" id="obsDisgestiveSystem" name="obsDisgestiveSystem" rows="6" cols="30">
+                                        </Textarea>
+                                    </div>
+                                </div>
+                            </Scope>
+                            <h5>2.4 ALTERAÇÕES INTESTINAIS</h5>
+                            <Scope path="intestinalChanges">
+                                <div>
+                                    <div>
+                                        <Check label="Diarreia" id="diarreia" name="diarreia"/>
+                                    </div>
+                                    <div>
+                                        <Check label="Constipação" id="cold" name="cold"/>
+                                    </div>
+                                    <div>
+                                        <Textarea label="Observação" id="obsIntestinalChanges" name="obsIntestinalChanges" rows="6" cols="30">
+                                        </Textarea>
+                                    </div>
+                                </div>
+                            </Scope>
+                        </Scope>
                         <hr/>
     
                         <h4>3. CONSUMO DE ÁGUA</h4>
@@ -279,52 +290,58 @@ export default function Paciente(){
                         <hr/>
         
                         <h4>4. ALERGIAS E INTOLERÂNCIAS</h4>
-                        <div>
+                        <Scope path="allergiesAndIntolerances">
                             <div>
-                                <Textarea label="Alergia alimentar" id="foodAllergy" name="foodAllergy" rows="6" cols="30">
-                                </Textarea>
+                                <div>
+                                    <Textarea label="Alergia alimentar" id="foodAllergy" name="foodAllergy" rows="6" cols="30">
+                                    </Textarea>
+                                </div>
+        
+                                <div>
+                                    <Textarea label="Outras alergias" id="otherAllergies" name="otherAllergies" rows="6" cols="30">
+                                    </Textarea>
+                                </div>
+        
+                                <div>
+                                    <Textarea label="Intolerâncias" id="intolerances" name="intolerances" rows="6" cols="30">
+                                    </Textarea>
+                                </div>
                             </div>
-    
-                            <div>
-                                <Textarea label="Outras alergias" id="otherAllergies" name="otherAllergies" rows="6" cols="30">
-                                </Textarea>
-                            </div>
-    
-                            <div>
-                                <Textarea label="Intolerâncias" id="intolerances" name="intolerances" rows="6" cols="30">
-                                </Textarea>
-                            </div>
-                        </div>
+                        </Scope>
                         <hr/>
     
                         <h4>5. USO DE MEDICAMENTOS/SUPLEMENTOS</h4>
                         <hr/>
     
                         <h4>6. ATIVIDADE FÍSICA</h4>
-                        <div>
+                        <Scope path="physicalActivity">
                             <div>
-                                <Check label="Pratica atividade física" id="physicalActivityYesNo" name="physicalActivityYesNo"/>
+                                <div>
+                                    <Check label="Pratica atividade física" id="physicalActivityYesNo" name="physicalActivityYesNo"/>
+                                </div>
+                                <div>
+                                    <Textarea label="Descrição da frequência" id="frequencyActivity" name="frequencyActivity" rows="6" cols="30">
+                                    </Textarea>
+                                </div>
                             </div>
-                            <div>
-                                <Textarea label="Descrição da frequência" id="frequencyActivity" name="frequencyActivity" rows="6" cols="30">
-                                </Textarea>
-                            </div>
-                        </div>
+                        </Scope>
                         <hr/>
     
                         <h4>7. BEBIDA ALCOÓLICA</h4>
-                        <div>
+                        <Scope path="physicalActivity">
                             <div>
-                                <Check label="Ingestão de bebida alcoólica" id="yesNoBeverage" name="yesNoBeverage"/>
+                                <div>
+                                    <Check label="Ingestão de bebida alcoólica" id="yesNoBeverage" name="yesNoBeverage"/>
+                                </div>
+                                <div>
+                                    <Textarea label="Descrição da frequência" id="frequencyBeverage" name="frequencyBeverage" rows="6" cols="30">
+                                    </Textarea>
+                                </div>
                             </div>
-                            <div>
-                                <Textarea label="Descrição da frequência" id="frequencyBeverage" name="frequencyBeverage" rows="6" cols="30">
-                                </Textarea>
-                            </div>
-                        </div>
+                        </Scope>
                         <hr/>
     
-                        <h4>8. TABAGISMO</h4>
+                        <h4>8. TABAGISMO</h4>                    
                         <div>
                             <div>
                                 <Check label="Fumante" id="smoking" name="smoking"/>
@@ -333,17 +350,19 @@ export default function Paciente(){
                         <hr/>
     
                         <h4>9. HORÁRIOS</h4>
-                        <div>
+                        <Scope path="physicalActivity">
                             <div>
-                                <Input label="Acorda às" type="time" name="wakeUp" />
+                                <div>
+                                    <Input label="Acorda às" type="time" name="wakeUp" />
+                                </div>
+                                <div>
+                                    <Input label="Dorme às" type="time" name="profession" />
+                                </div>
+                                <div>
+                                    <Input label="Atividade física às" type="time" name="physicalActivity" />
+                                </div> 
                             </div>
-                            <div>
-                                <Input label="Dorme às" type="time" name="profession" />
-                            </div>
-                            <div>
-                                <Input label="Atividade física às" type="time" name="physicalActivity" />
-                            </div> 
-                        </div>
+                        </Scope>
                         <hr/>
     
                         <h4>10. AVALIAÇÃO DIETÉTICA</h4>
@@ -352,56 +371,88 @@ export default function Paciente(){
                         <hr/>
 
                         <h5>10.2. ALTERAÇÕES DA INGESTÃO ALIMENTAR</h5>
-                        <div>
+                        <Scope path="foodIngestion">
                             <div>
-                            <Textarea label="Inapetência" id="Inapetência" name="frequencyBeverage" rows="6" cols="30">
-                                </Textarea>
+                                <div>
+                                <Textarea label="Inapetência" id="Inapetência" name="frequencyBeverage" rows="6" cols="30">
+                                    </Textarea>
+                                </div>
+                                <div>
+                                    <Textarea label="Hiperfagia" id="frequencyBeverage" name="frequencyBeverage" rows="6" cols="30">
+                                    </Textarea>
+                                </div>
                             </div>
-                            <div>
-                                <Textarea label="Hiperfagia" id="frequencyBeverage" name="frequencyBeverage" rows="6" cols="30">
-                                </Textarea>
-                            </div>
-                        </div>
+                        </Scope>
                         <hr/>
 
                         <h4>11. AVALIAÇÃO ANTROPOMETRICA</h4>
+                        <Scope path="anthropometricEvaluation">
+                            <div>
+                                <div>
+                                    <Input label="Paramêtros" type="date" name="date" placeholder="Data" />
+                                </div>
+                            </div>
+                            <div>
+                                <div>
+                                    <Input label="Dobra cutânea torácica" type="Number" max="400" min="0" step="0.1" name="ThoracicSkinfold" placeholder="Em cetímetros" />
+                                </div>
+                                <div>
+                                    <Input label="Circunferência da cintura" type="Number" max="400" min="0" step="0.1" name="waist" placeholder="Em cetímetros" />
+                                </div>
+                                <div>
+                                    <Input label="Circunferência do braço" type="Number" max="400" min="0" step="0.1" name="arm" placeholder="Em cetímetros" />
+                                </div>
+                                <div>
+                                    <Input label="Circunferência do quadril" type="Number" max="400" min="0" step="0.1" name="hip" placeholder="Em cetímetros" />
+                                </div>
+                            </div>
+                            <div>
+                                <div>
+                                    <Input label="Dobra cutânea tricipital" type="Number" max="400" min="0" step="0.1" name="tricepsSkinfold" placeholder="Em cetímetros" />
+                                </div>
+                                <div>
+                                    <Input label="Dobra cutânea axilar média" type="Number" max="400" min="0" step="0.1" name="mediumAxillarySkinfold" placeholder="Em cetímetros" />
+                                </div>
+                                <div>
+                                    <Input label="Dobra cutânea peitoral" type="Number" max="400" min="0" step="0.1" name="breastplateSkinfold" placeholder="Em cetímetros" />
+                                </div>
+                                <div>
+                                    <Input label="Dobra cutânea suprailíaca" type="Number" max="400" min="0" step="0.1" name="suprailiacSkinfold" placeholder="Em cetímetros" />
+                                </div>
+                            </div>
+                            <div>
+                                <div>
+                                    <Input label="Dobra cutânea subescapular" type="Number" max="400" min="0" step="0.1" name="subscapularSkinfold" placeholder="Em cetímetros" />
+                                </div>
+                                <div>
+                                    <Input label="Dobra cutânea bicipital" type="Number" max="400" min="0" step="0.1" name="bicepsSkinfold" placeholder="Em cetímetros" />
+                                </div>
+                                <div>
+                                    <Input label="Dobra cutânea abdominal" type="Number" max="400" min="0" step="0.1" name="abdominalSkinfold" placeholder="Em cetímetros" />
+                                </div>
+                                <div>
+                                    <Input label="Dobra cutânea coxa" type="Number" max="400" min="0" step="0.1" name="thighSkinfold" placeholder="Em cetímetros" />
+                                </div>
+                            </div>
+                            <div>
+                                <div>
+                                    <Input label="Dobra cutânea panturrilha" type="Number" max="400" min="0" step="0.1" name="calfSkinfold" placeholder="Em cetímetros" />
+                                </div>
+                                <div>
+                                    <Input label="Panturrilha" type="Number" max="400" min="0" step="0.1" name="calf" placeholder="Em cetímetros" />
+                                </div>
+                                <div>
+                                    <Input label="Nível de atividade física" type="Number" max="400" min="0" step="0.1" name="NAF" placeholder="Em cetímetros"/>
+                                </div>
+                                <div>
+                                    <Input label="Peso atual" type="Number" max="400" min="0" step="0.1" name="NAF" placeholder="Em kg"/>
+                                </div>
+                            </div>
+                        </Scope>
+                        <hr/>
                         <div>
                             <div>
-                                <Input label="Circunferência da cintura" type="Number" max="400" min="0" step="0.1" name="waist" placeholder="Em cetímetros" />
-                            </div>
-                            <div>
-                                <Input label="Circunferência do braço" type="Number" max="400" min="0" step="0.1" name="arm" placeholder="Em cetímetros" />
-                            </div>
-                            <div>
-                                <Input label="Circunferência do quadril" type="Number" max="400" min="0" step="0.1" name="hip" placeholder="Em cetímetros" />
-                            </div>
-                        </div>
-                        <div>
-                            <div>
-                                <Input label="Dobra cutânea tricipital" type="Number" max="400" min="0" step="0.1" name="tricepsSkinfold" placeholder="Em cetímetros" />
-                            </div>
-                            <div>
-                                <Input label="Dobra cutânea axilar média" type="Number" max="400" min="0" step="0.1" name="mediumAxillarySkinfold" placeholder="Em cetímetros" />
-                            </div>
-                            <div>
-                                <Input label="Dobra cutânea peitoral" type="Number" max="400" min="0" step="0.1" name="breastplateSkinfold" placeholder="Em cetímetros" />
-                            </div>
-                            <div>
-                                <Input label="Dobra cutânea suprailíaca" type="Number" max="400" min="0" step="0.1" name="suprailiacSkinfold" placeholder="Em cetímetros" />
-                            </div>
-                        </div>
-                        <div>
-                            <div>
-                                <Input label="Dobra cutânea subescapular" type="Number" max="400" min="0" step="0.1" name="subscapularSkinfold" placeholder="Em cetímetros" />
-                            </div>
-                            <div>
-                                <Input label="Dobra cutânea bicipital" type="Number" max="400" min="0" step="0.1" name="bicepsSkinfold" placeholder="Em cetímetros" />
-                            </div>
-                            <div>
-                                <Input label="Dobra cutânea abdominal" type="Number" max="400" min="0" step="0.1" name="abdominalSkinfold" placeholder="Em cetímetros" />
-                            </div>
-                            <div>
-                                <Input label="Dobra cutânea coxa" type="Number" max="400" min="0" step="0.1" name="thighSkinfold" placeholder="Em cetímetros" />
+                                <Input label="Data da consulta" type="date" name="consultaDate" disabled />
                             </div>
                         </div>
                         <button className="Salve" type="submit" onSubmit={e => { e.preventDefault()}} >Cadastrar dados</button>
@@ -764,6 +815,163 @@ export default function Paciente(){
     
                         <h5>10.1. PREFERÊNCIAS E AVERSÕES</h5>
                         <hr/>
+
+                        <h5>10.2. ALTERAÇÕES DA INGESTÃO ALIMENTAR</h5>
+                        <Scope path="foodIngestion">
+                            <div>
+                                <div>
+                                    {
+                                        edit ? <Textarea label="Inapetência" id="Inapetência" name="frequencyBeverage" rows="6" cols="30" disabled></Textarea> : <Textarea label="Inapetência" id="Inapetência" name="frequencyBeverage" rows="6" cols="30"></Textarea>
+                                    }
+                                </div>
+                                <div>
+                                    {
+                                        edit ? <Textarea label="Hiperfagia" id="frequencyBeverage" name="frequencyBeverage" rows="6" cols="30" disabled></Textarea> : <Textarea label="Hiperfagia" id="frequencyBeverage" name="frequencyBeverage" rows="6" cols="30"></Textarea>
+                                    }
+                                </div>
+                            </div>
+                        </Scope>
+                        <hr/>
+
+                        <h4>11. AVALIAÇÃO ANTROPOMETRICA</h4>
+                        <Scope path="anthropometricEvaluation">
+                            <div>
+                                <div>
+                                    {
+                                        edit ? <Input label="Paramêtros" type="date" name="date" placeholder="Data" disabled /> : <Input label="Paramêtros" type="date" name="date" placeholder="Data" />
+                                    }
+                                </div>
+                            </div>
+                            <div>
+                                <div>
+                                    {
+                                        edit ? <Input label="Dobra cutânea torácica" type="Number" max="400" min="0" step="0.1" name="ThoracicSkinfold" placeholder="Em cetímetros" disabled /> : <Input label="Dobra cutânea torácica" type="Number" max="400" min="0" step="0.1" name="ThoracicSkinfold" placeholder="Em cetímetros" />
+                                    }
+                                </div>
+                                <div>
+                                    {
+                                        edit ? <Input label="Circunferência da cintura" type="Number" max="400" min="0" step="0.1" name="waist" placeholder="Em cetímetros" disabled /> : <Input label="Circunferência da cintura" type="Number" max="400" min="0" step="0.1" name="waist" placeholder="Em cetímetros" />
+                                    }
+                                </div>
+                                <div>
+                                    {
+                                        edit ? <Input label="Circunferência do braço" type="Number" max="400" min="0" step="0.1" name="arm" placeholder="Em cetímetros" disabled /> : <Input label="Circunferência do braço" type="Number" max="400" min="0" step="0.1" name="arm" placeholder="Em cetímetros" />
+                                    }
+                                </div>
+                                <div>
+                                    {
+                                        edit ? <Input label="Circunferência do quadril" type="Number" max="400" min="0" step="0.1" name="hip" placeholder="Em cetímetros" disabled /> : <Input label="Circunferência do quadril" type="Number" max="400" min="0" step="0.1" name="hip" placeholder="Em cetímetros" />
+                                    }
+                                </div>
+                            </div>
+                            <div>
+                                <div>
+                                    {
+                                        edit ? <Input label="Dobra cutânea tricipital" type="Number" max="400" min="0" step="0.1" name="tricepsSkinfold" placeholder="Em cetímetros" disabled /> : <Input label="Dobra cutânea tricipital" type="Number" max="400" min="0" step="0.1" name="tricepsSkinfold" placeholder="Em cetímetros" />
+                                    }
+                                </div>
+                                <div>
+                                    {
+                                        edit ? <Input label="Dobra cutânea axilar média" type="Number" max="400" min="0" step="0.1" name="mediumAxillarySkinfold" placeholder="Em cetímetros" disabled /> : <Input label="Dobra cutânea axilar média" type="Number" max="400" min="0" step="0.1" name="mediumAxillarySkinfold" placeholder="Em cetímetros" />
+                                    }
+                                </div>
+                                <div>
+                                    {
+                                        edit ? <Input label="Dobra cutânea peitoral" type="Number" max="400" min="0" step="0.1" name="breastplateSkinfold" placeholder="Em cetímetros" disabled /> : <Input label="Dobra cutânea peitoral" type="Number" max="400" min="0" step="0.1" name="breastplateSkinfold" placeholder="Em cetímetros" />
+                                    }
+                                </div>
+                                <div>
+                                    {
+                                        edit ? <Input label="Dobra cutânea suprailíaca" type="Number" max="400" min="0" step="0.1" name="suprailiacSkinfold" placeholder="Em cetímetros" disabled /> : <Input label="Dobra cutânea suprailíaca" type="Number" max="400" min="0" step="0.1" name="suprailiacSkinfold" placeholder="Em cetímetros" />
+                                    }
+                                </div>
+                            </div>
+                            <div>
+                                <div>
+                                    {
+                                        edit ? <Input label="Dobra cutânea subescapular" type="Number" max="400" min="0" step="0.1" name="subscapularSkinfold" placeholder="Em cetímetros" disabled /> : <Input label="Dobra cutânea subescapular" type="Number" max="400" min="0" step="0.1" name="subscapularSkinfold" placeholder="Em cetímetros" />
+                                    }
+                                    
+                                </div>
+                                <div>
+                                    {
+                                        edit ? <Input label="Dobra cutânea bicipital" type="Number" max="400" min="0" step="0.1" name="bicepsSkinfold" placeholder="Em cetímetros" disabled /> : <Input label="Dobra cutânea bicipital" type="Number" max="400" min="0" step="0.1" name="bicepsSkinfold" placeholder="Em cetímetros" />
+                                    }
+                                    
+                                </div>
+                                <div>
+                                    {
+                                        edit ? <Input label="Dobra cutânea abdominal" type="Number" max="400" min="0" step="0.1" name="abdominalSkinfold" placeholder="Em cetímetros" disabled /> : <Input label="Dobra cutânea abdominal" type="Number" max="400" min="0" step="0.1" name="abdominalSkinfold" placeholder="Em cetímetros" />
+                                    }
+                                    
+                                </div>
+                                <div>
+                                    {
+                                        edit ? <Input label="Dobra cutânea coxa" type="Number" max="400" min="0" step="0.1" name="thighSkinfold" placeholder="Em cetímetros" disabled /> : <Input label="Dobra cutânea coxa" type="Number" max="400" min="0" step="0.1" name="thighSkinfold" placeholder="Em cetímetros" />
+                                    }
+                                    
+                                </div>
+                            </div>
+                            <div>
+                                <div>
+                                    {
+                                        edit ? <Input label="Dobra cutânea panturrilha" type="Number" max="400" min="0" step="0.1" name="calfSkinfold" placeholder="Em cetímetros" disabled/> : <Input label="Dobra cutânea panturrilha" type="Number" max="400" min="0" step="0.1" name="calfSkinfold" placeholder="Em cetímetros" />
+                                    }
+                                    
+                                </div>
+                                <div>
+                                    {
+                                        edit ? <Input label="Panturrilha" type="Number" max="400" min="0" step="0.1" name="calf" placeholder="Em cetímetros" disabled /> : <Input label="Panturrilha" type="Number" max="400" min="0" step="0.1" name="calf" placeholder="Em cetímetros" />
+                                    }
+                                    
+                                </div>
+                                <div>
+                                    {
+                                        edit ? <Input label="Nível de atividade física" type="Number" max="400" min="0" step="0.1" name="NAF" placeholder="Em cetímetros" disabled/> : <Input label="Nível de atividade física" type="Number" max="400" min="0" step="0.1" name="NAF" placeholder="Em cetímetros"/>
+                                    }
+                                    
+                                </div>
+                                <div>
+                                    {
+                                        edit ? <Input label="Peso atual" type="Number" max="400" min="0" step="0.1" name="NAF" placeholder="Em kg" disabled/> : <Input label="Peso atual" type="Number" max="400" min="0" step="0.1" name="NAF" placeholder="Em kg"/>
+                                    }
+                                </div>
+                            </div>
+                            
+                            <hr/>
+
+                            <div>
+                                <div>
+                                    <div>
+                                        <Input label="IMC" name="imc" disabled/>
+                                    </div>
+                                    <div>
+                                        <Input label="Necessidade Hidráulica de água" name="dailyHydraulicNeed" disabled/>
+                                    </div>
+                                </div>
+                                <Scope path="energyExpenditure">
+                                    <div>
+                                        <div>
+                                            <Input label="Harris-Benedict" type="Number" name="HarrisBenedict" disabled/>
+                                        </div>
+                                        <div>
+                                            <Input label="FAO/OMS" type="Number" name="faoOms" disabled/>
+                                        </div>
+                                        <div>
+                                            <Input label="IOM" type="Number" name="iom" disabled/>
+                                        </div>
+                                    </div>
+                                </Scope>
+                            </div>
+                        </Scope>
+                        <hr/>
+                        <div>
+                            <div>
+                                {
+                                    edit ? <Input label="Data da consulta" type="date" name="consultaDate" disabled /> : <Input label="Data da consulta" type="date" name="consultaDate" />
+                                }
+                            </div>
+                        </div>
 
                         {
                             edit ? <button className="Salve" disabled>Atualizar dados</button> : <button className="Salve" type="submit" onSubmit={e => { e.preventDefault()}} >Atualizar dados</button>
