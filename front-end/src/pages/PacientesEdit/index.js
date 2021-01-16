@@ -933,7 +933,7 @@ export default function Paciente(){
                                 </div>
                                 <div>
                                     {
-                                        edit ? <Input label="Peso atual" type="Number" max="400" min="0" step="0.1" name="NAF" placeholder="Em kg" disabled/> : <Input label="Peso atual" type="Number" max="400" min="0" step="0.1" name="NAF" placeholder="Em kg"/>
+                                        edit ? <Input label="Peso atual" type="Number" max="400" min="0" step="0.1" name="currentWeight" placeholder="Em kg" disabled/> : <Input label="Peso atual" type="Number" max="400" min="0" step="0.1" name="currentWeight" placeholder="Em kg"/>
                                     }
                                 </div>
                             </div>

@@ -287,8 +287,6 @@ const ProtocolService = new mongoose.Schema({
     }
 })
 
-
-
 ProtocolService.pre('save', async function(next){
 
     const energyExpend = this.anthropometricEvaluation.energyExpenditure;
@@ -297,12 +295,16 @@ ProtocolService.pre('save', async function(next){
 
     const age = functionEnergyExpend.calculaIdade(dateBirth)
 
+    this.anthropometricEvaluation.energyExpenditure.faoOms = functionEnergyExpend.faoOms(currentWeight, age, genre)
+    this.anthropometricEvaluation.energyExpenditure.HarrisBenedict = functionEnergyExpend.harrisBenedict(height, currentWeight, age, genre);
+    this.anthropometricEvaluation.energyExpenditure.iom = functionEnergyExpend.iom(height, currentWeight, age, genre, NAF);
+    this.anthropometricEvaluation.dailyHydraulicNeed = (0.035 * currentWeight)
+    this.anthropometricEvaluation.imc = (Weight / (height * height)).toFixed(2)
 
-    energyExpend.faoOms = functionEnergyExpend.faoOms(currentWeight, age, genre)
-    energyExpend.HarrisBenedict = functionEnergyExpend.harrisBenedict(height, currentWeight, age, genre);
-    energyExpend.iom = functionEnergyExpend.iom(height, currentWeight, age, genre, NAF);
-    this.anthropometricEvaluation.dailyHydraulicNeed = (0.035 * currentWeight).toFixed(2);
-    this.anthropometricEvaluation.imc = (Weight / (height * height))
+    console.log(energyExpend.faoOms)
+    console.log(energyExpend.HarrisBenedict)
+    console.log(energyExpend.iom)
+    console.log(this.anthropometricEvaluation.dailyHydraulicNeed)
 
 })
 

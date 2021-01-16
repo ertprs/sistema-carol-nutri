@@ -60,11 +60,13 @@ module.exports = {
         try {
 
             let body = req.body;
-            
+         
             const { currentWeight, NAF } = body.anthropometricEvaluation;
             const { dateBirth, genre, height, Weight } = body.PersonalInformation;
-
+            
             const age = functionEnergyExpend.calculaIdade(dateBirth)
+
+            console.log(height +" "+ currentWeight +" Idade: "+ age +" "+ genre +" "+ dateBirth)
 
             const faoOms = functionEnergyExpend.faoOms(currentWeight, age, genre)
             const HarrisBenedict = functionEnergyExpend.harrisBenedict(height, currentWeight, age, genre);
@@ -75,7 +77,7 @@ module.exports = {
             body.anthropometricEvaluation.energyExpenditure.HarrisBenedict = HarrisBenedict
             body.anthropometricEvaluation.energyExpenditure.iom = iom
             body.anthropometricEvaluation.dailyHydraulicNeed = dailyHydraulicNeed
-            body.anthropometricEvaluation.imc = Weight / (height * height)
+            body.anthropometricEvaluation.imc = (Weight / (height * height)).toFixed(2)
             const protocolService = await ProtocolService.findByIdAndUpdate({_id: req.params.id}, body, {new: true});
 
             return res.json(protocolService);
