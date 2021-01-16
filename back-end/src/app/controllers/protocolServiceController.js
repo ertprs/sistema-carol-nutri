@@ -1,33 +1,14 @@
 const mongoose = require('../../database');
 const { update, destroy } = require('./usersController');
 
+const functionEnergyExpend = require("./energyExpenditure")
 require("../models/protocolService")
 const ProtocolService = mongoose.model("ProtocolService");
-
-
-// function HarrisBenedict(A, P, I, G) {
-//     var eg = 0;
-//     if(G == "Feminino") {
-//         eg = 655 + (9.6 * P) + (1.9 * A) - (4.7 * I);
-//     }
-//     else {
-//         eg = 66 + (13.8 * P) + (5.0 * A) - (6.8 * I);
-//     }
-//     return eg;
-// }
 
 module.exports = {
 
     async store(req, res) {
         try {
-            // const { anthropometricEvaluation: {height, currentWeight}} = req.body;
-            // const { personalData: { age, genre } } = req.body;
-            
-            // const ener = HarrisBenedict(height, currentWeight, age, genre);
-
-            // console.log(ener);
-
-            console.log(req.body)
 
             const protocolService = await ProtocolService.create({... req.body});
 
@@ -77,11 +58,30 @@ module.exports = {
 
     async update(req, res) {
         try {
-            const protocolService = await ProtocolService.findByIdAndUpdate(req.params.id, req.body, { new: true });
+
+            let body = req.body;
+            
+            const { currentWeight, NAF } = body.anthropometricEvaluation;
+            const { dateBirth, genre, height, Weight } = body.PersonalInformation;
+
+            const age = functionEnergyExpend.calculaIdade(dateBirth)
+
+            const faoOms = functionEnergyExpend.faoOms(currentWeight, age, genre)
+            const HarrisBenedict = functionEnergyExpend.harrisBenedict(height, currentWeight, age, genre);
+            const iom = functionEnergyExpend.iom(height, currentWeight, age, genre, NAF);
+            const dailyHydraulicNeed = (0.035 * currentWeight).toFixed(2);
+
+            body.anthropometricEvaluation.energyExpenditure.faoOms = faoOms
+            body.anthropometricEvaluation.energyExpenditure.HarrisBenedict = HarrisBenedict
+            body.anthropometricEvaluation.energyExpenditure.iom = iom
+            body.anthropometricEvaluation.dailyHydraulicNeed = dailyHydraulicNeed
+            body.anthropometricEvaluation.imc = Weight / (height * height)
+            const protocolService = await ProtocolService.findByIdAndUpdate({_id: req.params.id}, body, {new: true});
 
             return res.json(protocolService);
         }
         catch (error) {
+            console.log(error)
             return res.status(400).send({error: 'Erro ao editar o formulário.'});
         }
     },

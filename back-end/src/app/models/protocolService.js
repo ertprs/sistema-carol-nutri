@@ -216,6 +216,9 @@ const ProtocolService = new mongoose.Schema({
         date: {
             type: String,
         },
+        currentWeight: {
+            type: String,
+        },
         imc: {
             type: Number,
         },
@@ -278,21 +281,29 @@ const ProtocolService = new mongoose.Schema({
         dailyHydraulicNeed: {
             type: Number
         }
+    },
+    consultaDate: {
+        type: String
     }
 })
 
-ProtocolService.pre('save', async function(next){
-/*
-    const energyExpend = this.anthropometricEvaluation.energyExpenditure;
-    const { height, currentWeight, NAF } = this.anthropometricEvaluation;
-    const { age, genre } = this.personalData;
 
-    energyExpend.faoOms = functionEnergyExpend.faoOms(currentWeight, age, genre);
+
+ProtocolService.pre('save', async function(next){
+
+    const energyExpend = this.anthropometricEvaluation.energyExpenditure;
+    const { currentWeight, NAF } = this.anthropometricEvaluation;
+    const { dateBirth, genre, height, Weight } = this.PersonalInformation;
+
+    const age = functionEnergyExpend.calculaIdade(dateBirth)
+
+
+    energyExpend.faoOms = functionEnergyExpend.faoOms(currentWeight, age, genre)
     energyExpend.HarrisBenedict = functionEnergyExpend.harrisBenedict(height, currentWeight, age, genre);
     energyExpend.iom = functionEnergyExpend.iom(height, currentWeight, age, genre, NAF);
     this.anthropometricEvaluation.dailyHydraulicNeed = (0.035 * currentWeight).toFixed(2);
-    */
-    
+    this.anthropometricEvaluation.imc = (Weight / (height * height))
+
 })
 
 // Definido o pluglin para poder utilizar a função paginate
