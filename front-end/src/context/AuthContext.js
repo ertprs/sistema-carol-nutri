@@ -7,7 +7,7 @@ export const AuthContext = createContext()
 export const AuthProvider = ({children}) => {
 const [data, setData] = useState(() => {
     const token = localStorage.getItem('@CarolNutri:token')
-    const user = localStorage.getItem('@CarolNutri:user')
+    var user = localStorage.getItem('@CarolNutri:user')
 
     if(token && user){
         return { token: token, user: JSON.parse(user)}
@@ -22,7 +22,7 @@ const signIn = useCallback( async ({ email, password}) => {
             email,
             password,
         }).then((response) => {
-            const { token, user } = response.data
+            var { token, user } = response.data
     
             api.defaults.headers['authorization'] = `Bearer ${token}`
         

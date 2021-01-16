@@ -47,7 +47,7 @@ export default function SideBar(){
         )
     }
 
-    if(user.eAdmin === false){
+    if(user.eAdmin == undefined){
         return (
             <Content>
                 <input type="checkbox" id="chec" />
@@ -60,17 +60,12 @@ export default function SideBar(){
                             </Link>
                         </li>
                         <li>
-                            <Link to="/pacientes">
-                                <span>Pacientes</span>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/dashboard">
+                            <Link to="/receitasPublicos">
                                 <span>Receitas</span>
                             </Link>
                         </li>
                         <li>
-                            <Link to="/dashboard">
+                            <Link to="/artigosPublicos">
                                 <span>Artigos</span>
                             </Link>
                         </li>

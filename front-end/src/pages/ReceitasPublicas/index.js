@@ -73,16 +73,8 @@ export default function Receitas(){
             </Container>
 
             <Formulario>
-                <input value={busca} onChange={onChange} name="pesquisa" type="text" placeholder="Informe o nome do usuário"/>
+                <input value={busca} onChange={onChange} name="pesquisa" type="text" placeholder="Informe um nome para buscar uma receita"/>
                 <button onClick={handleClick} type="button">Atualizar lista <AiOutlineRedo size={20} /></button>
-                <Link>
-                    <div>
-                        <Link to="/registrar-receita">
-                            <AiFillPlusCircle size={60}/>
-                            <Tooltip texto="Cadastrar novo usuário."/>
-                        </Link>
-                    </div>
-                </Link>
             </Formulario>
 
             {receitas.map(receita => (

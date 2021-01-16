@@ -75,16 +75,8 @@ export default function Artigos(){
             </Container>
 
             <Formulario>
-                <input value={busca} onChange={onChange} name="pesquisa" type="text" placeholder="Informe o nome do usuário"/>
+                <input value={busca} onChange={onChange} name="pesquisa" type="text" placeholder="Informe um nome para buscar um artigo"/>
                 <button onClick={handleClick} type="button">Atualizar lista <AiOutlineRedo size={20} /></button>
-                <Link>
-                    <div>
-                        <Link to="/registrar-artigo">
-                            <AiFillPlusCircle size={60}/>
-                            <Tooltip texto="Cadastrar novo artigo."/>
-                        </Link>
-                    </div>
-                </Link>
             </Formulario>
 
             {artigos.map(artigo => (

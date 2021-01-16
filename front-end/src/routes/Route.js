@@ -6,7 +6,9 @@ import AuthLayout from '../pages/_layouts/auth'
 import DefaltLayout from '../pages/_layouts/default'
 
 export default function RouteWrapper({
-    component: Component, 
+    component: Component,
+    eAdm = false,
+    isPrivatePublic = false,
     isPrivate = false,
     ... rest
 }) {
@@ -17,7 +19,7 @@ export default function RouteWrapper({
         return <Redirect to="/signin" />
     }
 
-    if(user && !isPrivate){
+    if(user && !isPrivate && isPrivatePublic){
         return <Redirect to="/dashboard" />
     }
 

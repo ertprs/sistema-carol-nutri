@@ -33,11 +33,11 @@ export default function Routes(){
     return (
         <BrowserRouter>
             <Switch>
-                <Route path="/" exact component={LandingPage} />
-                <Route path="/signin" component={SignIn_}  />
-                <Route path="/signup" component={SignUp} />
+                <Route path="/" exact isPrivatePublic component={LandingPage} />
+                <Route path="/signin" isPrivatePublic component={SignIn_}  />
+                <Route path="/signup" isPrivatePublic component={SignUp} />
 
-                <Route path="/recuperar-senha" component={ForgotPassword} />
+                <Route path="/recuperar-senha" isPrivatePublic component={ForgotPassword} />
                 <Route path="/dashboard" isPrivate component={Dashboard} />
                 <Route path="/perfil" isPrivate component={Profile} />
 
