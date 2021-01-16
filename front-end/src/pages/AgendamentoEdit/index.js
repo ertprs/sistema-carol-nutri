@@ -34,8 +34,7 @@ export default function Agendamento(){
     },[params.id])
 
     async function handlSubmit(data) {
-        console.log(data)
-        if(data.virtualDate == "" || data.hours == "" || data.note == ""){
+        if(data.virtualDate === "" || data.hours === "" || data.note === ""){
             toast.info('Campos obrigatórios vazios')
         } else {
             const vet = data.virtualDate.split('-')
@@ -56,7 +55,7 @@ export default function Agendamento(){
     }
     
     async function handleClick(){
-        setEdit(false == edit)
+        setEdit(false === edit)
         if(edit){
             toast.info('Campos de edição habilitados')
         } else {

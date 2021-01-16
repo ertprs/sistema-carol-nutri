@@ -2,22 +2,23 @@ import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Container, Content, Profile } from "./styles.js"
 import logo from '../../assets/logo.svg'
-import  history  from '../../services/history'
+import {toast} from 'react-toastify'
 
 import { Dropdown, DropdownItem, DropdownToggle, DropdownMenu, Nav } from 'reactstrap';
 
 import {AuthContext} from '../../context/AuthContext'
 
 export default function HeaderDefault(){
+
+    const { singOut } = useContext(AuthContext)
+
     async function handleClick(){
 
         try {
-            localStorage.removeItem('@CarolNutri:token')
-            localStorage.removeItem('@CarolNutri:user')
-   
-            history.go('/signin')
+            singOut()
         } catch (error) {
-            console.log(error)
+            let erro = JSON.parse(error.request.response)
+            toast.error(erro.error)
         }
 
     }

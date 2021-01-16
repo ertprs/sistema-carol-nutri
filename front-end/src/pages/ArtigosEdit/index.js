@@ -73,7 +73,7 @@ export default function Artigo(){
     }
     
     async function handleClick(){
-        setEdit(false == edit)
+        setEdit(false === edit)
         if(edit){
             toast.info('Campos de edição habilitado')
         } else {

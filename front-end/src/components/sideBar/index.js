@@ -45,9 +45,7 @@ export default function SideBar(){
                 </nav>
             </Content>
         )
-    }
-
-    if(user.eAdmin == undefined){
+    } else {
         return (
             <Content>
                 <input type="checkbox" id="chec" />

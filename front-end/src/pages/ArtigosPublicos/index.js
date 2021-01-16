@@ -40,7 +40,7 @@ export default function Artigos(){
 
     function handleClick(){
         setLoading(true)
-        if(busca == ''|| busca == undefined){
+        if(busca === ''|| busca === undefined){
             api.get('artigo/list').then((response) => {
                 setArtigo(response.data.docs)
                 setLoading(false)
