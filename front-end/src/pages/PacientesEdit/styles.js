@@ -158,12 +158,19 @@ export const MedicalInfo = styled.div`
                     width: 100%;              
                 }
 
+                select{
+                    option{
+                        color: #9D266F;
+                        background: #fff;
+                    }
+                }
+
                 input, select {
                     width: 100%;
                     background: rgba(0, 0, 0, 0.1);
                     border: 0;
                     border-radius: 4px;
-                    height: 44px;
+                    height: 40px;
                     padding: 0 15px;
                     color #fff;
                     margin:auto;    

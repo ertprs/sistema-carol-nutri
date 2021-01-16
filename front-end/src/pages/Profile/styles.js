@@ -17,7 +17,6 @@ export const Container = styled.div`
             background: #fff;
             color #3b9eff;
             margin: 10px;
-            font-weight: bold;
             border: 0;
             box-shadow: 2px 2px #363636;
             border-radius: 50%;
@@ -37,10 +36,8 @@ export const Container = styled.div`
         }
 
         h1{
-            @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,500&display=swap');
-            font-family: Roboto;
             color: #fff;
-            font-weight: bold;
+            font-family: roboto;
         }
 
     }
@@ -50,54 +47,55 @@ export const Container = styled.div`
         display: flex;
         flex-direction: column;
         margin-top: 30px;
-    }
+
+        label {
+            margin: 0;
+            color: #fff;
+        }
+
+        input {
+            background: rgba(0, 0, 0, 0.1);
+            border: 0;
+            border-radius: 4px;
+            height: 44px;
+            padding: 0 15px;
+            color #fff;
+            margin: 0 0 10px;
     
-    label {
-        margin: 0;
-        color: #fff;
-    }
+            &::placeholder {
+                color: rgba(255, 255, 255, 0.7);
+            }
+        }
 
-    input {
-        background: rgba(0, 0, 0, 0.1);
-        border: 0;
-        border-radius: 4px;
-        height: 44px;
-        padding: 0 15px;
-        color #fff;
-        margin: 0 0 10px;
-
-        &::placeholder {
-            color: rgba(255, 255, 255, 0.7);
+        span {
+            color: #fff;
+            align-self: self-start;
+            margin: 0 0 10px;
+            font-weight: bold;
+        }
+    
+        hr {
+            border: 0;
+            height: 1px;
+            background: #fff;
+            margin: 10px 0 20px;
+        }
+    
+        button {
+            margin: 5px 0 0;
+            height: 44px;
+            background: #3b9eff;
+            font-weight: bold;
+            color #fff;
+            border: 0;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: background 0.3s;
+    
+            &:hover {
+                background: ${darken(0.05, '#0885ff')}
+            }
         }
     }
 
-    span {
-        color: #fff;
-        align-self: self-start;
-        margin: 0 0 10px;
-        font-weight: bold;
-    }
-
-    hr {
-        border: 0;
-        height: 1px;
-        background: #fff;
-        margin: 10px 0 20px;
-    }
-
-    button {
-        margin: 5px 0 0;
-        height: 44px;
-        background: #3b9eff;
-        font-weight: bold;
-        color #fff;
-        border: 0;
-        border-radius: 4px;
-        font-size: 16px;
-        transition: background 0.3s;
-
-        &:hover {
-            background: ${darken(0.05, '#0885ff')}
-        }
-    }
 `

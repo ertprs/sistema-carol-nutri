@@ -86,9 +86,6 @@ export default function Profile(){
                     <button className="Edit" onClick={handleClick}><AiFillEdit size={20}/><Tooltip texto="Habilitar campos de edição"/></button>
                 </div>
                 <Form schema={schema} initialData={user} onSubmit={handlSubmit}>
-
-                    <AvatarInput name="avatar" />
-
                     {
                         edit ? <Input label="Nome e sobrenome" name="name" placeholder="Nome e sobrenome" disabled/> : <Input label="Nome e sobrenome" name="name" placeholder="Nome e sobrenome"/>
                     }
