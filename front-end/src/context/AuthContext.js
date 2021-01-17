@@ -9,6 +9,8 @@ const [data, setData] = useState(() => {
     const token = localStorage.getItem('@CarolNutri:token')
     var user = localStorage.getItem('@CarolNutri:user')
 
+    api.defaults.headers['authorization'] = `Bearer ${token}`
+
     if(token && user){
         return { token: token, user: JSON.parse(user)}
     }
@@ -24,7 +26,7 @@ const signIn = useCallback( async ({ email, password}) => {
         }).then((response) => {
             var { token, user } = response.data
     
-            api.defaults.headers['authorization'] = `Bearer ${token}`
+           api.defaults.headers['authorization'] = `Bearer ${token}`
         
             localStorage.setItem('@CarolNutri:token', token)
             localStorage.setItem('@CarolNutri:user', JSON.stringify(user))
