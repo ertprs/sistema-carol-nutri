@@ -55,23 +55,19 @@ export default function Profile(){
     }
 
     async function handlSubmitSenha(data) {
-        if( data.confirmeNewpassword === data.newPassword){
-            if(data.confirmeNewpassword.Length > 7 && data.newPassword.Length > 7){
+        if( data.confirmeNewpassword == data.newPassword){
+            if(data.confirmeNewpassword.length > 6 && data.newPassword.length > 6){
                 await api.put(`user/userUpPassword/${user._id}` ,{
                     password: data.password,
                     newPassword: data.newPassword,
                 }).then(() => {
-                    update({
-                        email: data.email,
-                        password: data.password
-                    })
-                    toast.success('Perfil atualizado.')
+                    toast.success('senha atualizada.')
                 }).catch((error) => {
                     let erro = JSON.parse(error.request.response)
                     toast.error(erro.error)
                 })
             } else {
-                toast.info('A senha deve possuir mais de 8 caracteres.')
+                toast.info('A senha deve possuir mais de 6 caracteres.')
             }
         } else {
             toast.info('A nova senha difere da confirmação da senha.')
@@ -128,9 +124,9 @@ export default function Profile(){
                     <h1>Editar senha</h1>
                 </div>
                 <Form onSubmit={handlSubmitSenha}>   
-                    <Input label="Nova Senha" type="password" name="newPassword" maxLength="12" minLength="8" placeholder="Mínimo 8 caracteres e máximo  12 caracters" />
-                    <Input label="Confirme nova senha" type="password" name="confirmeNewpassword" minLength="8" maxLength="12" placeholder="Mesma senha do campo anterior" />
-                    <Input label="Senha atual" type="password" name="password" maxLength="12" minLength="8" placeholder="Necessario para validar as modificações" />
+                    <Input label="Nova Senha" type="password" name="newPassword" maxLength="12" minLength="6" placeholder="Mínimo 6 caracteres e máximo  12 caracters" />
+                    <Input label="Confirme nova senha" type="password" name="confirmeNewpassword" minLength="6" maxLength="12" placeholder="Mesma senha do campo anterior" />
+                    <Input label="Senha atual" type="password" name="password"  placeholder="Necessario para validar as modificações" />
                     <button type="submit">Atualizar senha</button>
                 </Form>
             </Container>
