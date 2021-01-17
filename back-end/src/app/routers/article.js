@@ -10,7 +10,7 @@ router.post('/register', midwareAuthEadminControl, Article.store);
 router.get('/list', Article.index);
 router.get('/list/:id', Article.show);
 router.get('/listName/:id', Article.showName);
-router.put('/edit/:id', Article.update);
-router.delete('/delete/:id', Article.destroy);
+router.put('/edit/:id', midwareAuthEadminControl, Article.update);
+router.delete('/delete/:id', midwareAuthEadminControl, Article.destroy);
 
 module.exports = router;

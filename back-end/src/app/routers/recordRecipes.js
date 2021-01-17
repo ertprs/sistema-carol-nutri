@@ -3,13 +3,13 @@ const router = express.Router();
 
 const RecordRecipes = require('../controllers/recordRecipes')
 
-const midwareAuthControl = require('../middlewares/auth')
+const midwareAuthEadminControl = require('../middlewares/eAdmin')
 
-router.post('/register', RecordRecipes.store);
+router.post('/register', midwareAuthEadminControl, RecordRecipes.store);
 router.get('/list', RecordRecipes.index);
 router.get('/list/:id', RecordRecipes.show);
 router.get('/listName/:id', RecordRecipes.showName);
-router.put('/edit/:id', RecordRecipes.update);
-router.delete('/delete/:id', RecordRecipes.destroy);
+router.put('/edit/:id', midwareAuthEadminControl, RecordRecipes.update);
+router.delete('/delete/:id', midwareAuthEadminControl, RecordRecipes.destroy);
 
 module.exports = router;
