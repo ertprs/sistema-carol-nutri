@@ -95,7 +95,7 @@ module.exports = {
                 if(isMatch) {
                     const hash = await bcrypt.hash(req.body.newPassword, 10)
                     await User.findByIdAndUpdate({_id: req.params.id}, {password: hash}, {new: true});
-                    res.status(400).send("Senhas atualizadas")
+                    res.status(200)
                 }
                 else {
                     res.status(400).send("Senha incorreta")
