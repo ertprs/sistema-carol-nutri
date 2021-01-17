@@ -12,7 +12,8 @@ import Tooltip from '../../components/tooltip/index'
 import api from '../../services/api'
 import AvatarInput from './AvatarInput'
 
-const schema = Yup.object().shape({
+
+const schema1 = Yup.object().shape({
 
     name: Yup.string()
         .required("O nome é obrigatório!"),
@@ -27,11 +28,6 @@ const schema = Yup.object().shape({
     password: Yup.string()
         .required("A senha é obrigatória!"),
 
-    NewPassword: Yup.string()
-        .required("Campo obrigatório!"),
-
-    ConfirmeNewpassword: Yup.string()
-        .required("Campo obrigatório!"),
 })
 
 export default function Profile(){
@@ -56,8 +52,33 @@ export default function Profile(){
             let erro = JSON.parse(error.request.response)
             toast.error(erro.error)
         })
-
     }
+
+    async function handlSubmitSenha(data) {
+        if( data.confirmeNewpassword === data.newPassword){
+            if(data.confirmeNewpassword.Length > 7 && data.newPassword.Length > 7){
+                await api.put(`user/userUpPassword/${user._id}` ,{
+                    password: data.password,
+                    newPassword: data.newPassword,
+                }).then(() => {
+                    update({
+                        email: data.email,
+                        password: data.password
+                    })
+                    toast.success('Perfil atualizado.')
+                }).catch((error) => {
+                    let erro = JSON.parse(error.request.response)
+                    toast.error(erro.error)
+                })
+            } else {
+                toast.info('A senha deve possuir mais de 8 caracteres.')
+            }
+        } else {
+            toast.info('A nova senha difere da confirmação da senha.')
+        }
+    }
+
+
 
     async function onChange(event){
         event.target.value = event.target.value
@@ -85,7 +106,7 @@ export default function Profile(){
                     <h1>Editar informações</h1>
                     <button className="Edit" onClick={handleClick}><AiFillEdit size={20}/><Tooltip texto="Habilitar campos de edição"/></button>
                 </div>
-                <Form schema={schema} initialData={user} onSubmit={handlSubmit}>
+                <Form schema={schema1} initialData={user} onSubmit={handlSubmit}>
                     {
                         edit ? <Input label="Nome e sobrenome" name="name" placeholder="Nome e sobrenome" disabled/> : <Input label="Nome e sobrenome" name="name" placeholder="Nome e sobrenome"/>
                     }
@@ -95,14 +116,22 @@ export default function Profile(){
                     {
                         edit ? <Input label="Telefone" onChange={onChange} name="phone" maxLength="16" type="text" disabled/> : <Input label="Telefone" onChange={onChange} maxLength="16" type="text" name="phone"/>
                     }
-                    <hr/>
-                    <Input label="Nova Senha" type="password" name="NewPassword" maxLength="12" minLength="8" placeholder="Mínimo 8 caracteres e máximo  12 caracters" />
-                    <Input label="Confirme nova senha" type="password" name="ConfirmeNewpassword" minLength="8" maxLength="12" placeholder="Mesma senha do campo anterior" />
-                    <hr/>
-                    <Input label="Senha atual" type="password" name="password" maxLength="12" minLength="8" placeholder="Necessario para validar as modificações" />
+                    {
+                        edit ? <Input label="Senha atual" type="password" name="password" maxLength="12" minLength="8" placeholder="Necessario para validar as modificações" disabled /> : <Input label="Senha atual" type="password" name="password" maxLength="12" minLength="8" placeholder="Necessario para validar as modificações" />
+                    }
                     {
                         edit ? <button disabled>Desabilitado</button> : <button type="submit">Atualizar perfil</button>
                     }
+                <hr/>
+                </Form>
+                <div>
+                    <h1>Editar senha</h1>
+                </div>
+                <Form onSubmit={handlSubmitSenha}>   
+                    <Input label="Nova Senha" type="password" name="newPassword" maxLength="12" minLength="8" placeholder="Mínimo 8 caracteres e máximo  12 caracters" />
+                    <Input label="Confirme nova senha" type="password" name="confirmeNewpassword" minLength="8" maxLength="12" placeholder="Mesma senha do campo anterior" />
+                    <Input label="Senha atual" type="password" name="password" maxLength="12" minLength="8" placeholder="Necessario para validar as modificações" />
+                    <button type="submit">Atualizar senha</button>
                 </Form>
             </Container>
         </>
