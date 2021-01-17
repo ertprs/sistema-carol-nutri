@@ -91,19 +91,19 @@ module.exports = {
             const user = await User.findById({_id: req.params.id}).select('+password')
             const password = req.body.password;
 
-            bcrypt.compare(password, user.password, (async(err, isMatch) => {
+            bcrypt.compare(password, user.password, (async(error, isMatch) => {
                 if(isMatch) {
                     const hash = await bcrypt.hash(req.body.newPassword, 10)
                     await User.findByIdAndUpdate({_id: req.params.id}, {password: hash}, {new: true});
-                    res.status(200)
+                    return res.status(200)
                 }
                 else {
-                    res.status(400).send("Senha incorreta")
+                    return res.status(400).send({error: 'Senha invalida!'})
                 }
             }))
         }
         catch (error) {
-            return error
+            return res.status(400).send({error: 'Senha invalida!'})
         }
     }
 }
