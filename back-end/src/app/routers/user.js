@@ -13,6 +13,7 @@ router.get('/users', midwareAuthAndEadminControl, userController.index);
 router.get('/user/:id', midwareAuthAndEadminControl, userController.show);
 router.get('/userName/:id', midwareAuthAndEadminControl, userController.showName);
 router.put('/userUp/:id', userController.update);
+router.put('/userUpPassword/:id', userController.updatePassword);
 router.delete('/userDes/:id', userController.destroy);
 
 module.exports = router;

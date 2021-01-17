@@ -1,5 +1,5 @@
 const mongoose = require('../../database')
-
+const bcrypt = require('bcryptjs')
 require('../models/user')
 const User = mongoose.model('User')
 
@@ -83,6 +83,27 @@ module.exports = {
             
             return res.status(400).send({error: 'Erro ao listar usuários.' })
 
+        }
+    },
+
+    async updatePassword(req, res) {
+        try {
+            const user = await User.findById({_id: req.params.id}).select('+password')
+            const password = req.body.password;
+
+            bcrypt.compare(password, user.password, (async(err, isMatch) => {
+                if(isMatch) {
+                    const hash = await bcrypt.hash(req.body.newPassword, 10)
+                    await User.findByIdAndUpdate({_id: req.params.id}, {password: hash}, {new: true});
+                    res.status(400).send("Senhas atualizadas")
+                }
+                else {
+                    res.status(400).send("Senha incorreta")
+                }
+            }))
+        }
+        catch (error) {
+            return error
         }
     }
 }
