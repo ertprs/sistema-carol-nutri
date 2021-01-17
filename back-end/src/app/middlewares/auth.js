@@ -4,7 +4,7 @@ const authConfig = require('../../config/auth')
 module.exports = (req, res, next) => {
     try {
         const authHeader = req.headers.authorization
-
+        console.log(req.headers.authorization)
         if(!authHeader)
             return res.status(401).send({error: 'Token inexistente!'})
     
