@@ -98,13 +98,11 @@ module.exports = {
                     return res.status(200).send(userUpdate)
                 }
                 else {
-                    console.log(error)
                     return res.status(400).send({error: 'Senha invalida!'})
                 }
             }))
         }
         catch (error) {
-            console.log(error)
             return res.status(400).send({error: 'Senha invalida!'})
         }
     }
