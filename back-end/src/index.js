@@ -3,28 +3,20 @@ const bodyParser = require('body-parser')
 const PORT = process.env.PORT || 8080
 const cors = require('cors')
 const helmet = require("helmet")
-const redis = require("redis")
 const RateLimit = require("express-rate-limit")
-const RateLimitRedis = require("rate-limit-redis")
 
 const app = express()
+
+const requestLimit = RateLimit({
+    windowMs: 1000 * 60 * 15,
+    max: 100
+})
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false}))
 app.use(cors())
-//app.use(helmet())
-// if(process.env.NODE_ENV != 'development') {
-//     app.use(new RateLimit({
-//         store: new RateLimitRedis({
-//             client: redis.createClient({
-//                 host: process.env.REDIS_HOST,
-//                 port: process.env.REDIS_PORT
-//             })
-//         }),
-//         windowMs: 1000 * 60 * 15,
-//         max: 100,
-//     }))
-// }
+app.use(helmet())
+app.use(requestLimit)
 
 //--Rotas
 app.use('/user', require('./app/routers/user'))

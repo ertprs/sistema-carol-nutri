@@ -517,6 +517,14 @@ etag@~1.8.1:
   resolved "https://registry.yarnpkg.com/etag/-/etag-1.8.1.tgz#41ae2eeb65efa62268aebfea83ac7d79299b0887"
   integrity sha1-Qa4u62XvpiJorr/qg6x9eSmbCIc=
 
+express-brute-mongoose@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/express-brute-mongoose/-/express-brute-mongoose-1.1.0.tgz#fbf9616ac1527089205b790964e027a30a14ad07"
+  integrity sha512-YwT93RZHUJvm+S+SuTgLsx+3RVMDmr/wbLEVFKFzynDADlgE6BRxnpUbZPlWTZ15rNCV/G4hYBdgzt4u9hKp5A==
+  dependencies:
+    express-brute "^1.0.1"
+    moment "^2.18.1"
+
 express-brute-redis@^0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/express-brute-redis/-/express-brute-redis-0.0.1.tgz#0f4c833a5c3c2505c0c5c9ba55108e224a247ef8"
@@ -1123,6 +1131,11 @@ mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@^0.5.3:
   integrity sha512-NKmAlESf6jMGym1++R0Ra7wvhV+wFW63FaSOFPwRahvea0gMUcGUhVeAg/0BC0wiv9ih5NYPB1Wn1UEI1/L+xQ==
   dependencies:
     minimist "^1.2.5"
+
+moment@^2.18.1:
+  version "2.29.1"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.1.tgz#b2be769fa31940be9eeea6469c075e35006fa3d3"
+  integrity sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ==
 
 mongodb@3.6.2:
   version "3.6.2"
