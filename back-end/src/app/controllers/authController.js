@@ -5,8 +5,8 @@ const jwt = require('jsonwebtoken')
 const crypto = require('crypto')
 const mailer = require('../../modules/mailer')
 
-const Brute = require("express-brute");
-const BruteRedis = require("express-brute-redis")
+// const Brute = require("express-brute");
+// const BruteRedis = require("express-brute-redis")
 
 const mongoose = require('../../database')
 const authconfig = require('../../config/auth')
@@ -17,12 +17,14 @@ const User = mongoose.model('User')
 
 const router = express.Router()
 
+/*
 const bruteStore = new BruteRedis({
     host: process.env.REDIS_HOST,
     port: process.env.REDIS_PORT
 })
 
 const bruteForce = new Brute(bruteStore)
+*/
 
 function genareteToken(params = {}){
     try {
@@ -58,7 +60,7 @@ router.post('/register', async (req, res) => {
     }
 })
 
-router.post('/authenticate', bruteForce.prevent, async (req, res) => {
+router.post('/authenticate', /*bruteForce.prevent,*/ async (req, res) => {
     const { email, password} = req.body
 
     const user = await  User.findOne({email}).select('+password')
