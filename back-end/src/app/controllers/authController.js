@@ -5,6 +5,9 @@ const jwt = require('jsonwebtoken')
 const crypto = require('crypto')
 const mailer = require('../../modules/mailer')
 
+const Brute = require("express-brute");
+const BruteRedis = require("express-brute-redis")
+
 const mongoose = require('../../database')
 const authconfig = require('../../config/auth')
 const { use } = require('../../modules/mailer')
@@ -12,13 +15,14 @@ const { use } = require('../../modules/mailer')
 require('../models/user')
 const User = mongoose.model('User')
 
-// const multer = require('multer')
-// const crypto = require('crypto')
-// const path = require('path')
-
-
-
 const router = express.Router()
+
+const bruteStore = new BruteRedis({
+    host: process.env.REDIS_HOST,
+    port: process.env.REDIS_PORT
+})
+
+const bruteForce = new Brute(bruteStore)
 
 function genareteToken(params = {}){
     try {
@@ -30,37 +34,6 @@ function genareteToken(params = {}){
     }
 
 }
-
-// const storage = multer.diskStorage({
-//     destination: function(req, file, cb) {
-//         cb(null, path.join(__dirname, '../public/uploads/'));
-//     },
-//     filename: function(req, file, cb) {
-//         crypto.randomBytes(16, (err, res) => {
-//             if (err) return cb(err);
-//             var caminho = res.toString('hex') + path.extname(file.originalname); 
-//             cb(null, caminho)
-//             var dest = "/uploads/" + caminho
-//             User.updateOne({ _id: req.user._id}, {avatar: dest}).then((req, res) => {}).catch((err) => {})
-//             //User.updateOne({_id: req.User._id}, {avatar: dest}).then((req, res) => {}).catch((err) => {})
-//         }) 
-//     },
-// })
-
-// const upload = multer({
-//     storage,
-//     fileFilter: function(req, file, cb){
-//         const ext = path.extname(file.originalname) 
-//         if(ext !== '.png' && ext !== '.jpeg' && ext !== '.jpg') {
-//             cb(null, false)
-//         }
-//         else { cb(null, true); }
-//     },
-// })
-
-// router.post("/perfil", upload.single("file"), async(req, res) => {
-//     res.json({ ok: true})
-// })
 
 router.post('/register', async (req, res) => {
     try{
@@ -85,7 +58,7 @@ router.post('/register', async (req, res) => {
     }
 })
 
-router.post('/authenticate', async (req, res) => {
+router.post('/authenticate', bruteForce.prevent, async (req, res) => {
     const { email, password} = req.body
 
     const user = await  User.findOne({email}).select('+password')

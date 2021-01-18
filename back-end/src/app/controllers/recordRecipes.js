@@ -1,13 +1,7 @@
 const mongoose = require('../../database')
 
-
 require('../models/recordRecipes')
 const RecordRecipes = mongoose.model('RecordRecipes')
-
-
-
-// -- Rotas do CRUD do usuário -- //
-// router.post("/upload", upload.single('image'));
 
 module.exports = {
 

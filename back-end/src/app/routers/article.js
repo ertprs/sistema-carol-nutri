@@ -5,7 +5,7 @@ const Article = require('../controllers/registrationArticle')
 
 const midwareAuthEadminControl = require('../middlewares/eAdmin')
 
-// -- Rotas do CRUD do usuário -- //
+// -- Rotas do CRUD de artigos -- //
 router.post('/register', midwareAuthEadminControl, Article.store);
 router.get('/list', Article.index);
 router.get('/list/:id', Article.show);

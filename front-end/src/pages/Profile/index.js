@@ -10,8 +10,6 @@ import {AiFillEdit} from 'react-icons/ai'
 import {AuthContext} from '../../context/AuthContext'
 import Tooltip from '../../components/tooltip/index'
 import api from '../../services/api'
-import AvatarInput from './AvatarInput'
-
 
 const schema1 = Yup.object().shape({
 

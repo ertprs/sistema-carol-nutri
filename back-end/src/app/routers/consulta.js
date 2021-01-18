@@ -7,7 +7,7 @@ const midwareAuthControl = require('../middlewares/auth')
 
 router.use(midwareAuthControl)
 
-// -- Rotas do CRUD do usuário -- //
+// -- Rotas do CRUD da consulta -- //
 router.post('/register', ProductController.store);
 router.get('/consultas', ProductController.index);
 router.get('/consulta/:id', ProductController.show);

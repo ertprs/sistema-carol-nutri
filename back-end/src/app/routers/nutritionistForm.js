@@ -7,7 +7,7 @@ const ProtocolService = require('../controllers/protocolServiceController')
 
 router.use(midwareAuthControl)
 
-// -- Rotas do CRUD do usuário -- //
+// -- Rotas do CRUD do formulario -- //
 router.post('/register', ProtocolService.store);
 router.get('/list', ProtocolService.index);
 router.get('/list/:id', ProtocolService.show);

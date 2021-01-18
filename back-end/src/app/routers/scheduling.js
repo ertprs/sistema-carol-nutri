@@ -13,5 +13,4 @@ router.get('/list/:id', SchedulingDate.show);
 router.put('/edit/:id', midwareAuthEadminControl, SchedulingDate.update);
 router.delete('/delete/:id', midwareAuthEadminControl, SchedulingDate.destroy);
 
-
 module.exports = router;
