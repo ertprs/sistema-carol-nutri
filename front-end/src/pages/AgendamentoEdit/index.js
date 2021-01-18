@@ -24,13 +24,18 @@ export default function Agendamento(){
 
     useEffect(async () => {
         setLoading(true)
-        api.get(`agendamento/listId/${params.id}`).then((response) => {
-            setAgendamento(response.data)
-            setLoading(false)
-        }).catch((error) => {
-            let erro = JSON.parse(error.request.response)
-            toast.error(erro.error)
-        })
+        try {
+            await api.get(`agendamento/listId/${params.id}`).then((response) => {
+                setAgendamento(response.data)
+                setLoading(false)
+            }).catch((error) => {
+                let erro = JSON.parse(error.request.response)
+                toast.error(erro.error)
+            })
+        } catch (error) {
+            toast.error('Ocorreu um erro. Entre em contato com o suporte.')
+        }
+        
     },[params.id])
 
     async function handlSubmit(data) {

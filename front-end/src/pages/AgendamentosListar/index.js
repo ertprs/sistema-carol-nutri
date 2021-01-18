@@ -38,13 +38,19 @@ export default function Scheduling(){
             data = `${date.getDate()}-${data}`
         }
 
-        await api.get(`agendamento/list/${data.toString()}`).then((response) => {
-            setSchedule(response.data)
-            setLoading(false)
-        }).catch((error) => {
-            let erro = JSON.parse(error.request.response)
-            toast.error(erro.error)
-        })
+        try {
+            await api.get(`agendamento/list/${data.toString()}`).then((response) => {
+                setSchedule(response.data)
+                setLoading(false)
+            }).catch((error) => {
+                let erro = JSON.parse(error.request.response)
+                toast.error(erro.error)
+            })
+        } catch (error) {
+            toast.error('Ocorreu um erro ao tentar listar os agendamentos. Entre em contato com o suporte.')
+        }
+
+        
     },[date])
 
     function handlePrevDay() {
