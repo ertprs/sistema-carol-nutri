@@ -17,7 +17,6 @@ animation: ${DaDireitaParaEsquerda} 1s;
 `
 
 export const Return = styled.div`
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,500&display=swap');
 
     display: flex;
     align-items: center;
@@ -103,7 +102,6 @@ export const UsuarioInfo = styled.section`
             align-items: center;
             color: #fff;
             background: #ff6464;
-            font-family: roboto;
 
             width: 100px;
             height: 40px;
@@ -122,7 +120,6 @@ export const UsuarioInfo = styled.section`
             align-items: center;
             color: #fff;
             background: #17A2b8;
-            font-family: roboto;
 
             width: 100px;
             height: 40px;

@@ -16,8 +16,6 @@ const DaDireitaParaEsquerda = keyframes`
 
 export const Container = styled.div`
     animation: ${DaDireitaParaEsquerda} 1s;
-    @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,500&display=swap');
-
     display: flex;
     width: 60%;
     align-items: center;
@@ -31,9 +29,7 @@ export const Container = styled.div`
     }
 
     h1 {
-        font-family: roboto;
         font-size: 36px;
-        color: 3a3a3a;
         max-width: 450px;
         line-height: 48px;
         margin: 0;
@@ -45,8 +41,6 @@ export const Container = styled.div`
 
 export const Formulario = styled.form`
     animation: ${DaDireitaParaEsquerda} 1.5s;
-    @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,500&display=swap');
-
     margin-left: 15%;
     margin-bottom: 50px;
     width: 60%;
@@ -54,7 +48,6 @@ export const Formulario = styled.form`
     display: flex;
 
     input {
-        font-family: Roboto;
         color: #3a3a3a;
         flex: 1;
         height: 60px;
@@ -64,7 +57,6 @@ export const Formulario = styled.form`
     }
 
     button {
-        font-family: roboto;
         background: #3b9eff;
         width: 210px;
         height: 60px;
@@ -103,8 +95,6 @@ export const Formulario = styled.form`
 
 export const Paciente = styled.div`
     animation: ${DaDireitaParaEsquerda} 1.5s;
-    @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,500&display=swap');
-
     margin-left: 15%;
     width: 60%;
 
@@ -165,19 +155,12 @@ export const Paciente = styled.div`
 `
 
 export const Loading = styled.div`
-    animation: ${DaDireitaParaEsquerda} 1.5s;
-    height: 500px;
-
     display: flex;
     flex-direction column;
     align-items: center;
 
     h1 {
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,500&display=swap');
-
         margin-top: 200px;
-        font-family: Roboto;
-        color: 3a3a3a;
         max-width: 450px;
         color: #fff;
     }

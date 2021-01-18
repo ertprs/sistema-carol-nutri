@@ -44,7 +44,6 @@ export const Container = styled.div`
                 }
             }
             h1 {
-                font-family: roboto;
                 font-weight: 900;
                 color: #831e62;
             }

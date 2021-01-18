@@ -19,7 +19,6 @@ export const Container = styled.div`
 `
 
 export const Return = styled.div`
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,500&display=swap');
 
     display: flex;
     align-items: center;
@@ -44,7 +43,6 @@ export const Return = styled.div`
 `
 
 export const UsuarioInfo = styled.section`
-    @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,500&display=swap');
     display: flex;
     flex-direction: column;
     justify-content: center;

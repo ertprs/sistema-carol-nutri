@@ -37,7 +37,6 @@ export const Container = styled.div`
 
         h1{
             color: #fff;
-            font-family: roboto;
         }
 
     }

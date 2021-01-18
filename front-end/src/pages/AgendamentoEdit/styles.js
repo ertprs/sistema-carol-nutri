@@ -17,8 +17,6 @@ animation: ${DaDireitaParaEsquerda} 1s;
 `
 
 export const Return = styled.div`
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,500&display=swap');
-
     display: flex;
     align-items: center;
     justify-content: flex-end;
