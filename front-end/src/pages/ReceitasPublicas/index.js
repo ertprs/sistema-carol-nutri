@@ -66,11 +66,11 @@ export default function Receitas(){
     }
 
     return(
-        <>
-            <Container>
+        <Container>
+            <div>
                 <img src={Logo} alt="Carol Nutri"/>
                 <h1>Explore a lista de receitas.</h1>
-            </Container>
+            </div>
 
             <Formulario>
                 <input value={busca} onChange={onChange} name="pesquisa" type="text" placeholder="Informe um nome para buscar uma receita"/>
@@ -78,22 +78,20 @@ export default function Receitas(){
             </Formulario>
 
             {receitas.map(receita => (
-                
-                <Receita>
-                    <a key={String(receita._id)}  href={receita.link} target="_blank">
-                        <img src={receita.image}/>
-                        <div>
-                            <div className="conteudo">
-                                <strong>{receita.title}</strong>
-                                <p>{receita.description}</p>
-                            </div>
-                        </div>
+            
+            <Receita>
+                <a key={String(receita._id)}  href={receita.link} target="_blank">
+                    <img src={receita.image}/>
+                    <div className="conteudo">
+                        <strong>{receita.title}</strong>
+                        <p>{receita.description}</p>
+                    </div>
 
-                        <FiChevronRight size={20}/>
-                    </a>
-                </Receita>
-            ))}
-        </>
+                    <FiChevronRight/>
+                </a>
+            </Receita>
+        ))}
+        </Container>
     )
     
 }

@@ -5,12 +5,15 @@ import { darken } from 'polished'
 
 export const Container = styled.div`
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
-    height: 150px;
+    height: 130px;
     display: flex;
     flex-direction row;
     align-items: center;
     justify-content: center;
     background: #fff;
+    position:relative;
+    bottom:0;
+    width: 100%;
 
     nav {
         display: flex;

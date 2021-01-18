@@ -10,15 +10,14 @@ import { AuthProvider } from './context/AuthContext'
 function App() {
   return (  
     <>
+      <GlobalStyle/>
       <Router history={history}>
-        <GlobalStyle />
-        <ToastContainer autoClose={5000} />
+        <ToastContainer autoClose={7000} />
         <AuthProvider>
           <Routes />
         </AuthProvider>
-      </Router> 
+      </Router>
     </>
-
   )
 
 }

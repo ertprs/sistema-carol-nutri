@@ -31,9 +31,9 @@ export default function HeaderDefault(){
         <Container>
             <Content>
                 <nav>
-                <Link to="/dashboard" title="Ir para Dashboard">
-                    <img src={logo} alt="Carol Nutri" />
-                </Link>
+                    <Link to="/dashboard" title="Ir para Dashboard">
+                        <img src={logo} alt="Carol Nutri" />
+                    </Link>
                 </nav>
 
                 <aside>

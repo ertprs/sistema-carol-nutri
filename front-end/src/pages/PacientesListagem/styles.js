@@ -21,7 +21,7 @@ export const Container = styled.div`
     display: flex;
     width: 60%;
     align-items: center;
-    margin: 5% 0 0 15%;
+    margin-left: 15%;
 
     img {
         height: 75px;
@@ -108,7 +108,6 @@ export const Paciente = styled.div`
     animation: ${DaDireitaParaEsquerda} 1.5s;
     @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,500&display=swap');
 
-    margin-top: 1px;
     margin-left: 15%;
     width: 60%;
 
@@ -119,7 +118,7 @@ export const Paciente = styled.div`
         padding: 16px;
         display: block;
         text-decoration: none;
-        margin-bottom: 15px;
+        margin-top: 15px;
 
         display: flex;
         align-items: center;

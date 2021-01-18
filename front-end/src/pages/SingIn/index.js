@@ -29,20 +29,18 @@ export default function SignIn_(){
     })
     
     return (
-        <>
-            <Wrapper>
-                <Content>
-                    <img src={logo} alt="Carol-nutricionista"/>
+        <Wrapper>
+            <Content>
+                <img src={logo} alt="Carol-nutricionista"/>
 
-                    <Form schema={schema} onSubmit={handlesubmit}>
-                        <Input name="email" type="email" placeholder="Seu e-mail" />
-                        <Input name="password" type="password" placeholder="Sua senha" />
+                <Form schema={schema} onSubmit={handlesubmit}>
+                    <Input name="email" type="email" placeholder="Seu e-mail" />
+                    <Input name="password" type="password" placeholder="Sua senha" />
 
-                        <button type="submit">Acessar</button>
-                        <Link to="/recuperar-senha">Recuperar senha</Link>
-                    </Form>
-                </Content>
-            </Wrapper>
-        </>
+                    <button type="submit">Acessar</button>
+                    <Link to="/recuperar-senha">Recuperar senha</Link>
+                </Form>
+            </Content>
+        </Wrapper>
     )
 }

@@ -68,12 +68,12 @@ export default function Artigos(){
     }
 
     return(
-        <>
-            <Container>
+        <Container>
+            <div>
                 <img src={Logo} alt="Carol Nutri"/>
                 <h1>Explore a lista de artigos.</h1>
-            </Container>
-
+            </div>
+                
             <Formulario>
                 <input value={busca} onChange={onChange} name="pesquisa" type="text" placeholder="Informe um nome para buscar um artigo"/>
                 <button onClick={handleClick} type="button">Atualizar lista <AiOutlineRedo size={20} /></button>
@@ -94,6 +94,6 @@ export default function Artigos(){
                     </a>
                 </Artigo>
             ))}
-        </>
+        </Container>
     )
 }

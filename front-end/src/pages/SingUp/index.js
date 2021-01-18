@@ -56,23 +56,20 @@ export default function SignUp(){
     }
     
     return (
-        <>
-            <Wrapper>
-                <Content>
-                    <img src={logo} alt="Carol-nutricionista"/>
+        <Wrapper>
+            <Content>
+                <img src={logo} alt="Carol-nutricionista"/>
 
-                    <Form schema={schema} onSubmit={handlesubmit}>
-                        <Input name="name" type="text" placeholder="Seu nome completo" />
-                        <Input name="email" type="email" placeholder="Seu e-mail" />
-                        <Input name="phone" onInput={onChange} maxLength="16" type="text" placeholder="Seu telefone" />
-                        <Input name="password" type="password" placeholder="Sua senha" />
+                <Form schema={schema} onSubmit={handlesubmit}>
+                    <Input name="name" type="text" placeholder="Seu nome completo" />
+                    <Input name="email" type="email" placeholder="Seu e-mail" />
+                    <Input name="phone" onInput={onChange} maxLength="16" type="text" placeholder="Seu telefone" />
+                    <Input name="password" type="password" placeholder="Sua senha" />
 
-                        <button type="submit">Cadastrar</button>
-                    </Form>
-                </Content>
-            </Wrapper>
-        </>
-
+                    <button type="submit">Cadastrar</button>
+                </Form>
+            </Content>
+        </Wrapper>
     )
 
 

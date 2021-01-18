@@ -86,9 +86,9 @@ export const Container = styled.div`
 
         .perfil {
             display: flex;
-
+            margin: 4%;
             img{
-                margin: 2%;
+                margin: 1%;
                 width:15%;
                 height: 15%;
                 border-radius: 50%;
@@ -131,6 +131,7 @@ export const Container = styled.div`
         }
 
         .images {
+            margin: 0 4%;
             width: 100%;
             display: flex;
             justify-content: space-between;
@@ -153,7 +154,6 @@ export const Container = styled.div`
 
         text-decoration: none;
  
-
         padding-bottom: 100px;
         padding-top: 100px;
 
@@ -162,6 +162,11 @@ export const Container = styled.div`
             justify-content: center;
             margin:auto;
             padding: 0;
+            background: #fff;
+            width: 80%;
+            border-radius: 0 0 8px 8px;
+
+            padding-bottom: 100px;
 
             img{
                 width: 40%;
@@ -176,9 +181,9 @@ export const Container = styled.div`
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            margin: 20px auto;
+            margin: auto;
 
-            border-radius: 8px;
+            border-radius: 8px 8px 0 0;
             width: 80%;
             padding: 20px;
             color: #be317f;

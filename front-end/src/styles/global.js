@@ -4,7 +4,7 @@ import 'react-toastify/dist/ReactToastify.css'
 export default createGlobalStyle`
     *{
         @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,500&display=swap');
-        font-family: Roboto;
+        font-family: roboto;
         margin: 0;
         padding:0;
         outline: 0;
@@ -16,7 +16,7 @@ export default createGlobalStyle`
     }
 
     html, body, #root {
-    height: 100%;
+        height: 100%;
     }
 
     body {
@@ -24,7 +24,7 @@ export default createGlobalStyle`
     }
 
     a {
-        text-dcoretion: none;
+        text-decoration: none;
     }
     
     ul {

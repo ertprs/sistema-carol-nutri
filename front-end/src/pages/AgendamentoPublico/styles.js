@@ -14,8 +14,9 @@ const DaDireitaParaEsquerda = keyframes`
 `
 
 export const Container = styled.div`
+    padding: 30px 0;
     max-width: 80%;
-    margin: 50px auto;
+    margin: auto;
     display: flex;
     flex-direction: column;
 
@@ -167,19 +168,12 @@ export const Time = styled.li`
 `
 
 export const Loading = styled.div`
-    height: 50%;
-
+    padding: 30px 0;
     display: flex;
     flex-direction column;
     align-items: center;
 
     h1 {
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,500&display=swap');
-
-        margin-top: 200px;
-        font-family: Roboto;
-        color: 3a3a3a;
-        max-width: 450px;
         color: #fff;
     }
 

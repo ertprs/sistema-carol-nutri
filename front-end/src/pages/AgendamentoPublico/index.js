@@ -56,7 +56,9 @@ export default function Scheduling(){
     }
 
     if (loading){
-        return <><Loading><h1>Carregando</h1><ReactLoading  color="#fff" /></Loading></>
+        return (
+            <Loading><h1>Carregando</h1><ReactLoading  color="#fff" /></Loading>
+        )
     } else {
         if(schedule.length === 0){
             return (

@@ -7,10 +7,12 @@ import Footer from '../../../components/footer'
 
 export default function AuthLayout({ children }){
     return (
-        <Wrapper>
+        <>
             <HeaderAuth/>
-            {children}
+            <Wrapper>
+                {children}
+            </Wrapper>
             <Footer/>
-        </Wrapper>
+        </>
     )
 }

@@ -1,7 +1,5 @@
 import styled, {keyframes} from 'styled-components'
 
-import { darken } from 'polished'
-
 const DaDireitaParaEsquerda = keyframes`
     from{
         opacity: 0;
@@ -16,45 +14,38 @@ const DaDireitaParaEsquerda = keyframes`
 
 export const Container = styled.div`
     animation: ${DaDireitaParaEsquerda} 1s;
-    @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,500&display=swap');
+    padding-top: 5%;
+    padding-left: 20%;
+    padding-bottom: 5%;
 
-    display: flex;
-    width: 60%;
-    align-items: center;
-    margin: 5% 0 0 15%;
+    div {
+        display: flex;
+        min-height: 100%;
 
-    img {
-        height: 75px;
-        margin: 0;
-        align-item: center;
-        margin-bottom: 50px;
-    }
+        img {
+            height: 75px;
+            margin: 0;
+            align-item: center;
+        }
 
-    h1 {
-        font-family: roboto;
-        font-size: 36px;
-        color: 3a3a3a;
-        max-width: 450px;
-        line-height: 48px;
-        margin: 0;
-        margin-bottom: 50px;
-        color: #fff;
+        h1 {
+            font-size: 36px;
+            line-height: 48px;
+            margin: auto 0;
+            color: #fff;
+        }
+
     }
 
 `
 
 export const Formulario = styled.form`
-    animation: ${DaDireitaParaEsquerda} 1.5s;
-    @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,500&display=swap');
-
-    margin-left: 15%;
-    margin-bottom: 50px;
-    width: 60%;
-
+    min-height: 100%;
+    width: 80%;
+    margin-top: 20px;
     display: flex;
 
     input {
-        font-family: roboto;
         color: #3a3a3a;
         flex: 1;
         height: 60px;
@@ -64,9 +55,8 @@ export const Formulario = styled.form`
     }
 
     button {
-        font-family: roboto;
         background: #3b9eff;
-        width: 210px;
+        width: 20%;
         height: 60px;
         background: #fffff;
         border-radius: 0 5px 5px 0;
@@ -76,7 +66,7 @@ export const Formulario = styled.form`
         transition: background 0.3s;
 
         &:hover {
-            background: ${darken(0.05, '#0885ff')}
+            background: #0885ff;
         }
     }
 
@@ -88,7 +78,7 @@ export const Formulario = styled.form`
                 visibility: visible;
             }
         }
-       
+    
         svg{
             margin-left: 30px;
             color: #fff;
@@ -105,12 +95,9 @@ export const Formulario = styled.form`
 `
 
 export const Artigo = styled.div`
-    animation: ${DaDireitaParaEsquerda} 1.5s;
-    @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,500&display=swap');
-
-    margin-top: 1px;
-    margin-left: 15%;
-    width: 60%;
+    min-height: 100%;
+    margin-top: 20px;
+    width: 80%;
 
     a{
         background: #fff;
@@ -119,7 +106,6 @@ export const Artigo = styled.div`
         padding: 16px;
         display: block;
         text-decoration: none;
-        margin-bottom: 15px;
 
         display: flex;
         align-items: center;
@@ -129,19 +115,15 @@ export const Artigo = styled.div`
             transform: translateX(50px);
         }
 
-
-        img {
-            width: 64px;
-            height: 64px;
-            border-radius:50%;
-            margin: 0;
-        }
-
-
         div{
+            display: flex;
+            flex-direction: column;
+
             margin-left: 16px;
 
             strong {
+                padding:0px;
+                margin:0px;
                 font-size: 20px;
                 color: #be317f;
             }
@@ -150,26 +132,20 @@ export const Artigo = styled.div`
                 color: #831e62;
                 padding:0px;
                 margin:0px;
-
-            }
-
-            span {
-                font-size: 14px;
-                color: #A8A8B3;
-                font-weight: bold;
+                text-align: justify;
             }
 
         }
         svg{
             margin-left: auto;
             color: #831e62;
+            min-width: 5%;
         }
     }
 
 `
 
 export const Loading = styled.div`
-    animation: ${DaDireitaParaEsquerda} 1.5s;
     height: 500px;
 
     display: flex;
@@ -185,5 +161,4 @@ export const Loading = styled.div`
         max-width: 450px;
         color: #fff;
     }
-
 `

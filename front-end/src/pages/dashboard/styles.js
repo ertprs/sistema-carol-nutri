@@ -2,12 +2,14 @@ import styled from 'styled-components';
 
 
 export const Container = styled.div`
-    max-width: 60%;
-    margin: 50px auto;
+    max-width:80%;
     display: flex;
-    flex-direction: column;
 
     div {
+        margin:0px;
+        margin-top: 100px;
+        margin-left: 110px;
+
         display: flex;
         align-items: center;
         justify-content: center;

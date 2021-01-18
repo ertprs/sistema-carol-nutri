@@ -1,13 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Container, Content, Profile, ContainerSegundario } from "./styles.js"
+import { Container, ContentPrimario, Profile, ContentSegundario } from "./styles.js"
 import logo from '../../assets/logo.svg'
 
 export default function HeaderAuth(){
     return (
-        <>
         <Container>
-            <Content>
+            <ContentPrimario>
                 <nav>
                     <Link to="/" title="Ir para página inicial"><img src={logo} alt="Carol Nutri" /></Link>
                 </nav>
@@ -20,23 +19,22 @@ export default function HeaderAuth(){
                         </div>
                     </Profile>
                 </aside>
-            </Content>
+            </ContentPrimario>
+
+            <ContentSegundario>
+                <nav>
+                    <Link className="Link" to="/agendamento-publico">
+                        Agendamento
+                    </Link>
+
+                    <Link className="Link" to="/receitasPublicos">
+                        Receitas
+                    </Link>
+                    <Link className="Link" to="/artigosPublicos">
+                        Artigos
+                    </Link>
+                </nav>
+            </ContentSegundario>
         </Container>
-
-        <ContainerSegundario>
-            <nav>
-                <Link className="Link" to="/agendamento-publico">
-                    Agendamento
-                </Link>
-
-                <Link className="Link" to="/receitasPublicos">
-                    Receitas
-                </Link>
-                <Link className="Link" to="/artigosPublicos">
-                    Artigos
-                </Link>
-            </nav>
-        </ContainerSegundario>
-        </>
     )
 }

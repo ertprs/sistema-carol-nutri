@@ -10,7 +10,6 @@ export const Content = styled.div`
 
     background: #fff;
     height: 64px;
-    margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;

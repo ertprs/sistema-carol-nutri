@@ -1,4 +1,4 @@
-import React, { createContext, useCallback, useEffect, useState, useRef } from "react"
+import React, { createContext, useCallback, useState, useRef } from "react"
 import api from '../services/api'
 import {toast} from 'react-toastify'
 
@@ -19,25 +19,6 @@ export const AuthProvider = ({children}) => {
     })
 
 
-    const cb = useRef() //serve para ser a causa de disparo do usuEffect quando  este Component é gerado, ou seja, useEffect será chamado quando o usuário entrar nesta página.
-
-    useEffect(() => {
-        toast.info(`Seu tempo de seu tempo de sessão irá expirar em 4 horas.`)
-
-        setTimeout(function(){ 
-            localStorage.removeItem('@CarolNutri:token')
-            localStorage.removeItem('@CarolNutri:user')
-        
-            setData({})
-        }, 14400000);
-
-        setTimeout(function(){ 
-            toast.info(`Seu tempo de seu tempo de sessão irá expirar em 30 minutos.`)
-        }, 12600000);
-    },[cb])
-
-
-
 
 const signIn = useCallback( async ({ email, password}) => {
     try {
@@ -55,6 +36,21 @@ const signIn = useCallback( async ({ email, password}) => {
             setData({ token, user})
 
             toast.success(`Bem vinda(a) ${user.name}.`)
+            toast.info(`Seu tempo de seu tempo de sessão irá expirar em 4 horas.`)
+
+            //FUNÇÃO QUE EXPIRA A SESSÃO APÓS 4 HORAS
+            setTimeout(function(){ 
+                localStorage.removeItem('@CarolNutri:token')
+                localStorage.removeItem('@CarolNutri:user')
+            
+                setData({})
+            }, 14400000);
+            
+            //FUNÇÃO QUE INFORMA QUANDO FALTAR 30 MINUTOS PARA A SESSÃO EXPIRAR
+            setTimeout(function(){ 
+                toast.info(`Seu tempo de seu tempo de sessão irá expirar em 30 minutos.`)
+            }, 12600000);
+
         }).catch((error) => {
             let erro = JSON.parse(error.request.response)
             toast.error(erro.error)

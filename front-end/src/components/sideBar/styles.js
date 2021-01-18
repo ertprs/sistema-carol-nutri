@@ -1,11 +1,8 @@
 import styled from 'styled-components'
 
 export const Content = styled.div`
-  backgroud: black;
   padding: 0;
   margin: 0;
-  width: 200px;
-  heigth: 100%;
 
   input{
     display: none;
@@ -18,7 +15,7 @@ export const Content = styled.div`
   label {
     cursor:pointer;
     margin-top:7px;
-    color: #1C1C1C;
+    color: #fff;
     padding: 15px;
     position: absolute;
     z-index:1;
