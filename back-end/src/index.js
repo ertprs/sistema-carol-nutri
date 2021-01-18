@@ -11,10 +11,8 @@ const app = express()
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false}))
-app.use(cors({
-    origin: process.env.FRONT_URL
-}))
-app.use(helmet())
+app.use(cors())
+//app.use(helmet())
 // if(process.env.NODE_ENV != 'development') {
 //     app.use(new RateLimit({
 //         store: new RateLimitRedis({
