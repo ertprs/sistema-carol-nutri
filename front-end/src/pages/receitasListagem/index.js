@@ -8,7 +8,6 @@ import {AiFillPlusCircle, AiOutlineRedo} from 'react-icons/ai'
 import {Container, Formulario, Receita, Loading} from './styles'
 import Logo from '../../assets/logo-branca.svg'
 import api from "../../services/api"
-import Tooltip from '../../components/tooltip/index'
 import ReactLoading from 'react-loading'
 
 export default function Receitas(){
@@ -63,44 +62,41 @@ export default function Receitas(){
 
     if (loading){
         return <><Loading><h1>Carregando</h1><ReactLoading  color="#fff" /></Loading></>
-    }
-
-    return(
-        <>
+    } else {
+        return(
             <Container>
-                <img src={Logo} alt="Carol Nutri"/>
-                <h1>Explore a lista de receitas.</h1>
-            </Container>
-
-            <Formulario>
-                <input value={busca} onChange={onChange} name="pesquisa" type="text" placeholder="Informe o nome do usuário"/>
-                <button onClick={handleClick} type="button">Atualizar lista <AiOutlineRedo size={20} /></button>
-                <Link>
-                    <div>
-                        <Link to="/registrar-receita">
-                            <AiFillPlusCircle size={60}/>
-                            <Tooltip texto="Cadastrar novo usuário."/>
-                        </Link>
-                    </div>
-                </Link>
-            </Formulario>
-
-            {receitas.map(receita => (
+                <div>
+                    <img src={Logo} alt="Carol Nutri"/>
+                    <h1>Explore a lista de receitas.</h1>
+                </div>
+    
+                <Formulario>
+                    <input value={busca} onChange={onChange} name="pesquisa" type="text" placeholder="Informe o nome do usuário"/>
+                    <button onClick={handleClick} type="button">Atualizar lista <AiOutlineRedo size={20} /></button>
+                    <Link>
+                        <div>
+                            <Link to="/registrar-receita">
+                                <AiFillPlusCircle size={60}/>
+                            </Link>
+                        </div>
+                    </Link>
+                </Formulario>
+    
+                {receitas.map(receita => (
                 
                 <Receita>
                     <Link key={String(receita._id)}  to={`/receita/${receita._id}`}>
                         <img src={receita.image}/>
-                        <div>
-                            <div className="conteudo">
-                                <strong>{receita.title}</strong>
-                                <p>{receita.description}</p>
-                            </div>
+                        <div className="conteudo">
+                            <strong>{receita.title}</strong>
+                            <p>{receita.description}</p>
                         </div>
-
-                        <FiChevronRight size={20}/>
+    
+                        <FiChevronRight/>
                     </Link>
                 </Receita>
             ))}
-        </>
-    )
+            </Container>
+        )
+    }
 }

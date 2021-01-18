@@ -6,10 +6,10 @@ import { FiChevronLeft } from 'react-icons/fi'
 import { AiFillEdit } from "react-icons/ai";
 import { useHistory } from 'react-router-dom'
 import { Form, Input, Textarea, Check } from '@rocketseat/unform'
-import * as Yup from 'yup'
+import ReactLoading from 'react-loading'
 
 import api from '../../services/api'
-import {Return, Container, Editor} from './styles'
+import {Return, Container, Editor, Loading} from './styles'
 import Tooltip from '../../components/tooltip/index'
 
 export default function Agendamento(){
@@ -63,45 +63,51 @@ export default function Agendamento(){
         }
     }
 
-    return (
-    <Container>
-        <Return>
-            <Link to="/agenda">
-                <FiChevronLeft/>
-                Voltar
-            </Link>
-        </Return>
+    if (loading){
+        return (
+            <Loading><h1>Carregando</h1><ReactLoading  color="#fff" /></Loading>
+        )
+    } else {
 
-        <Editor>
-            <div>
-                <h2>Editar agendamento</h2>
-                <button className="Edit" onClick={handleClick}><AiFillEdit size={20}/><Tooltip texto="Habilitar campos para edição"/></button>
-            </div>
+        return (
+        <Container>
+            <Return>
+                <Link to="/agenda">
+                    <FiChevronLeft/>
+                    Voltar
+                </Link>
+            </Return>
 
-            <Form onSubmit={handlSubmit} initialData={agendamento}>
+            <Editor>
                 <div>
-                {
-                    edit ? <Input  name="virtualDate" type="date" label="Data para o agendamento" disabled /> : <Input  name="virtualDate" type="date" label="Data para o agendamento"/>
-                }
-                {
-                    edit ? <Input  name="hours" type="time" placeholder="Informe o horário da consulta" label="Horário" disabled /> : <Input  name="hours" type="time" placeholder="Informe o horário da consulta" label="Horário" />
-                }
+                    <h2>Editar agendamento</h2>
+                    <button className="Edit" onClick={handleClick}><AiFillEdit size={20}/><Tooltip texto="Habilitar campos para edição"/></button>
                 </div>
 
-                {
-                    edit ?  <Textarea rows="4" label="Irfomações sobre o agendamento" name="note" placeholder="Ex.: Consulta online com Alice Costa ..." disabled/> : <Textarea rows="4" label="Descrição sobre o agendamento" name="note" placeholder="Informe um breve descrição sobre agendamento" />
-                }
-                {
-                    edit ?  <Check label="Agendamento disponível" name="status" disabled/> : <Check label="Agendamento disponível" name="status" />
-                }
-                {
-                    edit ? <button disabled>Desabilitado</button> : <button onSubmit={e => { e.preventDefault()}} type="submit" >Atualizar dados</button>
-                }
+                <Form onSubmit={handlSubmit} initialData={agendamento}>
+                    <div>
+                    {
+                        edit ? <Input  name="virtualDate" type="date" label="Data para o agendamento" disabled /> : <Input  name="virtualDate" type="date" label="Data para o agendamento"/>
+                    }
+                    {
+                        edit ? <Input  name="hours" type="time" placeholder="Informe o horário da consulta" label="Horário" disabled /> : <Input  name="hours" type="time" placeholder="Informe o horário da consulta" label="Horário" />
+                    }
+                    </div>
 
-            </Form>
-        </Editor>
-    </Container>
-    )
+                    {
+                        edit ?  <Textarea rows="4" label="Irfomações sobre o agendamento" name="note" placeholder="Ex.: Consulta online com Alice Costa ..." disabled/> : <Textarea rows="4" label="Descrição sobre o agendamento" name="note" placeholder="Informe um breve descrição sobre agendamento" />
+                    }
+                    {
+                        edit ?  <Check label="Agendamento disponível" name="status" disabled/> : <Check label="Agendamento disponível" name="status" />
+                    }
+                    {
+                        edit ? <button disabled>Desabilitado</button> : <button onSubmit={e => { e.preventDefault()}} type="submit" >Atualizar dados</button>
+                    }
 
+                </Form>
+            </Editor>
+        </Container>
+        )
+    }
 
 }

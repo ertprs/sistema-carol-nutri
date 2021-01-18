@@ -2,13 +2,10 @@ import React, {useState, useMemo, useEffect} from 'react';
 import { format, subDays, addDays} from 'date-fns'
 import pt from 'date-fns/locale/pt'
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md'
-import {Link} from 'react-router-dom'
 import Logo from '../../assets/logo-branca.svg'
 
 import {toast} from 'react-toastify'
 import api from "../../services/api"
-import Tooltip from '../../components/tooltip/index'
-import {AiFillPlusCircle} from 'react-icons/ai'
 
 import {Container, Time, Loading} from './styles.js'
 import ReactLoading from 'react-loading'
@@ -37,14 +34,19 @@ export default function Scheduling(){
         } else {
             data = `${date.getDate()}-${data}`
         }
+        
+        try{
+            await api.get(`agendamento/list/${data.toString()}`).then((response) => {
+                setSchedule(response.data)
+                setLoading(false)
+            }).catch((error) => {
+                let erro = JSON.parse(error.request.response)
+                toast.error(erro.error)
+            })
+        }catch (error) {
+            toast.error('Erro ao buscar os agendamentos. Entre em contato com o suporte.')
+        }
 
-        await api.get(`agendamento/list/${data.toString()}`).then((response) => {
-            setSchedule(response.data)
-            setLoading(false)
-        }).catch((error) => {
-            let erro = JSON.parse(error.request.response)
-            toast.error(erro.error)
-        })
     },[date])
 
     function handlePrevDay() {

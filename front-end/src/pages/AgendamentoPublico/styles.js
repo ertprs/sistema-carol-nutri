@@ -168,13 +168,13 @@ export const Time = styled.li`
 `
 
 export const Loading = styled.div`
-    padding: 30px 0;
     display: flex;
     flex-direction column;
     align-items: center;
 
     h1 {
+        margin-top: 200px;
+        max-width: 450px;
         color: #fff;
     }
-
 `

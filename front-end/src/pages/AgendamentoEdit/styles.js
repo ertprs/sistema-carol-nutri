@@ -171,6 +171,15 @@ export const Editor = styled.div`
 
         }
     }
+`
 
+export const Loading = styled.div`
+    padding: 30px 0;
+    display: flex;
+    flex-direction column;
+    align-items: center;
 
+    h1 {
+        color: #fff;
+    }
 `
