@@ -3,13 +3,17 @@ import styled from 'styled-components'
 export const Content = styled.div`
   padding: 0;
   margin: 0;
+  background: rgba(16,16,16,0.4);
+  height: 100%;
+  position: absolute;
+  transition: 1s;
 
-  input{
-    display: none;
-  }
-
-  input:checked ~ nav {
+  &:hover{
     transform: translateX(200px);
+
+    > label{
+      transform: translateX(-60px);
+    }
   }
 
   label {
@@ -19,12 +23,8 @@ export const Content = styled.div`
     padding: 15px;
     position: absolute;
     z-index:1;
-    transition: 1s;
-  }
+    transition: 1.3s;
 
-  input:checked ~ label {
-    transform: translateX(150px);
-    color: #fff;
   }
   
   nav {
@@ -65,8 +65,6 @@ export const Content = styled.div`
           span{
             margin-left: 15px;
             font-size: 20px;
-            @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,500&display=swap');
-            font-family: Roboto;
           }
         }
       }
