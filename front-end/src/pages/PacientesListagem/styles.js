@@ -96,9 +96,6 @@ export const Formulario = styled.form`
             cursor:pointer;
             &:hover {
                 transform: rotate(90deg);
-                div{
-                    visibility: visible;
-                }
             }
         }
     }

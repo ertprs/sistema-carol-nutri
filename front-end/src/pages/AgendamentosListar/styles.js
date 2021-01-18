@@ -15,7 +15,8 @@ const DaDireitaParaEsquerda = keyframes`
 
 export const Container = styled.div`
     max-width: 60%;
-    margin: 50px auto;
+    padding-top: 50px;
+    margin: auto;
     display: flex;
     flex-direction: column;
 
@@ -53,6 +54,10 @@ export const Container = styled.div`
         justify-content: center;
         margin:0;
 
+        &:hover{
+
+        }
+
         a {
             svg{
                 margin-left:60px;
@@ -61,9 +66,6 @@ export const Container = styled.div`
                 cursor:pointer;
                 &:hover {
                     transform: rotate(90deg);
-                    div{
-                        visibility: visible;
-                    }
                 }
             }
         }

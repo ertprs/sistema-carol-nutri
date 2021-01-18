@@ -43,21 +43,19 @@ export default function RegisterAgendamentos(){
     }
 
     return (
-        <>
+        <Container>
             <Return>
                 <Link to="/agenda"s>
                     <FiChevronLeft/>
                     Voltar
                 </Link>
             </Return>
-            <Container>
-                <Form schema={schema} onSubmit={handlSubmit}>
-                    <h2>Cadastrar agendamento para consulta</h2>
-                    <Input  name="virtualDate" type="date" label="Data para o agendamento"/>
-                    <Input  name="hours" type="time" placeholder="Informe o horário da consulta" label="Horário" />
-                    <button type="submit">Cadastrar</button>
-                </Form>
-            </Container>
-        </>
+            <Form schema={schema} onSubmit={handlSubmit}>
+                <h2>Cadastrar agendamento para consulta</h2>
+                <Input  name="virtualDate" type="date" label="Data para o agendamento"/>
+                <Input  name="hours" type="time" placeholder="Informe o horário da consulta" label="Horário" />
+                <button type="submit">Cadastrar</button>
+            </Form>
+        </Container>
     )
 }

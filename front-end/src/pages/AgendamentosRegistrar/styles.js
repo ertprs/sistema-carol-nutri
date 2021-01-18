@@ -1,15 +1,14 @@
 import styled from 'styled-components';
 
 export const Return = styled.div`
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,500&display=swap');
-
+    padding-top: 3%;
+    padding-right: 25%;
     display: flex;
     align-items: center;
     justify-content: flex-end;
 
     a {
         padding: 5px;
-        margin: 3% 20% 5px 5px;
         display: flex;
         align-items: center;
         text-decoretion: none;
@@ -26,14 +25,14 @@ export const Return = styled.div`
 `
 
 export const Container = styled.div`
-    max-width: 40%;
-    margin: 50px auto;
-
+    margin: auto;
 
     form {
+        max-width: 40%;
+        margin: auto;
         display: flex;
         flex-direction: column;
-        margin-top: 30px;
+        padding-top: 6%;
 
         h2 {
             color: #fff;
