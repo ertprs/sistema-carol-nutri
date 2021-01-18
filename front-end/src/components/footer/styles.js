@@ -8,24 +8,30 @@ export const Container = styled.div`
     height: 130px;
     display: flex;
     flex-direction row;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    margin: auto;
     background: #fff;
     position:relative;
     bottom:0;
     width: 100%;
 
+    a{
+        font-size: 20px;
+        text-decoration: none;
+        color: #343A40;
+        margin:25px;
+    }
+
     nav {
         display: flex;
         flex-direction column;
         align-items: center;
-
+        margin:25px;
 
         h3 {
-            @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,500&display=swap');
-            font-family: Roboto;
             margin: 15px;
-            color: #831e62;
+            color: #343A40;
         }
 
         .icons{
@@ -33,9 +39,7 @@ export const Container = styled.div`
                 margin: 15px;
         
                 .icon{
-        
-                    color: #be317f;
-        
+                
                     &:hover{
                         color: ${darken(0.05, '#831e62')}
                     }

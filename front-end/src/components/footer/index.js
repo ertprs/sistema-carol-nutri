@@ -6,6 +6,7 @@ import {Container} from './styles.js'
 export default function Footer(){
     return (
             <Container>
+                <a href="https://estude.live/user/equipe" target="_blank">© 2020 Copyright:   <b >Devorion</b> || E-mail: devorion01@gmail.com </a>
                 <nav>
                     <h3>KEEP IN TOUCH</h3>
                     <div className="icons">
