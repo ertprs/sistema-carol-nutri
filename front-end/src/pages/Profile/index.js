@@ -1,6 +1,6 @@
 import React, {useContext, useState} from 'react';
 
-import { Container } from './styles'
+import { Container, Loading } from './styles'
 import { Form, Input } from '@rocketseat/unform'
 import * as Yup from 'yup'
 import {toast} from 'react-toastify'
@@ -10,6 +10,8 @@ import {AiFillEdit} from 'react-icons/ai'
 import {AuthContext} from '../../context/AuthContext'
 import Tooltip from '../../components/tooltip/index'
 import api from '../../services/api'
+import ReactLoading from 'react-loading'
+import Logo from '../../assets/logo-branca.svg'
 
 const schema1 = Yup.object().shape({
 
@@ -34,41 +36,54 @@ export default function Profile(){
     const { update } = useContext(AuthContext)
 
     const [edit, setEdit] = useState(true);
+    const [loading, setLoading] = useState(false);
 
     async function handlSubmit(data) {
-        await api.put(`user/userUp/${user._id}` ,{
-            name: data.name,
-            email: data.email,
-            phone: data.phone,
-        }).then(() => {
-            update({
+        setLoading(true)
+        try {
+            await api.put(`user/userUp/${user._id}` ,{
+                name: data.name,
                 email: data.email,
-                password: data.password
+                phone: data.phone,
+            }).then(() => {
+                update({
+                    email: data.email,
+                    password: data.password
+                })
+                toast.success('Perfil atualizado.')
+                setLoading(false)
+            }).catch((error) => {
+                let erro = JSON.parse(error.request.response)
+                toast.error(erro.error)
             })
-            toast.success('Perfil atualizado.')
-        }).catch((error) => {
-            let erro = JSON.parse(error.request.response)
-            toast.error(erro.error)
-        })
+        } catch (error) {
+            toast.error('Ocorreu um erro ao atualizar os dados. Entre em contato com suporte.')
+        }
     }
 
     async function handlSubmitSenha(data) {
-        if( data.confirmeNewpassword == data.newPassword){
-            if(data.confirmeNewpassword.length > 6 && data.newPassword.length > 6){
-                await api.put(`user/userUpPassword/${user._id}` ,{
-                    password: data.password,
-                    newPassword: data.newPassword,
-                }).then(() => {
-                    toast.success('senha atualizada.')
-                }).catch((error) => {
-                    let erro = JSON.parse(error.request.response)
-                    toast.error(erro.error)
-                })
+        setLoading(true)
+        try {
+            if( data.confirmeNewpassword == data.newPassword){
+                if(data.confirmeNewpassword.length > 6 && data.newPassword.length > 6){
+                    await api.put(`user/userUpPassword/${user._id}` ,{
+                        password: data.password,
+                        newPassword: data.newPassword,
+                    }).then(() => {
+                        toast.success('senha atualizada.')
+                        setLoading(false)
+                    }).catch((error) => {
+                        let erro = JSON.parse(error.request.response)
+                        toast.error(erro.error)
+                    })
+                } else {
+                    toast.info('A senha deve possuir mais de 6 caracteres.')
+                }
             } else {
-                toast.info('A senha deve possuir mais de 6 caracteres.')
+                toast.info('A nova senha difere da confirmação da senha.')
             }
-        } else {
-            toast.info('A nova senha difere da confirmação da senha.')
+        } catch (error) {
+            toast.error('Ocorreu um erro ao atualizar os dados. Entre em contato com suporte.')
         }
     }
 
@@ -92,11 +107,13 @@ export default function Profile(){
         }
     }
 
-
-    return (
-        <>
+    if(loading){
+        return <><Loading><h1>Carregando</h1><ReactLoading  color="#fff" /></Loading></>
+    } else {
+        return (
             <Container>
                 <div>
+                    <img src={Logo} alt="Carol Nutri"/>
                     <h1>Editar informações</h1>
                     <button className="Edit" onClick={handleClick}><AiFillEdit size={20}/><Tooltip texto="Habilitar campos de edição"/></button>
                 </div>
@@ -128,6 +145,6 @@ export default function Profile(){
                     <button type="submit">Atualizar senha</button>
                 </Form>
             </Container>
-        </>
-    )
+        )
+    }
 }

@@ -26,14 +26,12 @@ export default function Receitas(){
                 setReceitas(response.data.docs)
                 setLoading(false)
             }).catch((error) => {
-                setLoading(false)
                 let erro = JSON.parse(error.request.response)
                 toast.error(erro.error)
             }) 
         } catch (error) {
             toast.error('Ocorreu um erro ao listar as receitas. Entre em contato com o suporte.')
         }
-
     },[cb])
 
     function onChange(event) {

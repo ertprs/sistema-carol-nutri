@@ -3,7 +3,8 @@ import { darken } from 'polished'
 
 export const Container = styled.div`
     max-width: 60%;
-    margin: 50px auto;
+    margin: auto;
+    padding: 50px;
 
     div {
         display: flex;
@@ -37,6 +38,12 @@ export const Container = styled.div`
 
         h1{
             color: #fff;
+        }
+
+        img {
+            height: 75px;
+            margin: 0;
+            align-item: center;
         }
 
     }
@@ -96,5 +103,16 @@ export const Container = styled.div`
             }
         }
     }
+`
 
+export const Loading = styled.div`
+    display: flex;
+    flex-direction column;
+    align-items: center;
+
+    h1 {
+        margin-top: 200px;
+        max-width: 450px;
+        color: #fff;
+    }
 `

@@ -21,14 +21,17 @@ export default function Artigos(){
     //função que é chamada por uma causa. Sempre que cb mudar, está função será chamada
     useEffect(async () => {
         setLoading(true)
-        api.get('artigo/list').then((response) => {
-            setArtigo(response.data?.docs)
-            setLoading(false)
-        }).catch((error) => {
-            setLoading(false)
-            let erro = JSON.parse(error.request.response)
-            toast.error(erro.error)
-        }) 
+        try {
+            await api.get('artigo/list').then((response) => {
+                setArtigo(response.data?.docs)
+                setLoading(false)
+            }).catch((error) => {
+                let erro = JSON.parse(error.request.response)
+                toast.error(erro.error)
+            }) 
+        } catch (error) {
+            toast.error('Ocorreu um erro ao listar os artigos. Entre em contato com o suporte.')
+        }
     },[cb])
 
     function onChange(event) {
@@ -37,26 +40,28 @@ export default function Artigos(){
 
     function handleClick(){
         setLoading(true)
-        if(busca === ''|| busca === undefined){
-            api.get('artigo/list').then((response) => {
-                setArtigo(response.data.docs)
-                setLoading(false)
-                toast.success('Lista atualizada.')
-            }).catch((error) => {
-                let erro = JSON.parse(error.request.response)
-                toast.error(erro.error)
-                setLoading(false)
-            }) 
-        } else {
-            api.get(`artigo/listName/${busca}`).then((response) => {
-                setArtigo(response.data)
-                setLoading(false)
-                toast.success('Lista atualizada.')
-            }).catch((error) => {
-                let erro = JSON.parse(error.request.response)
-                toast.error(erro.error)
-                setLoading(false)
-            }) 
+        try {
+            if(busca === ''|| busca === undefined){
+                api.get('artigo/list').then((response) => {
+                    setArtigo(response.data.docs)
+                    setLoading(false)
+                    toast.success('Lista atualizada.')
+                }).catch((error) => {
+                    let erro = JSON.parse(error.request.response)
+                    toast.error(erro.error)
+                }) 
+            } else {
+                api.get(`artigo/listName/${busca}`).then((response) => {
+                    setArtigo(response.data)
+                    setLoading(false)
+                    toast.success('Lista atualizada.')
+                }).catch((error) => {
+                    let erro = JSON.parse(error.request.response)
+                    toast.error(erro.error)
+                }) 
+            }
+        } catch (error) {
+            toast.error('Ocorreu um erro ao listar o artigo. Entre em contato com o suporte.')
         }
     }
 

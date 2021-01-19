@@ -1,13 +1,12 @@
 import styled from 'styled-components';
 
 export const Return = styled.div`
-    padding-top: 3%;
-    padding-right: 25%;
     display: flex;
     align-items: center;
     justify-content: flex-end;
 
     a {
+        margin-bottom:10px;
         padding: 5px;
         display: flex;
         align-items: center;
@@ -21,18 +20,35 @@ export const Return = styled.div`
             color: #a8a8b3;
             background: rgba(320, 320, 320, 0.1)
         }
-}
+    }
 `
 
 export const Container = styled.div`
+    width: 65%;
     margin: auto;
+    padding:50px;
+
+    .cab {
+        display: flex;
+        align-items: center;
+        margin: auto;
+        padding: 25px 0;
+
+        h1{
+            color: #fff;
+        }
+
+        img {
+            height: 75px;
+            margin: 0;
+            align-item: center;
+        }
+    }
 
     form {
-        max-width: 40%;
         margin: auto;
         display: flex;
         flex-direction: column;
-        padding-top: 6%;
 
         h2 {
             color: #fff;

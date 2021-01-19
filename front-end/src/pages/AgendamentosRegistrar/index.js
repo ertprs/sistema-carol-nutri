@@ -10,6 +10,7 @@ import ReactLoading from 'react-loading'
 
 import { useHistory } from 'react-router-dom'
 import api from '../../services/api'
+import Logo from '../../assets/logo-branca.svg'
 
 const schema = Yup.object().shape({
 
@@ -64,8 +65,11 @@ export default function RegisterAgendamentos(){
                         Voltar
                     </Link>
                 </Return>
+                <div className="cab">
+                    <img src={Logo} alt="Carol Nutri"/>
+                    <h1>Cadastrar agendamento para consulta</h1>
+                </div>
                 <Form schema={schema} onSubmit={handlSubmit}>
-                    <h2>Cadastrar agendamento para consulta</h2>
                     <Input  name="virtualDate" type="date" label="Data para o agendamento"/>
                     <Input  name="hours" type="time" placeholder="Informe o horário da consulta" label="Horário" />
                     <button type="submit">Cadastrar</button>
