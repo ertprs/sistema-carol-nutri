@@ -21,25 +21,25 @@ animation: ${DaDireitaParaEsquerda} 1s;
 `
 
 export const Return = styled.div`
+display: flex;
+align-items: center;
+justify-content: flex-end;
+
+a {
+    margin-bottom:10px;
+    padding: 5px;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    margin-bottom: 10px;
-
-    a {
-        padding: 5px;
-        display: flex;
-        align-items: center;
-        text-decoretion: none;
-        color: #fff;
-        transition: .3s;
-        border-radius: 6px;
+    text-decoretion: none;
+    color: #fff;
+    transition: .3s;
+    border-radius: 6px;
 
 
-        &:hover{
-            color: #a8a8b3;
-            background: rgba(320, 320, 320, 0.1)
-        }
+    &:hover{
+        color: #a8a8b3;
+        background: rgba(320, 320, 320, 0.1)
+    }
 }
 `
 
@@ -53,10 +53,19 @@ export const UsuarioInfo = styled.section`
     padding: 25px;
     border-radius: 8px;
 
-    h1{
-        color: #831e62;
-        font-weight: bold;
-        margin-bottom: 50px;
+    div {
+        display: flex;
+        margin:auto;
+        img {
+            width: 50px;
+            height: 50px;
+        }
+
+        h1{
+            color: #831e62;
+            font-weight: bold;
+            margin-bottom: 50px;
+        }
     }
 
     header {
@@ -83,6 +92,7 @@ export const UsuarioInfo = styled.section`
             }
 
             p{
+                text-align: justify;
                 font-size: 20px;
                 color: #831e62;
                 margin-top: 4px;

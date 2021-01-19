@@ -13,7 +13,10 @@ const DaDireitaParaEsquerda = keyframes`
 `
 
 export const Container = styled.div`
-animation: ${DaDireitaParaEsquerda} 1s;
+    animation: ${DaDireitaParaEsquerda} 1s;
+    margin: auto;
+    max-width: 65%;
+    padding:25px;
 `
 
 export const Return = styled.div`
@@ -22,8 +25,7 @@ export const Return = styled.div`
     justify-content: flex-end;
 
     a {
-        margin-right: 20%;
-        margin-top:20px;
+        margin-bottom:10px;
         padding: 5px;
         display: flex;
         align-items: center;
@@ -41,29 +43,32 @@ export const Return = styled.div`
 `
 
 export const ArtigoInfo = styled.section`
-    width 65%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-self: center;
-    margin: 50px auto;
+    margin: auto;
+    background: #fff;
+    padding: 25px;
+    border-radius: 8px;
 
-    h1{
-        color: #fff;
-        font-weight: bold;
-        margin-bottom: 50px;
+    div {
+        display: flex;
+        margin:auto;
+        img {
+            width: 50px;
+            height: 50px;
+        }
+
+        h1{
+            color: #831e62;
+            font-weight: bold;
+            margin-bottom: 50px;
+        }
     }
 
     header {
         display: flex;
-
-        img {
-            width: 150px;
-            height:150px;
-            border-radius: 50%;
-            margin: 0;
-            padding: 0;
-        }
 
         div {
             display: flex;
@@ -74,18 +79,18 @@ export const ArtigoInfo = styled.section`
 
             strong {
                 font-size: 28px;
-                color: #fff;
+                color: #831e62;
             }
 
             p{
                 font-size: 20px;
-                color: #fff;
+                color: #831e62;
                 margin-top: 4px;
                 margin-bottom: 4px;
             }
 
             span {
-                color: #fff;
+                color: #831e62;
             }
         }
     }
@@ -138,17 +143,10 @@ export const ArtigoInfo = styled.section`
             background: red;
         }
     }
-    hr {
-        border: 0;
-        height: 1px;
-        background: #fff;
-        margin: 10px 0 20px;
-    }
 `
 
 export const Editor = styled.div`
-    max-width: 65%;
-    margin: 50px auto;
+    margin: auto;
 
     div {
         display: flex;
@@ -257,6 +255,17 @@ export const Editor = styled.div`
 
         }
     }
+`
 
 
+export const Loading = styled.div`
+    display: flex;
+    flex-direction column;
+    align-items: center;
+
+    h1 {
+        margin-top: 200px;
+        max-width: 450px;
+        color: #fff;
+    }
 `

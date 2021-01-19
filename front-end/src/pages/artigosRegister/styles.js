@@ -103,3 +103,15 @@ export const Return = styled.div`
         }
 }
 `
+
+export const Loading = styled.div`
+    display: flex;
+    flex-direction column;
+    align-items: center;
+
+    h1 {
+        margin-top: 200px;
+        max-width: 450px;
+        color: #fff;
+    }
+`

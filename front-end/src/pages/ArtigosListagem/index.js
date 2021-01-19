@@ -8,7 +8,6 @@ import {AiFillPlusCircle, AiOutlineRedo} from 'react-icons/ai'
 import {Container, Formulario, Artigo, Loading} from './styles'
 import Logo from '../../assets/logo-branca.svg'
 import api from "../../services/api"
-import Tooltip from '../../components/tooltip/index'
 import ReactLoading from 'react-loading'
 
 export default function Artigos(){
@@ -63,43 +62,42 @@ export default function Artigos(){
 
     if (loading){
         return <><Loading><h1>Carregando</h1><ReactLoading  color="#fff" /></Loading></>
-    }
-
-    return(
-        <>
+    } else {
+        return(
             <Container>
-                <img src={Logo} alt="Carol Nutri"/>
-                <h1>Explore a lista de artigos.</h1>
-            </Container>
-
-            <Formulario>
-                <input value={busca} onChange={onChange} name="pesquisa" type="text" placeholder="Informe o nome do usuário"/>
-                <button onClick={handleClick} type="button">Atualizar lista <AiOutlineRedo size={20} /></button>
-                <Link>
-                    <div>
-                        <Link to="/registrar-artigo">
-                            <AiFillPlusCircle size={60}/>
-                            <Tooltip texto="Cadastrar novo artigo."/>
-                        </Link>
-                    </div>
-                </Link>
-            </Formulario>
-
-            {artigos.map(artigo => (
+                <div>
+                    <img src={Logo} alt="Carol Nutri"/>
+                    <h1>Explore a lista de artigos.</h1>
+                </div>
                 
-                <Artigo>
-                    <Link key={String(artigo._id)}  to={`/artigo/${artigo._id}`}>
+                <Formulario>
+                    <input value={busca} onChange={onChange} name="pesquisa" type="text" placeholder="Informe o nome do artigo"/>
+                    <button onClick={handleClick} type="button">Atualizar lista <AiOutlineRedo size={20} /></button>
+                    <Link>
                         <div>
-                            <div className="conteudo">
-                                <strong>{artigo.title}</strong>
-                                <p>{artigo.description}</p>
-                            </div>
+                            <Link to="/registrar-artigo">
+                                <AiFillPlusCircle size={60}/>
+                            </Link>
                         </div>
-
-                        <FiChevronRight size={20}/>
                     </Link>
-                </Artigo>
-            ))}
-        </>
-    )
+                </Formulario>
+    
+                {artigos.map(artigo => (
+                    <Artigo>
+                        <Link key={String(artigo._id)}  to={`/artigo/${artigo._id}`}>
+                            <div>
+                                <div className="conteudo">
+                                    <strong>{artigo.title}</strong>
+                                    <p>{artigo.description}</p>
+                                </div>
+                            </div>
+    
+                            <FiChevronRight size={20}/>
+                        </Link>
+                    </Artigo>
+                ))}
+
+            </Container>
+        )
+    }
 }

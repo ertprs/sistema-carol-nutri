@@ -8,6 +8,7 @@ import { useHistory } from 'react-router-dom'
 import { Form, Input, Textarea } from '@rocketseat/unform'
 import * as Yup from 'yup'
 import ReactLoading from 'react-loading'
+import Logo from '../../assets/logo.svg'
 
 import api from '../../services/api'
 import {Return, UsuarioInfo, Container, Editor, Loading} from './styles'
@@ -117,17 +118,19 @@ export default function Receita(){
                 </Return>
         
                 <UsuarioInfo>
-                    <h1>Informações da receita</h1>
-                    <header>
-                        <img src={Receita.image}/>
-                        <div>
-                            <strong>
-                                {Receita.title}
-                            </strong>
-                            <p>
-                                {Receita.description}
-                            </p>
-                        </div>
+                    <div>
+                        <img src={Logo} />
+                        <h1>Informações do artigo</h1>
+                    </div>                    <header>
+                    <img src={Receita.image}/>
+                    <div>
+                        <strong>
+                            {Receita.title}
+                        </strong>
+                        <p>
+                            {Receita.description}
+                        </p>
+                    </div>
                     </header>
                     <div className="botoes">
                         <a href={Receita.link} target="_blank">ver<FiChevronRight/></a>
