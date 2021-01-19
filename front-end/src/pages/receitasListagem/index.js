@@ -21,43 +21,52 @@ export default function Receitas(){
     //função que é chamada por uma causa. Sempre que cb mudar, está função será chamada
     useEffect(async () => {
         setLoading(true)
-        api.get('receitas/list').then((response) => {
-            setReceitas(response.data.docs)
-            setLoading(false)
-        }).catch((error) => {
-            setLoading(false)
-            let erro = JSON.parse(error.request.response)
-            toast.error(erro.error)
-        }) 
+        try {
+            await api.get('receitas/list').then((response) => {
+                setReceitas(response.data.docs)
+                setLoading(false)
+            }).catch((error) => {
+                setLoading(false)
+                let erro = JSON.parse(error.request.response)
+                toast.error(erro.error)
+            }) 
+        } catch (error) {
+            toast.error('Ocorreu um erro ao listar as receitas. Entre em contato com o suporte.')
+        }
+
     },[cb])
 
     function onChange(event) {
         setBusca(event.target.value)
     }
 
-    function handleClick(){
+    async function handleClick(){
         setLoading(true)
-        if(busca == ''|| busca == undefined){
-            api.get('receitas/list').then((response) => {
-                setReceitas(response.data?.docs)
-                setLoading(false)
-                toast.success('Lista atualizada.')
-            }).catch((error) => {
-                let erro = JSON.parse(error.request.response)
-                toast.error(erro.error)
-                setLoading(false)
-            }) 
-        } else {
-            api.get(`receitas/listName/${busca}`).then((response) => {
-                setReceitas(response?.data)
-                setLoading(false)
-                toast.success('Lista atualizada.')
-            }).catch((error) => {
-                let erro = JSON.parse(error.request?.response)
-                toast.error(erro.error)
-                setLoading(false)
-            }) 
+
+        try {
+            if(busca == ''|| busca == undefined){
+                await api.get('receitas/list').then((response) => {
+                    setReceitas(response.data?.docs)
+                    setLoading(false)
+                    toast.success('Lista atualizada.')
+                }).catch((error) => {
+                    let erro = JSON.parse(error.request.response)
+                    toast.error(erro.error)
+                }) 
+            } else {
+                await api.get(`receitas/listName/${busca}`).then((response) => {
+                    setReceitas(response?.data)
+                    setLoading(false)
+                    toast.success('Lista atualizada.')
+                }).catch((error) => {
+                    let erro = JSON.parse(error.request?.response)
+                    toast.error(erro.error)
+                }) 
+            }
+        } catch (error) {
+            toast.error('Ocorreu um erro ao listar a receita. Entre em contato com o suporte.')
         }
+        
     }
 
     if (loading){

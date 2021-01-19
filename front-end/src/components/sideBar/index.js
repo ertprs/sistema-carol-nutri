@@ -12,7 +12,7 @@ export default function SideBar(){
     if(user.eAdmin === true){
         return (
             <Content>
-                <label for="chec"><AiOutlineMenu size={36}/></label>
+                <label for="chec"><AiOutlineMenu size={30}/></label>
                 <nav>
                      <ul>
                         <li>
@@ -47,8 +47,7 @@ export default function SideBar(){
     } else {
         return (
             <Content>
-                <input type="checkbox" id="chec" />
-                <label for="chec"><AiOutlineMenu size={28}/></label>
+                <label for="chec"><AiOutlineMenu size={30}/></label>
                 <nav>
                     <ul>
                         <li>

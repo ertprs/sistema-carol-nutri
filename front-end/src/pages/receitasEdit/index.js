@@ -25,26 +25,38 @@ export default function Receita(){
 
     useEffect(async () => {
         setLoading(true)
-        api.get(`receitas/list/${params.receita}`).then((response) => {
-            setReceita(response.data)
-            setLoading(false)
-        }).catch((error) => {
-            let erro = JSON.parse(error.request.response)
-            toast.error(erro.error)
-        })
+        try {
+            await api.get(`receitas/list/${params.receita}`).then((response) => {
+                setReceita(response.data)
+                setLoading(false)
+            }).catch((error) => {
+                let erro = JSON.parse(error.request.response)
+                toast.error(erro.error)
+            })
+        } catch (error) {
+            setLoading(true)
+            toast.error('Erro ao listar a receita. Entre em contato com o suporte.')
+        }
+        
     },[params.Receita])
 
     async function handClick(){
         setLoading(true)
-        await api.delete(`receitas/delete/${params.receita}` ,{
-        }).then(() => {
-            setLoading(false)
-            toast.success('Receita excluída!')
-            history.push('/receitas')
-        }).catch((error) => {
-            let erro = JSON.parse(error.request.response)
-            toast.error(erro.error)
-        })
+        try {
+            await api.delete(`receitas/delete/${params.receita}` ,{
+            }).then(() => {
+                setLoading(false)
+                toast.success('Receita excluída!')
+                history.push('/receitas')
+            }).catch((error) => {
+                let erro = JSON.parse(error.request.response)
+                toast.error(erro.error)
+            })
+        } catch (error) {
+            setLoading(true)
+            toast.error('Erro ao deletar a receita. Entre em contato com o suporte.')
+        }
+        
     }
 
     const schema = Yup.object().shape({
@@ -64,19 +76,23 @@ export default function Receita(){
 
     async function handlSubmit(data) {
         setLoading(true)
-        await api.put(`receitas/edit/${Receita._id}` ,{ 
-            title: data.title,
-            description: data.description,
-            link: data.link,
-         }).then(async () => {
-            setLoading(false)
-             toast.success('Receita atualizado')
-             history.push('/receitas')
-        }).catch((error) => {
-            let erro = JSON.parse(error.request.response)
-            toast.error(erro.error)
-        })
-
+        try {
+            await api.put(`receitas/edit/${Receita._id}` ,{ 
+                title: data.title,
+                description: data.description,
+                link: data.link,
+             }).then(async () => {
+                setLoading(false)
+                 toast.success('Receita atualizado')
+                 history.push('/receitas')
+            }).catch((error) => {
+                let erro = JSON.parse(error.request.response)
+                toast.error(erro.error)
+            })
+        } catch (error) {
+            setLoading(true)
+            toast.error('Erro ao editar a receita. Entre em contato com o suporte.')
+        }
     }
 
     async function handleClick(){
@@ -117,7 +133,6 @@ export default function Receita(){
                         <a href={Receita.link} target="_blank">ver<FiChevronRight/></a>
                         <button onClick={handClick} type="button">Excluir <AiOutlineClose size={20} /></button>
                     </div>
-                    <hr/>
                 </UsuarioInfo>
                 <Editor>
                     <div>

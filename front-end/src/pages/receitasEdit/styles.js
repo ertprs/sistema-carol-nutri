@@ -14,17 +14,19 @@ const DaDireitaParaEsquerda = keyframes`
 
 export const Container = styled.div`
 animation: ${DaDireitaParaEsquerda} 1s;
+    margin: auto;
+    max-width: 65%;
+    padding:25px;
+
 `
 
 export const Return = styled.div`
-
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    margin-bottom: 10px;
 
     a {
-        margin-right: 20%;
-        margin-top:20px;
         padding: 5px;
         display: flex;
         align-items: center;
@@ -42,15 +44,17 @@ export const Return = styled.div`
 `
 
 export const UsuarioInfo = styled.section`
-    width 65%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-self: center;
-    margin: 50px auto;
+    margin: auto;
+    background: #fff;
+    padding: 25px;
+    border-radius: 8px;
 
     h1{
-        color: #fff;
+        color: #831e62;
         font-weight: bold;
         margin-bottom: 50px;
     }
@@ -59,8 +63,8 @@ export const UsuarioInfo = styled.section`
         display: flex;
 
         img {
-            width: 150px;
-            height:150px;
+            width: 100px;
+            height:100px;
             border-radius: 50%;
             margin: 0;
             padding: 0;
@@ -75,18 +79,18 @@ export const UsuarioInfo = styled.section`
 
             strong {
                 font-size: 28px;
-                color: #fff;
+                color: #831e62;
             }
 
             p{
                 font-size: 20px;
-                color: #fff;
+                color: #831e62;
                 margin-top: 4px;
                 margin-bottom: 4px;
             }
 
             span {
-                color: #fff;
+                color: #831e62;
             }
         }
     }
@@ -138,21 +142,15 @@ export const UsuarioInfo = styled.section`
 
         .excluir {
             background: red;
+            width: 100%;
+            margin: auto;
         }
-    }
-    hr {
-        border: 0;
-        height: 1px;
-        background: #fff;
-        margin: 10px 0 20px;
     }
 
 `
 
 export const Editor = styled.div`
-    max-width: 65%;
-    margin: 50px auto;
-
+    margin: auto;    
     div {
         display: flex;
         align-items: center;
