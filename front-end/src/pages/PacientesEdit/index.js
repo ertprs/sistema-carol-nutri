@@ -160,7 +160,7 @@ export default function Paciente(){
                     foods: alimentos[x],
                     quantities: quantidades[x]
                 }
-                vet.push(obj)
+                vet2.push(obj)
                 x++
             }
             vet2.concat(data.dietaryEvaluation)
@@ -173,10 +173,10 @@ export default function Paciente(){
                     preferences: preferencias[x],
                     aversions: avencoes[x],
                 }
-                vet.push(obj)
+                vet3.push(obj)
                 x++
             }
-            vet2.concat(data.preferencesAndAversions)
+            vet3.concat(data.preferencesAndAversions)
 
             await api.put(`form/edit/${informacoesMedicas._id}`, {
             
