@@ -36,7 +36,7 @@ const signIn = useCallback( async ({ email, password}) => {
             setData({ token, user})
 
             toast.success(`Bem vinda(a) ${user.name}.`)
-            toast.info(`Seu tempo de seu tempo de sessão irá expirar em 4 horas.`)
+            toast.info(`Seu tempo de sessão irá expirar em 4 horas.`)
 
             //FUNÇÃO QUE EXPIRA A SESSÃO APÓS 4 HORAS
             setTimeout(function(){ 
@@ -48,7 +48,7 @@ const signIn = useCallback( async ({ email, password}) => {
             
             //FUNÇÃO QUE INFORMA QUANDO FALTAR 30 MINUTOS PARA A SESSÃO EXPIRAR
             setTimeout(function(){ 
-                toast.info(`Seu tempo de seu tempo de sessão irá expirar em 30 minutos.`)
+                toast.info(`Seu tempo de sessão irá expirar em 30 minutos.`)
             }, 12600000);
 
         }).catch((error) => {

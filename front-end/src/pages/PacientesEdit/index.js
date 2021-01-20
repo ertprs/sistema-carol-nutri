@@ -17,6 +17,20 @@ export default function Paciente(){
 
     const { params } = useRouteMatch();
 
+    const [container1, setContainer] = useState(["",])
+    const [medicamentos, setMedicamentos] = useState([]);
+    const [doses, setDoses] = useState([]);
+    const [horas, setHoras] = useState([]);
+
+    const [container2, setContainer2] = useState(["",])
+    const [refeicoes, setRefeicoes] = useState([]);
+    const [alimentos, setAlimentos] = useState([]);
+    const [quantidades, setQuantidades] = useState([]);
+
+    const [container3, setContainer3] = useState(["",])
+    const [preferencias, setPreferencias] = useState([]);
+    const [avencoes, setAvecoes] = useState([]);
+
     const [paciente, setPaciente] = useState([]);
     const [informacoesMedicas, setInformacoesMedicas] = useState({});
     const [edit, setEdit] = useState(true);
@@ -26,8 +40,10 @@ export default function Paciente(){
         setLoading(true)
         try {
             await api.get(`form/list/${params.paciente}`).then((response) => {
-                console.log(response.data)
                 setInformacoesMedicas(response?.data)
+                setContainer(response.data.useOfMedicines)
+                setContainer2(response.data.dietaryEvaluation)
+                setContainer3(response.data.preferencesAndAversions)
                 setLoading(false)
             }).catch((error) => {
                 setInformacoesMedicas(undefined)
@@ -49,22 +65,58 @@ export default function Paciente(){
 
     async function handleSubmitRegister(data){
         setLoading(true)
-
         try {
-            await api.post(`form/register`, {
+            var vet = []
+            var x = 0;
+            var obj = {}
+            while(x < container1.length){
+                obj = {
+                    medicinesOrSupplements: medicamentos[x],
+                    dose: doses[x],
+                    schedule: horas[x]
+                }
+                vet.push(obj)
+                x++
+            }
 
+            var vet2 = []
+            x = 0;
+            obj = {}
+            while(x < container2.length){
+                obj = {
+                    mealAndScheduleAndLocal: refeicoes[x],
+                    foods: alimentos[x],
+                    quantities: quantidades[x]
+                }
+                vet2.push(obj)
+                x++
+            }
+
+            var vet3 = []
+            x = 0;
+            obj = {}
+            while(x < container3.length){
+                obj = {
+                    preferences: preferencias[x],
+                    aversions: avencoes[x],
+                }
+                vet3.push(obj)
+                x++
+            }
+
+            await api.post(`form/register`, {
                 user: params.paciente,
                 PersonalInformation: data.PersonalInformation,
                 nutritionalSemiology: data.nutritionalSemiology,
                 waterConsumption: data.waterConsumption,
                 allergiesAndIntolerances: data.allergiesAndIntolerances,
-                useOfMedicines: data.useOfMedicines,
+                useOfMedicines: vet,
                 physicalActivity: data.physicalActivity,
                 alcoholicBeverage: data.alcoholicBeverage,
                 smoking: data.smoking,
                 schedules: data.schedules,
-                dietaryEvaluation: data.dietaryEvaluation,
-                preferencesAndAversions: data.preferencesAndAversions,
+                dietaryEvaluation: vet2,
+                preferencesAndAversions: vet3,
                 anthropometricEvaluation: data.anthropometricEvaluation
     
             }).then((response) => {
@@ -75,7 +127,7 @@ export default function Paciente(){
             }).catch((error) => {
                 let erro = JSON.parse(error.request.response)
                 toast.error(erro.error)
-            })     
+            })
         } catch (error) {
             toast.error('Ocorreu um erro ao registrar os dados. Entre em contato com o suporte.')
         }
@@ -83,20 +135,62 @@ export default function Paciente(){
 
     async function handleSubmitEdit(data){
         setLoading(true)
+        
         try {
+            var obj = {}
+            var vet = []
+            var x = 0;
+            while(x < container1.length){
+                obj = {
+                    medicinesOrSupplements: medicamentos[x],
+                    dose: doses[x],
+                    schedule: horas[x]
+                }
+                vet.push(obj)
+                x++
+            }
+            vet.concat(data.useOfMedicines)
+
+            var vet2 = []
+            x = 0;
+            obj = {}
+            while(x < container2.length){
+                obj = {
+                    mealAndScheduleAndLocal: refeicoes[x],
+                    foods: alimentos[x],
+                    quantities: quantidades[x]
+                }
+                vet.push(obj)
+                x++
+            }
+            vet2.concat(data.dietaryEvaluation)
+
+            var vet3 = []
+            x = 0;
+            obj = {}
+            while(x < container3.length){
+                obj = {
+                    preferences: preferencias[x],
+                    aversions: avencoes[x],
+                }
+                vet.push(obj)
+                x++
+            }
+            vet2.concat(data.preferencesAndAversions)
+
             await api.put(`form/edit/${informacoesMedicas._id}`, {
             
                 PersonalInformation: data.PersonalInformation,
                 nutritionalSemiology: data.nutritionalSemiology,
                 waterConsumption: data.waterConsumption,
                 allergiesAndIntolerances: data.allergiesAndIntolerances,
-                useOfMedicines: data.useOfMedicines,
+                useOfMedicines: vet,
                 physicalActivity: data.physicalActivity,
                 alcoholicBeverage: data.alcoholicBeverage,
                 smoking: data.smoking,
                 schedules: data.schedules,
-                dietaryEvaluation: data.dietaryEvaluation,
-                preferencesAndAversions: data.preferencesAndAversions,
+                dietaryEvaluation: vet2,
+                preferencesAndAversions: vet3,
                 anthropometricEvaluation: data.anthropometricEvaluation,
                 consultaDate: data.consultaDate
     
@@ -122,6 +216,78 @@ export default function Paciente(){
             toast.info('Campos de edição desabilitado')
         }
     }
+
+    const addInputMedicamentos = (e) => {
+        e.preventDefault()
+
+        setContainer([...container1,""])
+    }
+
+    const removeInputMedicamentos = async (e) => {
+        e.preventDefault()
+
+        setContainer(["",])
+    }
+
+    const addInputDieta = (e) => {
+        e.preventDefault()
+
+        setContainer2([...container2,""])
+    }
+    const removeInputDieta = async (e) => {
+        e.preventDefault()
+
+        setContainer2(["",])
+    }
+
+    const addInputPreferencias = (e) => {
+        e.preventDefault()
+
+        setContainer3([...container3,""])
+    }
+    const removeInputpreferencia = async (e) => {
+        e.preventDefault()
+
+        setContainer3(["",])
+    }
+
+    const handleChangeMed = (e, index) =>{
+        medicamentos[index] = e.target.value
+        setMedicamentos([...medicamentos]);
+    }
+    const handleChangeDose = (e, index) =>{
+        doses[index] = e.target.value
+        setDoses([...doses]);
+    }
+    const handleChangeHora = (e, index) =>{
+        horas[index] = e.target.value
+        setHoras([...horas]);
+    }
+
+
+    const handleChangeRef = (e, index) =>{
+        refeicoes[index] = e.target.value
+        setRefeicoes([...refeicoes]);
+    }
+    const handleChangeAli = (e, index) =>{
+        alimentos[index] = e.target.value
+        setAlimentos([...alimentos]);
+    }
+    const handleChangeQuant = (e, index) =>{
+        quantidades[index] = e.target.value
+        setQuantidades([...quantidades]);
+    }
+
+
+    const handleChangePref = (e, index) =>{
+        preferencias[index] = e.target.value
+        setPreferencias([...preferencias]);
+    }
+    const handleChangeAver = (e, index) =>{
+        avencoes[index] = e.target.value
+        setAvecoes([...avencoes]);
+    }
+
 
     if(loading){
         return <><Loading><h1>Carregando</h1><ReactLoading  color="#fff" /></Loading></>
@@ -336,6 +502,29 @@ export default function Paciente(){
                             <hr/>
         
                             <h4>5. USO DE MEDICAMENTOS/SUPLEMENTOS</h4>
+                            <Scope path="useOfMedicines">
+                                <div className="containerGrande">
+                                    {
+                                        container1.map((container, index) => (
+                                            <div className="containerMedio" key={index}>
+                                                <div className="containerPequeno">
+                                                    <Input onChange={(e) => handleChangeMed(e, index)} label="Medicamento" type="text" name="medicinesOrSupplements" placeholder="Nome do medicamento" />
+                                                </div>
+                                                <div className="dose" >
+                                                    <Input onChange={(e) => handleChangeDose(e, index)} label="Dose" type="text" name="dose" placeholder="Quantidade" />
+                                                </div>
+                                                <div className="horario" >
+                                                    <Input onChange={(e) => handleChangeHora(e, index)}label="Horário" type="text" name="schedule" placeholder="Intervale de tempo" />
+                                                </div>
+                                            </div>
+                                        ))
+                                    }
+                                    <div className="buttonQuant">
+                                        <button onClick={addInputMedicamentos}>+</button>
+                                        <button onClick={removeInputMedicamentos}>Limpar lista</button>
+                                    </div>
+                                </div>
+                            </Scope>
                             <hr/>
         
                             <h4>6. ATIVIDADE FÍSICA</h4>
@@ -391,8 +580,50 @@ export default function Paciente(){
                             <hr/>
         
                             <h4>10. AVALIAÇÃO DIETÉTICA</h4>
-        
+                            <Scope path="dietaryEvaluation">
+                                <div className="containerGrande">
+                                    {
+                                        container2.map((container, index) => (
+                                            <div className="containerMedio" key={index}>
+                                                <div className="containerPequeno">
+                                                    <Input onChange={(e) => handleChangeRef(e, index)} label="Refeições Horário/Local" type="text" name="mealAndScheduleAndLocal" placeholder="Descrição" />
+                                                </div>
+                                                <div className="dose" >
+                                                    <Input onChange={(e) => handleChangeAli(e, index)} label="Alimentos" type="text" name="foods" placeholder="Descrição" />
+                                                </div>
+                                                <div className="horario" >
+                                                    <Input onChange={(e) => handleChangeQuant(e, index)}label="Quantidade" type="text" name="quantities" placeholder="Descrição" />
+                                                </div>
+                                            </div>
+                                        ))
+                                    }
+                                    <div className="buttonQuant">
+                                        <button onClick={addInputDieta}>+</button>
+                                        <button onClick={removeInputDieta}>Limpar lista</button>
+                                    </div>
+                                </div>
+                            </Scope>
                             <h5>10.1. PREFERÊNCIAS E AVERSÕES</h5>
+                            <Scope path="useOfMedicines">
+                                <div className="containerGrande">
+                                    {
+                                        container3.map((container, index) => (
+                                            <div className="containerMedio" key={index}>
+                                                <div className="containerPequeno">
+                                                    <Input onChange={(e) => handleChangePref(e, index)} label="Preferências" type="text" name="preferences" placeholder="Descrição" />
+                                                </div>
+                                                <div className="dose" >
+                                                    <Input onChange={(e) => handleChangeAver(e, index)} label="Aversões" type="text" name="aversions" placeholder="Descrição" />
+                                                </div>
+                                            </div>
+                                        ))
+                                    }
+                                    <div className="buttonQuant">
+                                        <button onClick={addInputPreferencias}>+</button>
+                                        <button onClick={removeInputpreferencia}>Limpar lista</button>
+                                    </div>
+                                </div>
+                            </Scope>
                             <hr/>
     
                             <h5>10.2. ALTERAÇÕES DA INGESTÃO ALIMENTAR</h5>
@@ -767,6 +998,36 @@ export default function Paciente(){
                             <hr/>
         
                             <h4>5. USO DE MEDICAMENTOS/SUPLEMENTOS</h4>
+                            
+                                <div className="containerGrande">
+                                    {
+                                        container1.map((obj, index) => (
+                                            <div className="containerMedio" key={index}>
+                                                <Scope path="useOfMedicines">
+                                                    <div className="containerPequeno">
+                                                        {
+                                                            edit ? <Input value={obj.medicinesOrSupplements} label="Medicamento" type="text" id="medicinesOrSupplements" name="medicinesOrSupplements" placeholder="Nome do medicamento" disabled/> : <Input onChange={(e) => handleChangeMed(e, index)} label="Medicamento" type="text" name="medicinesOrSupplements" id="medicinesOrSupplements" placeholder="Nome do medicamento" />
+                                                        }
+                                                    </div>
+                                                    <div className="dose" >
+                                                        {
+                                                            edit ? <Input value={obj.dose} label="Dose" type="text" name="dose" placeholder="Quantidade" disabled/> : <Input onChange={(e) => handleChangeDose(e, index)} label="Dose" type="text" name="dose" placeholder="Quantidade" />
+                                                        }
+                                                    </div>
+                                                    <div className="horario" >
+                                                        {
+                                                            edit ? <Input value={obj.schedule} label="Horário" type="text" name="schedule" placeholder="Intervale de tempo" disabled /> : <Input onChange={(e) => handleChangeHora(e, index)}label="Horário" type="text" name="schedule" placeholder="Intervale de tempo" />
+                                                        }
+                                                    </div>
+                                                </Scope>
+                                            </div>
+                                        ))
+                                    }
+                                    <div className="buttonQuant">
+                                        <button onClick={addInputMedicamentos}>+</button>
+                                        <button onClick={removeInputMedicamentos}>Limpar lista</button>
+                                    </div>
+                                </div>
                             <hr/>
         
                             <h4>6. ATIVIDADE FÍSICA</h4>
@@ -837,8 +1098,60 @@ export default function Paciente(){
                             <hr/>
         
                             <h4>10. AVALIAÇÃO DIETÉTICA</h4>
-        
+                            <Scope path="dietaryEvaluation">
+                                <div className="containerGrande">
+                                    {
+                                        container2.map((obj, index) => (
+                                            <div className="containerMedio" key={index}>
+                                                <div className="containerPequeno">
+                                                    {
+                                                        edit ? <Input value={obj.mealAndScheduleAndLocal} label="Refeições Horário/Local" type="text" id="mealAndScheduleAndLocal" name="mealAndScheduleAndLocal" placeholder="Descrição" disabled /> : <Input onChange={(e) => handleChangeRef(e, index)} label="Refeições Horário/Local" type="text" name="mealAndScheduleAndLocal" placeholder="Descrição" />
+                                                    }
+                                                </div>
+                                                <div className="dose" >
+                                                    {
+                                                        edit ? <Input value={obj.foods} label="Alimentos" type="text" id="foods" name="foods" placeholder="Descrição" disabled/> : <Input onChange={(e) => handleChangeAli(e, index)} label="Alimentos" type="text" name="foods" placeholder="Descrição" />
+                                                    }
+                                                </div>
+                                                <div className="horario" >
+                                                    {
+                                                        edit ? <Input value={obj.quantities} label="Quantidade" type="text" id="quantities" name="quantities" placeholder="Descrição" disabled /> : <Input onChange={(e) => handleChangeQuant(e, index)}label="Quantidade" type="text" name="quantities" placeholder="Descrição" />
+                                                    }
+                                                </div>
+                                            </div>
+                                        ))
+                                    }
+                                    <div className="buttonQuant">
+                                        <button onClick={addInputDieta}>+</button>
+                                        <button onClick={removeInputDieta}>Limpar lista</button>
+                                    </div>
+                                </div>
+                            </Scope>
                             <h5>10.1. PREFERÊNCIAS E AVERSÕES</h5>
+                            <Scope path="preferencesAndAversions">
+                                <div className="containerGrande">
+                                    {
+                                        container3.map((obj, index) => (
+                                            <div className="containerMedio" key={index}>
+                                                <div className="containerPequeno">
+                                                    {
+                                                        edit ? <Input value={obj.preferences} label="Preferências" type="text" id="preferences" name="preferences" placeholder="Descrição" disabled /> : <Input onChange={(e) => handleChangePref(e, index)} label="Preferências" type="text" name="preferences" placeholder="Descrição" />
+                                                    }
+                                                </div>
+                                                <div className="dose" >
+                                                    {
+                                                        edit ? <Input value={obj.aversions} label="Aversões" type="text" id="aversions" name="aversions" placeholder="Descrição" disabled /> : <Input onChange={(e) => handleChangeAver(e, index)} label="Aversões" type="text" name="aversions" placeholder="Descrição" />
+                                                    }
+                                                </div>
+                                            </div>
+                                        ))
+                                    }
+                                    <div className="buttonQuant">
+                                        <button onClick={addInputPreferencias}>+</button>
+                                        <button onClick={removeInputpreferencia}>Limpar lista</button>
+                                    </div>
+                                </div>
+                            </Scope>
                             <hr/>
     
                             <h5>10.2. ALTERAÇÕES DA INGESTÃO ALIMENTAR</h5>

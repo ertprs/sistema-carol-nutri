@@ -134,6 +134,39 @@ export const MedicalInfo = styled.div`
             
         }
 
+        .containerGrande{
+            display: flex;
+            flex-direction: column;
+
+            .buttonQuant{
+                display: flex;
+                flex-direction: row;
+                
+                button{
+                    width: 100%;
+                    background: #3b9eff;
+                    color #fff;
+                    margin: 10px;;
+                    height: 36px;
+                    font-weight: bold;
+                    border: 0;
+                    border-radius: 4px;
+                    font-size: 16px;
+                    transition: background 0.5s;
+        
+                    &:hover{
+                        background: #3273ed;
+                    }
+                }
+                
+            }
+
+            .containerMedio{
+                display: flex;
+                flex-direction: row;
+            }
+        }
+
         div {
             display: flex;
             justify-content: center;
