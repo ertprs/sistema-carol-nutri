@@ -150,7 +150,7 @@ const ProtocolService = new mongoose.Schema({
 
     physicalActivity: {
         physicalActivityYesNo: {
-            type: String,
+            type: Boolean,
         },
         frequencyActivity: {
             type: String
@@ -159,7 +159,7 @@ const ProtocolService = new mongoose.Schema({
 
     alcoholicBeverage: {
         yesNoBeverage: {
-            type: String,
+            type: Boolean,
         },
         frequencyBeverage: {
             type: String
@@ -167,7 +167,7 @@ const ProtocolService = new mongoose.Schema({
     },
 
     smoking: {
-        type: String,
+        type: Boolean,
     },
 
     schedules: {
