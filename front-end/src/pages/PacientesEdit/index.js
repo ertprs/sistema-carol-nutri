@@ -17,20 +17,6 @@ export default function Paciente(){
 
     const { params } = useRouteMatch();
 
-    const [container1, setContainer] = useState(["",])
-    const [medicamentos, setMedicamentos] = useState([]);
-    const [doses, setDoses] = useState([]);
-    const [horas, setHoras] = useState([]);
-
-    const [container2, setContainer2] = useState(["",])
-    const [refeicoes, setRefeicoes] = useState([]);
-    const [alimentos, setAlimentos] = useState([]);
-    const [quantidades, setQuantidades] = useState([]);
-
-    const [container3, setContainer3] = useState(["",])
-    const [preferencias, setPreferencias] = useState([]);
-    const [avencoes, setAvecoes] = useState([]);
-
     const [paciente, setPaciente] = useState([]);
     const [informacoesMedicas, setInformacoesMedicas] = useState({});
     const [edit, setEdit] = useState(true);
@@ -41,9 +27,6 @@ export default function Paciente(){
         try {
             await api.get(`form/list/${params.paciente}`).then((response) => {
                 setInformacoesMedicas(response?.data)
-                setContainer(response.data.useOfMedicines)
-                setContainer2(response.data.dietaryEvaluation)
-                setContainer3(response.data.preferencesAndAversions)
                 setLoading(false)
             }).catch((error) => {
                 setInformacoesMedicas(undefined)
@@ -66,57 +49,19 @@ export default function Paciente(){
     async function handleSubmitRegister(data){
         setLoading(true)
         try {
-            var vet = []
-            var x = 0;
-            var obj = {}
-            while(x < container1.length){
-                obj = {
-                    medicinesOrSupplements: medicamentos[x],
-                    dose: doses[x],
-                    schedule: horas[x]
-                }
-                vet.push(obj)
-                x++
-            }
-
-            var vet2 = []
-            x = 0;
-            obj = {}
-            while(x < container2.length){
-                obj = {
-                    mealAndScheduleAndLocal: refeicoes[x],
-                    foods: alimentos[x],
-                    quantities: quantidades[x]
-                }
-                vet2.push(obj)
-                x++
-            }
-
-            var vet3 = []
-            x = 0;
-            obj = {}
-            while(x < container3.length){
-                obj = {
-                    preferences: preferencias[x],
-                    aversions: avencoes[x],
-                }
-                vet3.push(obj)
-                x++
-            }
-
             await api.post(`form/register`, {
                 user: params.paciente,
                 PersonalInformation: data.PersonalInformation,
                 nutritionalSemiology: data.nutritionalSemiology,
                 waterConsumption: data.waterConsumption,
                 allergiesAndIntolerances: data.allergiesAndIntolerances,
-                useOfMedicines: vet,
+                useOfMedicines: data.useOfMedicines,
                 physicalActivity: data.physicalActivity,
                 alcoholicBeverage: data.alcoholicBeverage,
                 smoking: data.smoking,
                 schedules: data.schedules,
-                dietaryEvaluation: vet2,
-                preferencesAndAversions: vet3,
+                dietaryEvaluation: data.dietaryEvaluation,
+                preferencesAndAversions: data.preferencesAndAversions,
                 anthropometricEvaluation: data.anthropometricEvaluation
     
             }).then((response) => {
@@ -137,60 +82,18 @@ export default function Paciente(){
         setLoading(true)
         
         try {
-            var obj = {}
-            var vet = []
-            var x = 0;
-            while(x < container1.length){
-                obj = {
-                    medicinesOrSupplements: medicamentos[x],
-                    dose: doses[x],
-                    schedule: horas[x]
-                }
-                vet.push(obj)
-                x++
-            }
-            vet.concat(data.useOfMedicines)
-
-            var vet2 = []
-            x = 0;
-            obj = {}
-            while(x < container2.length){
-                obj = {
-                    mealAndScheduleAndLocal: refeicoes[x],
-                    foods: alimentos[x],
-                    quantities: quantidades[x]
-                }
-                vet2.push(obj)
-                x++
-            }
-            vet2.concat(data.dietaryEvaluation)
-
-            var vet3 = []
-            x = 0;
-            obj = {}
-            while(x < container3.length){
-                obj = {
-                    preferences: preferencias[x],
-                    aversions: avencoes[x],
-                }
-                vet3.push(obj)
-                x++
-            }
-            vet3.concat(data.preferencesAndAversions)
-
             await api.put(`form/edit/${informacoesMedicas._id}`, {
-            
                 PersonalInformation: data.PersonalInformation,
                 nutritionalSemiology: data.nutritionalSemiology,
                 waterConsumption: data.waterConsumption,
                 allergiesAndIntolerances: data.allergiesAndIntolerances,
-                useOfMedicines: vet,
+                useOfMedicines: data.useOfMedicines,
                 physicalActivity: data.physicalActivity,
                 alcoholicBeverage: data.alcoholicBeverage,
                 smoking: data.smoking,
                 schedules: data.schedules,
-                dietaryEvaluation: vet2,
-                preferencesAndAversions: vet3,
+                dietaryEvaluation: data.dietaryEvaluation,
+                preferencesAndAversions: data.preferencesAndAversions,
                 anthropometricEvaluation: data.anthropometricEvaluation,
                 consultaDate: data.consultaDate
     
@@ -216,78 +119,6 @@ export default function Paciente(){
             toast.info('Campos de edição desabilitado')
         }
     }
-
-    const addInputMedicamentos = (e) => {
-        e.preventDefault()
-
-        setContainer([...container1,""])
-    }
-
-    const removeInputMedicamentos = async (e) => {
-        e.preventDefault()
-
-        setContainer(["",])
-    }
-
-    const addInputDieta = (e) => {
-        e.preventDefault()
-
-        setContainer2([...container2,""])
-    }
-    const removeInputDieta = async (e) => {
-        e.preventDefault()
-
-        setContainer2(["",])
-    }
-
-    const addInputPreferencias = (e) => {
-        e.preventDefault()
-
-        setContainer3([...container3,""])
-    }
-    const removeInputpreferencia = async (e) => {
-        e.preventDefault()
-
-        setContainer3(["",])
-    }
-
-    const handleChangeMed = (e, index) =>{
-        medicamentos[index] = e.target.value
-        setMedicamentos([...medicamentos]);
-    }
-    const handleChangeDose = (e, index) =>{
-        doses[index] = e.target.value
-        setDoses([...doses]);
-    }
-    const handleChangeHora = (e, index) =>{
-        horas[index] = e.target.value
-        setHoras([...horas]);
-    }
-
-
-    const handleChangeRef = (e, index) =>{
-        refeicoes[index] = e.target.value
-        setRefeicoes([...refeicoes]);
-    }
-    const handleChangeAli = (e, index) =>{
-        alimentos[index] = e.target.value
-        setAlimentos([...alimentos]);
-    }
-    const handleChangeQuant = (e, index) =>{
-        quantidades[index] = e.target.value
-        setQuantidades([...quantidades]);
-    }
-
-
-    const handleChangePref = (e, index) =>{
-        preferencias[index] = e.target.value
-        setPreferencias([...preferencias]);
-    }
-    const handleChangeAver = (e, index) =>{
-        avencoes[index] = e.target.value
-        setAvecoes([...avencoes]);
-    }
-
 
     if(loading){
         return <><Loading><h1>Carregando</h1><ReactLoading  color="#fff" /></Loading></>
@@ -503,25 +334,15 @@ export default function Paciente(){
         
                             <h4>5. USO DE MEDICAMENTOS/SUPLEMENTOS</h4>
                             <Scope path="useOfMedicines">
-                                <div className="containerGrande">
-                                    {
-                                        container1.map((container, index) => (
-                                            <div className="containerMedio" key={index}>
-                                                <div className="containerPequeno">
-                                                    <Input onChange={(e) => handleChangeMed(e, index)} label="Medicamento" type="text" name="medicinesOrSupplements" placeholder="Nome do medicamento" />
-                                                </div>
-                                                <div className="dose" >
-                                                    <Input onChange={(e) => handleChangeDose(e, index)} label="Dose" type="text" name="dose" placeholder="Quantidade" />
-                                                </div>
-                                                <div className="horario" >
-                                                    <Input onChange={(e) => handleChangeHora(e, index)}label="Horário" type="text" name="schedule" placeholder="Intervale de tempo" />
-                                                </div>
-                                            </div>
-                                        ))
-                                    }
-                                    <div className="buttonQuant">
-                                        <button onClick={addInputMedicamentos}>+</button>
-                                        <button onClick={removeInputMedicamentos}>Limpar lista</button>
+                                <div>
+                                    <div>
+                                        <Textarea label="Medicamentos" id="medicinesOrSupplements" placeholder="Exemplo: whey; creatina; complexo b..." name="medicinesOrSupplements" rows="6" cols="30"/>
+                                    </div>
+                                    <div>
+                                        <Textarea label="Doses" id="dose" placeholder="Dose correspondente ao medicamento do campo anterior" name="dose" rows="6" cols="30"/>
+                                    </div>
+                                    <div>
+                                        <Textarea label="Horários" id="schedule" placeholder="O horário de cada medicamento informado no campo anterior" name="schedule" rows="6" cols="30"/>
                                     </div>
                                 </div>
                             </Scope>
@@ -581,50 +402,30 @@ export default function Paciente(){
         
                             <h4>10. AVALIAÇÃO DIETÉTICA</h4>
                             <Scope path="dietaryEvaluation">
-                                <div className="containerGrande">
-                                    {
-                                        container2.map((container, index) => (
-                                            <div className="containerMedio" key={index}>
-                                                <div className="containerPequeno">
-                                                    <Input onChange={(e) => handleChangeRef(e, index)} label="Refeições Horário/Local" type="text" name="mealAndScheduleAndLocal" placeholder="Descrição" />
-                                                </div>
-                                                <div className="dose" >
-                                                    <Input onChange={(e) => handleChangeAli(e, index)} label="Alimentos" type="text" name="foods" placeholder="Descrição" />
-                                                </div>
-                                                <div className="horario" >
-                                                    <Input onChange={(e) => handleChangeQuant(e, index)}label="Quantidade" type="text" name="quantities" placeholder="Descrição" />
-                                                </div>
-                                            </div>
-                                        ))
-                                    }
-                                    <div className="buttonQuant">
-                                        <button onClick={addInputDieta}>+</button>
-                                        <button onClick={removeInputDieta}>Limpar lista</button>
+                                <div>
+                                    <div>
+                                        <Textarea label="Refeições local/horários" id="mealAndScheduleAndLocal" name="mealAndScheduleAndLocal" rows="6" cols="30"/>
+                                    </div>
+                                    <div>
+                                        <Textarea label="Alimentos" placeholder="Alimentos correspondente a cada refeição" id="foods" name="foods" rows="6" cols="30"/>
+                                    </div>
+                                    <div>
+                                        <Textarea label="Quantidades" placeholder="Quantidade referente a cada alimento adicionado" id="quantities" name="quantities" rows="6" cols="30"/>
                                     </div>
                                 </div>
                             </Scope>
+
                             <h5>10.1. PREFERÊNCIAS E AVERSÕES</h5>
-                            <Scope path="useOfMedicines">
-                                <div className="containerGrande">
-                                    {
-                                        container3.map((container, index) => (
-                                            <div className="containerMedio" key={index}>
-                                                <div className="containerPequeno">
-                                                    <Input onChange={(e) => handleChangePref(e, index)} label="Preferências" type="text" name="preferences" placeholder="Descrição" />
-                                                </div>
-                                                <div className="dose" >
-                                                    <Input onChange={(e) => handleChangeAver(e, index)} label="Aversões" type="text" name="aversions" placeholder="Descrição" />
-                                                </div>
-                                            </div>
-                                        ))
-                                    }
-                                    <div className="buttonQuant">
-                                        <button onClick={addInputPreferencias}>+</button>
-                                        <button onClick={removeInputpreferencia}>Limpar lista</button>
+                            <Scope path="preferencesAndAversions">
+                                <div>
+                                    <div>
+                                        <Textarea label="Preferências" placeholder="Lista de preferências" id="preferences" name="preferences" rows="6" cols="30"/>
+                                    </div>
+                                    <div>
+                                        <Textarea label="Aversões" placeholder="Lista de aversões" id="aversions" name="aversions" rows="6" cols="30"/>
                                     </div>
                                 </div>
                             </Scope>
-                            <hr/>
     
                             <h5>10.2. ALTERAÇÕES DA INGESTÃO ALIMENTAR</h5>
                             <Scope path="foodIngestion">
@@ -998,36 +799,25 @@ export default function Paciente(){
                             <hr/>
         
                             <h4>5. USO DE MEDICAMENTOS/SUPLEMENTOS</h4>
-                            
-                                <div className="containerGrande">
-                                    {
-                                        container1.map((obj, index) => (
-                                            <div className="containerMedio" key={index}>
-                                                <Scope path="useOfMedicines">
-                                                    <div className="containerPequeno">
-                                                        {
-                                                            edit ? <Input value={obj.medicinesOrSupplements} label="Medicamento" type="text" id="medicinesOrSupplements" name="medicinesOrSupplements" placeholder="Nome do medicamento" disabled/> : <Input onChange={(e) => handleChangeMed(e, index)} label="Medicamento" type="text" name="medicinesOrSupplements" id="medicinesOrSupplements" placeholder="Nome do medicamento" />
-                                                        }
-                                                    </div>
-                                                    <div className="dose" >
-                                                        {
-                                                            edit ? <Input value={obj.dose} label="Dose" type="text" name="dose" placeholder="Quantidade" disabled/> : <Input onChange={(e) => handleChangeDose(e, index)} label="Dose" type="text" name="dose" placeholder="Quantidade" />
-                                                        }
-                                                    </div>
-                                                    <div className="horario" >
-                                                        {
-                                                            edit ? <Input value={obj.schedule} label="Horário" type="text" name="schedule" placeholder="Intervale de tempo" disabled /> : <Input onChange={(e) => handleChangeHora(e, index)}label="Horário" type="text" name="schedule" placeholder="Intervale de tempo" />
-                                                        }
-                                                    </div>
-                                                </Scope>
-                                            </div>
-                                        ))
-                                    }
-                                    <div className="buttonQuant">
-                                        <button onClick={addInputMedicamentos}>+</button>
-                                        <button onClick={removeInputMedicamentos}>Limpar lista</button>
+                                <Scope path="useOfMedicines">
+                                    <div>
+                                        <div>
+                                            {
+                                                edit ? <Textarea label="Medicamentos" id="medicinesOrSupplements" name="medicinesOrSupplements" rows="6" cols="30" disabled/> : <Textarea label="Refeições local/horários" id="medicinesOrSupplements" name="medicinesOrSupplements" rows="6" cols="30"/>
+                                            }
+                                        </div>
+                                        <div>
+                                            {
+                                                edit ? <Textarea label="Doses" placeholder="Alimentos correspondente a cada refeição" id="dose" name="dose" rows="6" cols="30" disabled/> :  <Textarea label="Alimentos" placeholder="Alimentos correspondente a cada refeição" id="dose" name="dose" rows="6" cols="30"/>
+                                            }
+                                        </div>
+                                        <div>
+                                            {
+                                                edit ? <Textarea label="Horários" placeholder="Quantidade referente a cada alimento adicionado" id="schedule" name="schedule" rows="6" cols="30" disabled/> : <Textarea label="Quantidades" placeholder="Quantidade referente a cada alimento adicionado" id="schedule" name="schedule" rows="6" cols="30"/>
+                                            }
+                                        </div>
                                     </div>
-                                </div>
+                                </Scope>
                             <hr/>
         
                             <h4>6. ATIVIDADE FÍSICA</h4>
@@ -1035,7 +825,7 @@ export default function Paciente(){
                                 <div>
                                     <div>
                                         {
-                                            edit ? <Check label="Pratica atividade Física" id="physicalActivityYesNo" name="physicalActivityYesNo" disabled/> : <Check label="Pratica atividade Física" id="physicalActivityYesNo" name="physicalActivityYesNo"/>
+                                            edit ? <Check label="Pratica atividade física" id="physicalActivityYesNo" name="physicalActivityYesNo" disabled/> : <Check label="Pratica atividade física" id="physicalActivityYesNo" name="physicalActivityYesNo"/>
                                         }
                                     </div>
                                     <div>
@@ -1067,9 +857,11 @@ export default function Paciente(){
                             <h4>8. TABAGISMO</h4>
                             <div>
                                 <div>
+                                        <Scope path="PersonalInformation">
                                         {
                                             edit ? <Check label="Fumante" id="smoking" name="smoking" disabled /> : <Check label="Fumante" id="smoking" name="smoking"/>
                                         }
+                                        </Scope>
                                 </div>
                             </div>
                             <hr/>
@@ -1098,60 +890,40 @@ export default function Paciente(){
                             <hr/>
         
                             <h4>10. AVALIAÇÃO DIETÉTICA</h4>
-                            <Scope path="dietaryEvaluation">
-                                <div className="containerGrande">
-                                    {
-                                        container2.map((obj, index) => (
-                                            <div className="containerMedio" key={index}>
-                                                <div className="containerPequeno">
-                                                    {
-                                                        edit ? <Input value={obj.mealAndScheduleAndLocal} label="Refeições Horário/Local" type="text" id="mealAndScheduleAndLocal" name="mealAndScheduleAndLocal" placeholder="Descrição" disabled /> : <Input onChange={(e) => handleChangeRef(e, index)} label="Refeições Horário/Local" type="text" name="mealAndScheduleAndLocal" placeholder="Descrição" />
-                                                    }
-                                                </div>
-                                                <div className="dose" >
-                                                    {
-                                                        edit ? <Input value={obj.foods} label="Alimentos" type="text" id="foods" name="foods" placeholder="Descrição" disabled/> : <Input onChange={(e) => handleChangeAli(e, index)} label="Alimentos" type="text" name="foods" placeholder="Descrição" />
-                                                    }
-                                                </div>
-                                                <div className="horario" >
-                                                    {
-                                                        edit ? <Input value={obj.quantities} label="Quantidade" type="text" id="quantities" name="quantities" placeholder="Descrição" disabled /> : <Input onChange={(e) => handleChangeQuant(e, index)}label="Quantidade" type="text" name="quantities" placeholder="Descrição" />
-                                                    }
-                                                </div>
-                                            </div>
-                                        ))
-                                    }
-                                    <div className="buttonQuant">
-                                        <button onClick={addInputDieta}>+</button>
-                                        <button onClick={removeInputDieta}>Limpar lista</button>
+                                <Scope path="dietaryEvaluation">
+                                    <div>
+                                        <div>
+                                            {
+                                                edit ? <Textarea label="Refeições local/horários" id="mealAndScheduleAndLocal" name="mealAndScheduleAndLocal" rows="6" cols="30" disabled/> : <Textarea label="Refeições local/horários" id="mealAndScheduleAndLocal" name="mealAndScheduleAndLocal" rows="6" cols="30"/>
+                                            }
+                                        </div>
+                                        <div>
+                                            {
+                                                edit ? <Textarea label="Alimentos" placeholder="Alimentos correspondente a cada refeição" id="foods" name="foods" rows="6" cols="30" disabled/> :  <Textarea label="Alimentos" placeholder="Alimentos correspondente a cada refeição" id="foods" name="foods" rows="6" cols="30"/>
+                                            }
+                                        </div>
+                                        <div>
+                                            {
+                                                edit ? <Textarea label="Quantidades" placeholder="Quantidade referente a cada alimento adicionado" id="quantities" name="quantities" rows="6" cols="30" disabled/> : <Textarea label="Quantidades" placeholder="Quantidade referente a cada alimento adicionado" id="quantities" name="quantities" rows="6" cols="30"/>
+                                            }
+                                        </div>
                                     </div>
-                                </div>
-                            </Scope>
+                                </Scope>
                             <h5>10.1. PREFERÊNCIAS E AVERSÕES</h5>
-                            <Scope path="preferencesAndAversions">
-                                <div className="containerGrande">
-                                    {
-                                        container3.map((obj, index) => (
-                                            <div className="containerMedio" key={index}>
-                                                <div className="containerPequeno">
-                                                    {
-                                                        edit ? <Input value={obj.preferences} label="Preferências" type="text" id="preferences" name="preferences" placeholder="Descrição" disabled /> : <Input onChange={(e) => handleChangePref(e, index)} label="Preferências" type="text" name="preferences" placeholder="Descrição" />
-                                                    }
-                                                </div>
-                                                <div className="dose" >
-                                                    {
-                                                        edit ? <Input value={obj.aversions} label="Aversões" type="text" id="aversions" name="aversions" placeholder="Descrição" disabled /> : <Input onChange={(e) => handleChangeAver(e, index)} label="Aversões" type="text" name="aversions" placeholder="Descrição" />
-                                                    }
-                                                </div>
-                                            </div>
-                                        ))
-                                    }
-                                    <div className="buttonQuant">
-                                        <button onClick={addInputPreferencias}>+</button>
-                                        <button onClick={removeInputpreferencia}>Limpar lista</button>
+                                <Scope path="preferencesAndAversions">
+                                    <div>
+                                        <div>
+                                            {
+                                                edit ? <Textarea label="Refeições local/horários" id="preferences" name="preferences" rows="6" cols="30" disabled/> : <Textarea label="Refeições local/horários" id="preferences" name="preferences" rows="6" cols="30"/>
+                                            }
+                                        </div>
+                                        <div>
+                                            {
+                                                edit ? <Textarea label="Alimentos" placeholder="Alimentos correspondente a cada refeição" id="aversions" name="aversions" rows="6" cols="30" disabled/> :  <Textarea label="Alimentos" placeholder="Alimentos correspondente a cada refeição" id="aversions" name="aversions" rows="6" cols="30"/>
+                                            }
+                                        </div>
                                     </div>
-                                </div>
-                            </Scope>
+                                </Scope>
                             <hr/>
     
                             <h5>10.2. ALTERAÇÕES DA INGESTÃO ALIMENTAR</h5>

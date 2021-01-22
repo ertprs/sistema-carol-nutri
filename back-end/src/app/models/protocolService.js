@@ -136,7 +136,7 @@ const ProtocolService = new mongoose.Schema({
         }
     },
 
-    useOfMedicines: [{
+    useOfMedicines: {
         medicinesOrSupplements: {
             type: String,
         },
@@ -146,7 +146,7 @@ const ProtocolService = new mongoose.Schema({
         schedule: {
             type: String,
         }
-    }],
+    },
 
     physicalActivity: {
         physicalActivityYesNo: {
@@ -182,7 +182,7 @@ const ProtocolService = new mongoose.Schema({
         }
     },
 
-    dietaryEvaluation: [{
+    dietaryEvaluation: {
         mealAndScheduleAndLocal: {
             type: String,
         },
@@ -192,16 +192,16 @@ const ProtocolService = new mongoose.Schema({
         quantities: {
             type: String,
         }
-    }],
+    },
 
-    preferencesAndAversions: [{
+    preferencesAndAversions: {
         preferences: {
             type: String,
         },
         aversions: {
             type: String,
         }
-    }],
+    },
 
     foodIngestion: {
         inappetence: {
