@@ -5,9 +5,21 @@ import {toast} from 'react-toastify'
 export const AuthContext = createContext()
 
 export const AuthProvider = ({children}) => {
-    const [data, setData] = useState(() => {
+    const [data, setData] = useState( async () => {
         const token = localStorage.getItem('@CarolNutri:token')
         var user = localStorage.getItem('@CarolNutri:user')
+
+        try{
+            await api.get(`user/user/${user._id}`).then((response) =>{
+                user = response.data
+                localStorage.setItem('@CarolNutri:user', JSON.stringify(user))
+            }).catch((error) => {
+                let erro = JSON.parse(error.request.response)
+                toast.error(erro.error)
+            })
+        } catch(error) {
+            console.log('Ocorreu um erro, entre em contato co o suporte')
+        }
 
         api.defaults.headers['authorization'] = `Bearer ${token}`
 
@@ -17,7 +29,6 @@ export const AuthProvider = ({children}) => {
 
         return {}
     })
-
 
 
 const signIn = useCallback( async ({ email, password}) => {
