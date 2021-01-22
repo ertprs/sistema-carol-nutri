@@ -289,26 +289,30 @@ const ProtocolService = new mongoose.Schema({
 
 ProtocolService.pre('save', async function(next){
 
+    // Acessa a variavel energyExpenditure do banco de dados
     const energyExpend = this.anthropometricEvaluation.energyExpenditure;
+    // Faz uma desestruturacao na variavel anthropometricEvaluation e pega apenas as variaveis desejadas
     const { currentWeight, NAF } = this.anthropometricEvaluation;
+    // Faz uma desestruturacao na variavel PersonalInformation e pega apenas as variaveis desejadas
     const { dateBirth, genre, height, Weight } = this.PersonalInformation;
 
+    // Calcula a idade de acordo com a data de nascimento
     const age = functionEnergyExpend.calculaIdade(dateBirth)
 
+    // Função da formula FAO/OMS para calcular o gasto energetico
     this.anthropometricEvaluation.energyExpenditure.faoOms = functionEnergyExpend.faoOms(currentWeight, age, genre)
+    // Funcão para a formula de Harrys Benedict para calcular o gasto energetico
     this.anthropometricEvaluation.energyExpenditure.HarrisBenedict = functionEnergyExpend.harrisBenedict(height, currentWeight, age, genre);
+    // Funcao da formula de IOM para calcular o gasto energetico
     this.anthropometricEvaluation.energyExpenditure.iom = functionEnergyExpend.iom(height, currentWeight, age, genre, NAF);
+    // Armazeno o calculo feito de necessidade hidrica do paciente
     this.anthropometricEvaluation.dailyHydraulicNeed = (0.035 * currentWeight)
+    // Calculo do imc do paciente
     this.anthropometricEvaluation.imc = (Weight / (height * height)).toFixed(2)
-
-    console.log(energyExpend.faoOms)
-    console.log(energyExpend.HarrisBenedict)
-    console.log(energyExpend.iom)
-    console.log(this.anthropometricEvaluation.dailyHydraulicNeed)
 
 })
 
 // Definido o pluglin para poder utilizar a função paginate
 ProtocolService.plugin(mongoosePaginate);
-
+// O primeiro argumento é o nome singular da coleção para a qual o model se destina.
 mongoose.model('ProtocolService', ProtocolService);

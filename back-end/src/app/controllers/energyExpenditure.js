@@ -1,9 +1,9 @@
 
-
+// Exportando as funcoes para serem usadas na aplicaçõa principal
 module.exports = {
-
-    harrisBenedict(height, P, I, G) {
-        const A = height * 100
+    // Funcão para a formula de Harrys Benedict para calcular o gasto energetico
+    harrisBenedict(height, P, I, G) { // Altura, peso, idade e genero
+        const A = height * 100 // Transformando metros para centimetros
         try {
             let GET = 0;
             if(typeof A !== undefined || typeof P !== undefined || typeof I !== undefined || typeof G !== undefined) {
@@ -13,15 +13,15 @@ module.exports = {
                 else if(G == "Homem"){
                     GET = 66 + (13.8 * P) + (5.0 * A) - (6.8 * I);
                 }
-                return GET.toFixed(2);
+                return GET.toFixed(2); // Retorna o valor com duas casas decimais
             } 
         }
         catch (error) {
-            return res.send({error: 'Campo indefinido.' })
+            return res.send({error: 'Campo indefinido.' }) /// Caso algumas dad variaveis sejam indefinidas, retorna este erro
         }
     },
-
-    faoOms(P, I, G) {
+    // Função da formula FAO/OMS para calcular o gasto energetico
+    faoOms(P, I, G) { // Peso, idade e genero
         try {
             var GET = 0;
             if(typeof P != "undefined" || typeof I != "undefined" || typeof G != "undefined") {
@@ -60,8 +60,8 @@ module.exports = {
             return res.send({error: 'Campo indefinido.' })
         }
     },
-
-    iom(height, P, I, G, NAF) {
+    // Funcao da formula de IOM para calcular o gasto energetico
+    iom(height, P, I, G, NAF) { // Altura, peso, idade, genero e nivel de atividade fisica (NAF)
         try {
             const A = height * 100
             let GET = 0;
@@ -89,17 +89,17 @@ module.exports = {
             return res.send({error: 'Campo indefinido.' })
         }
     },
-
+    // Calcular a idade de acordo com a data de nascimento do paciente
     calculaIdade(dataNasc){ 
         try {
             if(dataNasc != "undefined") {
-                var dataAtual = new Date();
-                var anoAtual = dataAtual.getFullYear();
-                var anoNascParts = dataNasc.split('-');
-                var diaNasc =anoNascParts[2];
-                var mesNasc =anoNascParts[1];
-                var anoNasc =anoNascParts[0];
-                var idade = anoAtual - anoNasc;
+                var dataAtual = new Date(); // Pega a data atual
+                var anoAtual = dataAtual.getFullYear(); // Armazena o ano
+                var anoNascParts = dataNasc.split('-'); // Cria um vetor para armazena o ano, mes e dia
+                var diaNasc =anoNascParts[2]; // Armazena o dia
+                var mesNasc =anoNascParts[1]; // Armazena o mes
+                var anoNasc =anoNascParts[0]; // Armazena o ano
+                var idade = anoAtual - anoNasc; // Calcula a idade de acordo com o ano atual e o ano de nascimento
                 var mesAtual = dataAtual.getMonth() + 1; 
                 //Se mes atual for menor que o nascimento, nao fez aniversario ainda;  
                 if(mesAtual < mesNasc){

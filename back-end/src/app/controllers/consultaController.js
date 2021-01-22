@@ -4,12 +4,13 @@ require('../models/consulta')
 const Consulta = mongoose.model('Consulta')
 
 module.exports = {
-
+    // Função para criar uma consulta
     async store(req, res){
         try {
+            // Cria uma consulta com os dados fornecido
             const consulta = await Consulta.create({... req.body, user: req.userId});
 
-            return res.json(consulta);
+            return res.json(consulta); // Envia uma resposta JSON composta dos dados especificado.
 
         } catch (error) {
 
@@ -18,7 +19,7 @@ module.exports = {
         }
 
     },
-
+    // Função para listar todas as consultas
     async index(req, res){
         try {
 
@@ -33,10 +34,10 @@ module.exports = {
 
         }
     },
-
+    // Função para listar uma unica consulta
     async show(req, res){
         try {
-
+            // Encontra uma consulta com o id passado como argumento, caso exista
             const consulta = await Consulta.findById(req.params.id)
 
             return res.json(consulta);
@@ -48,10 +49,10 @@ module.exports = {
         }
 
     },
-
+    // Função para atualizar os dados da consulta
     async update(req, res){
         try {
-
+            // Encontra uma consulta no model com id do usuario fornecido e atualiza com os novos dados fornecidos no formulario
             const consulta = await Consulta.findByIdAndUpdate(req.params.id, req.body, {new: true});
 
             return res.json(consulta);
@@ -60,10 +61,10 @@ module.exports = {
             return res.status(400).send({error: 'Erro ao editar consulta.' })
         }
     },
-
+    // Função para deletar uma consulta
     async destroy(req, res){
         try {
-            
+            // Encontra uma consulta no model com o id passado como argumento e em seguida deletar do model Consulta
             await Consulta.findByIdAndRemove(req.params.id);
 
             return res.send('consulta removido!');

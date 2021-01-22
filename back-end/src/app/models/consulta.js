@@ -57,5 +57,5 @@ const ConsultaSchema = mongoose.Schema({
 
 // Definido o pluglin para poder utilizar a função paginate
 ConsultaSchema.plugin(mongoosePaginate)
-
+// O primeiro argumento é o nome singular da coleção para a qual o model se destina.
 mongoose.model('Consulta', ConsultaSchema)

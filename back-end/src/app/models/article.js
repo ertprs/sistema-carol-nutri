@@ -25,4 +25,5 @@ const RegistrationArticle = mongoose.Schema({
 // Definido o pluglin para poder utilizar a função paginate
 RegistrationArticle.plugin(mongoosePaginate)
 
+// O primeiro argumento é o nome singular da coleção para a qual o model se destina.
 mongoose.model('RegistrationArticle', RegistrationArticle)

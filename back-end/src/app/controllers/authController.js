@@ -16,16 +16,20 @@ const { use } = require('../../modules/mailer')
 require('../models/user')
 const User = mongoose.model('User')
 
+// Middlewares de nível de roteador
 const router = express.Router()
 
 const model = mongoose.model(
     "bruteforce",
     new mongoose.Schema(BruteForceSchema)
 );
+// Criando um model padrão do BruteForceSchema no mongoose
 const store = new MongooseStore(model);
 
+// Um middleware de proteção de força bruta para rotas express que limita a taxa de solicitações de entrada, aumentando o atraso com cada solicitação em uma sequência semelhante a fibonacci.
 const bruteForce = new ExpressBrute(store);
 
+// Retorna o JsonWebToken como string
 function genareteToken(params = {}){
     try {
         return jwt.sign({params}, authconfig.secret, {
@@ -37,17 +41,19 @@ function genareteToken(params = {}){
 
 }
 
+// Rota para registrar um usuario
 router.post('/register', async (req, res) => {
     try{
-        const {email} = req.body
+        const {email} = req.body // Pegar o email do usuario no corpo do formulario 
 
-        if(await User.findOne({email}))
+        if(await User.findOne({email})) // Verificar se existe um usuario com o email fornecido
             return res.status(400).send({error: 'Este E-mail já existe.'})
 
-        const user = await User.create(req.body)
+        const user = await User.create(req.body) // Criar o usuario com os dados fornecidos no formulario
 
-        user.password = undefined
-
+        user.password = undefined 
+        
+        // Retorna os dados do usuario e o token criado
         return res.send({
             user,
             token: genareteToken({id: user._id})
@@ -60,17 +66,18 @@ router.post('/register', async (req, res) => {
     }
 })
 
+// Rota para autenticacao do usuario
+// bruteForce.prevent limita a taxa de solicitações de entrada
 router.post('/authenticate', bruteForce.prevent, async (req, res) => {
-    const { email, password} = req.body
+    const { email, password} = req.body // Pega email e password do formulario fornecido pelo o usuario
 
-    const user = await  User.findOne({email}).select('+password')
+    const user = await  User.findOne({email}).select('+password') // Procura um usuario com o email fornecido
 
-    if(!user)
+    if(!user) // Verifica se o usuario existe
         return res.status(400).send({error: 'Usuário inexistente.'})
 
-    if(!await bcrypt.compare(password, user.password))
+    if(!await bcrypt.compare(password, user.password)) // Verifica se as senhas são compativeis uma com a outra
         return res.status(400).send({error: 'Senha invalida!'})
-
 
         user.password = undefined
 
@@ -80,6 +87,7 @@ router.post('/authenticate', bruteForce.prevent, async (req, res) => {
         })
 })
 
+// Rota para recuperar a senha
 router.post('/forgot_password', async (req, res) => {
     try{
         const { email } = req.body
@@ -89,17 +97,19 @@ router.post('/forgot_password', async (req, res) => {
         if(!user)
             return res.status(400).send({error: 'Usuário inexistente.'})
 
+            // Gera dados pseudoaleatórios criptograficamente fortes. 
         const token = crypto.randomBytes(20).toString('hex')
-        const now = new Date()
+        const now = new Date() // Pega a data atual
         now.setHours(now.getHours() + 1)
 
+        // Setar o token criado aleatoriamente e o tempo para expirar o token (1hora)
         await User.findByIdAndUpdate(user._id, {
             '$set': {
                 passwordResetToken: token,
                 passwordResetTxpires: now
             }
         })
-
+        // Enviar um email para o usuario recuperar a senha
         mailer.sendMail({
             to: 'juniorteixeira1805@gmail.com',
             from: 'devorion01@gmail.com',
@@ -120,6 +130,7 @@ router.post('/forgot_password', async (req, res) => {
 
 })
 
+// Rota para redefinir a senha
 router.post('/reset_password', async (req, res) => {
 
     try{
@@ -129,17 +140,18 @@ router.post('/reset_password', async (req, res) => {
 
         if(!user)
             return res.status(400).send({error: 'Usuário inexistente.'})
-    
+        
+        // Verifica se os tokens do formulario e do model User são iguais
         if(token !== user.passwordResetToken)
             return res.status(400).send({error: 'Token invalido!'})
 
-        const now = new Date()
+        const now = new Date() // Armazena a data atual em uma variavel
 
-        if(now > user.passwordResetTxpires)
+        if(now > user.passwordResetTxpires) // Verifica se o token não expirou o tempo
             return res.status(400).send({error: 'Token expirado!'})
     
-        user.password = password
-        await user.save();
+        user.password = password // Armazena a senha no model User
+        await user.save(); // Salva as alterações feitas no model
 
         res.send()
 
@@ -150,4 +162,4 @@ router.post('/reset_password', async (req, res) => {
 
 
 })
-module.exports = router;
+module.exports = router; // Exporta o router para ser usado na aplicação principal

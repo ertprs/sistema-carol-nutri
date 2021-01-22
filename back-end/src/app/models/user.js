@@ -49,17 +49,19 @@ const UserSchema = mongoose.Schema({
     }
 })
 
+// Funcao pre é chamada antes dos dados do usuario ser salvo no banco de dados
 UserSchema.pre('save', async function(next){
+    // Cria uma hash da senha
     const hash = await bcrypt.hash(this.password, 10)
     this.password = hash
-
+    // Seta a variavel avatar com uma imagem padrao ao criar um usuario
     if(this.avatar == ""){
         this.avatar = "https://image.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg"
     }
 })
 // Definido o pluglin para poder utilizar a função paginate
 UserSchema.plugin(mongoosePaginate)
-
+// O primeiro argumento é o nome singular da coleção para a qual o model se destina.
 const User = mongoose.model('User', UserSchema)
 
 module.exports = User

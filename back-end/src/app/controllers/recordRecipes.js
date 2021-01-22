@@ -4,9 +4,10 @@ require('../models/recordRecipes')
 const RecordRecipes = mongoose.model('RecordRecipes')
 
 module.exports = {
-
+    // Função para criar uma receita
     async store(req, res){
         try {
+            // Cria uma receita no banco de dados com os dados fornecidos no formulario
             const revenue = await RecordRecipes.create({...req.body});
 
             return res.json(revenue);
@@ -18,7 +19,7 @@ module.exports = {
         }
 
     },
-
+    // Funcao para listar todas as receitas
     async index(req, res){
         try {
 
@@ -29,35 +30,35 @@ module.exports = {
 
         } catch (error) {
 
-            return res.status(400).send({error: 'Erro ao listar artigos.'})
+            return res.status(400).send({error: 'Erro ao listar receitas.'})
 
         }
     },
-
+    // Funcao para listar uma unica receita
     async show(req, res){
         try {
-
+            // Encontra uma receita com o id passado como argumento, caso exista
             const revenue = await RecordRecipes.findById(req.params.id)
 
             return res.json(revenue);
 
         } catch (error) {
 
-            return res.status(400).send({error: 'Erro ao listar artigo.' })
+            return res.status(400).send({error: 'Erro ao listar receita.' })
 
         }
 
     },
-
+    // Procura uma receita pelo nome fornecido na url
     async showName(req, res){
         try {
-
+            // Procura uma receita pelo nome fornecido na url
             const revenue = await RecordRecipes.find({title: req.params.id})
-
+            // Caso nao exista uma receita com o parametro fornecido
             if(!revenue){
                 return res.status(400).send({error: 'Não existe resultados para a busca com este parametro.' })
             }
-
+            // Caso nao encontre nenhuma receita
             if(revenue.length == 0){
                 return res.status(400).send({error: 'Receita não encontrado.' })
             }
@@ -65,27 +66,27 @@ module.exports = {
             return res.json(revenue);
 
         } catch (error) {
-            return res.status(400).send({error: 'Erro ao listar artigo.' })
+            return res.status(400).send({error: 'Erro ao listar receita.' })
 
         }
 
     },
-
+    // Função para atualizar os dados da receita
     async update(req, res){
         try {
-
+            // Encontra uma receita no model com o id fornecido e atualiza com os novos dados fornecidos no formulario
             const revenue = await RecordRecipes.findByIdAndUpdate(req.params.id, req.body, {new: true});
 
             return res.json(revenue);
 
         } catch (error) {
-            return res.status(400).send({error: 'Erro ao editar artigo.' })
+            return res.status(400).send({error: 'Erro ao editar receita.' })
         }
     },
-
+    // Funcao para deletar uma receita
     async destroy(req, res){
         try {
-            
+            // Encontra uma receita no model com o id passado como argumento e em seguida deleta do model RecordRecipes
             await RecordRecipes.findByIdAndRemove(req.params.id);
 
             return res.send('Artigo deletado!');
