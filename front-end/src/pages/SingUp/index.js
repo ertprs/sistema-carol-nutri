@@ -58,6 +58,7 @@ export default function SignUp(){
                 setLoading(false)
                 toast.success('Cadastro realizado!')
             }).catch((error) => {
+                setLoading(false)
                 let erro = JSON.parse(error.request.response)
                 toast.error(erro.error)
             })
