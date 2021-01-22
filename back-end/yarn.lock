@@ -1642,6 +1642,11 @@ sax@^1.2.4:
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
   integrity sha512-NqVDv9TpANUjFm0N8uM5GxL36UgKi9/atZw+x7YFnQ8ckwFGKrl4xX4yWtrey3UJm5nP1kUbnYgLopqWNSRhWw==
 
+scripts@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/scripts/-/scripts-0.1.0.tgz#3eb19713b5ad1f58bc3e39ce63606d6beaa00693"
+  integrity sha1-PrGXE7WtH1i8PjnOY2Bta+qgBpM=
+
 semver-diff@^3.1.1:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/semver-diff/-/semver-diff-3.1.1.tgz#05f77ce59f325e00e2706afd67bb506ddb1ca32b"

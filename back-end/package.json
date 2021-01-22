@@ -39,7 +39,8 @@
     "nodemailer": "^6.4.11",
     "path": "^0.12.7",
     "rate-limit-redis": "^2.0.0",
-    "redis": "^3.0.2"
+    "redis": "^3.0.2",
+    "scripts": "^0.1.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"

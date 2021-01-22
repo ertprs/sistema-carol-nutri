@@ -99,7 +99,9 @@ export default function Dashboard(){
         )
     } else {
         if(user.eAdmin === true){
-
+            return(
+                <h1>este usuário é eAdmin</h1>
+            )
         } else {
             if(user.status === 'Cadastrado'){
                 return(
