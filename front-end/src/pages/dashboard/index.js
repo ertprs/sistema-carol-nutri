@@ -4,6 +4,7 @@ import {AuthContext} from '../../context/AuthContext'
 import { format, subDays, addDays} from 'date-fns'
 import pt from 'date-fns/locale/pt'
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md'
+import { AiOutlineCloudDownload } from "react-icons/ai";
 
 import {Container, Loading, MedicalInfo, Time} from './styles.js'
 import Logo from '../../assets/logo-branca.svg'
@@ -203,7 +204,7 @@ export default function Dashboard(){
                                     { schedule.map(agendamento => (
                                         <div key={String(agendamento._id)} >
                                             {
-                                                agendamento.status ? <Time available ><a href={`https://api.whatsapp.com/send?phone=+558494794472&text=Olá Carol. Vi em seu sistema que você possuí disponibilidade de consulta online para o dia ${agendamento.virtualDate.replace("-", "/").replace()} às ${agendamento.hours}. Gostaria de marcar uma consulta nesta data e horário.%20`} target="_blank"><strong >{agendamento.status ? 'Disponível para agendamento' : 'Não Disponível'}</strong><span>{agendamento.hours}</span><p>Click para agendar uma consulta</p></a></Time> : <Time past ><strong >{agendamento.status ? 'Disponível para agendamento' : 'Não Disponível'}</strong><span>{agendamento.hours}</span><p>Horário agendado com um paciente</p></Time>
+                                                agendamento.status ? <Time available ><a href={`https://api.whatsapp.com/send?phone=+558494794472&text=Olá Carol. Vi em seu sistema que você possuí disponibilidade de consulta online para o dia ${agendamento.virtualDate.replace("-", "/").replace("-", "/")} às ${agendamento.hours}. Gostaria de marcar uma consulta nesta data e horário.%20`} target="_blank"><strong >{agendamento.status ? 'Disponível para agendamento' : 'Não Disponível'}</strong><span>{agendamento.hours}</span><p>Click para agendar uma consulta</p></a></Time> : <Time past ><strong >{agendamento.status ? 'Disponível para agendamento' : 'Não Disponível'}</strong><span>{agendamento.hours}</span><p>Horário agendado com um paciente</p></Time>
                                             }
                                         </div>
                                     ))}
@@ -213,7 +214,15 @@ export default function Dashboard(){
                     }
                 } else {
                     if(user.status === 'Em acompanhamento'){
-
+                        return(
+                            <Container>
+                                <div className="cabe">
+                                    <img src={Logo} alt="Carol Nutri"/>
+                                    <h1>Seu acompanhamento já está disponível</h1>
+                                </div>
+                                <a className="baixarAcomp" type="submit" onSubmit={e => { e.preventDefault()}} ><AiOutlineCloudDownload size={48}/></a>
+                            </Container>
+                        )
                     } else {
                         if(user.status === 'Finalizado'){
 

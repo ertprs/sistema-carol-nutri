@@ -291,6 +291,28 @@ export const Container = styled.div`
         grid-gap: 15px;
         margin-top: 30px;
     }
+
+    .baixarAcomp{
+        display:flex;
+        width: auto;
+        padding: 10px;
+        background: #3b9eff;
+        color #fff;
+        margin: 120px auto;
+        font-weight: bold;
+        border: 0;
+        border-radius: 50%;
+        transition: background 0.5s;
+
+        &:hover{
+            background: #3273ed;
+        }
+
+        svg {
+            margin: auto;
+            color: #fff;
+        }
+    }
 `
 
 export const Time = styled.li`
