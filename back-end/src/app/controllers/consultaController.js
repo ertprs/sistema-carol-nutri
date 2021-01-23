@@ -8,7 +8,7 @@ module.exports = {
     async store(req, res){
         try {
             // Cria uma consulta com os dados fornecido
-            const consulta = await Consulta.create({... req.body, user: req.body.id});
+            const consulta = await Consulta.create({... req.body});
 
             return res.json(consulta); // Envia uma resposta JSON composta dos dados especificado.
 
