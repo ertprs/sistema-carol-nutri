@@ -13,6 +13,11 @@ const ConsultaSchema = mongoose.Schema({
         ref: 'User',
         require: true,
     },
+    data: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Scheduling',
+        require: true,
+    },
     solicitation: {
         type: Boolean,
         require: true,

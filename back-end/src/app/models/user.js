@@ -25,10 +25,6 @@ const UserSchema = mongoose.Schema({
         type: String,
         default: "https://image.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg"
     },
-    status: {
-        type: String,
-        default: "Cadastrado"
-    },
     password: {
         type: String,
         require: true,

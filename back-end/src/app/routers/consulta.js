@@ -3,22 +3,21 @@ const router = express.Router();
 
 const ProductController = require('../controllers/consultaController')
 
+const midwareAuthEadminControl = require('../middlewares/eAdmin')
 const midwareAuthControl = require('../middlewares/auth')
-
-router.use(midwareAuthControl)
 
 // -- Rotas do CRUD da consulta -- //
 
 // Rota para registrar uma consulta
-router.post('/register', ProductController.store);
+router.post('/register', midwareAuthEadminControl, ProductController.store);
 // Rota para listar todas as consultas
-router.get('/consultas', ProductController.index);
+router.get('/consultas', midwareAuthControl, ProductController.index);
 // Rota para listar uma unica consutla
-router.get('/consulta/:id', ProductController.show);
+router.get('/consulta/:id', midwareAuthControl, ProductController.show);
 // Rota para editar uma consulta
-router.put('/edit-consulta/:id', ProductController.update);
+router.put('/edit-consulta/:id', midwareAuthEadminControl, ProductController.update);
 // Rota para deletar uma consulta
-router.delete('/delet-consulta/:id', ProductController.destroy);
+router.delete('/delet-consulta/:id', midwareAuthEadminControl, ProductController.destroy);
 
 
 
