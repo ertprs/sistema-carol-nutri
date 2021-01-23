@@ -18,11 +18,6 @@ const ConsultaSchema = mongoose.Schema({
         ref: 'Scheduling',
         require: true,
     },
-    solicitation: {
-        type: Boolean,
-        require: true,
-        default: false
-    },
     situation: {
         type: String,
         require: true,

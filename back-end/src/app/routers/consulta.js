@@ -9,7 +9,7 @@ const midwareAuthControl = require('../middlewares/auth')
 // -- Rotas do CRUD da consulta -- //
 
 // Rota para registrar uma consulta
-router.post('/register', midwareAuthEadminControl, ProductController.store);
+router.post('/register',  ProductController.store);
 // Rota para listar todas as consultas
 router.get('/consultas', midwareAuthControl, ProductController.index);
 // Rota para listar uma unica consutla
