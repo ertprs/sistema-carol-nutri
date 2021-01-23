@@ -18,7 +18,7 @@ export default function Dashboard(){
     const { user } = useContext(AuthContext)
 
     const [loading, setLoading] = useState(false);
-    const [ schedule, setSchedule ] = useState([]);
+    const [ consultas, setconsultas ] = useState([]);
     const [ date, setDate ] = useState(new Date());
 
     const dateFormatted = useMemo(
@@ -42,15 +42,17 @@ export default function Dashboard(){
         }
         
         try{
-            await api.get(`agendamento/list/${data.toString()}`).then((response) => {
-                setSchedule(response.data)
+            await api.get(`consultas/consulta/${data.toString()}`).then((response) => {
+                setconsultas(response.data)
                 setLoading(false)
             }).catch((error) => {
+                setconsultas([])
+                setLoading(false)
                 let erro = JSON.parse(error.request.response)
                 toast.error(erro.error)
             })
         }catch (error) {
-            toast.error('Erro ao buscar os agendamentos. Entre em contato com o suporte.')
+            toast.error('Erro ao buscar os consultas. Entre em contato com o suporte.')
         }
 
     },[date])
@@ -69,7 +71,7 @@ export default function Dashboard(){
         )
     } else {
         if(user.eAdmin === true){
-            if(schedule.length === 0){
+            if(consultas.length === 0){
                 return (
                     <Container>
                         <header>
@@ -84,6 +86,11 @@ export default function Dashboard(){
                             <button type="button" onClick={handleNextDay}> 
                                 <MdChevronRight size={36} color="#FFF"/>
                             </button>
+                        </div>
+                        <div>
+                            <h4>
+                                Não existe consulta marcada para este dia.
+                            </h4>
                         </div>
                     </Container>
                 )
@@ -109,10 +116,10 @@ export default function Dashboard(){
                             </h4>
                         </div>
                         <ul>
-                            { schedule.map(agendamento => (
-                                <div key={String(agendamento._id)} >
+                            { consultas.map(consulta => (
+                                <div key={String(consulta._id)} >
                                     {
-                                        agendamento.status ? <Time available ><Link><strong >Horário livre</strong><span>{agendamento.hours}</span><p>{agendamento.note}</p></Link></Time> : <Time past ><Link><strong >Consulta marcada</strong><span>{agendamento.hours}</span><p>{agendamento.note}</p></Link></Time>
+                                        <Time><Link><strong >Situação: {consulta.situation}</strong><span>Paciente: {consulta.user.name}</span><span>Às {consulta.data.hours}</span><span>{consulta.data.note}</span></Link></Time>
                                     }
                                 </div>
                             ))}
