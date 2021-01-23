@@ -227,7 +227,25 @@ export default function Dashboard(){
                         )
                     } else {
                         if(user.status === 'Finalizado'){
-
+                            return(
+                                <Container>
+                                    <Form>
+                                        <div>
+                                            <img src={Logo} alt="Carol Nutri"/>
+                                            <h1>Parabéns</h1>
+                                        </div>
+                                        <div>
+                                            <div className="depoimento">
+                                                <p>
+                                                    Estamos muito felizes de ter passado por esta etapa com você. Esperamos que tenhamos ajudado na sua caminhada.
+                                                    Estaremos aqui caso deseje retornar. Se possivel, deixe seu depoimento de como foi passar por essa etapa conosco.
+                                                </p>
+                                                <Textarea  label="Depoimento" name="depoiment" placeholder="Informe seu depoimento"/>
+                                            </div>
+                                        </div>
+                                    </Form>
+                                </Container>
+                            )
                         }
                     }   
                 }

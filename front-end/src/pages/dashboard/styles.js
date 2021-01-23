@@ -226,7 +226,40 @@ export const Container = styled.div`
         align-items: center;
         justify-content: center;
         margin:0;
+        
 
+        .depoimento{
+            padding: 75px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+
+            label{
+                color #fff;
+            }
+
+            p {
+                font-size: 20px;
+                color: #fff;
+            }
+
+            textarea {
+                background: rgba(0, 0, 0, 0.1);
+                border: 0;
+                border-radius: 4px;
+                padding: 15px;
+                color #fff;
+                width: 100%;
+                height: 100px;
+        
+                &::placeholder {
+                    color: rgba(255, 255, 255, 0.7);
+                }
+            }
+        }
+        
         a {
             svg{
                 margin-left:60px;
