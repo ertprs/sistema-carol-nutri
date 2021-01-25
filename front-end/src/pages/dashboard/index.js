@@ -5,9 +5,10 @@ import { Link } from 'react-router-dom'
 import { format, subDays, addDays} from 'date-fns'
 import pt from 'date-fns/locale/pt'
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md'
+import { AiOutlineRedo} from 'react-icons/ai'
 
 import api from "../../services/api"
-import {Container, Loading, Time} from './styles.js'
+import {Container, Loading, Time, Formulario} from './styles.js'
 import Logo from '../../assets/logo-branca.svg'
 
 import ReactLoading from 'react-loading'
@@ -17,9 +18,12 @@ export default function Dashboard(){
 
     const { user } = useContext(AuthContext)
 
-    const [loading, setLoading] = useState(false);
+    const [ schedule, setSchedule ] = useState([]);
+    const [ loading, setLoading ] = useState(false);
     const [ consultas, setconsultas ] = useState([]);
+    const [pacientes, setPacientes] = useState();
     const [ date, setDate ] = useState(new Date());
+    const [busca, setBusca] = useState('');
 
     const dateFormatted = useMemo(
         () => format(date, "d 'de' MMMM", { locale: pt}),
@@ -46,7 +50,18 @@ export default function Dashboard(){
                 setconsultas(response.data)
                 setLoading(false)
             }).catch((error) => {
-                setconsultas([])
+                setconsultas(undefined)
+                setLoading(false)
+                let erro = JSON.parse(error.request.response)
+                toast.error(erro.error)
+            })
+
+            setLoading(true)
+            await api.get(`agendamento/list/${data.toString()}`).then((response) => {
+                setSchedule(response.data)
+                setLoading(false)
+            }).catch((error) => {
+                setSchedule(undefined)
                 setLoading(false)
                 let erro = JSON.parse(error.request.response)
                 toast.error(erro.error)
@@ -65,77 +80,104 @@ export default function Dashboard(){
         setDate(addDays(date, 1));
     }
 
+    function handleClick(){
+        setLoading(true)
+        try {
+            if(busca == ''|| busca == undefined){
+                toast.info('O campo não pode está vazio')
+                setLoading(false)
+            } else {
+                api.get(`consultas/consultaUser/${busca}`).then((response) => {
+                    setPacientes(response.data)
+                    setLoading(false)
+                    toast.success('Lista atualizada.')
+                }).catch((error) => {
+                    setPacientes(undefined)
+                    setLoading(false)
+                    let erro = JSON.parse(error.request.response)
+                    toast.error(erro.error)
+                }) 
+            }
+        } catch (error) {
+            toast.error('Ocorreu um erro ao listar o paciente. ENtre em contato com o suporte.')
+        }
+    }
+
+    function onChange(event) {
+        setBusca(event.target.value)
+    }
+
     if (loading){
         return (
             <Loading><h1>Carregando</h1><ReactLoading  color="#fff" /></Loading>
         )
     } else {
-        if(user.eAdmin === true){
-            if(consultas.length === 0){
-                return (
-                    <Container>
-                        <header>
-                            <img src={Logo} alt="Carol Nutri"/>
-                            <h1>Consultório CarolNutri</h1>
-                        </header>
-                        <div>
-                            <button type="button" onClick={handlePrevDay}> 
-                                <MdChevronLeft size={36} color="#FFF"/>
-                            </button>
-                            <strong>{dateFormatted}</strong>
-                            <button type="button" onClick={handleNextDay}> 
-                                <MdChevronRight size={36} color="#FFF"/>
-                            </button>
-                        </div>
-                        <div>
-                            <h4>
-                                Não existe consulta marcada para este dia.
-                            </h4>
-                        </div>
-                    </Container>
-                )
-            } else {
-                return (
-                    <Container>
-                        <header>
-                            <img src={Logo} alt="Carol Nutri"/>
-                            <h1>Consultório CarolNutri</h1>
-                        </header>
-                        <div>
-                            <button type="button" onClick={handlePrevDay}> 
-                                <MdChevronLeft size={36} color="#FFF"/>
-                            </button>
-                            <strong>{dateFormatted}</strong>
-                            <button type="button" onClick={handleNextDay}> 
-                                <MdChevronRight size={36} color="#FFF"/>
-                            </button>
-                        </div>
-                        <div>
-                            <h4>
-                                Consultas marcadas para este dia
-                            </h4>
-                        </div>
+        return (
+            <Container>
+                <header>
+                    <img src={Logo} alt="Carol Nutri"/>
+                    <h1>Consultório Carol Nutri</h1>
+                </header>
+                <header>
+                    <h2>Explorar consultas</h2>
+                </header>
+                <aside>
+                    <Formulario onSubmit={e => { e.preventDefault()}}>
+                        <input value={busca} onChange={onChange} name="pesquisa" id="pesquisa" type="text" placeholder="Informe o E-mail do paciente"/>
+                        <button onClick={handleClick} type="button">Atualizar lista <AiOutlineRedo size={20} /></button>
+                    </Formulario>
+                    {
+                        pacientes ? 
+                        <Link>
+                            <strong >Situação: {}</strong>
+                            <span>Paciente: {}</span>
+                            <span>Às {}</span>
+                        </Link>
+                        :
+                        undefined
+                    }
+
+                </aside>
+                <header>
+                    <h2>Navegue pelos dias</h2>
+                </header>
+                <div>
+                    <button type="button" onClick={handlePrevDay}> 
+                        <MdChevronLeft size={36} color="#FFF"/>
+                    </button>
+                    <strong>{dateFormatted}</strong>
+                    <button type="button" onClick={handleNextDay}> 
+                        <MdChevronRight size={36} color="#FFF"/>
+                    </button>
+                </div>
+                <div className="buscaData">
+                    <div className="consultas">
                         <ul>
+                            <h2>Consultas marcadas</h2>
                             { consultas.map(consulta => (
                                 <div key={String(consulta._id)} >
                                     {
-                                        <Time><Link><strong >Situação: {consulta.situation}</strong><span>Paciente: {consulta.user.name}</span><span>Às {consulta.data.hours}</span><span>{consulta.data.note}</span></Link></Time>
+                                        consultas ? <Time><Link to={`/consulta/${consulta._id}`}><strong >Paciente: {consulta.user.name}</strong><span>E-mail: {consulta.user.email}</span><p>Situação: {consulta.situation}</p><p>Horário: {consulta.data.hours}</p></Link></Time> : <h3>Nada marcado para este dia</h3>
                                     }
                                 </div>
                             ))}
                         </ul>
-                    </Container>
-                )
-            }
-        } else {
-            return (
-                <Container>
-                    <div className="cabe">
-                        <img src={Logo} alt="Carol Nutri"/>
-                        <h1>Consultório CarolNutri</h1>
                     </div>
-                </Container>
-            )
-        }
-    }
+                    <div className="agendamento">
+                        <ul>
+                            <h2>Datas para agendamento de consulta</h2>
+                            { schedule.map(agendamento => (
+                                <div key={String(agendamento._id)} >
+                                    {
+                                        agendamento.status ? <Time available ><Link><strong>Disponível para agendamento</strong><span>{agendamento.hours}</span><p>Click para agendar uma consulta</p></Link></Time> : undefined
+                                    }
+                                </div>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+            </Container>
+        )
+        
+    } 
 }

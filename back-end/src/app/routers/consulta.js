@@ -15,6 +15,8 @@ router.get('/consultas', midwareAuthControl, ProductController.index);
 // Rota para listar uma unica consutla
 router.get('/consultaId/:id', midwareAuthControl, ProductController.showId);
 // Rota para listar uma unica consutla
+router.get('/consultaUser/:email', midwareAuthControl, ProductController.showUser);
+// Rota para listar uma unica consutla
 router.get('/consulta/:data', midwareAuthControl, ProductController.show);
 // Rota para editar uma consulta
 router.put('/edit-consulta/:id', midwareAuthEadminControl, ProductController.update);

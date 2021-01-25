@@ -10,6 +10,8 @@ import Profile from '../pages/Profile/index'
 import Dashboard from  '../pages/dashboard/index'
 import ForgotPassword from '../pages/ForgotPassword/index'
 
+import ConsultaEdit from  '../pages/ConsultaEdit/index'
+
 import Pacientes from '../pages/PacientesListagem/index'
 import Paciente from '../pages/PacientesEdit/index'
 import RegisterPaciente from '../pages/PacientesRegister/index'
@@ -59,6 +61,8 @@ export default function Routes(){
                 <Route path="/agendamento-publico" component={AgendamentoPublico} />
                 <Route path="/cadastrar-agendamento" isPrivate component={RegisterAgendamentos} />
                 <Route path="/editar-agendamento/:id" isPrivate component={AgendamentoEdit} />
+
+                <Route path="/consulta/:id" isPrivate component={ConsultaEdit} />
             </Switch>
         </BrowserRouter>
     )

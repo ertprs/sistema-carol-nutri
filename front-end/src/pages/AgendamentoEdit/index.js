@@ -39,7 +39,7 @@ export default function Agendamento(){
     },[params.id])
 
     async function handlSubmit(data) {
-        if(data.virtualDate === "" || data.hours === "" || data.note === ""){
+        if(data.virtualDate === "" || data.hours === "" ){
             toast.info('Campos obrigatórios vazios')
         } else {
             const vet = data.virtualDate.split('-')
@@ -47,7 +47,6 @@ export default function Agendamento(){
             await api.put(`agendamento/edit/${agendamento._id}` ,{ 
                 virtualDate: dataFake,
                 hours: data.hours,
-                note: data.note,
                 status: data.status,
              }).then(async () => {
                  toast.success('Agendamento atualizado')
@@ -92,18 +91,14 @@ export default function Agendamento(){
                 <Form onSubmit={handlSubmit} initialData={agendamento}>
                     <div>
                     {
-                        edit ? <Input  name="virtualDate" type="date" label="Data para o agendamento" disabled /> : <Input  name="virtualDate" type="date" label="Data para o agendamento"/>
+                        edit ? <Input  name="virtualDate" id="virtualDate" type="date" label="Data para o agendamento" disabled /> : <Input  name="virtualDate" type="date" id="virtualDate" label="Data para o agendamento"/>
                     }
                     {
-                        edit ? <Input  name="hours" type="time" placeholder="Informe o horário da consulta" label="Horário" disabled /> : <Input  name="hours" type="time" placeholder="Informe o horário da consulta" label="Horário" />
+                        edit ? <Input  name="hours" id="hours" type="time" placeholder="Informe o horário da consulta" label="Horário" disabled /> : <Input  name="hours" id="hours" type="time" placeholder="Informe o horário da consulta" label="Horário" />
                     }
                     </div>
-
                     {
-                        edit ?  <Textarea rows="4" label="Irfomações sobre o agendamento" name="note" placeholder="Ex.: Consulta online com Alice Costa ..." disabled/> : <Textarea rows="4" label="Descrição sobre o agendamento" name="note" placeholder="Informe um breve descrição sobre agendamento" />
-                    }
-                    {
-                        edit ?  <Check label="Agendamento disponível" name="status" disabled/> : <Check label="Agendamento disponível" name="status" />
+                        edit ?  <Check label="Agendamento disponível" name="status" id="status" disabled/> : <Check id="status" label="Agendamento disponível" name="status" />
                     }
                     {
                         edit ? <button disabled>Desabilitado</button> : <button onSubmit={e => { e.preventDefault()}} type="submit" >Atualizar dados</button>

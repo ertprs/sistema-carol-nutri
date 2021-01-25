@@ -112,7 +112,7 @@ export default function Scheduling(){
                         { schedule.map(agendamento => (
                             <div key={String(agendamento._id)} >
                                 {
-                                    agendamento.status ? <Time available ><Link to={`/editar-agendamento/${agendamento._id}`}><strong >{agendamento.status ? 'Disponível para agendamento' : 'Não Disponível'}</strong><span>{agendamento.hours}</span><p>{agendamento.note}</p></Link></Time> : <Time past ><Link to={`/editar-agendamento/${agendamento._id}`}><strong >{agendamento.status ? 'Disponível para agendamento' : 'Não Disponível'}</strong><span>{agendamento.hours}</span><p>{agendamento.note}</p></Link></Time>
+                                    agendamento.status ? <Time available ><Link to={`/editar-agendamento/${agendamento._id}`}><strong >{agendamento.status ? 'Disponível para agendamento' : 'Não Disponível'}</strong><span>{agendamento.hours}</span></Link></Time> : <Time past ><Link to={`/editar-agendamento/${agendamento._id}`}><strong >{agendamento.status ? 'Disponível para agendamento' : 'Não Disponível'}</strong><span>{agendamento.hours}</span></Link></Time>
                                 }
                             </div>
                         ))}

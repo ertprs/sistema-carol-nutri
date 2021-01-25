@@ -19,9 +19,7 @@ const schema = Yup.object().shape({
 
     hours: Yup.string()
         .required("Horário é obrigatório para registrar um agendamento"),
-    
-    note: Yup.string()
-})
+    })
 
 export default function RegisterAgendamentos(){
 
@@ -38,7 +36,6 @@ export default function RegisterAgendamentos(){
             await api.post(`agendamento/register` ,{ 
                 virtualDate: dataFake,
                 hours: data.hours,
-                note: data.note
              }).then(async () => {
                 history.go('/cadastrar-agendamento')
                 setLoading(false)

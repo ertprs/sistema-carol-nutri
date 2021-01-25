@@ -19,10 +19,6 @@ const Scheduling = new mongoose.Schema({
         type: Boolean,
         default: true
     },
-    note: {
-        type: String,
-        default: 'Nada consta.'
-    }
 })
 
 // Definido o pluglin para poder utilizar a função paginate

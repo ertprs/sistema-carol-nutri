@@ -1,9 +1,13 @@
 const mongoose = require('../../database')
+const { findById } = require('../models/user')
 
 require('../models/scheduling')
 require('../models/consulta')
+require('../models/user')
 const Consulta = mongoose.model('Consulta')
 const Scheduling = mongoose.model('Scheduling')
+const User = mongoose.model('User')
+
 
 module.exports = {
     // Função para criar uma consulta
@@ -40,9 +44,40 @@ module.exports = {
     async showId(req, res){
         try {
             // Encontra uma consulta com o id passado como argumento, caso exista
-            const consulta = await Consulta.findById(req.params.id)
+            const consulta = await Consulta.findById(req.params.id).populate('data').populate('user')
 
             return res.json(consulta);
+
+        } catch (error) {
+
+            return res.status(400).send({error: 'Erro ao listar consulta.' })
+
+        }
+    },
+
+    // Função para listar uma unica consulta
+    async showUser(req, res){
+        try {
+            // Encontra uma consulta com o id passado como argumento, caso exista
+            // Encontra uma consulta com o id passado como argumento, caso exista
+            const usuario = await User.findOne({email: req.params.email})
+
+            if(!usuario){
+                
+                return res.status(400).send({error: 'Usuário inexistente.' })
+
+            }else {
+
+                const consulta = await Consulta.findOne({user: usuario._id})
+                
+                if(!consulta){
+
+                    return res.status(400).send({error: 'Não existe consulta com este usuário.' })
+
+                } else {
+                    return res.json(consulta);
+                }
+            }
 
         } catch (error) {
 

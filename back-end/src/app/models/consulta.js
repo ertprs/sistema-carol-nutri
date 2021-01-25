@@ -23,18 +23,14 @@ const ConsultaSchema = mongoose.Schema({
         require: true,
         default: 'Em espera'
     },
-    return:{
-        type: Boolean,
-        require: true,
-        default: false
+    note: {
+        type: String,
+        default: 'Nada consta.'
     },
     project: {
         type: String,
     },
     evaluation: {
-        like: {
-            type: String,
-        },
         comment: {
             type: String,
         },
@@ -46,10 +42,7 @@ const ConsultaSchema = mongoose.Schema({
         like: {
             type: String,
         },
-        comment: {
-            type: String,
-        },
-        result: {
+        depoiment: {
             type: String,
         },
     }
