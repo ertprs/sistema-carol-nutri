@@ -66,14 +66,18 @@ export default function Consulta(){
     async function handlSubmit(data) {
         setLoading(true)
         try {
-            await api.put(`consultas/edit/${Consulta._id}` ,{ 
-                title: data.title,
-                description: data.description,
-                link: data.link,
+            await api.put(`consultas/edit-consulta/${Consulta._id}` ,{ 
+                user: Consulta.user._id,
+                data: Consulta.data._id,
+                situation: data.situation,
+                note: data.note,
+                project: data.project,
+                evaluation: data.evaluation,
+                testimony: data.testimony,
              }).then(async () => {
                 setLoading(false)
                  toast.success('Consulta atualizado')
-                 history.push('/Consultas')
+                 history.push('/dashboard')
             }).catch((error) => {
                 let erro = JSON.parse(error.request.response)
                 toast.error(erro.error)
@@ -135,7 +139,7 @@ export default function Consulta(){
                             edit ? <Input label="Acompanhamento" name="project" placeholder="Link do documento do drive" disabled /> : <Input label="Link do documento" name="project" placeholder="Link do documento do drive" />
                         }
                         {
-                            edit ? <Select label="Situação" name="situation" id="situation" options={[{id: "emEspera", title: 'Em espera'}, {id: "emAcompanhamento", title: 'Em acompanhamento'}, {id: "emAcompanhamentoRetorno", title: 'Em acompanhamento pós retorno'}, {id: "finalizado", title: 'Finalizado'}]} placeholder="Selecione uma opção"/> : <Select label="Situação" name="situation" id="situation" options={[{id: "emEspera", title: 'Em espera'}, {id: "emAcompanhamento", title: 'Em acompanhamento'}, {id: "emAcompanhamentoRetorno", title: 'Em acompanhamento pós retorno'}, {id: "finalizado", title: 'Finalizado'}]} placeholder="Selecione uma opção"/>
+                            edit ? <Select label="Situação" name="situation" id="situation" options={[{id: "Em espera", title: 'Em espera'}, {id: "Em acompanhamento", title: 'Em acompanhamento'}, {id: "Em acompanhamento pós retorno", title: 'Em acompanhamento pós retorno'}, {id: "Finalizado", title: 'Finalizado'}]} placeholder="Selecione uma opção" disabled/> : <Select label="Situação" name="situation" id="situation" options={[{id: "Em espera", title: 'Em espera'}, {id: "Em acompanhamento", title: 'Em acompanhamento'}, {id: "Em acompanhamento pós retorno", title: 'Em acompanhamento pós retorno'}, {id: "Finalizado", title: 'Finalizado'}]} placeholder="Selecione uma opção"/>
                         }
                         {
                             edit ?  <Textarea rows="4" label="Observações" name="note" placeholder="Observações sobre a consulta" disabled/> : <Textarea rows="4" label="Observações" name="note" placeholder="Observações sobre a consulta" />
@@ -144,17 +148,17 @@ export default function Consulta(){
                         <Scope path="evaluation">
                             <h2>Evolução</h2>
                                 {
-                                    edit ? <Textarea rows="4" label="Comentário" name="comment" id="comment" placeholder="Comentário sobre a evolução do paciente" disabled/> : <Textarea rows="4" label="Observações" name="comment" id="comment"/>
+                                    edit ? <Textarea rows="4" label="Comentário" name="comment" id="comment" placeholder="Comentário sobre a evolução do paciente" disabled/> : <Textarea rows="4" label="Observações" name="comment" id="comment" placeholder="Comentário sobre a evolução do paciente"/>
                                 }
                                 {
-                                    edit ? <Textarea rows="4" label="Resultados" name="result" id="result" placeholder="Resultados que o paciente obteve" disabled/> : <Textarea rows="4" label="Resultados" name="result" id="result"/>
+                                    edit ? <Textarea rows="4" label="Resultados" name="result" id="result" placeholder="Resultados que o paciente obteve" disabled/> : <Textarea rows="4" label="Resultados" name="result" id="result" placeholder="Resultados que o paciente obteve"/>
                                 }
                         </Scope>
                         <hr/>
                         <Scope path="testimony">
                             <h2>Depoimento do paciente</h2>
                                 
-                                <Select label="Situação" name="situation" id="situation" options={[{id: "amei", title: 'Amei e recomendo'}, {id: "gostei", title: 'Gostei'}, {id: "regular", title: 'regular'}, {id: "naoRecomendo", title: 'Não recomendo'}]} placeholder="Selecione uma opção" disabled/>
+                                <Select label="Situação" name="situation" id="situation" options={[{id: "Amei e recomendo", title: 'Amei e recomendo'}, {id: "Gostei", title: 'Gostei'}, {id: "Regular", title: 'Regular'}, {id: "Não recomendo", title: 'Não recomendo'}]} placeholder="Selecione uma opção" disabled/>
                                 
                                 <Textarea rows="4" label="Depoimento" name="depoiment" id="depoiment" disabled/>
                                 
