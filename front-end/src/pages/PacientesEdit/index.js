@@ -147,9 +147,6 @@ export default function Paciente(){
                                 <AiOutlinePhone size={18}/> {paciente.phone}
                                 </span>
                                 <br/>
-                                <span>
-                                <AiOutlineBell/> {paciente.status}
-                                </span>
                             </div>
                         </header>
                         <hr/>
@@ -541,9 +538,7 @@ export default function Paciente(){
                                 <AiOutlinePhone size={18}/> {paciente.phone}
                                 </span>
                                 <br/>
-                                <span>
-                                <AiOutlineBell/> {paciente.status}
-                                </span>
+
                             </div>
                         </header>
                         <hr/>

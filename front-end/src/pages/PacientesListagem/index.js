@@ -94,7 +94,6 @@ export default function Pacientes(){
                                 <div className="conteudo">
                                     <strong>{paciente.name}</strong>
                                     <p>{paciente.email}</p>
-                                    <span>{paciente.status}</span>
                                 </div>
                             </div>
                             <FiChevronRight size={20}/>

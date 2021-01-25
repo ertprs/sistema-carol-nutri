@@ -40,6 +40,27 @@ module.exports = {
 
     },
 
+    async showEmail(req, res){
+        try {
+
+            // Procura um usuario no banco de dados com id fornecido 
+            const user = await User.findOne({email: req.params.email})
+
+            // Caso o usuario nao exista, retorna Usuario nao encontrado
+            if(!user){
+                return res.status(400).send({error: 'Usuário não encontrado.' })
+            }
+            // Se existe, entao retorna todos os dados do usuario
+            return res.json(user);
+
+        } catch (error) {
+
+            return res.status(400).send({error: 'Erro ao listar usuário.' })
+
+        }
+
+    },
+
     // Funcao para encontrar um usuario pelo nome
     async showName(req, res){
         try {

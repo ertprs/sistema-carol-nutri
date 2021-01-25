@@ -52,7 +52,7 @@ export default function RegisterPaciente(){
     
              }).then(async () => {
                 setLoading(false)
-                history.push('/artigos')
+                history.push('/pacientes')
                 toast.success('Usuário cadastrado.')
             }).catch((error) => {
                 let erro = JSON.parse(error.request.response)

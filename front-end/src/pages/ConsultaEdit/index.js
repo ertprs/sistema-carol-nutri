@@ -13,7 +13,7 @@ import api from '../../services/api'
 import {Return, UsuarioInfo, Container, Editor, Loading} from './styles'
 import Tooltip from '../../components/tooltip/index'
 
-export default function Consulta(){
+export default function ConsultaEdit(){
 
     var history = useHistory()
 

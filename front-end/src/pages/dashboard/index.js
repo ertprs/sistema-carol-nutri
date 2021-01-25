@@ -15,9 +15,7 @@ import ReactLoading from 'react-loading'
 import {toast} from 'react-toastify'
 
 export default function Dashboard(){
-
-    const { user } = useContext(AuthContext)
-
+    
     const [ schedule, setSchedule ] = useState([]);
     const [ loading, setLoading ] = useState(false);
     const [ consultas, setconsultas ] = useState([]);
@@ -47,6 +45,7 @@ export default function Dashboard(){
         
         try{
             await api.get(`consultas/consulta/${data.toString()}`).then((response) => {
+                console.log(response.data)
                 setconsultas(response.data)
                 setLoading(false)
             }).catch((error) => {
@@ -128,9 +127,8 @@ export default function Dashboard(){
                         <button onClick={handleClick} type="button">Atualizar lista <AiOutlineRedo size={20} /></button>
                     </Formulario>
                     {
-                        pacientes ?  <Link to={`/consulta/${pacientes._id}`}><strong >Paciente: {pacientes.user.name}</strong><span>E-mail: {pacientes.user.email}</span><p>Situação: {pacientes.situation}</p><p>Horário: {pacientes.data.hours}</p></Link> : undefined
+                        pacientes ?  <Link to={`/consulta/${pacientes?._id}`}><strong >Paciente: {pacientes?.user?.name}</strong><span>E-mail: {pacientes?.user?.email}</span><p>Situação: {pacientes?.situation}</p><p>Horário: {pacientes?.data?.hours}</p></Link> : undefined
                     }
-
                 </aside>
                 <header>
                     <h2>Navegue pelos dias</h2>
@@ -151,7 +149,7 @@ export default function Dashboard(){
                             { consultas.map(consulta => (
                                 <div key={String(consulta._id)} >
                                     {
-                                        consultas ? <Time><Link to={`/consulta/${consulta._id}`}><strong >Paciente: {consulta.user.name}</strong><span>E-mail: {consulta.user.email}</span><p>Situação: {consulta.situation}</p><p>Horário: {consulta.data.hours}</p></Link></Time> : <h3>Nada marcado para este dia</h3>
+                                        consultas ? <Time><Link to={`/consulta/${consulta._id}`}><strong >Paciente: {consulta?.user?.name}</strong><span>E-mail: {consulta?.user?.email}</span><p>Situação: {consulta?.situation}</p><p>Horário: {consulta?.data?.hours}</p></Link></Time> : <h3>Nada marcado para este dia</h3>
                                     }
                                 </div>
                             ))}
@@ -163,7 +161,7 @@ export default function Dashboard(){
                             { schedule.map(agendamento => (
                                 <div key={String(agendamento._id)} >
                                     {
-                                        agendamento.status ? <Time available ><Link><strong>Disponível para agendamento</strong><span>{agendamento.hours}</span><p>Click para agendar uma consulta</p></Link></Time> : undefined
+                                        agendamento.status ? <Time available ><Link to={`/register-consulta/${agendamento._id}`}><strong>Disponível para agendamento</strong><span>{agendamento.hours}</span><p>Click para agendar uma consulta</p></Link></Time> : undefined
                                     }
                                 </div>
                             ))}
