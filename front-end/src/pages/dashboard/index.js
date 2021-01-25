@@ -88,6 +88,7 @@ export default function Dashboard(){
                 setLoading(false)
             } else {
                 api.get(`consultas/consultaUser/${busca}`).then((response) => {
+                    console.log(pacientes)
                     setPacientes(response.data)
                     setLoading(false)
                     toast.success('Lista atualizada.')
@@ -127,14 +128,7 @@ export default function Dashboard(){
                         <button onClick={handleClick} type="button">Atualizar lista <AiOutlineRedo size={20} /></button>
                     </Formulario>
                     {
-                        pacientes ? 
-                        <Link>
-                            <strong >Situação: {}</strong>
-                            <span>Paciente: {}</span>
-                            <span>Às {}</span>
-                        </Link>
-                        :
-                        undefined
+                        pacientes ?  <Link to={`/consulta/${pacientes._id}`}><strong >Paciente: {pacientes.user.name}</strong><span>E-mail: {pacientes.user.email}</span><p>Situação: {pacientes.situation}</p><p>Horário: {pacientes.data.hours}</p></Link> : undefined
                     }
 
                 </aside>

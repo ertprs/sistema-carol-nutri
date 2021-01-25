@@ -63,8 +63,9 @@ export const Container = styled.div`
         padding:15px;
         
         a {
+            margin: 10px;
             width:50%;
-            padding: 10px;
+            padding: 25px;
             border-radius: 8px;
             background: #fff;
             text-decoration: none;
@@ -73,6 +74,7 @@ export const Container = styled.div`
             flex-direction: column;
 
             strong {
+                font-size: 22px;
                 color: #831e62;
                 display: block;
                 text-decoration: none;
@@ -84,6 +86,12 @@ export const Container = styled.div`
                 margin-top: 3px;
                 color: #831e62;
 
+            }
+
+            p{
+                color: #831e62;
+                text-decoration: none;
+                margin:0;   
             }
         }
     }

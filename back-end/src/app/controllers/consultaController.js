@@ -68,7 +68,7 @@ module.exports = {
 
             }else {
 
-                const consulta = await Consulta.findOne({user: usuario._id})
+                const consulta = await Consulta.findOne({user: usuario._id}).populate('data').populate('user')
                 
                 if(!consulta){
 
