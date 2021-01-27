@@ -176,7 +176,7 @@ export default function Paciente(){
                                         <Input label="Profissão" type="text" name="profession" placeholder="Profissão" />
                                     </div>  
                                     <div>
-                                        <Select label="Trânsito intestinal" name="IntestinalTransit" id="IntestinalTransit" options={[{id: "1", title: '1'}, {id: "2", title: '2'}, {id: "3", title: '3'}, {id: "4", title: '4'}, {id: "5", title: '5'}, {id: "6", title: '6'}, {id: '7', title: '7'}]} placeholder="Selecione uma opção" /> 
+                                        <Select label="Trânsito intestinal" name="IntestinalTransit" id="IntestinalTransit" options={[{id: "1x/dia", title: '1x/dia'}, {id: "2x/dia", title: '2x/dia'}, {id: "3x/dia", title: '3x/dia'}, {id: "4x/dia", title: '4x/dia'}, {id: "5x/dia", title: '5x/dia'}, {id: "Prisão de ventre", title: 'Prisão de ventre'}]} placeholder="Selecione uma opção" /> 
                                     </div>
                                     <div>
                                         <Select label="Escala urinária" name="UrinaryStaining" id="UrinaryStaining" options={[{id: "1", title: '1'}, {id: "2", title: '2'}, {id: "3", title: '3'}, {id: "4", title: '4'}, {id: "5", title: '5'}, {id: "6", title: '6'}, {id: '7', title: '7'}, {id: '8', title: '8'}]} placeholder="Selecione uma opção" />
@@ -184,12 +184,13 @@ export default function Paciente(){
                                     <div>
                                         <Select label="Gênero fisiológico" name="genre" id="genre" options={[{id: "Mulher", title: 'Mulher'}, {id: "Homem", title: 'Homem'}]} placeholder="Selecione uma opção" required/>
                                     </div>
-                                    <div>
-                                        <Select label="Qualidade do sono" name="sleepQuality" id="sleepQuality" options={[{id: "Ruim", title: 'Ruim'}, {id: "Bom", title: 'Bom'}]} placeholder="Selecione uma opção" />
-                                    </div>
                                 </div>
             
                                 <div>
+                                    <div>
+                                        <Textarea label="Qualidade do sono" name="sleepQuality" id="sleepQuality" placeholder="Breve relato" />
+                                    </div>
+                                    
                                     <div>
                                         <Textarea label="Histórico clínico" id="clinicalHistory" name="clinicalHistory" rows="6" cols="30">
                                         </Textarea>
@@ -333,7 +334,7 @@ export default function Paciente(){
                             <Scope path="useOfMedicines">
                                 <div>
                                     <div>
-                                        <Textarea label="Medicamentos" id="medicinesOrSupplements" placeholder="Exemplo: whey; creatina; complexo b..." name="medicinesOrSupplements" rows="6" cols="30"/>
+                                        <Textarea label="Medicamentos/Suplementos" id="medicinesOrSupplements" placeholder="Exemplo: whey; creatina; complexo b..." name="medicinesOrSupplements" rows="6" cols="30"/>
                                     </div>
                                     <div>
                                         <Textarea label="Doses" id="dose" placeholder="Dose correspondente ao medicamento do campo anterior" name="dose" rows="6" cols="30"/>
@@ -439,7 +440,7 @@ export default function Paciente(){
                             </Scope>
                             <hr/>
     
-                            <h4>11. AVALIAÇÃO ANTROPOMETRICA</h4>
+                            <h4>11. AVALIAÇÃO ANTROPOMÉTRICA</h4>
                             <Scope path="anthropometricEvaluation">
                                 <div>
                                     <div>
@@ -448,55 +449,55 @@ export default function Paciente(){
                                 </div>
                                 <div>
                                     <div>
-                                        <Input label="Dobra cutânea torácica" type="Number" max="400" min="0" step="0.1" name="ThoracicSkinfold" placeholder="Em cetímetros" />
+                                        <Input label="circunferência abdominal" type="Number" max="400" min="0" step="0.1" name="ThoracicSkinfold" placeholder="Em centímetros" />
                                     </div>
                                     <div>
-                                        <Input label="Circunferência da cintura" type="Number" max="400" min="0" step="0.1" name="waist" placeholder="Em cetímetros" />
+                                        <Input label="Circunferência da cintura" type="Number" max="400" min="0" step="0.1" name="waist" placeholder="Em centímetros" />
                                     </div>
                                     <div>
-                                        <Input label="Circunferência do braço" type="Number" max="400" min="0" step="0.1" name="arm" placeholder="Em cetímetros" />
+                                        <Input label="Circunferência do braço" type="Number" max="400" min="0" step="0.1" name="arm" placeholder="Em centímetros" />
                                     </div>
                                     <div>
-                                        <Input label="Circunferência do quadril" type="Number" max="400" min="0" step="0.1" name="hip" placeholder="Em cetímetros" />
-                                    </div>
-                                </div>
-                                <div>
-                                    <div>
-                                        <Input label="Dobra cutânea tricipital" type="Number" max="400" min="0" step="0.1" name="tricepsSkinfold" placeholder="Em cetímetros" />
-                                    </div>
-                                    <div>
-                                        <Input label="Dobra cutânea axilar média" type="Number" max="400" min="0" step="0.1" name="mediumAxillarySkinfold" placeholder="Em cetímetros" />
-                                    </div>
-                                    <div>
-                                        <Input label="Dobra cutânea peitoral" type="Number" max="400" min="0" step="0.1" name="breastplateSkinfold" placeholder="Em cetímetros" />
-                                    </div>
-                                    <div>
-                                        <Input label="Dobra cutânea suprailíaca" type="Number" max="400" min="0" step="0.1" name="suprailiacSkinfold" placeholder="Em cetímetros" />
+                                        <Input label="Circunferência do quadril" type="Number" max="400" min="0" step="0.1" name="hip" placeholder="Em centímetros" />
                                     </div>
                                 </div>
                                 <div>
                                     <div>
-                                        <Input label="Dobra cutânea subescapular" type="Number" max="400" min="0" step="0.1" name="subscapularSkinfold" placeholder="Em cetímetros" />
+                                        <Input label="Dobra cutânea tricipital" type="Number" max="400" min="0" step="0.1" name="tricepsSkinfold" placeholder="Em milimetros" />
                                     </div>
                                     <div>
-                                        <Input label="Dobra cutânea bicipital" type="Number" max="400" min="0" step="0.1" name="bicepsSkinfold" placeholder="Em cetímetros" />
+                                        <Input label="Dobra cutânea axilar média" type="Number" max="400" min="0" step="0.1" name="mediumAxillarySkinfold" placeholder="Em milimetros" />
                                     </div>
                                     <div>
-                                        <Input label="Dobra cutânea abdominal" type="Number" max="400" min="0" step="0.1" name="abdominalSkinfold" placeholder="Em cetímetros" />
+                                        <Input label="Dobra cutânea peitoral" type="Number" max="400" min="0" step="0.1" name="breastplateSkinfold" placeholder="Em milimetros" />
                                     </div>
                                     <div>
-                                        <Input label="Dobra cutânea coxa" type="Number" max="400" min="0" step="0.1" name="thighSkinfold" placeholder="Em cetímetros" />
+                                        <Input label="Dobra cutânea suprailíaca" type="Number" max="400" min="0" step="0.1" name="suprailiacSkinfold" placeholder="Em milimetros" />
                                     </div>
                                 </div>
                                 <div>
                                     <div>
-                                        <Input label="Dobra cutânea panturrilha" type="Number" max="400" min="0" step="0.1" name="calfSkinfold" placeholder="Em cetímetros" />
+                                        <Input label="Dobra cutânea subescapular" type="Number" max="400" min="0" step="0.1" name="subscapularSkinfold" placeholder="Em milimetros" />
                                     </div>
                                     <div>
-                                        <Input label="Panturrilha" type="Number" max="400" min="0" step="0.1" name="calf" placeholder="Em cetímetros" />
+                                        <Input label="Dobra cutânea bicipital" type="Number" max="400" min="0" step="0.1" name="bicepsSkinfold" placeholder="Em milimetros" />
                                     </div>
                                     <div>
-                                        <Input label="Nível de atividade física" type="Number" max="400" min="0" step="0.1" name="NAF" placeholder="Em cetímetros"/>
+                                        <Input label="Dobra cutânea abdominal" type="Number" max="400" min="0" step="0.1" name="abdominalSkinfold" placeholder="Em milimetros" />
+                                    </div>
+                                    <div>
+                                        <Input label="Dobra cutânea coxa" type="Number" max="400" min="0" step="0.1" name="thighSkinfold" placeholder="Em milimetros" />
+                                    </div>
+                                </div>
+                                <div>
+                                    <div>
+                                        <Input label="Dobra cutânea panturrilha" type="Number" max="400" min="0" step="0.1" name="calfSkinfold" placeholder="Em milimetros" />
+                                    </div>
+                                    <div>
+                                        <Input label="Circinferência da panturrilha" type="Number" max="400" min="0" step="0.1" name="calf" placeholder="Em centímetros" />
+                                    </div>
+                                    <div>
+                                        <Input label="Nível de atividade física" type="Number" max="400" min="0" step="0.1" name="NAF" placeholder="Em centímetros"/>
                                     </div>
                                     <div>
                                         <Input label="Peso atual" type="Number" max="400" min="0" step="0.1" name="NAF" placeholder="Em kg"/>
@@ -580,7 +581,7 @@ export default function Paciente(){
                                     </div>  
                                     <div>
                                         {
-                                            edit ? <Input label="Trânsito intestinal" name="IntestinalTransit" id="IntestinalTransit"  placeholder="Sem informação" disabled/> : <Select label="Transito intestinal" name="IntestinalTransit" id="IntestinalTransit" options={[{id: "1", title: '1'}, {id: "2", title: '2'}, {id: "3", title: '3'}, {id: "4", title: '4'}, {id: "5", title: '5'}, {id: "6", title: '6'}, {id: '7', title: '7'}]} placeholder="Selecione uma opção" />
+                                            edit ? <Select label="Trânsito intestinal" name="IntestinalTransit" id="IntestinalTransit" options={[{id: "1x/dia", title: '1x/dia'}, {id: "2x/dia", title: '2x/dia'}, {id: "3x/dia", title: '3x/dia'}, {id: "4x/dia", title: '4x/dia'}, {id: "5x/dia", title: '5x/dia'}, {id: "Prisão de ventre", title: 'Prisão de ventre'}]} placeholder="Selecione uma opção" disabled />  : <Select label="Trânsito intestinal" name="IntestinalTransit" id="IntestinalTransit" options={[{id: "1x/dia", title: '1x/dia'}, {id: "2x/dia", title: '2x/dia'}, {id: "3x/dia", title: '3x/dia'}, {id: "4x/dia", title: '4x/dia'}, {id: "5x/dia", title: '5x/dia'}, {id: "Prisão de ventre", title: 'Prisão de ventre'}]} placeholder="Selecione uma opção" /> 
                                         }
                                     </div>
                                     <div>
@@ -593,22 +594,22 @@ export default function Paciente(){
                                             edit ? <Input label="Gênero fisiológico" name="genre" id="genre" placeholder="Sem informação"  disabled/> : <Select label="Genero fisiologico" name="genre" id="genre" options={[{id: "Mulher", title: 'Mulher'}, {id: "Homem", title: 'Homem'}]} placeholder="Selecione uma opção" />
                                         }
                                     </div>
-                                    <div>
-                                        {
-                                            edit ? <Input label="Qualidade do sono" name="sleepQuality" id="sleepQuality" placeholder="Sem informação" disabled/> : <Select label="Qualidade do sono" name="sleepQuality" id="sleepQuality" options={[{id: "Ruim", title: 'Ruim'}, {id: "Bom", title: 'Bom'}]} placeholder="Selecione uma opção" />
-                                        }
-                                    </div>
                                 </div>
                                 <div>
                                     <div>
                                         {
-                                            edit ? <Textarea label="Histórico clínico" id="clinicalHistory" name="clinicalHistory" rows="6" cols="30" disabled/> : <Textarea label="Historico clínico" id="clinicalHistory" name="clinicalHistory" rows="6" cols="30" />
+                                            edit ? <Textarea label="Qualidade do sono" name="sleepQuality" id="sleepQuality" rows="6" cols="30" placeholder="Breve relato"  disabled/> : <Textarea label="Qualidade do sono" name="sleepQuality" id="sleepQuality" placeholder="Breve relato"  rows="6" cols="30" />
+                                        }
+                                    </div>
+                                    <div>
+                                        {
+                                            edit ? <Textarea label="Histórico clínico" id="clinicalHistory" name="clinicalHistory" rows="6" cols="30" placeholder="Seu histórico clínico" disabled/> : <Textarea label="Historico clínico" id="clinicalHistory" name="clinicalHistory" placeholder="Seu histórico clínico" rows="6" cols="30" />
                                         }
                                     </div>
             
                                     <div>
                                         {
-                                            edit ? <Textarea label="Objetivo" id="objective" name="objective" rows="6" cols="30" disabled /> : <Textarea label="Objetivo" id="objective" name="objective" rows="6" cols="30" />
+                                            edit ? <Textarea label="Objetivo" id="objective" name="objective" rows="6" cols="30" placeholder="Seu objetivo para com o acompanhamento" disabled /> : <Textarea label="Objetivo" id="objective" name="objective" placeholder="Seu objetivo para com o acompanhamento" rows="6" cols="30" />
                                         }
                                     </div>
                                 </div>
@@ -798,17 +799,17 @@ export default function Paciente(){
                                     <div>
                                         <div>
                                             {
-                                                edit ? <Textarea label="Medicamentos" id="medicinesOrSupplements" name="medicinesOrSupplements" rows="6" cols="30" disabled/> : <Textarea label="Refeições local/horários" id="medicinesOrSupplements" name="medicinesOrSupplements" rows="6" cols="30"/>
+                                                edit ? <Textarea label="Medicamentos/Suplementos" id="medicinesOrSupplements" name="medicinesOrSupplements" rows="6" cols="30" disabled/> : <Textarea label="Medicamentos/Suplementos" id="medicinesOrSupplements" name="medicinesOrSupplements" rows="6" cols="30"/>
                                             }
                                         </div>
                                         <div>
                                             {
-                                                edit ? <Textarea label="Doses" placeholder="Alimentos correspondente a cada refeição" id="dose" name="dose" rows="6" cols="30" disabled/> :  <Textarea label="Alimentos" placeholder="Alimentos correspondente a cada refeição" id="dose" name="dose" rows="6" cols="30"/>
+                                                edit ? <Textarea label="Doses" placeholder="Doses correspondentes a cada medicamento" id="dose" name="dose" rows="6" cols="30" disabled/> :  <Textarea label="Doses" placeholder="Doses correspondentes a cada medicamento" id="dose" name="dose" rows="6" cols="30"/>
                                             }
                                         </div>
                                         <div>
                                             {
-                                                edit ? <Textarea label="Horários" placeholder="Quantidade referente a cada alimento adicionado" id="schedule" name="schedule" rows="6" cols="30" disabled/> : <Textarea label="Quantidades" placeholder="Quantidade referente a cada alimento adicionado" id="schedule" name="schedule" rows="6" cols="30"/>
+                                                edit ? <Textarea label="Horários" placeholder="Intervalo de tempo referente a cada medicamento" id="schedule" name="schedule" rows="6" cols="30" disabled/> : <Textarea label="Horários" placeholder="Intervalo de tempo referente a cada medicamento" id="schedule" name="schedule" rows="6" cols="30"/>
                                             }
                                         </div>
                                     </div>
@@ -938,7 +939,7 @@ export default function Paciente(){
                             </Scope>
                             <hr/>
     
-                            <h4>11. AVALIAÇÃO ANTROPOMETRICA</h4>
+                            <h4>11. AVALIAÇÃO ANTROPOMÉTRICA</h4>
                             <Scope path="anthropometricEvaluation">
                                 <div>
                                     <div>
@@ -950,69 +951,69 @@ export default function Paciente(){
                                 <div>
                                     <div>
                                         {
-                                            edit ? <Input label="Dobra cutânea torácica" type="Number" max="400" min="0" step="0.1" name="ThoracicSkinfold" placeholder="Em cetímetros" disabled /> : <Input label="Dobra cutânea torácica" type="Number" max="400" min="0" step="0.1" name="ThoracicSkinfold" placeholder="Em cetímetros" />
+                                            edit ? <Input label="Dobra cutânea torácica" type="Number" max="400" min="0" step="0.1" name="ThoracicSkinfold" placeholder="Em centímetros" disabled /> : <Input label="Dobra cutânea torácica" type="Number" max="400" min="0" step="0.1" name="ThoracicSkinfold" placeholder="Em centímetros" />
                                         }
                                     </div>
                                     <div>
                                         {
-                                            edit ? <Input label="Circunferência da cintura" type="Number" max="400" min="0" step="0.1" name="waist" placeholder="Em cetímetros" disabled /> : <Input label="Circunferência da cintura" type="Number" max="400" min="0" step="0.1" name="waist" placeholder="Em cetímetros" />
+                                            edit ? <Input label="Circunferência da cintura" type="Number" max="400" min="0" step="0.1" name="waist" placeholder="Em centímetros" disabled /> : <Input label="Circunferência da cintura" type="Number" max="400" min="0" step="0.1" name="waist" placeholder="Em centímetros" />
                                         }
                                     </div>
                                     <div>
                                         {
-                                            edit ? <Input label="Circunferência do braço" type="Number" max="400" min="0" step="0.1" name="arm" placeholder="Em cetímetros" disabled /> : <Input label="Circunferência do braço" type="Number" max="400" min="0" step="0.1" name="arm" placeholder="Em cetímetros" />
+                                            edit ? <Input label="Circunferência do braço" type="Number" max="400" min="0" step="0.1" name="arm" placeholder="Em centímetros" disabled /> : <Input label="Circunferência do braço" type="Number" max="400" min="0" step="0.1" name="arm" placeholder="Em centímetros" />
                                         }
                                     </div>
                                     <div>
                                         {
-                                            edit ? <Input label="Circunferência do quadril" type="Number" max="400" min="0" step="0.1" name="hip" placeholder="Em cetímetros" disabled /> : <Input label="Circunferência do quadril" type="Number" max="400" min="0" step="0.1" name="hip" placeholder="Em cetímetros" />
-                                        }
-                                    </div>
-                                </div>
-                                <div>
-                                    <div>
-                                        {
-                                            edit ? <Input label="Dobra cutânea tricipital" type="Number" max="400" min="0" step="0.1" name="tricepsSkinfold" placeholder="Em cetímetros" disabled /> : <Input label="Dobra cutânea tricipital" type="Number" max="400" min="0" step="0.1" name="tricepsSkinfold" placeholder="Em cetímetros" />
-                                        }
-                                    </div>
-                                    <div>
-                                        {
-                                            edit ? <Input label="Dobra cutânea axilar média" type="Number" max="400" min="0" step="0.1" name="mediumAxillarySkinfold" placeholder="Em cetímetros" disabled /> : <Input label="Dobra cutânea axilar média" type="Number" max="400" min="0" step="0.1" name="mediumAxillarySkinfold" placeholder="Em cetímetros" />
-                                        }
-                                    </div>
-                                    <div>
-                                        {
-                                            edit ? <Input label="Dobra cutânea peitoral" type="Number" max="400" min="0" step="0.1" name="breastplateSkinfold" placeholder="Em cetímetros" disabled /> : <Input label="Dobra cutânea peitoral" type="Number" max="400" min="0" step="0.1" name="breastplateSkinfold" placeholder="Em cetímetros" />
-                                        }
-                                    </div>
-                                    <div>
-                                        {
-                                            edit ? <Input label="Dobra cutânea suprailíaca" type="Number" max="400" min="0" step="0.1" name="suprailiacSkinfold" placeholder="Em cetímetros" disabled /> : <Input label="Dobra cutânea suprailíaca" type="Number" max="400" min="0" step="0.1" name="suprailiacSkinfold" placeholder="Em cetímetros" />
+                                            edit ? <Input label="Circunferência do quadril" type="Number" max="400" min="0" step="0.1" name="hip" placeholder="Em centímetros" disabled /> : <Input label="Circunferência do quadril" type="Number" max="400" min="0" step="0.1" name="hip" placeholder="Em centímetros" />
                                         }
                                     </div>
                                 </div>
                                 <div>
                                     <div>
                                         {
-                                            edit ? <Input label="Dobra cutânea subescapular" type="Number" max="400" min="0" step="0.1" name="subscapularSkinfold" placeholder="Em cetímetros" disabled /> : <Input label="Dobra cutânea subescapular" type="Number" max="400" min="0" step="0.1" name="subscapularSkinfold" placeholder="Em cetímetros" />
+                                            edit ? <Input label="Dobra cutânea tricipital" type="Number" max="400" min="0" step="0.1" name="tricepsSkinfold" placeholder="Em milimetros" disabled /> : <Input label="Dobra cutânea tricipital" type="Number" max="400" min="0" step="0.1" name="tricepsSkinfold" placeholder="Em milimetros" />
+                                        }
+                                    </div>
+                                    <div>
+                                        {
+                                            edit ? <Input label="Dobra cutânea axilar média" type="Number" max="400" min="0" step="0.1" name="mediumAxillarySkinfold" placeholder="Em milimetros" disabled /> : <Input label="Dobra cutânea axilar média" type="Number" max="400" min="0" step="0.1" name="mediumAxillarySkinfold" placeholder="Em milimetros" />
+                                        }
+                                    </div>
+                                    <div>
+                                        {
+                                            edit ? <Input label="Dobra cutânea peitoral" type="Number" max="400" min="0" step="0.1" name="breastplateSkinfold" placeholder="Em milimetros" disabled /> : <Input label="Dobra cutânea peitoral" type="Number" max="400" min="0" step="0.1" name="breastplateSkinfold" placeholder="Em milimetros" />
+                                        }
+                                    </div>
+                                    <div>
+                                        {
+                                            edit ? <Input label="Dobra cutânea suprailíaca" type="Number" max="400" min="0" step="0.1" name="suprailiacSkinfold" placeholder="Em milimetros" disabled /> : <Input label="Dobra cutânea suprailíaca" type="Number" max="400" min="0" step="0.1" name="suprailiacSkinfold" placeholder="Em milimetros" />
+                                        }
+                                    </div>
+                                </div>
+                                <div>
+                                    <div>
+                                        {
+                                            edit ? <Input label="Dobra cutânea subescapular" type="Number" max="400" min="0" step="0.1" name="subscapularSkinfold" placeholder="Em milimetros" disabled /> : <Input label="Dobra cutânea subescapular" type="Number" max="400" min="0" step="0.1" name="subscapularSkinfold" placeholder="Em milimetros" />
                                         }
                                         
                                     </div>
                                     <div>
                                         {
-                                            edit ? <Input label="Dobra cutânea bicipital" type="Number" max="400" min="0" step="0.1" name="bicepsSkinfold" placeholder="Em cetímetros" disabled /> : <Input label="Dobra cutânea bicipital" type="Number" max="400" min="0" step="0.1" name="bicepsSkinfold" placeholder="Em cetímetros" />
+                                            edit ? <Input label="Dobra cutânea bicipital" type="Number" max="400" min="0" step="0.1" name="bicepsSkinfold" placeholder="Em milimetros" disabled /> : <Input label="Dobra cutânea bicipital" type="Number" max="400" min="0" step="0.1" name="bicepsSkinfold" placeholder="Em milimetros" />
                                         }
                                         
                                     </div>
                                     <div>
                                         {
-                                            edit ? <Input label="Dobra cutânea abdominal" type="Number" max="400" min="0" step="0.1" name="abdominalSkinfold" placeholder="Em cetímetros" disabled /> : <Input label="Dobra cutânea abdominal" type="Number" max="400" min="0" step="0.1" name="abdominalSkinfold" placeholder="Em cetímetros" />
+                                            edit ? <Input label="Dobra cutânea abdominal" type="Number" max="400" min="0" step="0.1" name="abdominalSkinfold" placeholder="Em milimetros" disabled /> : <Input label="Dobra cutânea abdominal" type="Number" max="400" min="0" step="0.1" name="abdominalSkinfold" placeholder="Em milimetros" />
                                         }
                                         
                                     </div>
                                     <div>
                                         {
-                                            edit ? <Input label="Dobra cutânea coxa" type="Number" max="400" min="0" step="0.1" name="thighSkinfold" placeholder="Em cetímetros" disabled /> : <Input label="Dobra cutânea coxa" type="Number" max="400" min="0" step="0.1" name="thighSkinfold" placeholder="Em cetímetros" />
+                                            edit ? <Input label="Dobra cutânea coxa" type="Number" max="400" min="0" step="0.1" name="thighSkinfold" placeholder="Em milimetros" disabled /> : <Input label="Dobra cutânea coxa" type="Number" max="400" min="0" step="0.1" name="thighSkinfold" placeholder="Em milimetros" />
                                         }
                                         
                                     </div>
@@ -1020,19 +1021,19 @@ export default function Paciente(){
                                 <div>
                                     <div>
                                         {
-                                            edit ? <Input label="Dobra cutânea panturrilha" type="Number" max="400" min="0" step="0.1" name="calfSkinfold" placeholder="Em cetímetros" disabled/> : <Input label="Dobra cutânea panturrilha" type="Number" max="400" min="0" step="0.1" name="calfSkinfold" placeholder="Em cetímetros" />
+                                            edit ? <Input label="Dobra cutânea panturrilha" type="Number" max="400" min="0" step="0.1" name="calfSkinfold" placeholder="Em milimetros" disabled/> : <Input label="Dobra cutânea panturrilha" type="Number" max="400" min="0" step="0.1" name="calfSkinfold" placeholder="Em milimetros" />
                                         }
                                         
                                     </div>
                                     <div>
                                         {
-                                            edit ? <Input label="Panturrilha" type="Number" max="400" min="0" step="0.1" name="calf" placeholder="Em cetímetros" disabled /> : <Input label="Panturrilha" type="Number" max="400" min="0" step="0.1" name="calf" placeholder="Em cetímetros" />
+                                            edit ? <Input label="Circunferência da panturrilha" type="Number" max="400" min="0" step="0.1" name="calf" placeholder="Em centímetros" disabled /> : <Input label="Panturrilha" type="Number" max="400" min="0" step="0.1" name="calf" placeholder="Em centímetros" />
                                         }
                                         
                                     </div>
                                     <div>
                                         {
-                                            edit ? <Input label="Nível de atividade física" type="Number" max="400" min="0" step="0.1" name="NAF" placeholder="Em cetímetros" disabled/> : <Input label="Nível de atividade física" type="Number" max="400" min="0" step="0.1" name="NAF" placeholder="Em cetímetros"/>
+                                            edit ? <Input label="Nível de atividade física" type="Number" max="400" min="0" step="0.1" name="NAF" placeholder="Em centímetros" disabled/> : <Input label="Nível de atividade física" type="Number" max="400" min="0" step="0.1" name="NAF" placeholder="Em centímetros"/>
                                         }
                                         
                                     </div>
@@ -1077,11 +1078,9 @@ export default function Paciente(){
                                     }
                                 </div>
                             </div>
-    
                             {
-                                edit ? <button className="Salve" disabled>Atualizar dados</button> : <button className="Salve" type="submit" onSubmit={e => { e.preventDefault()}} >Atualizar dados</button>
+                                edit ? <button className="Salve" disabled>Desabilitado</button> : <button className="Salve" type="submit" onSubmit={e => { e.preventDefault()}} >Atualizar dados</button>
                             }                            
-                                
                         </Form>
                     </MedicalInfo>
         
