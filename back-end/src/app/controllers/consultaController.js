@@ -14,18 +14,16 @@ module.exports = {
     async store(req, res){
         try {
             const data = req.body.data
-            console.log(data)
 
             await Scheduling.findByIdAndUpdate(data,{status: false}, {new: true});
 
             // Cria uma consulta com os dados fornecido
             const consulta = await Consulta.create({... req.body});
-            console.log(consulta)
 
             return res.json(consulta); // Envia uma resposta JSON composta dos dados especificado.
 
         } catch (error) {
-            console.log(error)
+
             return res.status(400).send({error: 'Erro ao criar consulta.'})
 
         }

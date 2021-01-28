@@ -15,7 +15,7 @@ module.exports = {
             return res.json(protocolService);
         }
         catch (error) {
-            console.log(error)
+
             return res.status(400).send({error: 'Erro ao salvar formulário.'})
         }
     },
@@ -51,7 +51,7 @@ module.exports = {
         }
 
         catch (error) {
-            console.log(error)
+
             return res.status(400).send({error: 'Erro ao listar dados do atendimento.'})
         }
     },
@@ -61,11 +61,19 @@ module.exports = {
 
             let body = req.body; // Armazena todos os dados do formulario em uma variavel
             // Faz uma desestruturação para pegar apenas as variaveis determinadas do corpo do formulario
-            const { currentWeight, NAF } = body.anthropometricEvaluation; 
+            const { currentWeight, NAF, tricepsSkinfold, subscapularSkinfold, suprailiacSkinfold, thighSkinfold, abdominalSkinfold } = body.anthropometricEvaluation; 
             const { dateBirth, genre, height, Weight } = body.PersonalInformation;
-            
+
             // Chama uma funcao para calcular a idade de acordo com a data de nascimento
             const age = functionEnergyExpend.calculaIdade(dateBirth)
+            // Calcular a densidade corporal do paciente
+            const dc =  functionEnergyExpend.densidadeCorporal(genre, tricepsSkinfold, suprailiacSkinfold, abdominalSkinfold, subscapularSkinfold, thighSkinfold)
+            // Calcular o percentual de gordura
+            const percentGordura = functionEnergyExpend.percentualDeGordura(dc)
+            // Calcular o peso gordo
+            const pesoGordo = functionEnergyExpend.pesoGordo(currentWeight, percentGordura)
+            // Calcular o peso magro
+            const pesoMagro = functionEnergyExpend.pesoMagro(currentWeight, pesoGordo)
 
             // Variavel que armazena o calculo do gasto energetico da formula de FAO/OMS
             const faoOms = functionEnergyExpend.faoOms(currentWeight, age, genre)
@@ -82,13 +90,17 @@ module.exports = {
             body.anthropometricEvaluation.energyExpenditure.iom = iom
             body.anthropometricEvaluation.dailyHydraulicNeed = dailyHydraulicNeed
             body.anthropometricEvaluation.imc = (Weight / (height * height)).toFixed(2)
+            body.anthropometricEvaluation.bodyDensity = dc
+            body.anthropometricEvaluation.fatPercentage = percentGordura
+            body.anthropometricEvaluation.fatWeight = pesoGordo
+            body.anthropometricEvaluation.thinWeight = pesoMagro
             // Encontrando o usuario de acordo com o id e atualizanndo os dados para salvar no banco de dados
             const protocolService = await ProtocolService.findByIdAndUpdate({_id: req.params.id}, body, {new: true});
 
             return res.json(protocolService);
         }
         catch (error) {
-            console.log(error)
+
             return res.status(400).send({error: 'Erro ao editar o formulário.'});
         }
     },

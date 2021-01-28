@@ -113,10 +113,79 @@ module.exports = {
                         }       
                     }
                 } 
+                
                 return idade; 
             }
         }
         catch (error) {
+            return error
+        }
+    },
+    densidadeCorporal(genero, triceps, supraIliaca, abdomen, subesCapular, coxa) {
+        try {
+            
+            let dc = 0;
+            
+            if(typeof genero != "undefined" || typeof triceps != "undefined" || typeof supraIliaca != "undefined" || typeof abdomen != "undefined") {
+                if(genero == "Mulher") {
+
+                    dc = 1.1665-0.07063*Math.log10(subesCapular + supraIliaca + coxa)
+                    
+                }
+                else if(genero == "Homem") {
+                    
+                    dc = 1.17136-0.06706*Math.log10(triceps + supraIliaca + abdomen)
+                }
+            }
+
+            return dc.toFixed(2)
+        }
+        catch(error) {
+            return error
+        }
+    },
+
+    percentualDeGordura(dc) {
+        try {
+            let percentGordura = 0;
+            if(typeof dc != "undefined") {
+
+                percentGordura = (495 / dc) - 450
+
+            }
+            return percentGordura.toFixed(2)
+        }
+        catch(error) {
+            return error
+        }
+    },
+
+    pesoGordo(pesoTotal, percentGordura) {
+        try {
+            let pesoGord = 0;
+            if(typeof pesoTotal != "undefined" || typeof percentGordura != "undefined") {
+
+                pesoGord = pesoTotal * (percentGordura / 100)
+
+            }
+            return pesoGord.toFixed(2)
+        }
+        catch(error) {
+            return error
+        }
+    },
+
+    pesoMagro(pesoTotal, pesoGordo) {
+        try {
+            let pesoMagr = 0;
+            if(typeof pesoTotal != "undefined" || typeof pesoGordo != "undefined") {
+
+                pesoMagr = pesoTotal - pesoGordo
+
+            }
+            return pesoMagr.toFixed(2)
+        }
+        catch(error) {
             return error
         }
     },

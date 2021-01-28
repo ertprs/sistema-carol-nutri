@@ -252,7 +252,7 @@ const ProtocolService = new mongoose.Schema({
         abdominalSkinfold: {
             type: Number,
         },
-        thighSkinfold: {
+        thighSkinfold: { 
             type: Number,
         },
         calfSkinfold: {
@@ -280,6 +280,18 @@ const ProtocolService = new mongoose.Schema({
         },
         dailyHydraulicNeed: {
             type: Number
+        },
+        bodyDensity: {
+            type: Number
+        },
+        fatPercentage: {
+            type: Number
+        },   
+        fatWeight: {
+            type: Number
+        },
+        thinWeight: {
+            type: Number
         }
     },
     consultaDate: {
@@ -289,15 +301,21 @@ const ProtocolService = new mongoose.Schema({
 
 ProtocolService.pre('save', async function(next){
 
-    // Acessa a variavel energyExpenditure do banco de dados
-    const energyExpend = this.anthropometricEvaluation.energyExpenditure;
     // Faz uma desestruturacao na variavel anthropometricEvaluation e pega apenas as variaveis desejadas
-    const { currentWeight, NAF } = this.anthropometricEvaluation;
+    const { currentWeight, NAF, tricepsSkinfold, subscapularSkinfold, suprailiacSkinfold, thighSkinfold, abdominalSkinfold } = this.anthropometricEvaluation;
     // Faz uma desestruturacao na variavel PersonalInformation e pega apenas as variaveis desejadas
     const { dateBirth, genre, height, Weight } = this.PersonalInformation;
 
     // Calcula a idade de acordo com a data de nascimento
     const age = functionEnergyExpend.calculaIdade(dateBirth)
+    // Calcular a densidade corporal do paciente
+    const dc =  functionEnergyExpend.densidadeCorporal(genre, tricepsSkinfold, suprailiacSkinfold, abdominalSkinfold, subscapularSkinfold, thighSkinfold)
+    // Calcular o percentual de gordura
+    const percentGordura = functionEnergyExpend.percentualDeGordura(dc)
+    // Calcular o peso gordo
+    const pesoGordo = functionEnergyExpend.pesoGordo(currentWeight, percentGordura)
+    // Calcular o peso magro
+    const pesoMagro = functionEnergyExpend.pesoMagro(currentWeight, pesoGordo)
 
     // Função da formula FAO/OMS para calcular o gasto energetico
     this.anthropometricEvaluation.energyExpenditure.faoOms = functionEnergyExpend.faoOms(currentWeight, age, genre)
@@ -309,6 +327,14 @@ ProtocolService.pre('save', async function(next){
     this.anthropometricEvaluation.dailyHydraulicNeed = (0.035 * currentWeight)
     // Calculo do imc do paciente
     this.anthropometricEvaluation.imc = (Weight / (height * height)).toFixed(2)
+    // Armazena o calculo feito de densidade corporal no banco de dados
+    this.anthropometricEvaluation.bodyDensity = dc
+    // Armazena o calculo feito do percentual de gordura no banco de dados
+    this.anthropometricEvaluation.fatPercentage = percentGordura
+    // Armazena o calculo feito de peso gordo no banco de dados
+    this.anthropometricEvaluation.fatWeight = pesoGordo
+    // Armazena o calculo feito de peso magro no banco de dados
+    this.anthropometricEvaluation.thinWeight = pesoMagro
 
 })
 
