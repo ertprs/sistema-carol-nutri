@@ -121,6 +121,7 @@ module.exports = {
             return error
         }
     },
+    // Formula para calcular a densidade corporal do paciente
     densidadeCorporal(genero, triceps, supraIliaca, abdomen, subesCapular, coxa) {
         try {
             

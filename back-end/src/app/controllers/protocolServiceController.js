@@ -79,7 +79,7 @@ module.exports = {
             const faoOms = functionEnergyExpend.faoOms(currentWeight, age, genre)
             // Variavel que armazena o calculo do gasto energetico  da formula de HarrysBenedict
             const HarrisBenedict = functionEnergyExpend.harrisBenedict(height, currentWeight, age, genre);
-            // Variavel que armazena o calculo do gasto energetico da formula de IOM
+            // Variavel que armazena o calculo do gasto energético da formula de IOM
             const iom = functionEnergyExpend.iom(height, currentWeight, age, genre, NAF);
             // Variavel que armazena o calculo de necessidade hidrica
             const dailyHydraulicNeed = (0.035 * currentWeight).toFixed(2);
