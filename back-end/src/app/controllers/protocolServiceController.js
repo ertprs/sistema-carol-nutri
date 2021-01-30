@@ -95,8 +95,8 @@ module.exports = {
             body.anthropometricEvaluation.fatWeight = pesoGordo
             body.anthropometricEvaluation.thinWeight = pesoMagro
             // Encontrando o usuario de acordo com o id e atualizanndo os dados para salvar no banco de dados
-            const protocolService = await ProtocolService.findByIdAndUpdate({_id: req.params.id}, body, {new: true});
-
+            const protocolService = await ProtocolService.findByIdAndUpdate(req.params.id, body, {new: true});
+            
             return res.json(protocolService);
         }
         catch (error) {
